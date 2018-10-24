@@ -7,12 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Connexion à Co-éco</title>
 
-    <link href="Css/StyleSheet_Connexion.css" rel="stylesheet" />
+    <link href="App_Themes/Thème1/StyleSheet_Connexion.css" rel="stylesheet" />
 
 </head>
 <body>
     <header>
-        
+        <img src="Image/logo_v2.jpg" class="logo_connexion" alt="LOGO_COECO"/>
     </header>
 
     <form runat="server" class="textbox_zone">

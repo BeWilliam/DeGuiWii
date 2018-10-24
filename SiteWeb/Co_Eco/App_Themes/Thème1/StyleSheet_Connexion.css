@@ -1,5 +1,8 @@
-﻿body > header {
-    height : 320px;
+﻿header {
+    height: 320px;
+}
+
+#logo_connexion {
     background-image: url('../Image/logo_v2.jpg');
     background-repeat: no-repeat;
     background-position: center top;
