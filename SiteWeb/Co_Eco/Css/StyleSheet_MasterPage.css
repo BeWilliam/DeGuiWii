@@ -1,0 +1,16 @@
+﻿*{
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    /*background-image: url('../Image/background2.png');*/
+}
+
+body > header {
+    height: auto;
+    width: auto;
+    background-image: url('../Image/background2.png');
+    background-size : contain;
+    background-repeat: no-repeat;
+}

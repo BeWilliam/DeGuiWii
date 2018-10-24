@@ -1,0 +1,42 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>
+
+        <%--Titre de l'onglet--%>
+        <asp:ContentPlaceHolder id="cph_title" runat="server">
+       </asp:ContentPlaceHolder>
+
+    </title>
+
+    <link href="Css/StyleSheet_MasterPage.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+    
+    <header>
+
+        <%--Logo--%>
+
+        <h1>test</h1>
+
+    </header>
+
+<%--    <nav>
+
+
+    </nav>
+
+    <footer>
+
+
+    </footer>--%>
+
+</body>
+</html>
