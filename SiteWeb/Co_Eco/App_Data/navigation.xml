@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<navigation>
+
+  <nav Nom="Menu" Url="menu.aspx"></nav>
+  <nav Nom="Feuille de temps" Url="menu.aspx"></nav>
+  <nav Nom="Projets" Url="menu.aspx"></nav>
+  <nav Nom="Employés" Url="menu.aspx"></nav>
+  <nav Nom="Dépenses" Url="menu.aspx"></nav>
+
+</navigation>
