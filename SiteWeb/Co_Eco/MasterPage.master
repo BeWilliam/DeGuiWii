@@ -21,26 +21,36 @@
 
     <form id="form_1" runat="server">
     
-    <header>
-        <img src="Image/logo_v2.jpg" class="logo_nav1" />
-    </header>
+            <header>
+
+                <p class="bonjour">Bonjour ...  </p>
+
+                <asp:ImageButton ID="ImageButton1" runat="server" class="btn_close" ImageUrl="~/Image/deco_logo.jpg"/>
+
+                <img src="Image/logo_v2.jpg" class="logo_nav1" />
+
+            </header>
                  
-    <nav>
+            <nav>
 
-        <asp:XmlDataSource ID="xml_navigation" runat="server" DataFile="~/App_Data/navigation.xml"></asp:XmlDataSource>
+                <asp:XmlDataSource ID="xml_navigation" runat="server" DataFile="~/App_Data/navigation.xml"></asp:XmlDataSource>
 
-        <asp:BulletedList ID="bl_navigation" runat="server" DataSourceID="xml_navigation" DataTextField="Nom" DataValueField="Url" DisplayMode="HyperLink"></asp:BulletedList>
+                <asp:BulletedList ID="bl_navigation" runat="server" DataSourceID="xml_navigation" DataTextField="Nom" DataValueField="Url" DisplayMode="HyperLink"></asp:BulletedList>
 
-    </nav>
+            </nav>
 
-        <h2>
-            <asp:ContentPlaceHolder ID="cph_titre_nav" runat="server"></asp:ContentPlaceHolder>
-        </h2>
+            <h2>
+                <asp:ContentPlaceHolder ID="cph_titre_nav" runat="server"></asp:ContentPlaceHolder>
+            </h2>
 
-    <footer>
-        <p>Développé par l'équipe DeGuiWii (Denis Thériault, Guillaume Gagnon et William Lemieux)</p>
-    </footer>
+        <footer>
+
+            <p>Développé par l'équipe DeGuiWii (Denis Thériault, Guillaume Gagnon et William Lemieux)</p>
+
+        </footer>
 
     </form>
+
 </body>
+
 </html>

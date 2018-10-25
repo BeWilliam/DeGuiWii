@@ -21,7 +21,7 @@
         <br />
         <asp:TextBox ID="tbx_mdp" runat="server" placeholder="Mot de passe" TextMode="Password"></asp:TextBox>
         <br />
-        <asp:Button ID="btn_connexion" runat="server" Text="Connexion" BackColor="#53b34f" BorderStyle="Outset"/>
+        <asp:Button ID="btn_connexion" runat="server" Text="Connexion" BackColor="#53b34f" BorderStyle="Outset" OnClick="Connexion_click"/>
 
     </form>
 
