@@ -1,0 +1,41 @@
+﻿* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    margin: 0 auto;
+}
+
+
+header {
+    background-image: url('../../Image/background2.png');
+    height: 200px;
+    width: 1920px;
+    background-size: 100% 100%;
+}
+
+ul {
+   padding-top: 20px;
+}
+
+li {
+
+}
+
+nav {
+    border-top : 2px solid black;
+    border-bottom : 2px solid black;
+    height: 70px;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+footer {
+    background-image: url('../../Image/background.png');
+    height: 200px;
+    width: 1920px;
+    background-size: 100% 100%;
+}
+
+

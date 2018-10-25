@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>
+
+        <%--Titre de l'onglet--%>
+        <asp:ContentPlaceHolder id="cph_title" runat="server">
+       </asp:ContentPlaceHolder>
+    </title>
+
+    <link href="App_Themes/Thème1/Default.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    
+    <header>
+        <%--Logo--%>
+        <%--<img src="Image/background2.png" class="logo_header"/>--%>
+
+    </header>
+
+    <nav>
+
+        <a href="Menu.aspx"> Menu </a>
+        <a href="Menu.aspx"> Feuille de temps</a>
+        <a href="Menu.aspx"> Projets </a>
+        <a href="Menu.aspx"> Employés </a>
+        <a href="Menu.aspx"> Dépenses </a>
+
+    </nav>
+    
+
+    <footer>
+        <%--<img src="Image/background.png" class="logo_footer"/>--%>
+    </footer>
+
+</body>
+</html>
