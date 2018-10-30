@@ -1,0 +1,7 @@
+E:\DeGuiWii\BD\DemerdageBD\DemerdageBD\bin\Debug\DemerdageBD.exe.config
+E:\DeGuiWii\BD\DemerdageBD\DemerdageBD\bin\Debug\DemerdageBD.exe
+E:\DeGuiWii\BD\DemerdageBD\DemerdageBD\bin\Debug\DemerdageBD.pdb
+E:\DeGuiWii\BD\DemerdageBD\DemerdageBD\obj\Debug\DemerdageBD.csprojAssemblyReference.cache
+E:\DeGuiWii\BD\DemerdageBD\DemerdageBD\obj\Debug\DemerdageBD.csproj.CoreCompileInputs.cache
+E:\DeGuiWii\BD\DemerdageBD\DemerdageBD\obj\Debug\DemerdageBD.exe
+E:\DeGuiWii\BD\DemerdageBD\DemerdageBD\obj\Debug\DemerdageBD.pdb
