@@ -1,0 +1,28 @@
+﻿div {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+p{
+    margin-bottom: 13px;
+}
+
+.ddl_categorie{
+    width: 200px;
+}
+
+.ddl_chef {
+    width: 200px;
+}
+
+section {
+    text-align: center;
+    margin: 0 auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.btn_ajouterProjet{
+    width:200px;    
+}

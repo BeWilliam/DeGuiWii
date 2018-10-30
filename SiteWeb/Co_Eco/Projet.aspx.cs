@@ -11,4 +11,9 @@ public partial class Projet : System.Web.UI.Page
     {
 
     }
+
+    protected void btn_addProject_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("AjouterProjet.aspx");
+    }
 }
