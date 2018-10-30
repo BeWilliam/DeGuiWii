@@ -1,0 +1,26 @@
+﻿div {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    margin: 0 auto;
+    text-align:left;
+    width:35%;
+}
+
+p {
+    margin-bottom: 13px;
+}
+
+section {
+    text-align: center;
+    margin: 0 auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.button {
+    margin-top: 5px;
+    width: 160px;
+    height: 30px;
+}
+.ddl {
+    width: 200px;
+}

@@ -4,5 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_titre_nav" Runat="Server">
     Feuilles de temps
+
+    <asp:Table ID="TableFeuilleTemps" runat="server"></asp:Table>
 </asp:Content>
 

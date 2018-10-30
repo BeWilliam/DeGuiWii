@@ -11,4 +11,10 @@ public partial class Employe : System.Web.UI.Page
     {
 
     }
+
+
+    protected void bt_AjouterEmploye_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AjouterEmploye.aspx");
+    }
 }
