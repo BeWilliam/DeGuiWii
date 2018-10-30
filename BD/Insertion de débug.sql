@@ -2,8 +2,8 @@ USE CoEco_BD
 GO
 
 /*Insertion de base pour débug*/
-INSERT INTO Projet(nom) VALUES ('Projet de débug')
-INSERT INTO Projet(nom) VALUES ('Projet du swag')
+INSERT INTO Projet(idProjet, nom) VALUES (1, 'Projet de débug')
+INSERT INTO Projet(idProjet, nom) VALUES (2, 'Projet du swag')
 INSERT INTO CategoriePro(idProjet, descript) VALUES (1, 'Categorie Bidon')
 INSERT INTO CategoriePro(idProjet, descript) VALUES (1, 'DEBUGAGE dappliaction')
 INSERT INTO CategoriePro(idProjet, descript) VALUES (2, 'Vacances')

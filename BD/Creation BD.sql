@@ -64,18 +64,19 @@ CREATE TABLE Employe(
 	courriel VARCHAR(50),
 	mdp VARCHAR(30),
 	/*Foreign key*/
-	idStatus INT NOT NULL,
+	idStatus INT DEFAULT 1 NOT NULL,
 	idFonction INT NOT NULL,
 	CONSTRAINT pkIdEmploye PRIMARY KEY (idEmploye),
 	CONSTRAINT fkIdStatusEmp FOREIGN KEY (idStatus) REFERENCES StatusEmploye(idStatusEmp),
 	CONSTRAINT frIdFonctionEmp FOREIGN KEY (idFonction) REFERENCES FonctionEmploye(idFonctionEmp)
 )
 
+
 /*-Table pour les projets-*/
 CREATE TABLE Projet(
-	idProjet INT IDENTITY(1,1),
-	nom VARCHAR(50) NOT NULL,
-	descript VARCHAR(100),
+	idProjet INT,
+	nom VARCHAR(100) NOT NULL,
+	descript VARCHAR(500),
 	responsable INT, /*ID de l'employé qui sera le responsable*/
 	dateDebut DATE,
 	dateFin DATE ,
