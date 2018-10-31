@@ -7,22 +7,22 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
-        <table style="width:75%">
-      <tr>
-        <th style="width:50%">Nom de la catégorie</th>
-        <th style="width:50%">Status  </th>
-      </tr>
-      <tr>
-          <td>Matériel</td>
-          <td>Actif</td>
-      </tr>
-      <tr>
-          <td>Analyse</td>
-          <td>Inactif</td>
+        <asp:Table runat="server" style="width:75%">
+      <asp:TableRow>
+        <asp:TableHeaderCell style="width:50%">Nom de la catégorie</asp:TableHeaderCell>
+        <asp:TableHeaderCell style="width:50%">Status  </asp:TableHeaderCell>
+      </asp:TableRow>
+      <asp:TableRow>
+          <asp:TableCell>Matériel</asp:TableCell>
+          <asp:TableCell>Actif</asp:TableCell>
+      </asp:TableRow>
+      <asp:TableRow>
+          <asp:TableCell>Analyse</asp:TableCell>
+          <asp:TableCell>Inactif</asp:TableCell>
 
-      </tr>
+      </asp:TableRow>
 
-    </table>
+    </asp:Table>
 
     <asp:ImageButton ID="btn_addCategorie" runat="server" ImageUrl="~/App_Themes/Categorie/Image/logo_addCategorie.png" CssClass="btn_ajouterCategorie" OnClick="btn_addCategorie_Click"/>
 

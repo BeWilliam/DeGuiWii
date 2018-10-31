@@ -11,7 +11,7 @@ CREATE PROCEDURE PS_DepenseProjet
 	@idProjet INT,
 	@total SMALLMONEY OUTPUT
 AS
-	SELECT @total = SUM(montant) FROM Depense
+	SELECT @total = SUM(montant) FROM T_Depense
 	WHERE idProjet = @idProjet
 
 GO
@@ -36,7 +36,7 @@ GO
 CREATE PROCEDURE PS_ChangerTauxKilo
 	@newValue FLOAT(3)
 AS
-	INSERT INTO TauxKilo(taux, ddate)  VALUES (@newValue, GETDATE())
+	INSERT INTO T_TauxKilo(taux, ddate)  VALUES (@newValue, GETDATE())
 
 GO
 
@@ -52,7 +52,7 @@ CREATE PROCEDURE PS_ChangerEtatProjet
 	@idProjet INT,
 	@idStatus INT
 AS
-	UPDATE Projet
+	UPDATE T_Projet
 	SET idStatus = @idStatus
 	WHERE idProjet = @idProjet
 
@@ -69,7 +69,7 @@ CREATE PROCEDURE PS_ChangerEtatCategorie
 	@idCategorie INT,
 	@idStatusCat INT
 AS
-	UPDATE CategoriePro
+	UPDATE T_CategoriePro
 	SET idStatusCat = @idStatusCat
 	WHERE idCategorie = @idCategorie
 
@@ -88,7 +88,7 @@ CREATE PROCEDURE PS_ChangerStatusEmp
 	@idEmploye INT,
 	@idStatus INT
 AS
-	UPDATE Employe
+	UPDATE T_Employe
 	SET idStatus = @idStatus
 	WHERE idEmploye = @idEmploye
 GO
@@ -105,7 +105,7 @@ CREATE PROCEDURE PS_ChangerDateFinProjet
 	@idProjet INT,
 	@ddateFin DATE
 AS
-	UPDATE Projet
+	UPDATE T_Projet
 	SET dateFin = @ddateFin
 	WHERE idProjet = @idProjet
 GO
@@ -113,3 +113,31 @@ GO
 /*DECLARE @ddate DATE
 SET @ddate = GETDATE()
 EXEC PS_ChangerDateFinProjet 1, @ddate*/
+
+
+
+/*Procédure permettant d'ajouter des projets*/
+
+
+/*REPACE ICI CHOSE*/
+/*
+IF OBJECT_ID ( 'PS_ChangerDateFinProjet', 'P' ) IS NOT NULL 
+    DROP PROCEDURE PS_ChangerDateFinProjet 
+GO
+
+CREATE PROCEDURE PS_AjouterProjets
+	@nom VARCHAR(100),
+	@descript VARCHAR(500),
+	@responsable INT, /*ID de l'employé qui sera le responsable*/
+	@dateDebut DATE,
+	@dateFin DATE ,
+	@idStatus INT
+AS
+DECLARE @maximum AS INT
+Set @maximum = SELECT MAX(idProjet) FROM Projet
+
+
+
+INSERT INTO Projet(nom, descript, responsable, dateDebut, dateFin, idStatus) VALUES (@nom, @descript, @responsable, @dateDebut, @dateFin, @idStatus) 
+
+GO*/
