@@ -25,3 +25,7 @@ th {
     height: 30px;
     background-color: #53b34f;
 }
+
+.tableau_inactif {
+    margin-top: 10px;
+}

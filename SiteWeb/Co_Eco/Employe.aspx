@@ -11,21 +11,34 @@
     <div class="div_content">
 
     
-            <table style="width:75%">
-      <tr>
-        <th style="width:75%">Liste des employés actifs</th>
-      </tr>
-      <tr>
-          <td>Sophie Vachon</td>
+    <asp:Table runat="server" style="width:75%">
+      <asp:TableHeaderRow>
+        <asp:TableHeaderCell style="width:75%">Liste des employés actifs</asp:TableHeaderCell>
+      </asp:TableHeaderRow>
+      <asp:TableRow>
+          <asp:TableCell>Sophie Vachon</asp:TableCell>
 
-      </tr>
-      <tr>
-          <td>Somebody else</td>
-      </tr>
+      </asp:TableRow>
+      <asp:TableRow>
+          <asp:TableCell>Somebody else</asp:TableCell>
+      </asp:TableRow>
 
-    </table>
+    </asp:Table>
+        <asp:Button ID="bt_AjouterEmploye" runat="server" Text="Ajouter un employé" CssClass="btn_ajouter" OnClick="bt_AjouterEmploye_Click" />
 
-    <asp:Button ID="bt_AjouterEmploye" runat="server" Text="Ajouter un employé" CssClass="btn_ajouter" OnClick="bt_AjouterEmploye_Click" />
+    <asp:Table runat="server" style="width:75%" class="tableau_inactif">
+              <asp:TableHeaderRow>
+        <asp:TableHeaderCell style="width:75%">Liste des employés Inactif</asp:TableHeaderCell>
+      </asp:TableHeaderRow>
+      <asp:TableRow>
+          <asp:TableCell>William Lemieux</asp:TableCell>
+
+      </asp:TableRow>
+      <asp:TableRow>
+          <asp:TableCell>Somebody else</asp:TableCell>
+      </asp:TableRow>
+    </asp:Table>
+
         </div>
 
 </asp:Content>
