@@ -1142,8 +1142,13 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		this._T_StatusEmploye = default(EntityRef<T_StatusEmploye>);
 		OnCreated();
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+
+    public override string ToString()
+    {
+        return prenom + " " + nom;
+    }
+
+    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 	public int idEmploye
 	{
 		get
