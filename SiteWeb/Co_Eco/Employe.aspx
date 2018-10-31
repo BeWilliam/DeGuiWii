@@ -11,22 +11,13 @@
     <div class="div_content">
 
     
-    <asp:Table runat="server" style="width:75%">
+    <asp:Table runat="server" style="width:75%" ID="EmpActif">
       <asp:TableHeaderRow>
         <asp:TableHeaderCell style="width:75%">Liste des employés actifs</asp:TableHeaderCell>
       </asp:TableHeaderRow>
-      <asp:TableRow>
-          <asp:TableCell>Sophie Vachon</asp:TableCell>
-
-      </asp:TableRow>
-      <asp:TableRow>
-          <asp:TableCell>Somebody else</asp:TableCell>
-      </asp:TableRow>
-
     </asp:Table>
         <asp:Button ID="bt_AjouterEmploye" runat="server" Text="Ajouter un employé" CssClass="btn_ajouter" OnClick="bt_AjouterEmploye_Click" />
-
-    <asp:Table runat="server" style="width:75%" class="tableau_inactif">
+    <asp:Table runat="server" style="width:75%" class="tableau_inactif" ID="EmpInactif">
               <asp:TableHeaderRow>
         <asp:TableHeaderCell style="width:75%">Liste des employés Inactif</asp:TableHeaderCell>
       </asp:TableHeaderRow>

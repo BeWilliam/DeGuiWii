@@ -63,7 +63,7 @@
             <asp:ListBox ID="lst_empIn" runat="server" CssClass="lst_empIn"></asp:ListBox>
 
             <asp:ImageButton ID="ImageButton2" OnClick="AddEmpPro_Click" CssClass="btn_left" runat="server" ImageUrl="~/App_Themes/AjouterProjet/Image/left.png"/>
-            <asp:ImageButton ID="ImageButton4" CssClass="btn_right" runat="server" ImageUrl="~/App_Themes/AjouterProjet/Image/right.png"/>
+            <asp:ImageButton ID="ImageButton4" OnClick="RemEmpPro_Click" CssClass="btn_right" runat="server" ImageUrl="~/App_Themes/AjouterProjet/Image/right.png"/>
 
             <asp:ListBox ID="lst_empOut" runat="server" CssClass="lst_empOut"></asp:ListBox>
         </p>

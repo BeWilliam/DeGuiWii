@@ -4,12 +4,35 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.Linq;
 
 public partial class Employe : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_Employe> tableEmp = BD.T_Employe;
+        List<T_Employe> listeEmp = tableEmp.ToList();
 
+        foreach (T_Employe emp in listeEmp)
+        {
+            TableRow tr = new TableRow();
+            TableCell tc = new TableCell();
+            tc.Text = emp.ToString();
+            tr.Cells.Add(tc);
+            if (emp.idStatus == 1)
+            {
+                //Actif
+                EmpActif.Rows.Add(tr);
+            }
+            else
+            {
+                //Inactif
+                EmpInactif.Rows.Add(tr);
+            }
+        }
+
+        BD.Dispose();
     }
 
 
