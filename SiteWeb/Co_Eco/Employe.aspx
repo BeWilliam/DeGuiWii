@@ -4,8 +4,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_titre_nav" Runat="Server">
     Employés
+</asp:Content>
 
-        <table style="width:50%">
+<asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
+    <div class="div_content">
+
+    
+            <table style="width:75%">
       <tr>
         <th style="width:75%">Liste des employés actifs</th>
       </tr>
@@ -18,7 +23,8 @@
       </tr>
 
     </table>
-    <asp:Button ID="bt_AjouterEmploye" runat="server" Text="Ajouter un employé" CssClass="button" OnClick="bt_AjouterEmploye_Click" />
+
+    <asp:Button ID="bt_AjouterEmploye" runat="server" Text="Ajouter un employé" CssClass="btn_ajouter" OnClick="bt_AjouterEmploye_Click" />
+        </div>
 
 </asp:Content>
-

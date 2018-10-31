@@ -28,10 +28,8 @@
     </table>
 
           <asp:ImageButton ID="btn_addProject" runat="server" ImageUrl="~/Image/logo_addProject.png" class="btn_addProject" OnClick="btn_addProject_Click"/>
-          <asp:ImageButton ID="btn_addCategorie" runat="server" ImageUrl="~/Image/logo_addCategorie.png" class="btn_addCategorie"/>
-
-    
-    
+          <asp:ImageButton ID="btn_addCategorie" runat="server" ImageUrl="~/Image/logo_addCategorie.png" class="btn_addCategorie" OnClick="btn_addCategorie_Click"/>
+  
 
 </asp:Content>
 

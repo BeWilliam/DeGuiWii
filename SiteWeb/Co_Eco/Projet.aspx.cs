@@ -16,4 +16,9 @@ public partial class Projet : System.Web.UI.Page
     {
         Response.Redirect("AjouterProjet.aspx");
     }
+
+    protected void btn_addCategorie_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("AjouterCategorie.aspx");
+    }
 }

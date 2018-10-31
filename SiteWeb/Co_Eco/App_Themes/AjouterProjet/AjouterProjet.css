@@ -59,3 +59,18 @@ section {
     margin-bottom: 80px;
 }
 
+.btn_addCategorie {
+    width: 160px;
+    height: 30px;
+    margin-left: 23%;
+}
+
+.cld_debut{
+    font-size: 15px;
+}
+
+.tbx_description {
+    width: 400px;
+    height: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

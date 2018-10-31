@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_titre_nav" Runat="Server">
-    Dépenses motherfucker
+    Dépenses
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
     <asp:Table ID="TableDepenses" runat="server"></asp:Table>
