@@ -3,7 +3,7 @@ USE CoEco_BD
 GO
 
 /*Importation employé*/
-INSERT INTO Employe(nom, prenom, idStatus, courriel, idFonction) VALUES 
+INSERT INTO T_Employe(nom, prenom, idStatus, courriel, idFonction) VALUES 
 ( 'Lizotte',  'Pierre', 1,  '', 1),
 ( 'Gaumond',  'Suzanne', 1,  'suzanneg5@hotmail.com', 1),
 ( 'Guignard',  'Stéphane', 1,  'sguignard1973@gmail.com', 1),
@@ -69,8 +69,8 @@ INSERT INTO Employe(nom, prenom, idStatus, courriel, idFonction) VALUES
 ( 'Dufaut',  'Peggy', 1,  'peggycathia@gmail.com', 1)
 
 
-/*Checké avec identity*/
-INSERT INTO Projet(idProjet, nom, descript, dateDebut, dateFin, idStatus) VALUES
+/*Importation des projets*/
+INSERT INTO T_Projet(idProjet, nom, descript, dateDebut, dateFin, idStatus) VALUES
 (43,  'RECYC-QUÉBEC - Trousses',  'Prrojet trousses',  '2009-11-02',  '2010-03-31', 1),
 (42,  'RECYC-QUÉBEC - RDD',  '',  '2009-07-01',  '', 1),
 (32,  'Ville de La Pocatière',  'Plan de communication et sensibilisation',  '',  '', 1),
@@ -116,9 +116,8 @@ INSERT INTO Projet(idProjet, nom, descript, dateDebut, dateFin, idStatus) VALUES
 (68,  'RIDT - ERE et communication',  '',  '',  '', 1)
 
 
-/*Checké pour identity*/
 /*Insertion des Catégories*/
-INSERT INTO CategoriePro(idCategorie, idProjet, descript, idStatusCat) VALUES
+INSERT INTO T_CategoriePro(idCategorie, idProjet, descript, idStatusCat) VALUES
 (196,  29,  'Ressources humaines', 1),
 (189,  20,  'Réunions Comités', 1),
 (191,  38,  'Congés maladie', 1),
