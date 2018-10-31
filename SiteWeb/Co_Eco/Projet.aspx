@@ -7,21 +7,18 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
- <asp:table runat="server" style="width:75%">
+ <asp:table runat="server" style="width:75%" ID="Tableau_Projets">
       <asp:TableRow>
         <asp:TableHeaderCell style="width:33%">Nom du projet</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:33%">Catégorie</asp:TableHeaderCell> 
         <asp:TableHeaderCell style="width:33%">Status  </asp:TableHeaderCell>
       </asp:TableRow>
       <asp:TableRow>
           <asp:TableCell><a href="Menu.aspx">Réparation du site web</a></asp:TableCell>
-          <asp:TableCell>Web</asp:TableCell>
           <asp:TableCell>En Cours</asp:TableCell>
 
       </asp:TableRow>
       <asp:TableRow>
           <asp:TableCell>Pelletage du trou</asp:TableCell>
-          <asp:TableCell>CSI</asp:TableCell>
           <asp:TableCell>Terminer</asp:TableCell>
       </asp:TableRow>
 

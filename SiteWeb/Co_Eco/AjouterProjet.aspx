@@ -36,19 +36,19 @@
     </div>
     <div class="div_lst">
 
-        <div>
+<%--        <div>
             <h3>Catégories</h3>
             <asp:ImageButton ID="btn_addCategorie" runat="server" ImageUrl="~/App_Themes/AjouterProjet/Image/logo_addCategorie.png" class="btn_addCategorie" OnClick="btn_addCategorie_Click"/>
-        </div>
+        </div>--%>
 
             
-
+        <!--
             <asp:ListBox ID="lst_catIn" runat="server" CssClass="lst_catIn"></asp:ListBox>
 
             <asp:ImageButton ID="ImageButton1" CssClass="btn_left" runat="server" ImageUrl="~/App_Themes/AjouterProjet/Image/left.png"/>
             <asp:ImageButton ID="ImageButton3" CssClass="btn_right" runat="server" ImageUrl="~/App_Themes/AjouterProjet/Image/right.png"/>
 
-            <asp:ListBox ID="lst_catOut" runat="server" CssClass="lst_catOut"></asp:ListBox>
+            <asp:ListBox ID="lst_catOut" runat="server" CssClass="lst_catOut"></asp:ListBox> -->
 
     </div>
 
@@ -62,7 +62,7 @@
 
             <asp:ListBox ID="lst_empIn" runat="server" CssClass="lst_empIn"></asp:ListBox>
 
-            <asp:ImageButton ID="ImageButton2" CssClass="btn_left" runat="server" ImageUrl="~/App_Themes/AjouterProjet/Image/left.png"/>
+            <asp:ImageButton ID="ImageButton2" OnClick="AddEmpPro_Click" CssClass="btn_left" runat="server" ImageUrl="~/App_Themes/AjouterProjet/Image/left.png"/>
             <asp:ImageButton ID="ImageButton4" CssClass="btn_right" runat="server" ImageUrl="~/App_Themes/AjouterProjet/Image/right.png"/>
 
             <asp:ListBox ID="lst_empOut" runat="server" CssClass="lst_empOut"></asp:ListBox>
