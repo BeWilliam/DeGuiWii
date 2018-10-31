@@ -38,7 +38,7 @@
 
         <div>
             <h3>Catégories</h3>
-            <asp:ImageButton ID="btn_addCategorie" runat="server" ImageUrl="~/Image/logo_addCategorie.png" class="btn_addCategorie" OnClick="btn_addCategorie_Click"/>
+            <asp:ImageButton ID="btn_addCategorie" runat="server" ImageUrl="~/App_Themes/AjouterProjet/Image/logo_addCategorie.png" class="btn_addCategorie" OnClick="btn_addCategorie_Click"/>
         </div>
 
             

@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <img src="Image/logo_v2.jpg" class="logo_connexion" alt="LOGO_COECO"/>
+        <img src="App_Themes/Connexion/Image/logo_v2.jpg" class="logo_connexion" alt="LOGO_COECO"/>
     </header>
 
     <form runat="server" class="textbox_zone">

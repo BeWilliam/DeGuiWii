@@ -25,9 +25,9 @@
 
                 <p class="bonjour">Bonjour ...  </p>
 
-                <asp:ImageButton ID="ImageButton1" runat="server" class="btn_close" ImageUrl="~/Image/deco_logov3.jpg" OnClick="btn_logout_Click"/>
+                <asp:ImageButton ID="ImageButton1" runat="server" class="btn_close" ImageUrl="~/App_Themes/Default/Image/deco_logov3.jpg" OnClick="btn_logout_Click"/>
 
-                <img src="Image/logo_v2.jpg" class="logo_nav1" />
+                <img src="App_Themes/Default/Image/logo_v2.jpg" class="logo_nav1" />
 
             </header>
                  

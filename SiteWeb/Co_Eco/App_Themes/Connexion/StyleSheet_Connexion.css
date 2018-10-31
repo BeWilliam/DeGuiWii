@@ -3,7 +3,7 @@
 }
 
 #logo_connexion {
-    background-image: url('../Image/logo_v2.jpg');
+    background-image: url('..App_Themes/Connexion/Image/logo_v2.jpg');
     background-repeat: no-repeat;
     background-position: center top;
 }
