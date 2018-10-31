@@ -32,13 +32,13 @@
 
         <p>
     <asp:Label ID="lb_actif" runat="server" Text="Actif" CssClass="label"></asp:Label>
-            <asp:CheckBox ID="cb_actif" runat="server" Checked="True" />
+            <asp:CheckBox ID="cb_actif" runat="server" Checked="True" Font-Size="18px" />
                 </p>
     </div>
 
     <section>
-    <asp:Button ID="bt_ajouter" runat="server" Text="Ajouter" CssClass="button" OnClick="bt_ajouter_Click" />
-    <asp:Button ID="bt_annuler" runat="server" Text="Annuler" CssClass="button" OnClick="bt_annuler_Click" />
+    <asp:Button ID="bt_ajouter" runat="server" Text="Ajouter" CssClass="button" BackColor="#53b34f" Font-Size="18px" OnClick="bt_ajouter_Click" />
+    <asp:Button ID="bt_annuler" runat="server" Text="Annuler" CssClass="button" BackColor="#53b34f" Font-Size="18px" OnClick="bt_annuler_Click" />
     </section>
 </asp:Content>
 
