@@ -12,7 +12,9 @@ public partial class Employe : System.Web.UI.Page
     {
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
         Table<T_Employe> tableEmp = BD.T_Employe;
-        List<T_Employe> listeEmp = tableEmp.ToList();
+        List<T_Employe> rawListeEmp = tableEmp.ToList();
+        //trié la liste avant insertion
+        List<T_Employe> listeEmp = rawListeEmp.OrderBy(o => o.ToString()).ToList();
 
         foreach (T_Employe emp in listeEmp)
         {

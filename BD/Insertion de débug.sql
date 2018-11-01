@@ -5,9 +5,9 @@ GO
 INSERT INTO T_Projet(idProjet, nom) VALUES (1, 'Projet de débug')
 INSERT INTO T_Projet(idProjet, nom) VALUES (2, 'Projet du swag')
 INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (1, 1, 'Categorie Bidon')
-INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (1, 1, 'DEBUGAGE dappliaction')
-INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (1, 2, 'Vacances')
-INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (1, 2, 'Congé')
+INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (2, 1, 'DEBUGAGE dappliaction')
+INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (3, 2, 'Vacances')
+INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (4, 2, 'Congé')
 
 INSERT INTO T_Employe(idFonction, idStatus, nom, prenom) VALUES (1,1,'Gagnon','Guillaume')
 INSERT INTO T_Employe(idFonction, idStatus, nom, prenom) VALUES (1,1,'Lemieux','William')

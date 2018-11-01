@@ -295,8 +295,14 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 		this._T_StatusCategorie = default(EntityRef<T_StatusCategorie>);
 		OnCreated();
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int NOT NULL", IsPrimaryKey=true)]
+
+    public override string ToString()
+    {
+        return descript;
+    }
+
+
+    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int idCategorie
 	{
 		get
@@ -575,8 +581,13 @@ public partial class T_TypeDepense : INotifyPropertyChanging, INotifyPropertyCha
 		this._T_Depense = new EntitySet<T_Depense>(new Action<T_Depense>(this.attach_T_Depense), new Action<T_Depense>(this.detach_T_Depense));
 		OnCreated();
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDepense", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+
+    public override string ToString()
+    {
+        return descript;
+    }
+
+    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDepense", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 	public int idDepense
 	{
 		get
@@ -2508,8 +2519,13 @@ public partial class T_Projet : INotifyPropertyChanging, INotifyPropertyChanged
 		this._T_StatusProjet = default(EntityRef<T_StatusProjet>);
 		OnCreated();
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjet", DbType="Int NOT NULL", IsPrimaryKey=true)]
+
+    public override string ToString()
+    {
+        return nom;
+    }
+
+    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjet", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int idProjet
 	{
 		get
