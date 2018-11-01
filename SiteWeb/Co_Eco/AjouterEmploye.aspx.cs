@@ -36,21 +36,19 @@ public partial class AjouterEmploye : System.Web.UI.Page
         {
             fonction = 2;
         }
-        if (ddl_fonction.SelectedValue == "Administrateur")
-        {
-            fonction = 3;
-        }
 
         T_Employe newEmp = new T_Employe();
         newEmp.prenom = tb_prenom.Text;
         newEmp.nom = tb_nom.Text;
         newEmp.courriel = tb_courriel.Text;
         newEmp.idStatus = 1;
-        newEmp.idFonction = fonction;  
+        newEmp.idFonction = fonction;
 
+        BD_CoEco.CreateNewEmploye(newEmp);
         //1 bureau
         //2 terrain
-        //3 admin
+
+        //faire une gestion d'erreur ici
 
 
         Response.Redirect("Employe.aspx");

@@ -24,9 +24,8 @@
                 <p>
     <asp:Label ID="lb_fonction" runat="server" Text="Fonction" CssClass="label"></asp:Label>
     <asp:DropDownList ID="ddl_fonction" runat="server" Font-Size="Large">
-        <asp:ListItem>Chef de projet</asp:ListItem>
-        <asp:ListItem>Admin</asp:ListItem>
-        <asp:ListItem>Employe de bureau</asp:ListItem>
+        <asp:ListItem>Employé de bureau</asp:ListItem>
+        <asp:ListItem>Employé de terrain</asp:ListItem>
     </asp:DropDownList>
                     </p>
 

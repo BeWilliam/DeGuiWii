@@ -7,24 +7,46 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
-        <asp:Table runat="server" style="width:75%">
-      <asp:TableRow>
-        <asp:TableHeaderCell style="width:50%">Nom de la catégorie</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:50%">Status  </asp:TableHeaderCell>
-      </asp:TableRow>
-      <asp:TableRow>
-          <asp:TableCell>Matériel</asp:TableCell>
-          <asp:TableCell>Actif</asp:TableCell>
-      </asp:TableRow>
-      <asp:TableRow>
-          <asp:TableCell>Analyse</asp:TableCell>
-          <asp:TableCell>Inactif</asp:TableCell>
+        <section class="section_recherche">
+        <p class="p_recherche">
+        <asp:TextBox ID="tbx_recherche" runat="server" CssClass="tbx_recherche"></asp:TextBox>
+        <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/App_Themes/Categorie/Image/logo_recherche.png" CssClass="logo_rechercher"/>
+        </p>
+    </section>
 
-      </asp:TableRow>
+    <asp:Panel ID="Panel1" runat="server" CssClass="panel_contenu">
 
-    </asp:Table>
+        <asp:Label ID="lbl_projet" runat="server" Text="Nom du projet"></asp:Label>
+        
+        <div class="div_categorie">
+            <p>
+            <asp:Label ID="Label2" runat="server" Text="Catégorie"></asp:Label>
+                </p>
+            <p>
+            <asp:Label ID="Label3" runat="server" Text="Catégorie"></asp:Label>
+                </p>
+        </div>
+        
+        <asp:ImageButton ID="btn_addCategorie" runat="server" ImageUrl="~/App_Themes/Categorie/Image/logo_addCategorie.png" CssClass="btn_ajouterCategorie" OnClick="btn_addCategorie_Click"/>
 
-    <asp:ImageButton ID="btn_addCategorie" runat="server" ImageUrl="~/App_Themes/Categorie/Image/logo_addCategorie.png" CssClass="btn_ajouterCategorie" OnClick="btn_addCategorie_Click"/>
+    </asp:Panel>
+
+        <asp:Panel ID="Panel2" runat="server" CssClass="panel_contenu">
+
+        <asp:Label ID="Label1" runat="server" Text="Nom du projet"></asp:Label>
+        
+        <div class="div_categorie">
+            <p>
+            <asp:Label ID="Label4" runat="server" Text="Catégorie"></asp:Label>
+                </p>
+            <p>
+            <asp:Label ID="Label5" runat="server" Text="Catégorie"></asp:Label>
+                </p>
+        </div>
+        
+        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/App_Themes/Categorie/Image/logo_addCategorie.png" CssClass="btn_ajouterCategorie" OnClick="btn_addCategorie_Click"/>
+
+    </asp:Panel>
 
 </asp:Content>
 

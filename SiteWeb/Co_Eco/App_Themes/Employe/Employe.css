@@ -29,3 +29,8 @@ th {
 .tableau_inactif {
     margin-top: 10px;
 }
+
+.hl_employe{
+    text-decoration: none;
+    color : black;
+}

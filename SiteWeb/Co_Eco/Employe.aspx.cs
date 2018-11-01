@@ -20,8 +20,15 @@ public partial class Employe : System.Web.UI.Page
         {
             TableRow tr = new TableRow();
             TableCell tc = new TableCell();
-            tc.Text = emp.ToString();
+
+            HyperLink hl = new HyperLink();
+            hl.NavigateUrl = "AjouterEmploye.aspx";
+            hl.Text = emp.ToString();
+            hl.CssClass = "hl_employe";
+            tc.Controls.Add(hl);
+            
             tr.Cells.Add(tc);
+
             if (emp.idStatus == 1)
             {
                 //Actif
