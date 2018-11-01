@@ -141,3 +141,15 @@ Set @maximum = SELECT MAX(idProjet) FROM Projet
 INSERT INTO Projet(nom, descript, responsable, dateDebut, dateFin, idStatus) VALUES (@nom, @descript, @responsable, @dateDebut, @dateFin, @idStatus) 
 
 GO*/
+
+
+/*Procédure permettant d'ajouter un employé au projet*/
+IF OBJECT_ID ( 'PS_GetMaxIdEmpolye', 'P' ) IS NOT NULL 
+    DROP PROCEDURE PS_GetMaxIdEmpolye 
+GO
+
+CREATE PROCEDURE PS_GetMaxIdEmpolye
+	@idProjet INT OUTPUT
+AS
+	SELECT @idProjet = MAX(idEmploye) FROM T_Employe
+GO

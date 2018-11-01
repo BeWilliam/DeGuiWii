@@ -174,10 +174,38 @@ public class BD_CoEco
 
     public static List<T_TypeDepense> GetListeTypeDepense()
     {
+
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
         Table<T_TypeDepense> tableTypeDepense = BD.T_TypeDepense;
         List<T_TypeDepense> listeTypeDepense = tableTypeDepense.ToList();
         BD.Dispose();
         return listeTypeDepense;
     }
+
+    public static void CreateNewProjet(T_Projet p_projet)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        int? maxID = 0;
+        BD.PS_GetMaxIdProjet(ref maxID);
+        maxID++;
+        p_projet.idProjet = (int)maxID;
+
+        BD.T_Projet.InsertOnSubmit(p_projet);
+        BD.SubmitChanges();
+        BD.Dispose();
+    }
+
+    public static void CreateNewEmploye(T_Employe p_employe)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        int? maxID = 0;
+        BD.PS_GetMaxIdEmpolye(ref maxID);
+        maxID++;
+        p_employe.idEmploye = (int)maxID;
+
+        BD.T_Employe.InsertOnSubmit(p_employe);
+        BD.SubmitChanges();
+        BD.Dispose();
+    }
+    
 }

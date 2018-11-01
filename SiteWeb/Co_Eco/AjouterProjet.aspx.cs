@@ -8,8 +8,11 @@ using System.Data.Linq;
 
 public partial class AjouterProjet : System.Web.UI.Page
 {
+    private List<T_Employe> listeDDL;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        listeDDL = new List<T_Employe>();
         tbx_dateDebut.Text = DateTime.Now.Date.ToShortDateString();
 
         List<T_Employe> rawListeEmp = BD_CoEco.GetListeEmploye(true);
@@ -22,6 +25,7 @@ public partial class AjouterProjet : System.Web.UI.Page
                 //Charger le drop down list
                 if (emp.idFonction == 1) //Employé de bureau
                 {
+                    listeDDL.Add(emp);
                     ddl_chef.Items.Add(emp.ToString());
                 }
 
@@ -33,14 +37,31 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     protected void btn_ajouter_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Projet.aspx");
-    }
+        //Faire la gestion des erreurs ici
+        T_Projet newProject = new T_Projet();
+        newProject.nom = tbx_nom.Text;
+        newProject.responsable = listeDDL[ddl_chef.SelectedIndex].idEmploye;
+        //Nombre d'heure alloué
 
-    protected void btn_addCategorie_Click(object sender, ImageClickEventArgs e)
-    {
-        Response.Write("<script>");
-        Response.Write("window.open('AjouterCategorie.aspx','_blank')");
-        Response.Write("</script>");
+        if(tbx_dateDebut.Text != "")
+        {
+            string[] dString = tbx_dateDebut.Text.Split('-');
+            newProject.dateDebut = new DateTime(int.Parse(dString[0]), int.Parse(dString[1]), int.Parse(dString[2])); //Date Debut
+        }
+        if(tbx_dateDebut.Text != "")
+        {
+            string[] dString = tbx_dateFin.Text.Split('-');
+            newProject.dateFin = new DateTime(int.Parse(dString[0]), int.Parse(dString[1]), int.Parse(dString[2])); //Date Fin
+        }
+        if(tbx_description.Text != "")
+        {
+            newProject.descript = tbx_description.Text; //Description
+        }
+        newProject.idStatus = 1;
+
+        BD_CoEco.CreateNewProjet(newProject); //Ajotuer le projet
+
+        Response.Redirect("Projet.aspx");
     }
 
     protected void btn_annnuler_Click(object sender, EventArgs e)
