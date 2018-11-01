@@ -21,10 +21,10 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         int i = 0;
         foreach (T_FeuilleDeTemps p_feuilleDeTemps in listeFeuilleDeTemps)
         {
-            //if (p_feuilleDeTemps.idEmp == 67)
-            //{
-                
-            //}
+            if (p_feuilleDeTemps.idEmp == 67)
+            {
+
+            }
             TableRow tr = new TableRow();
             TableCell tc1 = new TableCell();
             DropDownList ddl_Projet = new DropDownList();
@@ -41,6 +41,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
             tc1.Controls.Add(ddl_Projet);
             tc1.Controls.Add(ddl_Categorie);
+
             TableCell tc2 = new TableCell();
             TextBox tbDim = new TextBox();
             tbDim.ID = "tbDim";

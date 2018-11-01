@@ -6,8 +6,7 @@
     Feuilles de temps 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
-
+<asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server" ClientIDMode="Inherit">
     <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
     <asp:table ID="t_feuilleTemps" runat="server" style="width:75%" CssClass="tableau_feuille">
       <asp:TableRow>
