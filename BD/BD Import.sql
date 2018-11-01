@@ -365,3 +365,5 @@ INSERT INTO T_CategoriePro(idCategorie, idProjet, descript, idStatusCat) VALUES
 (407,  68,  'ERE et communication', 1),
 (408,  65,  'Mesures de suivis et résultats', 1),
 (409,  20,  'FCM - TI', 1)
+
+--Insertion de QUELQUES feuilles de temps

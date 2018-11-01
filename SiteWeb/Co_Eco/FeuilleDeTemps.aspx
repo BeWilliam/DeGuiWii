@@ -7,16 +7,18 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
-    <asp:table runat="server" style="width:75%" CssClass="tableau_feuille">
+
+    <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+    <asp:table ID="t_feuilleTemps" runat="server" style="width:75%" CssClass="tableau_feuille">
       <asp:TableRow>
-        <asp:TableHeaderCell style="width:11%">Projet</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:11%">Dimanche</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:11%">Lundi</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:11%">Mardi</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:11%">Mercredi</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:11%">Jeudi</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:11%">Vendredi</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:11%">Samedi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="thc_Projet" style="width:11%">Projet</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Dimanche" style="width:11%">Dimanche</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Lundi" style="width:11%">Lundi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Mardi" style="width:11%">Mardi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Mercredi" style="width:11%">Mercredi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Jeudi" style="width:11%">Jeudi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Vendredi" style="width:11%">Vendredi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Samedi" style="width:11%">Samedi</asp:TableHeaderCell>
         <asp:TableHeaderCell style="width:11%">Commentaires</asp:TableHeaderCell>
       </asp:TableRow>
       <asp:TableRow>

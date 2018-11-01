@@ -21,11 +21,11 @@ INSERT INTO T_Kilometrage(idEmp, idPro, idCat, idTaux, nbKilo, commentaire) VALU
 INSERT INTO T_Kilometrage(idEmp, idPro, idCat, idTaux, nbKilo, commentaire) VALUES (2,1,1,1,100,'LPO - RDL')
 INSERT INTO T_Kilometrage(idEmp, idPro, idCat, idTaux, nbKilo, commentaire) VALUES (3,1,1,2,50,'SMB-QC')
 
-INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, temps, note, ddate) VALUES (1,1,2.5, 'Débugage', GETDATE())
-INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, temps, note, ddate) VALUES (3,2,5, 'Débugage', GETDATE())
-INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, temps, note, ddate) VALUES (4,3,2.5, '1', GETDATE())
-INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, temps, note, ddate) VALUES (2,2,8, '2', GETDATE())
-INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, temps, note, ddate) VALUES (1,3,7.5, '3', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, temps, note, ddate) VALUES (1,67,2.5, 'Débugage', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, temps, note, ddate) VALUES (1,67,5, 'Débugage', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, temps, note, ddate) VALUES (1,67,2.5, '1', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, temps, note, ddate) VALUES (1,67,8, '2', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, temps, note, ddate) VALUES (1,67,7.5, '3', GETDATE())
 
 INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES (1,2)
 INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES (2,2)
