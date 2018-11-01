@@ -171,4 +171,13 @@ public class BD_CoEco
             throw new Exception("Id correspondant à aucun projet existant");
         }
     }
+
+    public static List<T_TypeDepense> GetListeTypeDepense()
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_TypeDepense> tableTypeDepense = BD.T_TypeDepense;
+        List<T_TypeDepense> listeTypeDepense = tableTypeDepense.ToList();
+        BD.Dispose();
+        return listeTypeDepense;
+    }
 }

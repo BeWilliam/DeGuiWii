@@ -10,8 +10,9 @@ public partial class AjouterCategorie : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<T_Projet> listPro = BD_CoEco.GetListeProjet();
-        foreach (T_Projet projet in listPro)
+        List<T_Projet> rawListPro = BD_CoEco.GetListeProjet();
+        List<T_Projet> listePro = rawListPro.OrderBy(o => o.ToString()).ToList();
+        foreach (T_Projet projet in listePro)
         {
             ddl_projet.Items.Add(projet.ToString());
         }
