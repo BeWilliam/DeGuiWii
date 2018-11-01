@@ -246,6 +246,22 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), newValue);
 		return ((int)(result.ReturnValue));
 	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PS_GetMaxIdProjet")]
+	public int PS_GetMaxIdProjet([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> idProjet)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProjet);
+		idProjet = ((System.Nullable<int>)(result.GetParameterValue(0)));
+		return ((int)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PS_GetMaxIdEmpolye")]
+	public int PS_GetMaxIdEmpolye([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> idProjet)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProjet);
+		idProjet = ((System.Nullable<int>)(result.GetParameterValue(0)));
+		return ((int)(result.ReturnValue));
+	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_CategoriePro")]
@@ -295,14 +311,8 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 		this._T_StatusCategorie = default(EntityRef<T_StatusCategorie>);
 		OnCreated();
 	}
-
-    public override string ToString()
-    {
-        return descript;
-    }
-
-
-    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int idCategorie
 	{
 		get
@@ -581,13 +591,8 @@ public partial class T_TypeDepense : INotifyPropertyChanging, INotifyPropertyCha
 		this._T_Depense = new EntitySet<T_Depense>(new Action<T_Depense>(this.attach_T_Depense), new Action<T_Depense>(this.detach_T_Depense));
 		OnCreated();
 	}
-
-    public override string ToString()
-    {
-        return descript;
-    }
-
-    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDepense", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idDepense", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 	public int idDepense
 	{
 		get
@@ -1153,13 +1158,8 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		this._T_StatusEmploye = default(EntityRef<T_StatusEmploye>);
 		OnCreated();
 	}
-
-    public override string ToString()
-    {
-        return prenom + " " + nom;
-    }
-
-    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 	public int idEmploye
 	{
 		get
@@ -2519,13 +2519,8 @@ public partial class T_Projet : INotifyPropertyChanging, INotifyPropertyChanged
 		this._T_StatusProjet = default(EntityRef<T_StatusProjet>);
 		OnCreated();
 	}
-
-    public override string ToString()
-    {
-        return nom;
-    }
-
-    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjet", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjet", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int idProjet
 	{
 		get
