@@ -1,14 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Depense.aspx.cs" Inherits="Depense" theme="Depenses" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DepenseAdmin.aspx.cs" Inherits="DepenseAdmin" Theme="Depenses" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" Runat="Server">
-    Dépenses
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_titre_nav" Runat="Server">
-    Dépenses
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
-    <%-- Partie pour l'ajout d'une dépense --%>
+       <%-- Partie pour l'ajout d'une dépense --%>
      <asp:table runat="server" style="width:40%" id="TableDepenses">
       <asp:TableHeaderRow>
           <asp:TableHeaderCell Width="20%">Projet</asp:TableHeaderCell>
@@ -36,8 +34,8 @@
       </asp:TableRow>
     </asp:table>
 
-    <asp:Button ID="bt_ajouterDepense" runat="server" Text="Ajouter une dépense" BackColor="#53b34f" Font-Size="18px" CssClass="btn"/>
-
+    <asp:Button ID="bt_modifDepense" runat="server" Text="Modifier les dépenses" BackColor="#53b34f" Font-Size="18px" CssClass="btnAdmin"/>
+    <asp:Button ID="bt_confirmerDepenses" runat="server" Text="Confirmer les dépenses" BackColor="#53b34f" Font-Size="18px" CssClass="btnAdmin"/>
 
     <%-- Partie pour l'ajout du Kilométrage --%>
     <asp:table runat="server" style="width:50%" id="TableKilometrage">
@@ -72,6 +70,7 @@
 
       </asp:TableRow>
     </asp:table>
-    <asp:Button ID="bt_ajouterKilometrage" runat="server" Text="Ajouter du kilométrage" BackColor="#53b34f" Font-Size="18px" CssClass="btn"/>
+    <asp:Button ID="bt_ajouterKilo" runat="server" Text="Modifier les kilométrages" BackColor="#53b34f" Font-Size="18px" CssClass="btnAdmin"/>
+     <asp:Button ID="bt_modifKilo" runat="server" Text="Confimer les kilométrages" BackColor="#53b34f" Font-Size="18px" CssClass="btnAdmin"/>
 </asp:Content>
 
