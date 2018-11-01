@@ -295,8 +295,14 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 		this._T_StatusCategorie = default(EntityRef<T_StatusCategorie>);
 		OnCreated();
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int NOT NULL", IsPrimaryKey=true)]
+
+    public override string ToString()
+    {
+        return descript;
+    }
+
+
+    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int idCategorie
 	{
 		get
@@ -2508,8 +2514,13 @@ public partial class T_Projet : INotifyPropertyChanging, INotifyPropertyChanged
 		this._T_StatusProjet = default(EntityRef<T_StatusProjet>);
 		OnCreated();
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjet", DbType="Int NOT NULL", IsPrimaryKey=true)]
+
+    public override string ToString()
+    {
+        return nom;
+    }
+
+    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjet", DbType="Int NOT NULL", IsPrimaryKey=true)]
 	public int idProjet
 	{
 		get

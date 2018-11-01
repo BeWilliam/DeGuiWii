@@ -12,21 +12,23 @@ public partial class AjouterProjet : System.Web.UI.Page
     {
         tbx_dateDebut.Text = DateTime.Now.Date.ToShortDateString();
 
-        CoEco_BDDataContext BD = new CoEco_BDDataContext();
-        Table<T_Employe> tableEmploye = BD.T_Employe;
-        List<T_Employe> listeEmp = tableEmploye.ToList();
+        List<T_Employe> rawListeEmp = BD_CoEco.GetListeEmploye(true);
+        List<T_Employe> listeEmp = rawListeEmp.OrderBy(o => o.ToString()).ToList();
 
         foreach (T_Employe emp in listeEmp)
-        {        
-            if(emp.idStatus == 1)
+        {    
+            if (emp.idStatus == 1)
             {
                 //Charger le drop down list
-                ddl_chef.Items.Add(emp.ToString());
+                if (emp.idFonction == 1) //Employé de bureau
+                {
+                    ddl_chef.Items.Add(emp.ToString());
+                }
+
                 //Charger la liste des employés
                 lst_empOut.Items.Add(emp.ToString());
             }
         }
-        BD.Dispose();
     }
 
     protected void btn_ajouter_Click(object sender, EventArgs e)
@@ -55,6 +57,9 @@ public partial class AjouterProjet : System.Web.UI.Page
             lst_empIn.Items.Add(lst_empOut.Items[selectEmp]);
             lst_empOut.Items.RemoveAt(selectEmp);
             lst_empOut.SelectedIndex = -1;
+
+            //Trouver une manière de convertir le listbox en une ligne (SANS UNE BOUCLE si possible
+
         }
 
     }

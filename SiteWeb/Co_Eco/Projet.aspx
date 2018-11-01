@@ -13,13 +13,9 @@
         <asp:TableHeaderCell style="width:33%">Status  </asp:TableHeaderCell>
       </asp:TableRow>
       <asp:TableRow>
-          <asp:TableCell><a href="Menu.aspx">Réparation du site web</a></asp:TableCell>
-          <asp:TableCell>En Cours</asp:TableCell>
+          <asp:TableCell><a href="Menu.aspx">Ce bouton à faire</a></asp:TableCell>
+          <asp:TableCell>NE PAS OUBLIER DE FAIRE LE BOUTON POUR OUVRIR LA MODIF D'UN PROJET</asp:TableCell>
 
-      </asp:TableRow>
-      <asp:TableRow>
-          <asp:TableCell>Pelletage du trou</asp:TableCell>
-          <asp:TableCell>Terminer</asp:TableCell>
       </asp:TableRow>
 
     </asp:table>
