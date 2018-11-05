@@ -13,15 +13,21 @@ public partial class Projet : System.Web.UI.Page
         List<T_StatusProjet> listeStatProjet = BD_CoEco.GetListeStatusProjet();
         List<T_Projet> rawListeProjet = BD_CoEco.GetListeProjet();
         List<T_Projet> listeProjet = rawListeProjet.OrderBy(o => o.ToString()).ToList();
-            
-        foreach (T_Projet p_projet in listeProjet)
+
+        for (int i = 0; i < listeProjet.Count; i++)
         {
             TableRow tr = new TableRow();
             TableCell tc1 = new TableCell();
-            tc1.Text = p_projet.nom;
-            TableCell tc2 = new TableCell();
+            HyperLink hl = new HyperLink();
+            
+            hl.NavigateUrl = "AjouterProjet.aspx"; //La solution doit venir de la.
+            hl.Text = listeProjet[i].nom;
+            hl.CssClass = ""; //Ajouter une class CSS au besoin
+            hl.ID = "#" + i;
+            tc1.Controls.Add(hl);
 
-            tc2.Text = listeStatProjet[p_projet.idStatus - 1].descript;
+            TableCell tc2 = new TableCell();
+            tc2.Text = listeStatProjet[listeProjet[i].idStatus - 1].descript;
 
             tr.Cells.Add(tc1);
             tr.Cells.Add(tc2);
