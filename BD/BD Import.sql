@@ -5,6 +5,7 @@ GO
 /*Importation employé*/
 INSERT INTO T_Employe(nom, prenom, idStatus, courriel, idFonction) VALUES 
 ( 'Lizotte',  'Pierre', 2,  '', 1),
+( 'Vachon',  'Sophie', 1,  'sophie_vachon@hotmail.com', 2),
 ( 'Gaumond',  'Suzanne', 1,  'suzanneg5@hotmail.com', 1),
 ( 'Guignard',  'Stéphane', 1,  'sguignard1973@gmail.com', 1),
 ( 'Malenfant',  'Karine', 2,  'makari@hotmail.com', 1),
@@ -46,7 +47,6 @@ INSERT INTO T_Employe(nom, prenom, idStatus, courriel, idFonction) VALUES
 ( 'Lévesque',  'Jocelyn', 1,  'camporignal@mail.com', 1),
 ( 'Gagnon',  'Catherine', 2,  'cgagnon@cyclonemarketing.ca', 1),
 ( 'Chartrand',  'Ian', 2,  'ianchartrand1@gmail.com', 1),
-( 'Vachon',  'Sophie', 1,  'sophie_vachon@hotmail.com', 1),
 ( 'Ouellet',  'Guillaume', 2,  '', 1),
 ( 'Daigle',  'Aline', 1,  'aline.daigle@hotmail.ca', 1),
 ( 'Vallerand',  'Charles-Olivier', 2,  'paradys53@outlook.com', 1),

@@ -4,6 +4,9 @@ GO
 /*Insertion de base pour débug*/
 INSERT INTO T_Projet(idProjet, nom) VALUES (1, 'Projet de débug')
 INSERT INTO T_Projet(idProjet, nom) VALUES (2, 'Projet du swag')
+
+INSERT INTO T_Projet(idProjet, nom, responsable) VALUES (20000, 'ProjetDebug', 68)
+
 INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (1, 1, 'Categorie Bidon')
 INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (2, 1, 'DEBUGAGE dappliaction')
 INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (3, 2, 'Vacances')
