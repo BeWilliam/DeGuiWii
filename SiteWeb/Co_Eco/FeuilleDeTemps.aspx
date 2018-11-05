@@ -7,9 +7,11 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server" ClientIDMode="Inherit">
+    <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
+
     <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
     <asp:table ID="t_feuilleTemps" runat="server" style="width:75%" CssClass="tableau_feuille">
-      <asp:TableRow>
+      <%--<asp:TableRow>
         <asp:TableHeaderCell ID="thc_Projet" style="width:11%">Projet</asp:TableHeaderCell>
         <asp:TableHeaderCell ID="Dimanche" style="width:11%">Dimanche</asp:TableHeaderCell>
         <asp:TableHeaderCell ID="Lundi" style="width:11%">Lundi</asp:TableHeaderCell>
@@ -19,8 +21,8 @@
         <asp:TableHeaderCell ID="Vendredi" style="width:11%">Vendredi</asp:TableHeaderCell>
         <asp:TableHeaderCell ID="Samedi" style="width:11%">Samedi</asp:TableHeaderCell>
         <asp:TableHeaderCell style="width:11%">Commentaires</asp:TableHeaderCell>
-      </asp:TableRow>
-      <asp:TableRow>
+      </asp:TableRow>--%>
+<%--      <asp:TableRow>
           <asp:TableCell>
               <asp:DropDownList ID="DropDownList1" runat="server" CssClass="ddl_projet"></asp:DropDownList>
               <asp:DropDownList ID="DropDownList2" runat="server" CssClass="ddl_categorie"></asp:DropDownList>
@@ -58,7 +60,7 @@
               <asp:TextBox ID="TextBox8" runat="server" CssClass="tbx_h"></asp:TextBox>
           </asp:TableCell>
 
-      </asp:TableRow>
+      </asp:TableRow>--%>
 
     </asp:table>
 
