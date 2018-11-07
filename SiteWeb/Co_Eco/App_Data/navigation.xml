@@ -8,5 +8,6 @@
   <nav Nom="Catégories" Url="Categorie.aspx"></nav>
   <nav Nom="Employés" Url="Employe.aspx"></nav>
   <nav Nom="Dépenses" Url="Depense.aspx"></nav>
+  <nav Nom="Rapports" Url="Rapports.aspx" />
 
 </navigation>

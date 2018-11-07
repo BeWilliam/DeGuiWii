@@ -245,20 +245,24 @@ public partial class Projet : System.Web.UI.Page
         //https://www.c-sharpcorner.com/article/create-a-pdf-file-and-download-using-Asp-Net-mvc/
         //https://dotnet.developpez.com/articles/itextsharp/
         Document doc = new Document();
-        doc.SetMargins(0, 0, 0, 0);
+        doc.SetMargins(3f, 3f, 3f, 3f);
 
         PdfWriter.GetInstance(doc, new FileStream(fileName, FileMode.Create, FileAccess.Write));
         doc.Open();
         doc.Add(new Phrase("Rapport des projets"));
 
-        PdfPTable tableau = new PdfPTable(Tableau_Projets.Rows.Count);
+        float[] test = { 2, Tableau_Projets.Rows.Count };
+        PdfPTable tableau = new PdfPTable(test);
+
+        tableau.SetWidths(new float[] { 0.8f, 0.2f } );
+
 
         for (int i = 0; i < Tableau_Projets.Rows.Count; i++) //Lignes               //Charge 48 lignes pour 0 raison?
         {
-            for(int j = 0; j < 2; j++) //Colones
-            {
-                tableau.AddCell(Tableau_Projets.Rows[i].Cells[j].Text); 
-            }
+            tableau.AddCell(((HyperLink)Tableau_Projets.Rows[i].Cells[0].Controls[0]).Text);
+
+            //tableau.AddCell();
+            tableau.AddCell(Tableau_Projets.Rows[i].Cells[1].Text); 
         }
         //tableau
 

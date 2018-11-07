@@ -208,4 +208,37 @@ public class BD_CoEco
         BD.Dispose();
     }
 
+    public static List<T_Employe> GetEmpByProject(T_Projet p_projet)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        Table<T_EmployeProjet> tableEmpPro = bd.T_EmployeProjet;
+        List<T_EmployeProjet> listEmpPro = tableEmpPro.ToList(); //Tous les liens entre employés et projets
+
+        List<T_EmployeProjet> resultRech = new List<T_EmployeProjet>(); //Liste de retour
+
+        foreach (T_EmployeProjet employeProjet in listEmpPro)
+        {
+            if(employeProjet.idPro == p_projet.idProjet) //S'il est dans la liste
+            {
+                resultRech.Add(employeProjet);
+            }
+        }
+
+        List<T_Employe> listEmp = GetListeEmploye(true);
+        List<T_Employe> rtnList = new List<T_Employe>();
+        foreach (T_EmployeProjet employeProjet in resultRech)
+        {
+            foreach (T_Employe employe in listEmp)
+            {
+                if(employeProjet.idEmp == employe.idEmploye)
+                {
+                    rtnList.Add(employe);
+                }
+            }
+        }
+
+        bd.Dispose();
+        return rtnList;
+    }
+
 }
