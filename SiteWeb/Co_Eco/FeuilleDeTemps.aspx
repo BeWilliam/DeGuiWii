@@ -65,6 +65,7 @@
     </asp:table>
 
     <div class="div_bouton">
-            <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" class="btn_ajouterTemps" BackColor="#53b34f" Font-Size="18px"/>
+            <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" class="btn_ajouterTemps" BackColor="#53b34f" Font-Size="18px" OnClick="btn_ajouter_Click"/>
+            <asp:Button ID="btn_confirmer" runat="server" Text="Confirmer" class="btn_ajouterTemps" BackColor="#53b34f" Font-Size="18px" Enabled="False" OnClick="btn_confirmer_Click"/>
     </div>
     </asp:Content>
