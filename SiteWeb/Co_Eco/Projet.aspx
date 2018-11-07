@@ -29,6 +29,9 @@
         </asp:TableRow>
     </asp:table>
     <asp:ImageButton ID="btn_addProject" runat="server" ImageUrl="~/App_Themes/Projet/Image/logo_addProject.png" class="btn_addProject" OnClick="btn_addProject_Click"/>
+
+    <asp:Button ID="enregistrerRapport" Text="Enregistrer" runat="server" OnClick="enregistrerRapport_Click"/>
+
 </asp:Content>
 
 

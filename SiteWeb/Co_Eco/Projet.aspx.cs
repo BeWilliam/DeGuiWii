@@ -5,6 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Linq;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using iTextSharp.text.html.simpleparser;
 
 public partial class Projet : System.Web.UI.Page
 {
@@ -156,11 +161,10 @@ public partial class Projet : System.Web.UI.Page
         }
 
 
-        //Effectuer la recherche
+        //Traitement de chaque cas fait, donc effectuer la recherche
         for (int i = 0; i < m_ListeProjet.Count; i++)
         {
-            //Tous les projets seront loader
-
+            //Tous les projets seront à charger
             bool a = rechercheA.Contains(i);
             bool b = rechercheB.Contains(i);
             bool c = rechercheC.Contains(i);
@@ -170,11 +174,7 @@ public partial class Projet : System.Web.UI.Page
             {
                 showData(i); //On affiche les éléments présent dans les 4 listes
             }
-
-
         }
-
-
         
     }
 
@@ -228,4 +228,51 @@ public partial class Projet : System.Web.UI.Page
         }
     }
 
+    protected void enregistrerRapport_Click(object sender, EventArgs e)
+    {
+        string fileName = Server.MapPath(@"~\Downloadss\" + DateTime.Now.ToString("ddMMyyyy") + ".pdf");
+
+        //Supprimer les autres rapports présent dans le fichier pour ne pas trop charger le serveur
+        DirectoryInfo dossierDownloadSvr = new DirectoryInfo(Server.MapPath(@"~\Downloadss\"));
+        foreach (FileInfo file in dossierDownloadSvr.GetFiles())
+        {
+            file.Delete();
+        }
+
+
+        //Le format du jour est a changer.
+
+        //https://www.c-sharpcorner.com/article/create-a-pdf-file-and-download-using-Asp-Net-mvc/
+        //https://dotnet.developpez.com/articles/itextsharp/
+        Document doc = new Document();
+        doc.SetMargins(0, 0, 0, 0);
+
+        PdfWriter.GetInstance(doc, new FileStream(fileName, FileMode.Create, FileAccess.Write));
+        doc.Open();
+        doc.Add(new Phrase("Rapport des projets"));
+
+        PdfPTable tableau = new PdfPTable(Tableau_Projets.Rows.Count);
+
+        for (int i = 0; i < Tableau_Projets.Rows.Count; i++) //Lignes               //Charge 48 lignes pour 0 raison?
+        {
+            for(int j = 0; j < 2; j++) //Colones
+            {
+                tableau.AddCell(Tableau_Projets.Rows[i].Cells[j].Text); 
+            }
+        }
+        //tableau
+
+        doc.Add(tableau); //On ajoute le tableau au document
+        doc.Close();
+
+        Response.ContentType = "text/txt";
+        string jour = DateTime.Now.ToString("dd");
+        string mois = DateTime.Now.ToString("MM");
+        string annee = DateTime.Now.ToString("yyyy");
+
+        Response.AppendHeader("Content-Disposition", "attachment; filename=Rapport Projet " + jour + "-" + mois + "-" + annee + ".pdf");
+        Response.TransmitFile(@"~\Downloadss\" + DateTime.Now.ToString("ddMMyyyy") + ".pdf");
+        Response.End();
+
+    }
 }
