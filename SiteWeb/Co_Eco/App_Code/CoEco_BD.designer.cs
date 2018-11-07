@@ -262,6 +262,14 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 		idProjet = ((System.Nullable<int>)(result.GetParameterValue(0)));
 		return ((int)(result.ReturnValue));
 	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PS_GetMaxIdFeuilleTemps")]
+	public int PS_GetMaxIdFeuilleTemps([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> idFeuilleTemps)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idFeuilleTemps);
+		idFeuilleTemps = ((System.Nullable<int>)(result.GetParameterValue(0)));
+		return ((int)(result.ReturnValue));
+	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_CategoriePro")]
@@ -1158,13 +1166,8 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		this._T_StatusEmploye = default(EntityRef<T_StatusEmploye>);
 		OnCreated();
 	}
-
-    public override string ToString()
-    {
-        return prenom + " " + nom;
-    }
-
-    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 	public int idEmploye
 	{
 		get

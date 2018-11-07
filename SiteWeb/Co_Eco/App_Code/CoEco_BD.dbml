@@ -180,4 +180,8 @@
     <Parameter Name="idProjet" Type="System.Int32" DbType="Int" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.PS_GetMaxIdFeuilleTemps" Method="PS_GetMaxIdFeuilleTemps">
+    <Parameter Name="idFeuilleTemps" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

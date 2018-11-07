@@ -306,6 +306,14 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     }
 
     //------------------BOUTON----------------------
+    TextBox tbDim;
+    TextBox tbLun;
+        TextBox tbMar;
+        TextBox tbMer;
+        TextBox tbJeu;
+        TextBox tbVen;
+        TextBox tbSam;
+    TextBox tbCommmentaire;
     protected void btn_ajouter_Click(object sender, EventArgs e)
     {
         btn_ajouter.Enabled = false;
@@ -330,50 +338,50 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         tc1.Controls.Add(ddl_Categorie);
 
         TableCell tc2 = new TableCell();
-        TextBox tbDim = new TextBox();
-        //tbDim.ID = "tbDim";
+        tbDim = new TextBox();
+        tbDim.ID = date.ToString();
         tbDim.CssClass = "tbx_h";
         tc2.Controls.Add(tbDim);
         tc2.Controls.Add(ajoutLabel());
         TableCell tc3 = new TableCell();
-        TextBox tbLun = new TextBox();
-        //tbLun.ID = "tbLun";
+        tbLun = new TextBox();
+        tbLun.ID = date.AddDays(1).ToString();
         tbLun.CssClass = "tbx_h";
         tc3.Controls.Add(tbLun);
         tc3.Controls.Add(ajoutLabel());
         TableCell tc4 = new TableCell();
-        TextBox tbMar = new TextBox();
-        //tbMar.ID = "tbMar";
+        tbMar = new TextBox();
+        tbMar.ID = date.AddDays(2).ToString();
         tbMar.CssClass = "tbx_h";
         tc4.Controls.Add(tbMar);
         tc4.Controls.Add(ajoutLabel());
         TableCell tc5 = new TableCell();
-        TextBox tbMer = new TextBox();
-        //tbMer.ID = "tbMer";
+        tbMer = new TextBox();
+        tbMer.ID = date.AddDays(3).ToString();
         tbMer.CssClass = "tbx_h";
         tc5.Controls.Add(tbMer);
         tc5.Controls.Add(ajoutLabel());
         TableCell tc6 = new TableCell();
-        TextBox tbJeu = new TextBox();
-        //tbJeu.ID = "tbJeu";
+        tbJeu = new TextBox();
+        tbJeu.ID = date.AddDays(4).ToString();
         tbJeu.CssClass = "tbx_h";
         tc6.Controls.Add(tbJeu);
         tc6.Controls.Add(ajoutLabel());
         TableCell tc7 = new TableCell();
-        TextBox tbVen = new TextBox();
-        //tbVen.ID = "tbVen";
+        tbVen = new TextBox();
+        tbVen.ID = date.AddDays(5).ToString();
         tbVen.CssClass = "tbx_h";
         tc7.Controls.Add(tbVen);
         tc7.Controls.Add(ajoutLabel());
         TableCell tc8 = new TableCell();
-        TextBox tbSam = new TextBox();
-        //tbSam.ID = "tbSam";
+        tbSam = new TextBox();
+        tbSam.ID = date.AddDays(6).ToString();
         tbSam.CssClass = "tbx_h";
         tc8.Controls.Add(tbSam);
         tc8.Controls.Add(ajoutLabel());
         TableCell tc9 = new TableCell();
-        TextBox tbCommmentaire = new TextBox();
-        //tbCommmentaire.ID = "tbCommmentaire";
+        tbCommmentaire = new TextBox();
+        tbCommmentaire.ID = "tbCommmentaire";
         tbCommmentaire.TextMode = TextBoxMode.MultiLine;
         tc9.Controls.Add(tbCommmentaire);
 
@@ -391,12 +399,26 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
         btn_confirmer.Enabled = true;
     }
-
+    //-------------------------------
     protected void btn_confirmer_Click(object sender, EventArgs e)
     {
         btn_confirmer.Enabled = false;
 
+        //connexion à la BD
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_FeuilleDeTemps> tableFdt= BD.T_FeuilleDeTemps;
 
+        foreach (TextBox tb in t_feuilleTemps.Rows)
+        {
+            if (true)
+            {
+
+            }
+        }
+        T_FeuilleDeTemps newFdt = new T_FeuilleDeTemps();
+        
+        BD_CoEco.CreateNewFeuilleDeTemps(newFdt);
+        
 
         btn_ajouter.Enabled = true;
     }

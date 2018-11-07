@@ -244,7 +244,7 @@ public class BD_CoEco
     {
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
         int? maxID = 0;
-        BD.PS_GetMaxIdEmpolye(ref maxID);
+        BD.PS_GetMaxIdFeuilleTemps(ref maxID);
         maxID++;
         p_feuilleDeTemps.idFeuilleDeTemps = (int)maxID;
 
