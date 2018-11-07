@@ -240,5 +240,16 @@ public class BD_CoEco
         bd.Dispose();
         return rtnList;
     }
+    public static void CreateNewFeuilleDeTemps(T_FeuilleDeTemps p_feuilleDeTemps)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        int? maxID = 0;
+        BD.PS_GetMaxIdEmpolye(ref maxID);
+        maxID++;
+        p_feuilleDeTemps.idFeuilleDeTemps = (int)maxID;
 
+        BD.T_FeuilleDeTemps.InsertOnSubmit(p_feuilleDeTemps);
+        BD.SubmitChanges();
+        BD.Dispose();
+    }
 }
