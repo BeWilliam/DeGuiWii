@@ -4,6 +4,14 @@
     Employés
 </asp:Content>
 
+<asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
+    <div class="btn-group-vertical">
+
+        <button type="button" class="btn btn-light" id="btn_menu">Ajouter Employé</button>
+
+    </div>
+</asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
     <asp:table runat="server" id="Tableau_Employes" CssClass="table">

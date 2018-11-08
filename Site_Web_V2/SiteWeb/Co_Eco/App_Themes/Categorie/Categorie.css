@@ -1,5 +1,17 @@
-﻿#dropdownMenuButton{
+﻿.form-control{
+    width: 20%;
+    margin-left: 30%;
     margin-top: 15px;
-    margin-left: 35%;
-    
+}
+
+.lbl_choisir {
+    margin-left: 36%;
+}
+
+.table{
+    margin-top: 15px;
+}
+
+.tbx_categorie{
+    margin-bottom: 10px;
 }
