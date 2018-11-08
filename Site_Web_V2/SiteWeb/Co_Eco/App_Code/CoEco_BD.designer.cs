@@ -71,7 +71,7 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
   #endregion
 	
 	public CoEco_BDDataContext() : 
-			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CoEco_BDConnectionString"].ConnectionString, mappingSource)
+			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CoEco_BDConnectionString1"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
@@ -211,11 +211,11 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 		return ((int)(result.ReturnValue));
 	}
 	
-	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PS_DepenseProjet")]
-	public int PS_DepenseProjet([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idProjet, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="SmallMoney")] ref System.Nullable<decimal> total)
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PS_GetMaxIdProjet")]
+	public int PS_GetMaxIdProjet([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> idProjet)
 	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProjet, total);
-		total = ((System.Nullable<decimal>)(result.GetParameterValue(1)));
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProjet);
+		idProjet = ((System.Nullable<int>)(result.GetParameterValue(0)));
 		return ((int)(result.ReturnValue));
 	}
 	
@@ -247,11 +247,11 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 		return ((int)(result.ReturnValue));
 	}
 	
-	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PS_GetMaxIdProjet")]
-	public int PS_GetMaxIdProjet([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> idProjet)
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PS_DepenseProjet")]
+	public int PS_DepenseProjet([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idProjet, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="SmallMoney")] ref System.Nullable<decimal> total)
 	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProjet);
-		idProjet = ((System.Nullable<int>)(result.GetParameterValue(0)));
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProjet, total);
+		total = ((System.Nullable<decimal>)(result.GetParameterValue(1)));
 		return ((int)(result.ReturnValue));
 	}
 	
@@ -260,6 +260,14 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 	{
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProjet);
 		idProjet = ((System.Nullable<int>)(result.GetParameterValue(0)));
+		return ((int)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PS_GetMaxIdFeuilleTemps")]
+	public int PS_GetMaxIdFeuilleTemps([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> idFeuilleTemps)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idFeuilleTemps);
+		idFeuilleTemps = ((System.Nullable<int>)(result.GetParameterValue(0)));
 		return ((int)(result.ReturnValue));
 	}
 }
@@ -1158,8 +1166,8 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		this._T_StatusEmploye = default(EntityRef<T_StatusEmploye>);
 		OnCreated();
 	}
-
-    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmploye", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 	public int idEmploye
 	{
 		get

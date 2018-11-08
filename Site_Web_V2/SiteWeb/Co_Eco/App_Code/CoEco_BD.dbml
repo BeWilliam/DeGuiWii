@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CoEco_BD" Class="CoEco_BDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=CoEco_BD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CoEco_BDConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=127.0.0.1;Initial Catalog=CoEco_BD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CoEco_BDConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.T_CategoriePro" Member="T_CategoriePro">
     <Type Name="T_CategoriePro">
       <Column Name="idCategorie" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -148,9 +148,8 @@
     <Parameter Name="ddateFin" Type="System.DateTime" DbType="Date" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.PS_DepenseProjet" Method="PS_DepenseProjet">
-    <Parameter Name="idProjet" Type="System.Int32" DbType="Int" />
-    <Parameter Name="total" Type="System.Decimal" DbType="SmallMoney" Direction="InOut" />
+  <Function Name="dbo.PS_GetMaxIdProjet" Method="PS_GetMaxIdProjet">
+    <Parameter Name="idProjet" Type="System.Int32" DbType="Int" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.PS_ChangerEtatCategorie" Method="PS_ChangerEtatCategorie">
@@ -172,12 +171,17 @@
     <Parameter Name="newValue" Type="System.Single" DbType="Real" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.PS_GetMaxIdProjet" Method="PS_GetMaxIdProjet">
-    <Parameter Name="idProjet" Type="System.Int32" DbType="Int" Direction="InOut" />
+  <Function Name="dbo.PS_DepenseProjet" Method="PS_DepenseProjet">
+    <Parameter Name="idProjet" Type="System.Int32" DbType="Int" />
+    <Parameter Name="total" Type="System.Decimal" DbType="SmallMoney" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.PS_GetMaxIdEmpolye" Method="PS_GetMaxIdEmpolye">
     <Parameter Name="idProjet" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PS_GetMaxIdFeuilleTemps" Method="PS_GetMaxIdFeuilleTemps">
+    <Parameter Name="idFeuilleTemps" Type="System.Int32" DbType="Int" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

@@ -21,7 +21,7 @@ public class BD_CoEco
         List<T_Employe> listeFiltre = new List<T_Employe>();
         for (int i = 0; i < listeEmp.Count; i++)
         {
-            if(listeEmp[i].idFonction != 3)
+            if (listeEmp[i].idFonction != 3)
             {
                 listeFiltre.Add(listeEmp[i]);
             }
@@ -33,7 +33,7 @@ public class BD_CoEco
             rtnList = new List<T_Employe>();
             foreach (T_Employe emp in listeEmp)
             {
-                if(emp.idStatus == 1)
+                if (emp.idStatus == 1)
                 {
                     rtnList.Add(emp);
                 }
@@ -60,7 +60,7 @@ public class BD_CoEco
             rtnList = new List<T_Projet>();
             foreach (T_Projet pro in listeProjet)
             {
-                if(pro.idStatus == 1)
+                if (pro.idStatus == 1)
                 {
                     rtnList.Add(pro);
                 }
@@ -81,7 +81,7 @@ public class BD_CoEco
         Table<T_CategoriePro> tableCategorie = BD.T_CategoriePro;
         List<T_CategoriePro> listeCategorie = tableCategorie.ToList();
         List<T_CategoriePro> rtnLst = new List<T_CategoriePro>();
-        if(p_projet != null)
+        if (p_projet != null)
         {
             foreach (T_CategoriePro cat in listeCategorie)
             {
@@ -95,7 +95,7 @@ public class BD_CoEco
         {
             rtnLst = listeCategorie;
         }
-        
+
         BD.Dispose();
         return rtnLst;
     }
@@ -124,7 +124,7 @@ public class BD_CoEco
 
         bool trouve = false;
         int i = -1;
-        while(i < listeEmp.Count && !trouve)
+        while (i < listeEmp.Count -1 && !trouve)
         {
             i++;
             if (listeEmp[i].idEmploye == id)
@@ -132,7 +132,7 @@ public class BD_CoEco
                 trouve = true;
             }
         }
-        if(trouve)
+        if (trouve)
         {
             return listeEmp[i];
         }
@@ -207,5 +207,66 @@ public class BD_CoEco
         BD.SubmitChanges();
         BD.Dispose();
     }
-    
+
+    public static List<T_Employe> GetEmpByProject(T_Projet p_projet)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        Table<T_EmployeProjet> tableEmpPro = bd.T_EmployeProjet;
+        List<T_EmployeProjet> listEmpPro = tableEmpPro.ToList(); //Tous les liens entre employés et projets
+
+        List<T_EmployeProjet> resultRech = new List<T_EmployeProjet>(); //Liste de retour
+
+        foreach (T_EmployeProjet employeProjet in listEmpPro)
+        {
+            if (employeProjet.idPro == p_projet.idProjet) //S'il est dans la liste
+            {
+                resultRech.Add(employeProjet);
+            }
+        }
+
+        List<T_Employe> listEmp = GetListeEmploye(true);
+        List<T_Employe> rtnList = new List<T_Employe>();
+        foreach (T_EmployeProjet employeProjet in resultRech)
+        {
+            foreach (T_Employe employe in listEmp)
+            {
+                if (employeProjet.idEmp == employe.idEmploye)
+                {
+                    rtnList.Add(employe);
+                }
+            }
+        }
+
+        bd.Dispose();
+        return rtnList;
+    }
+    public static void CreateNewFeuilleDeTemps(T_FeuilleDeTemps p_feuilleDeTemps)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        int? maxID = 0;
+        BD.PS_GetMaxIdFeuilleTemps(ref maxID);
+        maxID++;
+        p_feuilleDeTemps.idFeuilleDeTemps = (int)maxID;
+
+        BD.T_FeuilleDeTemps.InsertOnSubmit(p_feuilleDeTemps);
+        BD.SubmitChanges();
+        BD.Dispose();
+    }
+
+    /*
+    public static List<T_FeuilleDeTemps> GetFeuilleDeTempsByProjet(T_Projet p_projet)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        Table<T_FeuilleDeTemps> tableFeuille = bd.T_FeuilleDeTemps;
+        List<T_FeuilleDeTemps> listFeuille = tableFeuille.ToList();
+
+        List<T_CategoriePro> listeCat = GetListeCategorie(p_projet);
+
+        List<T_FeuilleDeTemps> rtnList = new List<T_FeuilleDeTemps>();
+        foreach (T_FeuilleDeTemps feuilleDeTemps in listFeuille)
+        {
+            //Get les feuilles de temps. Elle s'obtienne de catégorie (idProjet)
+        }
+    }
+    */
 }

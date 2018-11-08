@@ -51,7 +51,7 @@
         <a class="nav-link" href="Depense.aspx">Dépenses</a>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">Rapports</a>
+        <a class="nav-link" href="Rapports.aspx">Rapports</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

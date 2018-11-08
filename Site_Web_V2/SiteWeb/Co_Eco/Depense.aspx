@@ -3,11 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" Runat="Server">
     Dépenses
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cph_titre_nav" Runat="Server">
-    Dépenses
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
-
+    <form runat="server">
     <%-- Partie pour l'ajout d'une dépense --%>
      <asp:table runat="server" style="width:40%" id="TableDepenses">
       <asp:TableHeaderRow>
@@ -36,7 +33,7 @@
       </asp:TableRow>
     </asp:table>
 
-    <asp:Button ID="bt_ajouterDepense" runat="server" Text="Ajouter une dépense" BackColor="#53b34f" Font-Size="18px" CssClass="btn"/>
+    <button ID="bt_ajouterDepense" runat="server" class="btn btn-light" onserverclick="bt_ajouterDepense_ServerClick">Ajouter une dépense</button>
 
 
     <%-- Partie pour l'ajout du Kilométrage --%>
@@ -73,5 +70,6 @@
       </asp:TableRow>
     </asp:table>
     <asp:Button ID="bt_ajouterKilometrage" runat="server" Text="Ajouter du kilométrage" BackColor="#53b34f" Font-Size="18px" CssClass="btn"/>
+</form>
 </asp:Content>
 
