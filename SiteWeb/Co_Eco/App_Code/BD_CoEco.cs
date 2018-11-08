@@ -244,12 +244,27 @@ public class BD_CoEco
     {
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
         int? maxID = 0;
-        BD.PS_GetMaxIdEmpolye(ref maxID);
+        BD.PS_GetMaxIdFeuilleTemps(ref maxID);
         maxID++;
         p_feuilleDeTemps.idFeuilleDeTemps = (int)maxID;
 
         BD.T_FeuilleDeTemps.InsertOnSubmit(p_feuilleDeTemps);
         BD.SubmitChanges();
         BD.Dispose();
+    }
+
+    public static List<T_FeuilleDeTemps> GetFeuilleDeTempsByProjet(T_Projet p_projet)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        Table<T_FeuilleDeTemps> tableFeuille = bd.T_FeuilleDeTemps;
+        List<T_FeuilleDeTemps> listFeuille = tableFeuille.ToList();
+
+        List<T_CategoriePro> listeCat = GetListeCategorie(p_projet);
+
+        List<T_FeuilleDeTemps> rtnList = new List<T_FeuilleDeTemps>();
+        foreach (T_FeuilleDeTemps feuilleDeTemps in listFeuille)
+        {
+            //Get les feuilles de temps. Elle s'obtienne de catégorie (idProjet)
+        }
     }
 }

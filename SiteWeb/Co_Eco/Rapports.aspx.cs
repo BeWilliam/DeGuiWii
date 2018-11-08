@@ -4,6 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using iTextSharp.tool.xml;
+using iTextSharp.text.html.simpleparser;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using ListItem = System.Web.UI.WebControls.ListItem; //Anti problème
 
 public partial class Rapports : System.Web.UI.Page
 {
@@ -69,5 +75,57 @@ public partial class Rapports : System.Web.UI.Page
     {
         loadCat();
         loadCheckBoxList();
+    }
+
+    protected void btn_recherche_Click(object sender, EventArgs e)
+    {
+        GenerateRapport();
+    }
+    private void GenerateRapport()
+    {
+        string fileName = Server.MapPath(@"~\Downloadss\RapportProjet " + DateTime.Now.ToString("ddMMyyyy") + ".pdf");
+
+        DirectoryInfo dossierDownloadSvr = new DirectoryInfo(Server.MapPath(@"~\Downloadss\"));
+        foreach (FileInfo file in dossierDownloadSvr.GetFiles())
+        {
+            file.Delete();
+        }
+
+        //Sources
+        //https://www.c-sharpcorner.com/article/create-a-pdf-file-and-download-using-Asp-Net-mvc/
+        //https://dotnet.developpez.com/articles/itextsharp/
+
+        Document doc = new Document();
+        doc.SetMargins(3f, 3f, 3f, 3f); //Marges du PDF
+        PdfWriter.GetInstance(doc, new FileStream(fileName, FileMode.Create, FileAccess.Write));
+        doc.Open();
+
+        doc.Add(new Phrase("Rapport par Projet"));
+
+
+        float[] test = { 2, 100000 };
+        PdfPTable tableau = new PdfPTable(test);
+
+        tableau.SetWidths(new float[] { 0.8f, 0.2f });
+
+
+        //Formatage du tableau
+
+        List<T_FeuilleDeTemps> listeFeuilleDeTemps
+
+
+
+
+        doc.Add(tableau); //On ajoute le tableau au document
+        doc.Close();
+
+        Response.ContentType = "text/txt";
+        string jour = DateTime.Now.ToString("dd");
+        string mois = DateTime.Now.ToString("MM");
+        string annee = DateTime.Now.ToString("yyyy");
+
+        Response.AppendHeader("Content-Disposition", "attachment; filename=Rapport Projet " + jour + "-" + mois + "-" + annee + ".pdf");
+        Response.TransmitFile(@"~\Downloadss\RapportProjet " + DateTime.Now.ToString("ddMMyyyy") + ".pdf");
+        Response.End();
     }
 }
