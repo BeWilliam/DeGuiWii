@@ -23,11 +23,16 @@ public partial class Employe : System.Web.UI.Page
 
             HyperLink hl = new HyperLink();
             hl.NavigateUrl = "AjouterEmploye.aspx";
+
+            sender.ToString();
+
             hl.Text = emp.ToString();
             hl.CssClass = "hl_employe";
             tc.Controls.Add(hl);
             
             tr.Cells.Add(tc);
+
+
 
             if (emp.idStatus == 1)
             {
