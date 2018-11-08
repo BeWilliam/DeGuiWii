@@ -153,3 +153,14 @@ CREATE PROCEDURE PS_GetMaxIdEmpolye
 AS
 	SELECT @idProjet = MAX(idEmploye) FROM T_Employe
 GO
+
+/*Procédure permettant de déterminer le plus gros id de feuille de temps*/
+IF OBJECT_ID ( 'PS_GetMaxIdFeuilleTemps', 'P' ) IS NOT NULL 
+    DROP PROCEDURE PS_GetMaxIdFeuilleTemps 
+GO
+
+CREATE PROCEDURE PS_GetMaxIdFeuilleTemps
+	@idFeuilleTemps INT OUTPUT
+AS
+	SELECT @idFeuilleTemps = MAX(idCategorie) FROM T_FeuilleDeTemps
+GO
