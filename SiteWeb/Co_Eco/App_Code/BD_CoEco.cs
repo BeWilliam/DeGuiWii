@@ -253,6 +253,7 @@ public class BD_CoEco
         BD.Dispose();
     }
 
+    /*
     public static List<T_FeuilleDeTemps> GetFeuilleDeTempsByProjet(T_Projet p_projet)
     {
         CoEco_BDDataContext bd = new CoEco_BDDataContext();
@@ -267,4 +268,5 @@ public class BD_CoEco
             //Get les feuilles de temps. Elle s'obtienne de catégorie (idProjet)
         }
     }
+    */
 }

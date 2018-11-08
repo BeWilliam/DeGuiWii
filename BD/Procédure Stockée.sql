@@ -128,7 +128,7 @@ GO
 CREATE PROCEDURE PS_AjouterProjets
 	@nom VARCHAR(100),
 	@descript VARCHAR(500),
-	@responsable INT, /*ID de l'employé qui sera le responsable*/
+	@responsable INT, 
 	@dateDebut DATE,
 	@dateFin DATE ,
 	@idStatus INT
@@ -162,5 +162,17 @@ GO
 CREATE PROCEDURE PS_GetMaxIdFeuilleTemps
 	@idFeuilleTemps INT OUTPUT
 AS
-	SELECT @idFeuilleTemps = MAX(idCategorie) FROM T_FeuilleDeTemps
+	SELECT @idFeuilleTemps = MAX(idFeuilleDeTemps) FROM T_FeuilleDeTemps
+GO
+
+
+/*Procédure permettant d'ajouter un employé */
+IF OBJECT_ID ( 'PS_GetMaxIdProjet', 'P' ) IS NOT NULL 
+    DROP PROCEDURE PS_GetMaxIdProjet 
+GO
+
+CREATE PROCEDURE PS_GetMaxIdProjet
+	@idProjet INT OUTPUT
+AS
+	SELECT @idProjet = MAX(idProjet) FROM T_Projet
 GO
