@@ -252,4 +252,19 @@ public class BD_CoEco
         BD.SubmitChanges();
         BD.Dispose();
     }
+
+    public static List<T_FeuilleDeTemps> GetFeuilleDeTempsByProjet(T_Projet p_projet)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        Table<T_FeuilleDeTemps> tableFeuille = bd.T_FeuilleDeTemps;
+        List<T_FeuilleDeTemps> listFeuille = tableFeuille.ToList();
+
+        List<T_CategoriePro> listeCat = GetListeCategorie(p_projet);
+
+        List<T_FeuilleDeTemps> rtnList = new List<T_FeuilleDeTemps>();
+        foreach (T_FeuilleDeTemps feuilleDeTemps in listFeuille)
+        {
+            //Get les feuilles de temps. Elle s'obtienne de catégorie (idProjet)
+        }
+    }
 }

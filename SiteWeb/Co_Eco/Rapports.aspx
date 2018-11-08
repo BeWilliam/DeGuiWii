@@ -33,7 +33,7 @@
         <asp:TextBox runat="server"></asp:TextBox>
     </div>
     <div>
-        <asp:Button runat="server" Text="Rechercher"/>
+        <asp:Button ID="btn_recherche" runat="server" Text="Rechercher" OnClick="btn_recherche_Click"/>
         <asp:Button runat="server" Text="Actualiser" OnClick="Unnamed_Click"/>
     </div>
 
