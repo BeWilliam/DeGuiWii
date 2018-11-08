@@ -162,5 +162,5 @@ GO
 CREATE PROCEDURE PS_GetMaxIdFeuilleTemps
 	@idFeuilleTemps INT OUTPUT
 AS
-	SELECT @idFeuilleTemps = MAX(idCategorie) FROM T_FeuilleDeTemps
+	SELECT @idFeuilleTemps = MAX(idFeuilleDeTemps) FROM T_FeuilleDeTemps
 GO
