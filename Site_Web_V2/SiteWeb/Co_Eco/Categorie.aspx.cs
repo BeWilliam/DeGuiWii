@@ -7,14 +7,18 @@ using System.Web.UI.WebControls;
 
 public partial class Categorie : System.Web.UI.Page
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        loadProjet();
-    }
+        tbx_cat.Visible = false;
+        btn_conf.Visible = false;
+        add_cat.Visible = true;
 
-    protected void btn_addCategorie_Click(object sender, ImageClickEventArgs e)
-    {
-        Response.Redirect("AjouterCategorie.aspx");
+        if (!this.IsPostBack)
+        {
+
+            loadProjet();
+        }
     }
 
     private void loadProjet()
@@ -26,5 +30,46 @@ public partial class Categorie : System.Web.UI.Page
         {
             ddl_projet.Items.Add(new ListItem(projet.nom, projet.idProjet.ToString()));
         }
+    }
+
+
+
+    protected void ddl_projet_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        loadCat();
+    }
+
+    private void loadCat()
+    {
+        List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(ddl_projet.SelectedValue)));
+        listCat = listCat.OrderBy(o => o.descript).ToList();
+        foreach (T_CategoriePro categoriePro in listCat)
+        {
+            TableRow tr = new TableRow();
+            TableCell tc1 = new TableCell();
+
+            tc1.Text = categoriePro.descript;
+
+            tr.Cells.Add(tc1);
+
+            Tableau_Categorie.Rows.Add(tr);
+        }
+    }
+
+    protected void btn_addCat_Click(object sender, EventArgs e)
+    {
+        
+        tbx_cat.Visible = true;
+
+        add_cat.Visible = false;
+
+        btn_conf.Visible = true;
+    }
+
+    protected void btn_Conf_Click(object sender, EventArgs e)
+    {
+
+        loadCat();
+
     }
 }
