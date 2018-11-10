@@ -9,13 +9,8 @@
     <form runat="server">
 
         <div class="btn-group-vertical">
-
-
-            <button type="button" class="btn btn-success"
-                style="margin-top: 10px; margin-left: 15px; float: left; width: 150px; color: #000000;"
-                runat="server" onserverclick="btn_ajouter_Click">
-                Ajouter Employé</button>
-
+            <button id="btn_AddEmp" type="button" class="btn btn-success" style="margin-top: 10px; margin-left: 15px; float: left; width: 150px; color: #000000;" runat="server" onserverclick="btn_ajouter_Click">Ajouter Employé</button>
+            <button id="btn_GenPDF" type="button" class="btn btn-success" style="margin-top: 10px; margin-left: 15px; float: left; width: 150px; color: #000000;" runat="server" onserverclick="btn_GenPDF_ServerClick">Générer PDF</button>
         </div>
     </form>
 
