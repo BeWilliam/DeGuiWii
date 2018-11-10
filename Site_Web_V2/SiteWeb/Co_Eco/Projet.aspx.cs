@@ -123,4 +123,11 @@ public partial class Projet : System.Web.UI.Page
         Response.TransmitFile(@"~\Downloadss\RapportProjet " + DateTime.Now.ToString("ddMMyyyy") + ".pdf");
         Response.End();
     }
+
+    protected void btn_ajouter_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AjouterProjet.aspx");
+    }
+
+    
 }
