@@ -4,7 +4,6 @@
     Dépenses
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
-    <form runat="server">
     <%-- Partie pour l'ajout d'une dépense --%>
      <asp:table runat="server" style="width:40%" id="TableDepenses">
       <asp:TableHeaderRow>
@@ -70,6 +69,5 @@
       </asp:TableRow>
     </asp:table>
     <asp:Button ID="bt_ajouterKilometrage" runat="server" Text="Ajouter du kilométrage" BackColor="#53b34f" Font-Size="18px" CssClass="btn"/>
-</form>
 </asp:Content>
 

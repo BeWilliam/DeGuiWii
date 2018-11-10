@@ -13,7 +13,8 @@ public partial class Categorie : System.Web.UI.Page
     {
         tbx_cat.Visible = false;
         btn_conf.Visible = false;
-        add_cat.Visible = true;
+       // add_cat.Visible = true;
+       
         ddl_statut.Visible = false;
 
         if (!this.IsPostBack)
@@ -83,7 +84,7 @@ public partial class Categorie : System.Web.UI.Page
 
         
 
-        add_cat.Visible = false;
+       // add_cat.Visible = false;
 
         btn_conf.Visible = true;
     }

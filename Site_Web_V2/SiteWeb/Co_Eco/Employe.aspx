@@ -6,30 +6,71 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" runat="Server">
 
-    <div class="btn-group-vertical">
-        <button id="btn_AddEmp" type="button" class="btn btn-success" style="margin-top: 10px; margin-left: 15px; float: left; width: 150px; color: #000000;" runat="server" onserverclick="btn_ajouter_Click">Ajouter Employé</button>
-        <button id="btn_GenPDF" type="button" class="btn btn-success" style="margin-top: 10px; margin-left: 15px; float: left; width: 150px; color: #000000;" runat="server" onserverclick="btn_GenPDF_ServerClick">Générer PDF</button>
-    </div>
+
+        <div class="form-row" style="margin: 0 auto">
+            <div class="col">
+                <label for="validationTooltip01" style="text-align: center">Prénom</label>
+                <input type="text" class="form-control" id="tbx_prenom" name="tbx_prenom" value="">
+                <div class="valid-tooltip">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row" style="margin: 0 auto">
+            <div class="col">
+                <label for="validationTooltip01" style="text-align: center">Nom</label>
+                <input type="text" class="form-control" id="tbx_nom" name="tbx_nom" value="">
+                <div class="valid-tooltip">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col">
+                <label for="validationTooltip01">Fonction</label>
+                <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_fonction" />
+                <div class="valid-tooltip">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <label for="validationTooltip01">Statut</label>
+                <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_Status" />
+                <div class="valid-tooltip">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="btn-group-vertical">
+
+            <div class="form-row" style="margin: 0 auto">
+                <div class="col">
+
+                    <button id="btn_recherche" runat="server" class="btn btn-primary" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_rech_ServerClick">Rechercher</button>
+
+                    <button id="Button1" runat="server" class="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_cancel_ServerClick">Annuler</button>
+
+                    <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: #000000;"
+                        class="btn btn-success" onserverclick="bt_AjouterEmploye_Click">
+                        Ajouter Employé</button>
+
+                    <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: #000000;"
+                        class="btn btn-success" onserverclick=" btn_GenPDF_ServerClick">
+                        Générer PDF</button>
+
+                </div>
+            </div>
+
+        </div>
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
 
-    <form runat="server">
-
-        <label>Prénom</label>
-        <asp:TextBox runat="server" ID="tbx_prenom"/>
-        <label>Nom</label>
-        <asp:TextBox runat="server" ID="tbx_nom"/>
-        <label>Fonction</label>
-        <asp:DropDownList runat="server" id="ddl_fonction"/>
-        <label>Statut</label>
-        <asp:DropDownList runat="server" id="ddl_statut"/>
-        <button runat="server" id="btn_rech" class="btn btn-primary" onserverclick="btn_rech_ServerClick">Filtrer</button>
-        <button runat="server" id="btn_cancel" class="btn btn-danger" onserverclick="btn_cancel_ServerClick">Retirer filtre</button>
-
-        <asp:Table runat="server" ID="Tableau_Employes" CssClass="table" />
-    </form>
-    
+    <asp:Table runat="server" ID="Tableau_Employes" CssClass="table" />
 
 </asp:Content>

@@ -3,8 +3,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_left" runat="Server">
 
-
-    <form runat="server" id="div_Recherche" class="c_recherche">
         <div class="form-row" style="margin: 0 auto">
             <div class="col">
                 <label for="validationTooltip01" style="text-align: center">Nom de Projet</label>
@@ -64,7 +62,6 @@
             </div>
 
         </div>
-    </form>
 
 </asp:Content>
 

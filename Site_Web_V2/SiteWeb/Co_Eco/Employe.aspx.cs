@@ -38,10 +38,6 @@ public partial class Employe : System.Web.UI.Page
         Response.Redirect("AjouterEmploye.aspx");
     }
 
-    protected void btn_ajouter_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("AjouterEmploye.aspx");
-    }
 
     protected void btn_GenPDF_ServerClick(object sender, EventArgs e)
     {
@@ -119,10 +115,10 @@ public partial class Employe : System.Web.UI.Page
     {
         List<T_StatusEmploye> listeStatEmp = BD_CoEco.GetListeStatusEmploye();
         listeStatEmp.OrderBy(o => o.descript).ToList();
-        ddl_statut.Items.Add(new ListItem("Tous les statuts", "-1"));
+        ddl_Status.Items.Add(new ListItem("Tous les statuts", "-1"));
         foreach (T_StatusEmploye statusEmploye in listeStatEmp)
         {
-            ddl_statut.Items.Add(new ListItem(statusEmploye.descript, statusEmploye.idStatusEmp.ToString()));
+            ddl_Status.Items.Add(new ListItem(statusEmploye.descript, statusEmploye.idStatusEmp.ToString()));
         }
     }
 
@@ -138,11 +134,11 @@ public partial class Employe : System.Web.UI.Page
 
         //Recherche sur les prénoms
 
-        if (tbx_prenom.Text != "" && tbx_prenom.Text != null)
+        if (String.Format("{0}", Request.Form["tbx_prenom"]) != "" && String.Format("{0}", Request.Form["tbx_prenom"]) != null)
         {
             for (int i = 0; i < tousLesEmp.Count; i++)
             {
-                if(tousLesEmp[i].prenom.ToLower().Contains(tbx_prenom.Text.ToLower()))
+                if(tousLesEmp[i].prenom.ToLower().Contains(String.Format("{0}", Request.Form["tbx_prenom"]).ToLower()))
                 {
                     rechercheA.Add(i);
                 }
@@ -157,11 +153,11 @@ public partial class Employe : System.Web.UI.Page
         }
 
         //Recherche sur les noms
-        if (tbx_nom.Text != "" && tbx_nom.Text != null)
+        if (String.Format("{0}", Request.Form["tbx_nom"]) != "" && String.Format("{0}", Request.Form["tbx_nom"]) != null)
         {
             for (int i = 0; i < tousLesEmp.Count; i++)
             {
-                if (tousLesEmp[i].nom.ToLower().Contains(tbx_nom.Text.ToLower()))
+                if (tousLesEmp[i].nom.ToLower().Contains(String.Format("{0}", Request.Form["tbx_nom"]).ToLower()))
                 {
                     rechercheB.Add(i);
                 }
@@ -196,11 +192,11 @@ public partial class Employe : System.Web.UI.Page
 
 
         //Recherche sur les statuts
-        if(ddl_statut.SelectedValue != "-1")
+        if(ddl_Status.SelectedValue != "-1")
         {
             for(int i = 0; i < tousLesEmp.Count; i++)
             {
-                if(ddl_statut.SelectedIndex == tousLesEmp[i].idStatus)
+                if(ddl_Status.SelectedIndex == tousLesEmp[i].idStatus)
                 {
                     rechercheD.Add(i);
                 }
@@ -279,10 +275,10 @@ public partial class Employe : System.Web.UI.Page
 
     protected void btn_cancel_ServerClick(object sender, EventArgs e)
     {
-        tbx_prenom.Text = "";
-        tbx_nom.Text = "";
-        ddl_fonction.SelectedIndex = 0;
-        ddl_statut.SelectedIndex = 0;
+        //tbx_prenom.Text = "";
+        //tbx_nom.Text = "";
+        //ddl_fonction.SelectedIndex = 0;
+        //ddl_statut.SelectedIndex = 0;
         Recherche();
     }
 }

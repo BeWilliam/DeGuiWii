@@ -4,33 +4,45 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" runat="Server">
+
+        <div class="form-row">
+            <div class="col">
+                <label for="validationTooltip01">Choisir le projet</label>
+                <asp:DropDownList CssClass="form-control" runat="server" ID="ddl_projet" AutoPostBack="True" OnSelectedIndexChanged="ddl_projet_SelectedIndexChanged" />
+                <div class="valid-tooltip">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-row" style="margin: 0 auto">
+            <div class="col">
+
+                <button id="btn_addCat" name="btn_addCat" runat="server" class="btn btn-primary" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_addCat_Click">Ajouter une catégorie</button>
+
+            </div>
+        </div>
+
+
 </asp:Content>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
+    <asp:Table runat="server" ID="Tableau_Categorie" CssClass="table">
+        <asp:TableRow>
+            <asp:TableHeaderCell Style="width: 100%">Catégories</asp:TableHeaderCell>
+        </asp:TableRow>
+    </asp:Table>
 
-    <form runat="server">
+    <div class="btn-group-vertical">
 
-        <asp:Label ID="Label1" CssClass="lbl_choisir" runat="server" Text="Choisir le projet"></asp:Label>
-        <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_projet" AutoPostBack="True" OnSelectedIndexChanged="ddl_projet_SelectedIndexChanged" Style="width: 20%; margin-left: 30%; margin-top: 15px;" />
+        <asp:TextBox ID="tbx_cat" runat="server" CssClass="tbx_categorie"></asp:TextBox>
 
-        <asp:Table runat="server" ID="Tableau_Categorie" CssClass="table">
-            <asp:TableRow>
-                <asp:TableHeaderCell Style="width: 100%">Catégories</asp:TableHeaderCell>
-            </asp:TableRow>
-        </asp:Table>
+        <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_statut" />
 
-        <div class="btn-group-vertical">
+        <button type="button" class="btn btn-success" id="btn_conf" style="margin-top: 10px; float: left; width: 205px; color: #000000;" runat="server" onserverclick="btn_Conf_Click">Confirmer l'ajout</button>
 
-            <asp:TextBox ID="tbx_cat" runat="server" CssClass="tbx_categorie"></asp:TextBox>
+    </div>
 
-            <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_statut"/>
-
-            <button type="button" class="btn btn-success" id="add_cat" style="margin-top: 10px; float: left; width: 220px; color: #000000;" runat="server" onserverclick="btn_addCat_Click">Ajouter une Catégorie</button>
-            <button type="button" class="btn btn-success" id="btn_conf" style="margin-top: 10px; float: left; width: 205px; color: #000000;" runat="server" onserverclick="btn_Conf_Click">Confirmer l'ajout</button>
-
-        </div>
-
-    </form>
 </asp:Content>
 
