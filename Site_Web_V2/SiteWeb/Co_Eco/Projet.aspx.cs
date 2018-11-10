@@ -27,39 +27,6 @@ public partial class Projet : System.Web.UI.Page
 
         rech(); //Pour être sur d'être uniforme
 
-
-        foreach (T_Projet p_projet in listeProjet)
-        {
-            TableRow tr = new TableRow();
-            TableCell tc1 = new TableCell();
-            tc1.Text = p_projet.idProjet.ToString();
-
-            TableCell tc2 = new TableCell();
-            tc2.Text = p_projet.nom;
-
-            TableCell tc3 = new TableCell();
-            int? res = p_projet.responsable;
-
-            if (res == null)
-            {
-                tc3.Text = "Pas de responsable";
-            }
-            else
-            {                               
-                BD_CoEco.GetEmpByID((int)res);
-                tc3.Text = res.ToString();                                 
-            }
-            
-
-            TableCell tc4 = new TableCell();
-            tc4.Text = listeStatProjet[p_projet.idStatus - 1].descript;
-
-            tr.Cells.Add(tc1);
-            tr.Cells.Add(tc2);
-            tr.Cells.Add(tc3);
-            tr.Cells.Add(tc4);
-            Tableau_Projets.Rows.Add(tr);
-        }
     }
 
     protected void btn_addProject_Click(object sender, ImageClickEventArgs e)
@@ -339,5 +306,10 @@ public partial class Projet : System.Web.UI.Page
         tr.Cells.Add(cChef);
         tr.Cells.Add(cStatut);
         Tableau_Projets.Rows.Add(tr);
+    }
+
+    protected void btn_remFiltre_ServerClick(object sender, EventArgs e)
+    {
+        var x = Page.FindControl("tbx_nom");
     }
 }

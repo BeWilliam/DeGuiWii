@@ -4,7 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_left" runat="Server">
 
 
-    <form runat="server" id="div_Recherche" class="c_recherche">
         <div class="form-row" style="margin: 0 auto">
             <div class="col">
                 <label for="validationTooltip01" style="text-align: center">Nom de Projet</label>
@@ -48,9 +47,9 @@
             <div class="form-row" style="margin: 0 auto">
                 <div class="col">
 
-                    <button id="btn_recherche" runat="server" class="btn btn-primary" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_recherche_ServerClick">Rechercher</button>
+                    <button id="btn_recherche" runat="server" class="btn btn-primary" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_recherche_ServerClick">Filtrer</button>
 
-                    <button id="Button1" runat="server" class="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000;">Annuler</button>
+                    <button id="btn_remFiltre" runat="server" class="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_remFiltre_ServerClick">Retirer filtre</button>
 
                     <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: #000000;"
                         class="btn btn-success" onserverclick="btn_ajouter_Click">
@@ -64,7 +63,6 @@
             </div>
 
         </div>
-    </form>
 
 </asp:Content>
 
