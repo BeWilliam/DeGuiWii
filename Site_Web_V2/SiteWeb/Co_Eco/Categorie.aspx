@@ -25,8 +25,8 @@
     <div class="btn-group-vertical">
 
         <asp:TextBox ID="tbx_cat" runat="server" CssClass="tbx_categorie"></asp:TextBox>
-        <button type="button" class="btn btn-light" id="add_cat" runat="server" OnServerClick="btn_addCat_Click">Ajouter une Catégorie</button>
-        <button type="button" class="btn btn-light" id="btn_conf" runat="server" OnServerClick="btn_Conf_Click">Confirmer l'ajout</button>
+        <button type="button" class="btn btn-success" id="add_cat" style="margin-top: 10px; float: left; width: 220px; color: #000000;" runat="server" OnServerClick="btn_addCat_Click">Ajouter une Catégorie</button>
+        <button type="button" class="btn btn-success" id="btn_conf" style="margin-top: 10px; float: left; width: 205px; color: #000000;" runat="server" OnServerClick="btn_Conf_Click">Confirmer l'ajout</button>
 
     </div>
 

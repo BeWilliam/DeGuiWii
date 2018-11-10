@@ -70,4 +70,9 @@ public partial class Employe : System.Web.UI.Page
     {
         Response.Redirect("AjouterEmploye.aspx");
     }
+
+    protected void btn_ajouter_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Menu.aspx");
+    }
 }

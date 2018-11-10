@@ -1,26 +1,35 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Employe.aspx.cs" Inherits="Employe" theme="Employe"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Employe.aspx.cs" Inherits="Employe" Theme="Employe" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="cph_title" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="cph_title" runat="Server">
     Employés
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
-    <div class="btn-group-vertical">
+<asp:Content ID="Content2" ContentPlaceHolderID="cph_left" runat="Server">
 
-        <button type="button" class="btn btn-light" id="btn_menu">Ajouter Employé</button>
+    <form runat="server">
 
-    </div>
+        <div class="btn-group-vertical">
+
+
+            <button type="button" class="btn btn-success"
+                style="margin-top: 10px; margin-left: 15px; float: left; width: 150px; color: #000000;"
+                runat="server" onserverclick="btn_ajouter_Click">
+                Ajouter Employé</button>
+
+        </div>
+    </form>
+
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
 
-    <asp:table runat="server" id="Tableau_Employes" CssClass="table">
-      <asp:TableRow>
-        <asp:TableHeaderCell style="width:25%">#</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:25%">Prénom</asp:TableHeaderCell>
-        <asp:TableHeaderCell style="width:25%">Nom</asp:TableHeaderCell>
-          <asp:TableHeaderCell style="width:25%">Statut</asp:TableHeaderCell>
-      </asp:TableRow>
-    </asp:table>
+    <asp:Table runat="server" ID="Tableau_Employes" CssClass="table">
+        <asp:TableRow>
+            <asp:TableHeaderCell Style="width: 25%">#</asp:TableHeaderCell>
+            <asp:TableHeaderCell Style="width: 25%">Prénom</asp:TableHeaderCell>
+            <asp:TableHeaderCell Style="width: 25%">Nom</asp:TableHeaderCell>
+            <asp:TableHeaderCell Style="width: 25%">Statut</asp:TableHeaderCell>
+        </asp:TableRow>
+    </asp:Table>
 
 </asp:Content>
