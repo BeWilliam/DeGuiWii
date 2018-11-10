@@ -310,6 +310,6 @@ public partial class Projet : System.Web.UI.Page
 
     protected void btn_remFiltre_ServerClick(object sender, EventArgs e)
     {
-        var x = Page.FindControl("tbx_nom");
+        Response.Redirect("Projet.aspx");
     }
 }
