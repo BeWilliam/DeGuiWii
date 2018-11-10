@@ -7,8 +7,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
-    <form runat="server">
-
         <div>
             <asp:label runat="server">Date début </asp:label>
             <asp:TextBox id="tbx_dateDebut" runat="server" placeHolder="ex: 2018-01-22"></asp:TextBox>
@@ -36,6 +34,5 @@
         <div>
             <Button ID="btn_recherche" class="btn btn-light" runat="server">Générer PDF</Button>
         </div>
-    </form>
 </asp:Content>
 

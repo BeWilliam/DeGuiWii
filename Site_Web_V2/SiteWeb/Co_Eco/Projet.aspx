@@ -3,7 +3,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_left" runat="Server">
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c241a3a807cc3b68bd3f0cbc2cfdf531af33b5b5
         <div class="form-row" style="margin: 0 auto">
             <div class="col">
                 <label for="validationTooltip01" style="text-align: center">Nom de Projet</label>
