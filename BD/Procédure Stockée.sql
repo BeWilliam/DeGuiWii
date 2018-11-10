@@ -93,6 +93,13 @@ AS
 	WHERE idEmploye = @idEmploye
 GO
 
+--Procédure qui retourne le dernier ID de catégorie créer
+CREATE PROCEDURE PS_GetMaxIdCategorie
+	@idCat INT OUTPUT
+AS
+	SELECT @idCat = MAX(idCategorie) FROM T_CategoriePro
+GO
+
 /*EXEC PS_ChangerStatusEmp 1,1*/
 
 
