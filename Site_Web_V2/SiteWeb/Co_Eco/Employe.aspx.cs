@@ -123,8 +123,6 @@ public partial class Employe : System.Web.UI.Page
             tableau.AddCell(Tableau_Employes.Rows[i].Cells[2].Text);
             tableau.AddCell(Tableau_Employes.Rows[i].Cells[3].Text);
         }
-        
-
 
 
         doc.Add(tableau); //On ajoute le tableau au document
