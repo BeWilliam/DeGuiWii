@@ -323,7 +323,7 @@ public partial class Projet : System.Web.UI.Page
         TableCell cChef = new TableCell();
         if(projet.responsable == null || projet.responsable == 0)
         {
-            cChef.Text = "Pas de responsable";
+            cChef.Text = " - ";
         }
         else
         {
