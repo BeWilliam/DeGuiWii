@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.Linq;
 
 public partial class Categorie : System.Web.UI.Page
 {
@@ -13,10 +14,10 @@ public partial class Categorie : System.Web.UI.Page
         tbx_cat.Visible = false;
         btn_conf.Visible = false;
         add_cat.Visible = true;
+        ddl_statut.Visible = false;
 
         if (!this.IsPostBack)
         {
-
             loadProjet();
         }
     }
@@ -32,6 +33,16 @@ public partial class Categorie : System.Web.UI.Page
         }
     }
 
+    private void loadStatus()
+    {
+        /*-- Partie pour les statuts --*/
+        List<T_StatusCategorie> listStatus = BD_CoEco.GetListeStatusCategorie();
+        listStatus = listStatus.OrderBy(o => o.descript).ToList();
+        foreach (T_StatusCategorie status in listStatus)
+        {
+            ddl_statut.Items.Add(new ListItem(status.descript, status.idStatusCat.ToString()));
+        }
+    }
 
 
     protected void ddl_projet_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,6 +72,17 @@ public partial class Categorie : System.Web.UI.Page
         
         tbx_cat.Visible = true;
 
+        
+        ddl_statut.Visible = true;
+
+  
+        if (ddl_statut.Items.Count <= 0)
+        {
+            loadStatus();
+        }
+
+        
+
         add_cat.Visible = false;
 
         btn_conf.Visible = true;
@@ -68,6 +90,26 @@ public partial class Categorie : System.Web.UI.Page
 
     protected void btn_Conf_Click(object sender, EventArgs e)
     {
+
+        //connexion à la BD
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_CategoriePro> tableEmp = BD.T_CategoriePro;
+
+        T_CategoriePro newCat = new T_CategoriePro();
+        newCat.descript = tbx_cat.Text;
+
+        if (ddl_statut.SelectedValue == "Actif")
+        {
+            newCat.idStatusCat = 1;
+        }
+        else
+        {
+            newCat.idStatusCat = 2;
+        }
+
+        newCat.idProjet = int.Parse(ddl_projet.SelectedValue);
+
+        BD_CoEco.CreateNewCategorie(newCat);
 
         loadCat();
 

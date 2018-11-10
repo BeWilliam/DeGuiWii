@@ -12,7 +12,7 @@
     <form runat="server">
 
         <asp:Label ID="Label1" CssClass="lbl_choisir" runat="server" Text="Choisir le projet"></asp:Label>
-        <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_projet" AutoPostBack="True" OnSelectedIndexChanged="ddl_projet_SelectedIndexChanged" />
+        <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_projet" AutoPostBack="True" OnSelectedIndexChanged="ddl_projet_SelectedIndexChanged" Style="width: 20%; margin-left: 30%; margin-top: 15px;" />
 
         <asp:Table runat="server" ID="Tableau_Categorie" CssClass="table">
             <asp:TableRow>
@@ -23,6 +23,9 @@
         <div class="btn-group-vertical">
 
             <asp:TextBox ID="tbx_cat" runat="server" CssClass="tbx_categorie"></asp:TextBox>
+
+            <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_statut"/>
+
             <button type="button" class="btn btn-success" id="add_cat" style="margin-top: 10px; float: left; width: 220px; color: #000000;" runat="server" onserverclick="btn_addCat_Click">Ajouter une Catégorie</button>
             <button type="button" class="btn btn-success" id="btn_conf" style="margin-top: 10px; float: left; width: 205px; color: #000000;" runat="server" onserverclick="btn_Conf_Click">Confirmer l'ajout</button>
 
