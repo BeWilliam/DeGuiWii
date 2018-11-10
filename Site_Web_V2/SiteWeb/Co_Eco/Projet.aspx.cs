@@ -182,11 +182,11 @@ public partial class Projet : System.Web.UI.Page
 
         //Recherche sur le nom
 
-        if (tbx_nom.Text != null && tbx_nom.Text != "")
+        if (String.Format("{0}", Request.Form["tbx_nom"]) != null && String.Format("{0}", Request.Form["tbx_nom"]) != "")
         {
             for (int i = 0; i < tousLesProjets.Count; i++)
             {
-                if (tousLesProjets[i].nom.ToLower().Contains(tbx_nom.Text.ToLower()))
+                if (tousLesProjets[i].nom.ToLower().Contains(String.Format("{0}", Request.Form["tbx_nom"]).ToLower()))
                 {
                     rechercheA.Add(i);
                 }
@@ -226,7 +226,7 @@ public partial class Projet : System.Web.UI.Page
         {
             for (int i = 0; i < tousLesProjets.Count; i++)
             {
-                if (tousLesProjets[i].idStatus == int.Parse(DDL_Status.SelectedValue)) //pt ici si bug
+                if (tousLesProjets[i].idStatus == int.Parse(DDL_Status.SelectedValue))
                 {
                     rechercheC.Add(i);
                 }
@@ -243,13 +243,13 @@ public partial class Projet : System.Web.UI.Page
 
         //Recherche description
 
-        if (tbx_descript.Text != null && tbx_descript.Text != "")
+        if (String.Format("{0}", Request.Form["tbx_descript"]) != null && String.Format("{0}", Request.Form["tbx_descript"]) != "")
         {
             for (int i = 0; i < tousLesProjets.Count; i++)
             {
                 if (tousLesProjets[i].descript != null)
                 {
-                    if (tousLesProjets[i].descript.ToLower().Contains(tbx_descript.Text.ToLower()))
+                    if (tousLesProjets[i].descript.ToLower().Contains(String.Format("{0}", Request.Form["tbx_descript"]).ToLower()))
                     {
                         rechercheD.Add(i);
                     }
