@@ -79,7 +79,7 @@ public partial class Employe : System.Web.UI.Page
 
     protected void btn_ajouter_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Menu.aspx");
+        Response.Redirect("AjouterEmploye.aspx");
     }
 
     protected void btn_GenPDF_ServerClick(object sender, EventArgs e)

@@ -11,6 +11,33 @@ public partial class AjouterEmploye : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        loadFonction();
+
+    }
+
+    private void loadStatut()
+    {
+        /*-- Partie pour les statuts --*/
+        List<T_StatusEmploye> listStatus = BD_CoEco.GetListeStatusEmploye();
+        listStatus = listStatus.OrderBy(o => o.descript).ToList();
+        foreach (T_StatusEmploye status in listStatus)
+        {
+           // ddl_statut.Items.Add(new ListItem(status.descript, status.idStatusEmp.ToString()));
+        }
+    }
+
+    private void loadFonction()
+    {
+        /*-- Partie pour les fonctions --*/
+        List<T_FonctionEmploye> listeFonction = BD_CoEco.GetListeFontionsEmploye();
+        listeFonction = listeFonction.OrderBy(o => o.descript).ToList();
+        foreach (T_FonctionEmploye fonction in listeFonction)
+        {
+            if (fonction.descript != "Administrateur")
+            {
+                ddl_fonction.Items.Add(new ListItem(fonction.descript, fonction.idFonctionEmp.ToString()));
+            }
+        }
     }
 
     protected void bt_annuler_Click(object sender, EventArgs e)
@@ -18,7 +45,7 @@ public partial class AjouterEmploye : System.Web.UI.Page
         Response.Redirect("Employe.aspx");
     }
 
-    protected void bt_ajouter_Click(object sender, EventArgs e)
+    protected void btn_addEmp_Click(object sender, EventArgs e)
     {
         //ajouter un employé
 
@@ -26,27 +53,15 @@ public partial class AjouterEmploye : System.Web.UI.Page
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
         Table<T_Employe> tableEmp = BD.T_Employe;
 
-        int fonction = 0;
-
-        if (ddl_fonction.SelectedValue == "Employé de bureau")
-        {
-            fonction = 1;
-        }
-        if (ddl_fonction.SelectedValue == "Employé de terrain")
-        {
-            fonction = 2;
-        }
-
         T_Employe newEmp = new T_Employe();
-        newEmp.prenom = tb_prenom.Text;
-        newEmp.nom = tb_nom.Text;
-        newEmp.courriel = tb_courriel.Text;
+        newEmp.prenom = String.Format("{0}", Request.Form["tbx_prenom"]);
+        newEmp.nom = String.Format("{0}", Request.Form["tbx_nom"]);
+        newEmp.courriel = String.Format("{0}", Request.Form["tbx_courriel"]);
+        newEmp.mdp = String.Format("{0}", Request.Form["tbx_mdp"]);
         newEmp.idStatus = 1;
-        newEmp.idFonction = fonction;
+        newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
 
         BD_CoEco.CreateNewEmploye(newEmp);
-        //1 bureau
-        //2 terrain
 
         //faire une gestion d'erreur ici
 

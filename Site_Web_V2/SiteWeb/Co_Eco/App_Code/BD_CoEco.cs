@@ -127,6 +127,32 @@ public class BD_CoEco
     }
 
     /// <summary>
+    /// Méthode permettant d'obtenir les status des employés
+    /// </summary>
+    /// <returns>Liste des status possibles des employés</returns>
+    public static List<T_StatusEmploye> GetListeStatusEmploye()
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_StatusEmploye> tableStatus = BD.T_StatusEmploye;
+        List<T_StatusEmploye> listeStatus = tableStatus.ToList();
+        BD.Dispose();
+        return listeStatus;
+    }
+
+    /// <summary>
+    /// Méthode permettant d'obtenir les fonctions des employés
+    /// </summary>
+    /// <returns>Liste des fonctions possibles des employés</returns>
+    public static List<T_FonctionEmploye> GetListeFontionsEmploye()
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_FonctionEmploye> tableFonction = BD.T_FonctionEmploye;
+        List<T_FonctionEmploye> listeFonctions = tableFonction.ToList();
+        BD.Dispose();
+        return listeFonctions;
+    }
+
+    /// <summary>
     /// Méthode permettant d'obtenir un employé selon l'ID fourni. Throw une exception si pas trouvé
     /// </summary>
     /// <param name="id">L'id de l'employé</param>
