@@ -114,6 +114,19 @@ public class BD_CoEco
     }
 
     /// <summary>
+    /// Méthode permettant d'obtenir les status des catégories
+    /// </summary>
+    /// <returns>Liste des status possibles des catégories</returns>
+    public static List<T_StatusCategorie> GetListeStatusCategorie()
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_StatusCategorie> tableStatus = BD.T_StatusCategorie;
+        List<T_StatusCategorie> listeStatus = tableStatus.ToList();
+        BD.Dispose();
+        return listeStatus;
+    }
+
+    /// <summary>
     /// Méthode permettant d'obtenir un employé selon l'ID fourni. Throw une exception si pas trouvé
     /// </summary>
     /// <param name="id">L'id de l'employé</param>
@@ -204,6 +217,19 @@ public class BD_CoEco
         p_employe.idEmploye = (int)maxID;
 
         BD.T_Employe.InsertOnSubmit(p_employe);
+        BD.SubmitChanges();
+        BD.Dispose();
+    }
+
+    public static void CreateNewCategorie(T_CategoriePro p_categorie)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        int? maxID = 0;
+        BD.PS_GetMaxIdCategorie(ref maxID);
+        maxID++;
+        p_categorie.idCategorie = (int)maxID;
+
+        BD.T_CategoriePro.InsertOnSubmit(p_categorie);
         BD.SubmitChanges();
         BD.Dispose();
     }
