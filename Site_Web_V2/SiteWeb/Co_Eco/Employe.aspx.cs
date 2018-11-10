@@ -22,50 +22,11 @@ public partial class Employe : System.Web.UI.Page
         //trié la liste avant insertion
         List<T_Employe> listeEmp = rawListeEmp.OrderBy(o => o.idStatus).ThenBy(o => o.prenom).ThenBy(o => o.nom).ToList();
 
-        foreach (T_Employe emp in listeEmp)
-        {      
-
-            if (emp.prenom != "Admin")
-            {
-                TableRow tr = new TableRow();
-                TableCell tc1 = new TableCell();
-                TableCell tc2 = new TableCell();
-                TableCell tc3 = new TableCell();
-                TableCell tc4 = new TableCell();
-
-                HyperLink hl = new HyperLink();
-                hl.NavigateUrl = "AjouterEmploye.aspx";
-
-                tc1.Text = emp.idEmploye.ToString();
-                tc2.Text = emp.prenom;
-                tc3.Text = emp.nom;
-                tc4.Text = emp.idStatus.ToString();
-
-                if (tc4.Text == "1")
-                {
-                    tc4.Text = "Actif";
-                }
-                else
-                {
-                    tc4.Text = "Inactif";
-                }
-
-                tr.Cells.Add(tc1);
-                tr.Cells.Add(tc2);
-                tr.Cells.Add(tc3);
-                tr.Cells.Add(tc4);
-
-                //Actif
-                Tableau_Employes.Rows.Add(tr);
-                
-            }
-
-            //hl.Text = emp.ToString();
-            //hl.CssClass = "hl_employe";
-            //tc3.Controls.Add(hl);
-
-
-
+        if(!IsPostBack)
+        {
+            loadFonction();
+            loadStatut();
+            Recherche();
         }
 
         BD.Dispose();
@@ -136,5 +97,192 @@ public partial class Employe : System.Web.UI.Page
         Response.AppendHeader("Content-Disposition", "attachment; filename=Rapport employé " + jour + "-" + mois + "-" + annee + ".pdf");
         Response.TransmitFile(@"~\Downloadss\RapportEmploye " + DateTime.Now.ToString("ddMMyyyy") + ".pdf");
         Response.End();
+    }
+
+    protected void btn_rech_ServerClick(object sender, EventArgs e)
+    {
+        Recherche();
+    }
+
+    private void loadFonction()
+    {
+        List<T_FonctionEmploye> listeFunc = BD_CoEco.GetListeFontionsEmploye();
+        listeFunc = listeFunc.OrderBy(o => o.descript).ToList();
+        ddl_fonction.Items.Add(new ListItem("Toutes les fonctions", "-1"));
+        foreach (T_FonctionEmploye fonctionEmploye in listeFunc)
+        {
+            ddl_fonction.Items.Add(new ListItem(fonctionEmploye.descript, fonctionEmploye.idFonctionEmp.ToString()));
+        }
+    }
+
+    private void loadStatut()
+    {
+        List<T_StatusEmploye> listeStatEmp = BD_CoEco.GetListeStatusEmploye();
+        listeStatEmp.OrderBy(o => o.descript).ToList();
+        ddl_statut.Items.Add(new ListItem("Tous les statuts", "-1"));
+        foreach (T_StatusEmploye statusEmploye in listeStatEmp)
+        {
+            ddl_statut.Items.Add(new ListItem(statusEmploye.descript, statusEmploye.idStatusEmp.ToString()));
+        }
+    }
+
+    private void Recherche()
+    {
+        List<T_Employe> tousLesEmp = BD_CoEco.GetListeEmploye();
+        List<int> rechercheA = new List<int>();
+        List<int> rechercheB = new List<int>();
+        List<int> rechercheC = new List<int>();
+        List<int> rechercheD = new List<int>();
+
+        tousLesEmp.RemoveAt(0); //Retrait de l'admin
+
+        //Recherche sur les prénoms
+
+        if (tbx_prenom.Text != "" && tbx_prenom.Text != null)
+        {
+            for (int i = 0; i < tousLesEmp.Count; i++)
+            {
+                if(tousLesEmp[i].prenom.ToLower().Contains(tbx_prenom.Text.ToLower()))
+                {
+                    rechercheA.Add(i);
+                }
+            }
+        }
+        else
+        {
+            for(int i = 0; i < tousLesEmp.Count; i++)
+            {
+                rechercheA.Add(i);
+            }
+        }
+
+        //Recherche sur les noms
+        if (tbx_nom.Text != "" && tbx_nom.Text != null)
+        {
+            for (int i = 0; i < tousLesEmp.Count; i++)
+            {
+                if (tousLesEmp[i].nom.ToLower().Contains(tbx_nom.Text.ToLower()))
+                {
+                    rechercheB.Add(i);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < tousLesEmp.Count; i++)
+            {
+                rechercheB.Add(i);
+            }
+        }
+
+        //Recherche sur les fonctions
+        if(ddl_fonction.SelectedValue != "-1")
+        {
+            for (int i = 0; i < tousLesEmp.Count; i++)
+            {
+                if (ddl_fonction.SelectedValue == tousLesEmp[i].idFonction.ToString())
+                {
+                    rechercheC.Add(i);
+                }
+            }
+        }
+        else
+        {
+            for(int i = 0; i < tousLesEmp.Count; i++)
+            {
+                rechercheC.Add(i);
+            }
+        }
+
+
+        //Recherche sur les statuts
+        if(ddl_statut.SelectedValue != "-1")
+        {
+            for(int i = 0; i < tousLesEmp.Count; i++)
+            {
+                if(ddl_statut.SelectedIndex == tousLesEmp[i].idStatus)
+                {
+                    rechercheD.Add(i);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < tousLesEmp.Count; i++)
+            {
+                rechercheD.Add(i);
+            }
+        }
+
+
+
+        TableHeaderRow thr = new TableHeaderRow();
+        TableHeaderCell thc_id = new TableHeaderCell();
+        thc_id.Text = "#";
+        thc_id.Width = new Unit("25%");
+        TableHeaderCell thc_prenom = new TableHeaderCell();
+        thc_prenom.Text = "Prénom";
+        thc_prenom.Width = new Unit("25%");
+        TableHeaderCell thc_Nom = new TableHeaderCell();
+        thc_Nom.Text = "Nom";
+        thc_Nom.Width = new Unit("25%");
+        TableHeaderCell thc_Statut = new TableHeaderCell();
+        thc_Statut.Text = "Statut";
+        thc_Statut.Width = new Unit("25%");
+        thr.Cells.Add(thc_id);
+        thr.Cells.Add(thc_prenom);
+        thr.Cells.Add(thc_Nom);
+        thr.Cells.Add(thc_Statut);
+        Tableau_Employes.Rows.Add(thr);
+
+
+
+        List<T_Employe> empToShow = new List<T_Employe>();
+        
+        for (int i = 0; i < tousLesEmp.Count; i++)
+        {
+            //Tous les projets seront à charger
+            bool a = rechercheA.Contains(i);
+            bool b = rechercheB.Contains(i);
+            bool c = rechercheC.Contains(i);
+            bool d = rechercheD.Contains(i);
+            if (a && b && c && d)
+            {
+                empToShow.Add(tousLesEmp[i]); //On affiche les éléments présent dans les 4 listes
+            }
+        }
+        empToShow = empToShow.OrderBy(o => o.prenom).ThenBy(o => o.nom).ToList();
+        foreach (T_Employe employe in empToShow)
+        {
+            ShowEmp(employe);
+        }
+    }
+
+    private void ShowEmp(T_Employe employe)
+    {
+        TableRow tr = new TableRow();
+        TableCell tc_Id = new TableCell();
+        tc_Id.Text = employe.idEmploye.ToString();
+        TableCell tc_Prenom = new TableCell();
+        tc_Prenom.Text = employe.prenom;
+        TableCell tc_Nom = new TableCell();
+        tc_Nom.Text = employe.nom;
+        TableCell tc_Statut = new TableCell();
+        tc_Statut.Text = BD_CoEco.GetListeStatusEmploye()[employe.idStatus - 1].descript;
+        tr.Cells.Add(tc_Id);
+        tr.Cells.Add(tc_Prenom);
+        tr.Cells.Add(tc_Nom);
+        tr.Cells.Add(tc_Statut);
+        Tableau_Employes.Rows.Add(tr);
+
+    }
+
+    protected void btn_cancel_ServerClick(object sender, EventArgs e)
+    {
+        tbx_prenom.Text = "";
+        tbx_nom.Text = "";
+        ddl_fonction.SelectedIndex = 0;
+        ddl_statut.SelectedIndex = 0;
+        Recherche();
     }
 }
