@@ -45,15 +45,22 @@
 
         <div class="btn-group-vertical">
 
-            <button id="btn_recherche" runat="server" class="btn btn-success" style="margin-top: 10px; margin-left: 5px; float: left; width: 280px; color: #000000;" onserverclick="btn_recherche_ServerClick">Rechercher</button>
- 
+            <div class="form-row" style="margin: 0 auto">
+                <div class="col">
 
-            <button type="button" runat="server" style="margin-top: 10px; margin-left: 5px; float: left; width: 280px; color: #000000;"
-                class="btn btn-success" onserverclick="btn_ajouter_Click">
-                Ajouter Projet</button>
-            <button type="button" runat="server" style="margin-top: 10px; margin-left: 5px; float: left; width: 280px; color: #000000;"
-                class="btn btn-success" onserverclick="btn_men_Click">
-                Générer PDF</button>
+                    <button id="btn_recherche" runat="server" class="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_recherche_ServerClick">Rechercher</button>
+
+                    <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: #000000;"
+                        class="btn btn-success" onserverclick="btn_ajouter_Click">
+                        Ajouter Projet</button>
+
+                    <button type="button" runat="server" style="margin-top: 10px;  width: 100%; color: #000000;"
+                        class="btn btn-success" onserverclick="btn_men_Click">
+                        Générer PDF</button>
+
+                </div>
+            </div>
+
         </div>
     </form>
 
