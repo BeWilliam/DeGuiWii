@@ -48,7 +48,9 @@
             <div class="form-row" style="margin: 0 auto">
                 <div class="col">
 
-                    <button id="btn_recherche" runat="server" class="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_recherche_ServerClick">Rechercher</button>
+                    <button id="btn_recherche" runat="server" class="btn btn-primary" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_recherche_ServerClick">Rechercher</button>
+
+                    <button id="Button1" runat="server" class="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000;">Annuler</button>
 
                     <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: #000000;"
                         class="btn btn-success" onserverclick="btn_ajouter_Click">
