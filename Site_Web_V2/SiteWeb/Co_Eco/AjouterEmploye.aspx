@@ -8,8 +8,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
 
-    <form class="needs-validation" novalidate runat="server">
-
         <%--Prénom--%>
         <div class="form-row">
             <div class="col-md-4 mb-3">
@@ -60,8 +58,6 @@
             </div>
         </div>
         <button type="button" class="btn btn-success" id="add_emp"  runat="server" onserverclick="btn_addEmp_Click">Ajouter</button>
-
-    </form>
 
 </asp:Content>
 

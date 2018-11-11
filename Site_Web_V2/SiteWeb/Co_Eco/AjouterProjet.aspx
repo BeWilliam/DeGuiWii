@@ -4,7 +4,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
-    <form class="needs-validation" novalidate runat="server">
         <%--Nom projet--%>
         <div class="form-row">
             <div class="col-md-4 mb-3">
@@ -61,7 +60,6 @@
         </div>
 
         <button class="btn btn-primary" type="submit">Ajouter</button>
-    </form>
 
 </asp:Content>
 
