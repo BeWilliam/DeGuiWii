@@ -202,6 +202,6 @@ INSERT INTO T_TypeDepense (descript) VALUES ('Stationnements')
 INSERT INTO T_TypeDepense (descript) VALUES ('Autre')
 
 /*Insertion de l'employé Administrateur*/
-INSERT INTO T_Employe(idFonction, idStatus, mdp, nom, prenom) VALUES (3, 1, 'mobius', ' ', 'Admin')
+INSERT INTO T_Employe(idFonction, idStatus, mdp, nom, prenom) VALUES (3, 1, 'mobius', ' ', 'admin')
 
 

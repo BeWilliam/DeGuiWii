@@ -51,7 +51,7 @@
                         <a class="nav-link" id="text_nav3" href="Categorie.aspx">Catégories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="text_nav4" href="Depense.aspx">Dépenses</a>
+                        <a class="nav-link" id="text_nav4" href="Depenses.aspx">Dépenses</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="text_nav5" href="Rapports.aspx">Rapports</a>

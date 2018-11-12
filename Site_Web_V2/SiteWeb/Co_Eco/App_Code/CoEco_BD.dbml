@@ -7,8 +7,8 @@
       <Column Name="idProjet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idStatusCat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="T_CategoriePro_T_Depense" Member="T_Depense" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_Depense" />
+      <Association Name="T_CategoriePro_T_FeuilleDeTemps" Member="T_FeuilleDeTemps" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_FeuilleDeTemps" />
       <Association Name="T_CategoriePro_T_Kilometrage" Member="T_Kilometrage" ThisKey="idCategorie" OtherKey="idCat" Type="T_Kilometrage" />
-      <Association Name="T_CategoriePro_T_FeuilleDeTemps1" Member="T_FeuilleDeTemps" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_FeuilleDeTemps" />
       <Association Name="T_Projet_T_CategoriePro" Member="T_Projet" ThisKey="idProjet" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
       <Association Name="T_StatusCategorie_T_CategoriePro" Member="T_StatusCategorie" ThisKey="idStatusCat" OtherKey="idStatusCat" Type="T_StatusCategorie" IsForeignKey="true" />
     </Type>
@@ -48,8 +48,8 @@
       <Column Name="idFonction" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="T_Employe_T_Depense" Member="T_Depense" ThisKey="idEmploye" OtherKey="idEmp" Type="T_Depense" />
       <Association Name="T_Employe_T_EmployeProjet" Member="T_EmployeProjet" ThisKey="idEmploye" OtherKey="idEmp" Type="T_EmployeProjet" />
+      <Association Name="T_Employe_T_FeuilleDeTemps" Member="T_FeuilleDeTemps" ThisKey="idEmploye" OtherKey="idEmp" Type="T_FeuilleDeTemps" />
       <Association Name="T_Employe_T_Kilometrage" Member="T_Kilometrage" ThisKey="idEmploye" OtherKey="idEmp" Type="T_Kilometrage" />
-      <Association Name="T_Employe_T_FeuilleDeTemps1" Member="T_FeuilleDeTemps" ThisKey="idEmploye" OtherKey="idEmp" Type="T_FeuilleDeTemps" />
       <Association Name="T_FonctionEmploye_T_Employe" Member="T_FonctionEmploye" ThisKey="idFonction" OtherKey="idFonctionEmp" Type="T_FonctionEmploye" IsForeignKey="true" />
       <Association Name="T_StatusEmploye_T_Employe" Member="T_StatusEmploye" ThisKey="idStatus" OtherKey="idStatusEmp" Type="T_StatusEmploye" IsForeignKey="true" />
     </Type>
@@ -61,6 +61,24 @@
       <Column Name="idPro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="T_Employe_T_EmployeProjet" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
       <Association Name="T_Projet_T_EmployeProjet" Member="T_Projet" ThisKey="idPro" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_FeuilleDeTemps" Member="T_FeuilleDeTemps">
+    <Type Name="T_FeuilleDeTemps">
+      <Column Name="idFeuilleDeTemps" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="semaine" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="dimanche" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="lundi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="mardi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="mercredi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="jeudi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="vendredi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="samedi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idCategorie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="T_CategoriePro_T_FeuilleDeTemps" Member="T_CategoriePro" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_CategoriePro" IsForeignKey="true" />
+      <Association Name="T_Employe_T_FeuilleDeTemps" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.T_FonctionEmploye" Member="T_FonctionEmploye">
@@ -94,6 +112,7 @@
       <Column Name="responsable" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="dateDebut" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="dateFin" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="heureAlloue" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="idStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="T_Projet_T_CategoriePro" Member="T_CategoriePro" ThisKey="idProjet" OtherKey="idProjet" Type="T_CategoriePro" />
       <Association Name="T_Projet_T_Depense" Member="T_Depense" ThisKey="idProjet" OtherKey="idProjet" Type="T_Depense" />
@@ -119,7 +138,7 @@
   <Table Name="dbo.T_StatusProjet" Member="T_StatusProjet">
     <Type Name="T_StatusProjet">
       <Column Name="noStatusPro" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="descript" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="descript" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Association Name="T_StatusProjet_T_Projet" Member="T_Projet" ThisKey="noStatusPro" OtherKey="idStatus" Type="T_Projet" />
     </Type>
   </Table>
@@ -129,24 +148,6 @@
       <Column Name="taux" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="ddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="T_TauxKilo_T_Kilometrage" Member="T_Kilometrage" ThisKey="idTaux" OtherKey="idTaux" Type="T_Kilometrage" />
-    </Type>
-  </Table>
-  <Table Name="dbo.T_FeuilleDeTemps" Member="T_FeuilleDeTemps">
-    <Type Name="T_FeuilleDeTemps">
-      <Column Name="idFeuilleDeTemps" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="semaine" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="dimanche" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="lundi" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="mardi" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="mercredi" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="jeudi" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="vendredi" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="samedi" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="note" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idCategorie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="T_CategoriePro_T_FeuilleDeTemps1" Member="T_CategoriePro" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_CategoriePro" IsForeignKey="true" />
-      <Association Name="T_Employe_T_FeuilleDeTemps1" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.PS_ChangerDateFinProjet" Method="PS_ChangerDateFinProjet">
