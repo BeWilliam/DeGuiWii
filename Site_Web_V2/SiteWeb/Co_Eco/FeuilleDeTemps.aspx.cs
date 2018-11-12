@@ -19,46 +19,21 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
 
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
         date = getFirstDayOfWeek(Calendar1.SelectedDate);
+        Dimanche.Text = "Dimanche " + (date.Day);
+        Lundi.Text = "Lundi " + (date.AddDays(1).Day);
+        Mardi.Text = "Mardi " + (date.AddDays(2).Day);
+        Mercredi.Text = "Mercredi " + (date.AddDays(3).Day);
+        Jeudi.Text = "Jeudi " + (date.AddDays(4).Day);
+        Vendredi.Text = "Vendredi " + (date.AddDays(5).Day);
+        Samedi.Text = "Samedi " + (date.AddDays(6).Day);
 
-
-        for (int i = 0; i < 8; i++)
-        {
-            switch (i)
-            {
-                case 1:
-                    thr.Cells[i].Text = "Dimanche " + (date.Day);
-                    break;
-                case 2:
-                    thr.Cells[i].Text = "Lundi " + (date.AddDays(1).Day);
-                    break;
-                case 3:
-                    thr.Cells[i].Text = "Mardi " + (date.AddDays(2).Day);
-                    break;
-                case 4:
-                    thr.Cells[i].Text = "Mercredi " + (date.AddDays(3).Day);
-                    break;
-                case 5:
-                    thr.Cells[i].Text = "Jeudi " + (date.AddDays(4).Day);
-                    break;
-                case 6:
-                    thr.Cells[i].Text = "Vendredi " + (date.AddDays(5).Day);
-                    break;
-                case 7:
-                    thr.Cells[i].Text = "Samedi " + (date.AddDays(6).Day);
-                    break;
-                default:
-                    Console.WriteLine("Default case");
-                    break;
-            }
-
-        }
         ajouterEnregistrement(date);
     }
 
@@ -82,10 +57,10 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         enregistrements = new List<T_FeuilleDeTemps>();
         foreach (T_FeuilleDeTemps feuilleDeTemps in listeFeuilleDeTemps)
         {
-            //if (feuilleDeTemps.semaine >= dt && feuilleDeTemps.semaine <= dt.AddDays(7))
-            //{
-                enregistrements.Add(feuilleDeTemps);
-            //}
+            if (feuilleDeTemps.semaine == dt)
+            {
+				enregistrements.Add(feuilleDeTemps);
+			}
         }
         ajouterCategories();
     }
