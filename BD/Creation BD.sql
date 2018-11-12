@@ -122,8 +122,14 @@ CREATE TABLE T_Depense(
 /*-Table pour les feuilles de temps-*/
 CREATE TABLE T_FeuilleDeTemps(
 	idFeuilleDeTemps INT IDENTITY(1,1),
-	ddate DATE,
-	temps FLOAT(3), /*À tester*/
+	semaine DATE,
+	dimanche FLOAT(3),
+	lundi FLOAT(3),
+	mardi FLOAT(3),
+	mercredi FLOAT(3),
+	jeudi FLOAT(3),
+	vendredi FLOAT(3),
+	samedi FLOAT(3), /*À tester*/
 	note VARCHAR(100),
 	/*FOREIGN KEY*/
 	idEmp INT NOT NULL,

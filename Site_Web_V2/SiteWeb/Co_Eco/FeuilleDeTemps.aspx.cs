@@ -8,109 +8,110 @@ using System.Data.Linq;
 
 public partial class FeuilleDeTemps : System.Web.UI.Page
 {
+
+    TableHeaderRow thr;
+    List<T_FeuilleDeTemps> listeFeuilleDeTemps;
+    List<T_FeuilleDeTemps> enregistrements;
+    List<T_Projet> ListeProjet;
+    List<T_CategoriePro> ListeCategorie;
+    DateTime date;
+    int idCat;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        CoEco_BDDataContext BD = new CoEco_BDDataContext();
-        Table<T_FeuilleDeTemps> tableFeuilleDeTemps = BD.T_FeuilleDeTemps;
-        
-        List<T_FeuilleDeTemps> listeFeuilleDeTemps = tableFeuilleDeTemps.ToList();
 
-        
-        
-
-        int i = 0;
-        foreach (T_FeuilleDeTemps p_feuilleDeTemps in listeFeuilleDeTemps)
-        {
-            if (p_feuilleDeTemps.idEmp == 67)
-            {
-
-            }
-            TableRow tr = new TableRow();
-            TableCell tc1 = new TableCell();
-            DropDownList ddl_Projet = new DropDownList();
-            ddl_Projet.ID = "ddl_Projet";
-            ddl_Projet.CssClass = "ddl_projet";
-            //ddl_Projet.DataSource = ecritureEntete;
-            ddl_Projet.DataBind();
-
-            DropDownList ddl_Categorie = new DropDownList();
-            ddl_Categorie.ID = "ddl_Categorie";
-            ddl_Categorie.CssClass = "ddl_categorie";
-            //ddl_Projet.DataSource = ecritureEntete;
-            ddl_Categorie.DataBind();
-
-            tc1.Controls.Add(ddl_Projet);
-            tc1.Controls.Add(ddl_Categorie);
-
-            TableCell tc2 = new TableCell();
-            TextBox tbDim = new TextBox();
-            tbDim.ID = "tbDim";
-            tbDim.CssClass = "tbx_h";
-            tc2.Controls.Add(tbDim);
-            tc2.Controls.Add(ajoutLabel());
-            TableCell tc3 = new TableCell();
-            TextBox tbLun = new TextBox();
-            tbLun.ID = "tbLun";
-            tbLun.CssClass = "tbx_h";
-            tc3.Controls.Add(tbLun);
-            tc3.Controls.Add(ajoutLabel());
-            TableCell tc4 = new TableCell();
-            TextBox tbMar = new TextBox();
-            tbMar.ID = "tbMar";
-            tbMar.CssClass = "tbx_h";
-            tc4.Controls.Add(tbMar);
-            tc4.Controls.Add(ajoutLabel());
-            TableCell tc5 = new TableCell();
-            TextBox tbMer = new TextBox();
-            tbMer.ID = "tbMer";
-            tbMer.CssClass = "tbx_h";
-            tc5.Controls.Add(tbMer);
-            tc5.Controls.Add(ajoutLabel());
-            TableCell tc6 = new TableCell();
-            TextBox tbJeu = new TextBox();
-            tbJeu.ID = "tbJeu";
-            tbJeu.CssClass = "tbx_h";
-            tc6.Controls.Add(tbJeu);
-            tc6.Controls.Add(ajoutLabel());
-            TableCell tc7 = new TableCell();
-            TextBox tbVen = new TextBox();
-            tbVen.ID = "tbVen";
-            tbVen.CssClass = "tbx_h";
-            tc7.Controls.Add(tbVen);
-            tc7.Controls.Add(ajoutLabel());
-            TableCell tc8 = new TableCell();
-            TextBox tbSam = new TextBox();
-            tbSam.ID = "tbSam";
-            tbSam.CssClass = "tbx_h";
-            tc8.Controls.Add(tbSam);
-            tc8.Controls.Add(ajoutLabel());
-            TableCell tc9 = new TableCell();
-            TextBox tbCommmentaire = new TextBox();
-            tbCommmentaire.ID = "tbCommmentaire";
-            tbCommmentaire.TextMode = TextBoxMode.MultiLine;
-            tc9.Controls.Add(tbCommmentaire);
-           
-
-            tr.Cells.Add(tc1);
-            tr.Cells.Add(tc2);
-            tr.Cells.Add(tc3);
-                tr.Cells.Add(tc4);
-                tr.Cells.Add(tc5);
-                tr.Cells.Add(tc6);
-                tr.Cells.Add(tc7);
-                tr.Cells.Add(tc8);
-                tr.Cells.Add(tc9);
-            t_feuilleTemps.Rows.Add(tr);
-            i++;
-        }
-        BD.Dispose();
-        i = 0;
     }
-    Label ajoutLabel()
+
+
+    protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
-        Label lh = new Label();
-        lh.Text = "H";
-        return lh;
+        date = getFirstDayOfWeek(Calendar1.SelectedDate);
+
+
+        for (int i = 0; i < 8; i++)
+        {
+            switch (i)
+            {
+                case 1:
+                    thr.Cells[i].Text = "Dimanche " + (date.Day);
+                    break;
+                case 2:
+                    thr.Cells[i].Text = "Lundi " + (date.AddDays(1).Day);
+                    break;
+                case 3:
+                    thr.Cells[i].Text = "Mardi " + (date.AddDays(2).Day);
+                    break;
+                case 4:
+                    thr.Cells[i].Text = "Mercredi " + (date.AddDays(3).Day);
+                    break;
+                case 5:
+                    thr.Cells[i].Text = "Jeudi " + (date.AddDays(4).Day);
+                    break;
+                case 6:
+                    thr.Cells[i].Text = "Vendredi " + (date.AddDays(5).Day);
+                    break;
+                case 7:
+                    thr.Cells[i].Text = "Samedi " + (date.AddDays(6).Day);
+                    break;
+                default:
+                    Console.WriteLine("Default case");
+                    break;
+            }
+
+        }
+        ajouterEnregistrement(date);
     }
-    
+
+    //-----Donne la premiere journée de la semaine (Dimanche)
+    public DateTime getFirstDayOfWeek(DateTime dateToCheck)
+    {
+        DateTime dt = new DateTime();
+        for (int i = 0; i < 7; i++)
+        {
+            if (dateToCheck.AddDays(-i).DayOfWeek == 0)
+            {
+                dt = dateToCheck.AddDays(-i);
+            }
+        }
+        return dt;
+    }
+    //---------On regarde si l'enregistrement fait partit de la semaine sélectionnée
+    void ajouterEnregistrement(DateTime dt)
+    {
+        //List<string> projets = new List<string>();
+        enregistrements = new List<T_FeuilleDeTemps>();
+        foreach (T_FeuilleDeTemps feuilleDeTemps in listeFeuilleDeTemps)
+        {
+            if (feuilleDeTemps.ddate >= dt && feuilleDeTemps.ddate <= dt.AddDays(7))
+            {
+                enregistrements.Add(feuilleDeTemps);
+            }
+        }
+        ajouterCategories();
+    }
+    //--------regroupe les enregistrements des feuille de temps en catégories-------------
+    void ajouterCategories()
+    {
+        List<int> projets = new List<int>();
+        foreach (T_FeuilleDeTemps FeuilleTemps in enregistrements)
+        {
+            projets.Add(FeuilleTemps.idCategorie);
+        }
+        projets = projets.Distinct().ToList<int>();
+        List<T_FeuilleDeTemps> temp;
+        for (int i = 0; i < projets.Count; i++)
+        {
+            temp = new List<T_FeuilleDeTemps>();
+            foreach (T_FeuilleDeTemps FeuilleTemps in enregistrements)
+            {
+                if (projets[i] == FeuilleTemps.idCategorie)
+                {
+                    temp.Add(FeuilleTemps);
+                }
+            }
+            ajouterRows(temp);
+        }
+    }
+
+
 }
