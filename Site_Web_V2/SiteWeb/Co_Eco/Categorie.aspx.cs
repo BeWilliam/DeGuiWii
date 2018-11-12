@@ -6,15 +6,16 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Linq;
 
+
 public partial class Categorie : System.Web.UI.Page
 {
-
+    
     protected void Page_Load(object sender, EventArgs e)
     {
-        tbx_cat.Visible = false;
+        
         btn_conf.Visible = false;
-       // add_cat.Visible = true;
-       
+        btn_addCat.Disabled = true;
+        
         ddl_statut.Visible = false;
 
         if (!this.IsPostBack)
@@ -28,6 +29,7 @@ public partial class Categorie : System.Web.UI.Page
         /*-- Partie pour les projets --*/
         List<T_Projet> listProjet = BD_CoEco.GetListeProjet(true);
         listProjet = listProjet.OrderBy(o => o.nom).ToList();
+        ddl_projet.Items.Add(new ListItem("Choisir un projet", "-1"));
         foreach (T_Projet projet in listProjet)
         {
             ddl_projet.Items.Add(new ListItem(projet.nom, projet.idProjet.ToString()));
@@ -38,7 +40,7 @@ public partial class Categorie : System.Web.UI.Page
     {
         /*-- Partie pour les statuts --*/
         List<T_StatusCategorie> listStatus = BD_CoEco.GetListeStatusCategorie();
-        listStatus = listStatus.OrderBy(o => o.descript).ToList();
+        listStatus = listStatus.OrderBy(o => o.descript).ToList();      
         foreach (T_StatusCategorie status in listStatus)
         {
             ddl_statut.Items.Add(new ListItem(status.descript, status.idStatusCat.ToString()));
@@ -48,7 +50,12 @@ public partial class Categorie : System.Web.UI.Page
 
     protected void ddl_projet_SelectedIndexChanged(object sender, EventArgs e)
     {
-        loadCat();
+        if (ddl_projet.SelectedValue != "-1")
+        {
+            loadCat();
+            btn_addCat.Disabled = false;
+        }
+        
     }
 
     private void loadCat()
@@ -71,7 +78,7 @@ public partial class Categorie : System.Web.UI.Page
     protected void btn_addCat_Click(object sender, EventArgs e)
     {
         
-        tbx_cat.Visible = true;
+        //tbx_cat.Visible = true;
 
         
         ddl_statut.Visible = true;
@@ -97,7 +104,7 @@ public partial class Categorie : System.Web.UI.Page
         Table<T_CategoriePro> tableEmp = BD.T_CategoriePro;
 
         T_CategoriePro newCat = new T_CategoriePro();
-        newCat.descript = tbx_cat.Text;
+        //newCat.descript = tbx_cat.Text;
 
         if (ddl_statut.SelectedValue == "Actif")
         {

@@ -36,8 +36,7 @@
 
     <div class="btn-group-vertical">
 
-        <asp:TextBox ID="tbx_cat" runat="server" CssClass="tbx_categorie"></asp:TextBox>
-
+        <input  runat="server" type="text" name="tbx_cat" class="form-control" id="tbx_cat" value="" required>
         <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_statut" />
 
         <button type="button" class="btn btn-success" id="btn_conf" style="margin-top: 10px; float: left; width: 205px; color: #000000;" runat="server" onserverclick="btn_Conf_Click">Confirmer l'ajout</button>
