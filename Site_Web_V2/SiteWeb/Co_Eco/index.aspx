@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Connexion.aspx.cs" Inherits="Connexion" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="Connexion" %>
 
 <!DOCTYPE html>
 
@@ -25,6 +25,7 @@
         <br />
         <asp:Button ID="btn_connexion" runat="server" Text="Connexion" BackColor="#53b34f" BorderStyle="Outset" OnClick="Connexion_click"/>
 
+        <asp:TextBox runat="server" ID="Test"></asp:TextBox>
     </form>
 
     <footer>

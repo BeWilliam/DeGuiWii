@@ -57,9 +57,9 @@
                         <a class="nav-link" id="text_nav5" href="Rapports.aspx">Rapports</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-dark my-2 my-sm-0" type="submit">Déconnexion</button>
-                </form>
+                <!--<form class="form-inline my-2 my-lg-0">-->
+                    <button id="btn_Deco" runat="server" class="btn btn-dark my-2 my-sm-0" type="submit" onserverclick="btn_Deco_ServerClick">Déconnexion</button>
+                <!--</form>-->
             </div>
         </nav>
 
