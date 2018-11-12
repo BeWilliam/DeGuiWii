@@ -14,21 +14,60 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["username"] == null || Session["username"].ToString() == "")
-        {
-            Response.Redirect("index.aspx");
-        }
         urlParam = Request.QueryString["id"];
 
-        loadResponsable();
-        loadStatut();
+        if (!IsPostBack)
+        {
+            loadResponsable();
+            loadStatut();
+        }
 
         if (urlParam != null)
         {
-            
+            afficherProject();
         }
         
         
+    }
+
+    private void afficherProject()
+    {
+        List<T_Projet> tousLesProjet = BD_CoEco.GetListeProjet();
+
+        foreach (T_Projet projet in tousLesProjet)
+        {
+            if (projet.idProjet == int.Parse(urlParam))
+            {
+                tbx_nom.Value = projet.nom;
+                tbx_projet.Value = projet.descript;
+                if (projet.responsable != null)
+                {
+                    ddl_responsable.SelectedValue = BD_CoEco.GetEmpByID((int)projet.responsable).idEmploye.ToString();
+                }
+                tbx_heure.Value = projet.heureAlloue.ToString();
+                dateDebut.Value = projet.dateDebut.ToString();
+                dateFin.Value = projet.dateFin.ToString();
+
+                if (projet.idStatus == 1) //en cours
+                {
+                    ddl_statut.SelectedIndex = 3;
+                }
+                else if (projet.idStatus == 2) //terminer
+                {
+                    ddl_statut.SelectedIndex = 4;
+                }
+                else if (projet.idStatus == 3) //archiver
+                {
+                    ddl_statut.SelectedIndex = 1;
+                }
+                else //en construction
+                {
+                    ddl_statut.SelectedIndex = 2;
+                }
+
+            }
+        }
+
     }
 
     protected void btn_addProject_Click(object sender, EventArgs e)
@@ -42,6 +81,14 @@ public partial class AjouterProjet : System.Web.UI.Page
         monProjet.nom = tbx_nom.Value;
         monProjet.descript = tbx_projet.Value;
         monProjet.responsable = int.Parse(ddl_responsable.SelectedValue);
+        monProjet.heureAlloue = int.Parse(tbx_heure.Value);
+        monProjet.dateDebut = DateTime.Parse(dateDebut.Value);
+        monProjet.dateFin = DateTime.Parse(dateFin.Value);
+        monProjet.idStatus = int.Parse(ddl_statut.SelectedValue);
+
+        BD_CoEco.CreateNewProjet(monProjet);
+
+        Response.Redirect("Projet.aspx");
     }
 
     private void loadResponsable()
