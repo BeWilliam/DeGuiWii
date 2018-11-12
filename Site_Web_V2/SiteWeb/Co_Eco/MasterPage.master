@@ -34,27 +34,41 @@
 
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="Menu.aspx" id="text_nav6">Menu <span class="sr-only">(current)</span></a>
+                <ul class="navbar-nav mr-auto" runat="server" id="ul_menu">
+                    <li class="nav-item">
+                        <div id="div_Menu" runat="server">
+                            <a class="nav-link" href="Menu.aspx" id="text_nav6">Menu <span class="sr-only">(current)</span></a>
+                        </div>
+                     </li>
+                    <li class="nav-item">
+                        <div runat="server" id="div_FeuilleDeTemps">
+                            <a class="nav-link" id="text_nav" href="#">Feuilles de temps</a>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="text_nav" href="#">Feuilles de temps</a>
+                        <div runat="server" id="div_projet">
+                            <a class="nav-link" id="text_nav1" href="Projet.aspx">Projets</a>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="text_nav1" href="Projet.aspx">Projets</a>
+                        <div runat="server" id="div_Employe">
+                            <a class="nav-link" id="text_nav2" href="Employe.aspx">Employés</a>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="text_nav2" href="Employe.aspx">Employés</a>
+                        <div runat="server" id="div_categorie">
+                            <a class="nav-link" id="text_nav3" href="Categorie.aspx">Catégories</a>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="text_nav3" href="Categorie.aspx">Catégories</a>
+                        <div id="div_depense" runat="server">
+                            <a class="nav-link" id="text_nav4" href="Depenses.aspx">Dépenses</a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="text_nav4" href="Depenses.aspx">Dépenses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="text_nav5" href="Rapports.aspx">Rapports</a>
+                    <li class="nav-item" >
+                        <div runat="server" id="div_Rapports">
+                            <a class="nav-link" id="text_nav5" href="Rapports.aspx">Rapports</a>
+                        </div>
                     </li>
                 </ul>
                 <!--<form class="form-inline my-2 my-lg-0">-->
