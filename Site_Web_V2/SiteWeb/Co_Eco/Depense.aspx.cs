@@ -9,16 +9,15 @@ public partial class Depense : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
 
         if(!IsPostBack)
         {
-            DDL_TypeDepense.Items.Clear();
+            //DDL_TypeDepense.Items.Clear();
             List<T_TypeDepense> typeDepense = BD_CoEco.GetListeTypeDepense();
             typeDepense = typeDepense.OrderBy(o => o.descript).ToList();
             foreach (T_TypeDepense type in typeDepense)
             {
-                DDL_TypeDepense.Items.Add(type.descript);
+               // DDL_TypeDepense.Items.Add(type.descript);
             }
 
             List<T_Projet> listeProjet = BD_CoEco.GetListeProjet();

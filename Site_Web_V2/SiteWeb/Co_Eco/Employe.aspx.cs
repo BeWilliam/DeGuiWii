@@ -260,7 +260,11 @@ public partial class Employe : System.Web.UI.Page
         TableCell tc_Id = new TableCell();
         tc_Id.Text = employe.idEmploye.ToString();
         TableCell tc_Prenom = new TableCell();
-        tc_Prenom.Text = employe.prenom;
+        HyperLink hl = new HyperLink();
+        hl.Text = employe.prenom;
+        hl.NavigateUrl = "AjouterEmploye.aspx?id=" + employe.idEmploye.ToString();
+        tc_Prenom.Controls.Add(hl);
+        //tc_Prenom.Text = employe.prenom;
         TableCell tc_Nom = new TableCell();
         tc_Nom.Text = employe.nom;
         TableCell tc_Statut = new TableCell();
