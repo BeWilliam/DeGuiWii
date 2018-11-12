@@ -2,12 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cph_titre_nav" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
     Feuilles de temps 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server" ClientIDMode="Inherit">
-    <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+   
+    <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
+
     <asp:table ID="t_feuilleTemps" runat="server" style="width:75%" CssClass="tableau_feuille">
       <asp:TableRow>
         <asp:TableHeaderCell ID="thc_Projet" style="width:11%">Projet</asp:TableHeaderCell>
@@ -27,35 +29,35 @@
 
           </asp:TableCell>
           <asp:TableCell>
-              <asp:TextBox ID="TextBox1" runat="server" CssClass="tbx_h"></asp:TextBox>
+              <asp:TextBox ID="tb_dimanche" runat="server" CssClass="tbx_h"></asp:TextBox>
               <asp:Label ID="Label1" runat="server" Text="H"></asp:Label>
           </asp:TableCell>
           <asp:TableCell>
-              <asp:TextBox ID="TextBox2" runat="server" CssClass="tbx_h"></asp:TextBox>
+              <asp:TextBox ID="tb_lundi" runat="server" CssClass="tbx_h"></asp:TextBox>
               <asp:Label ID="Label7" runat="server" Text="H"></asp:Label>
           </asp:TableCell>
           <asp:TableCell>
-              <asp:TextBox ID="TextBox3" runat="server" CssClass="tbx_h"></asp:TextBox>
+              <asp:TextBox ID="tb_mardi" runat="server" CssClass="tbx_h"></asp:TextBox>
               <asp:Label ID="Label2" runat="server" Text="H"></asp:Label>
           </asp:TableCell>
           <asp:TableCell>
-              <asp:TextBox ID="TextBox4" runat="server" CssClass="tbx_h"></asp:TextBox>
+              <asp:TextBox ID="tb_mercredi" runat="server" CssClass="tbx_h"></asp:TextBox>
               <asp:Label ID="Label3" runat="server" Text="H"></asp:Label>
           </asp:TableCell>
           <asp:TableCell>
-              <asp:TextBox ID="TextBox5" runat="server" CssClass="tbx_h"></asp:TextBox>
+              <asp:TextBox ID="tb_jeudi" runat="server" CssClass="tbx_h"></asp:TextBox>
               <asp:Label ID="Label4" runat="server" Text="H"></asp:Label>
           </asp:TableCell>
           <asp:TableCell>
-              <asp:TextBox ID="TextBox6" runat="server" CssClass="tbx_h"></asp:TextBox>
+              <asp:TextBox ID="tb_vendredi" runat="server" CssClass="tbx_h"></asp:TextBox>
               <asp:Label ID="Label5" runat="server" Text="H"></asp:Label>
           </asp:TableCell>
           <asp:TableCell>
-              <asp:TextBox ID="TextBox7" runat="server" CssClass="tbx_h"></asp:TextBox>
+              <asp:TextBox ID="tb_samedi" runat="server" CssClass="tbx_h"></asp:TextBox>
               <asp:Label ID="Label6" runat="server" Text="H"></asp:Label>
           </asp:TableCell>
           <asp:TableCell>
-              <asp:TextBox ID="TextBox8" runat="server" CssClass="tbx_h"></asp:TextBox>
+              <asp:TextBox ID="tb_commentaire" runat="server" CssClass="tbx_h"></asp:TextBox>
           </asp:TableCell>
 
       </asp:TableRow>

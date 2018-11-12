@@ -8,63 +8,70 @@ using System.Data.Linq;
 
 public partial class FeuilleDeTemps : System.Web.UI.Page
 {
+    
     TableHeaderRow thr;
     List<T_FeuilleDeTemps> listeFeuilleDeTemps;
     List<T_FeuilleDeTemps> enregistrements;
     List<T_Projet> ListeProjet;
     List<T_CategoriePro> ListeCategorie;
     DateTime date;
+    int idCat;
+
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        CoEco_BDDataContext BD = new CoEco_BDDataContext();
-        Table<T_FeuilleDeTemps> tableFeuilleDeTemps = BD.T_FeuilleDeTemps;
+        
+            CoEco_BDDataContext BD = new CoEco_BDDataContext();
+            Table<T_FeuilleDeTemps> tableFeuilleDeTemps = BD.T_FeuilleDeTemps;
 
-        ListeProjet = BD_CoEco.GetListeProjet();
-        ListeCategorie = BD_CoEco.GetListeCategorie();
+            ListeProjet = BD_CoEco.GetListeProjet();
+            ListeCategorie = BD_CoEco.GetListeCategorie();
 
-        listeFeuilleDeTemps = tableFeuilleDeTemps.ToList();
+            listeFeuilleDeTemps = tableFeuilleDeTemps.ToList();
 
-        BD.Dispose();
-        //----------HEADER du tableau-----------
-        thr = new TableHeaderRow();
-        TableHeaderCell thc_Projet = new TableHeaderCell();
-        thc_Projet.Width = Unit.Percentage(11);
-        thc_Projet.Text = "Projet";
-        TableHeaderCell thc_Dimanche = new TableHeaderCell();
-        thc_Dimanche.Width = Unit.Percentage(11);
-        thc_Dimanche.Text = "Dimanche ";
-        TableHeaderCell thc_Lundi = new TableHeaderCell();
-        thc_Lundi.Width = Unit.Percentage(11);
-        thc_Lundi.Text = "Lundi ";
-        TableHeaderCell thc_Mardi = new TableHeaderCell();
-        thc_Mardi.Width = Unit.Percentage(11);
-        thc_Mardi.Text = "Mardi ";
-        TableHeaderCell thc_Mercredi = new TableHeaderCell();
-        thc_Mercredi.Width = Unit.Percentage(11);
-        thc_Mercredi.Text = "Mercredi ";
-        TableHeaderCell thc_Jeudi = new TableHeaderCell();
-        thc_Jeudi.Width = Unit.Percentage(11);
-        thc_Jeudi.Text = "Jeudi ";
-        TableHeaderCell thc_Vendredi = new TableHeaderCell();
-        thc_Vendredi.Width = Unit.Percentage(11);
-        thc_Vendredi.Text = "Vendredi ";
-        TableHeaderCell thc_Samedi = new TableHeaderCell();
-        thc_Samedi.Width = Unit.Percentage(11);
-        thc_Samedi.Text = "Samedi ";
-        TableHeaderCell thc_Commentaires = new TableHeaderCell();
-        thc_Commentaires.Width = Unit.Percentage(11);
-        thc_Commentaires.Text = "Commentaires";
+            BD.Dispose();
+            //----------HEADER du tableau-----------
+            thr = new TableHeaderRow();
+            TableHeaderCell thc_Projet = new TableHeaderCell();
+            thc_Projet.Width = Unit.Percentage(11);
+            thc_Projet.Text = "Projet";
+            TableHeaderCell thc_Dimanche = new TableHeaderCell();
+            thc_Dimanche.Width = Unit.Percentage(11);
+            thc_Dimanche.Text = "Dimanche ";
+            TableHeaderCell thc_Lundi = new TableHeaderCell();
+            thc_Lundi.Width = Unit.Percentage(11);
+            thc_Lundi.Text = "Lundi ";
+            TableHeaderCell thc_Mardi = new TableHeaderCell();
+            thc_Mardi.Width = Unit.Percentage(11);
+            thc_Mardi.Text = "Mardi ";
+            TableHeaderCell thc_Mercredi = new TableHeaderCell();
+            thc_Mercredi.Width = Unit.Percentage(11);
+            thc_Mercredi.Text = "Mercredi ";
+            TableHeaderCell thc_Jeudi = new TableHeaderCell();
+            thc_Jeudi.Width = Unit.Percentage(11);
+            thc_Jeudi.Text = "Jeudi ";
+            TableHeaderCell thc_Vendredi = new TableHeaderCell();
+            thc_Vendredi.Width = Unit.Percentage(11);
+            thc_Vendredi.Text = "Vendredi ";
+            TableHeaderCell thc_Samedi = new TableHeaderCell();
+            thc_Samedi.Width = Unit.Percentage(11);
+            thc_Samedi.Text = "Samedi ";
+            TableHeaderCell thc_Commentaires = new TableHeaderCell();
+            thc_Commentaires.Width = Unit.Percentage(11);
+            thc_Commentaires.Text = "Commentaires";
 
-        thr.Cells.Add(thc_Projet);
-        thr.Cells.Add(thc_Dimanche);
-        thr.Cells.Add(thc_Lundi);
-        thr.Cells.Add(thc_Mardi);
-        thr.Cells.Add(thc_Mercredi);
-        thr.Cells.Add(thc_Jeudi);
-        thr.Cells.Add(thc_Vendredi);
-        thr.Cells.Add(thc_Samedi);
-        thr.Cells.Add(thc_Commentaires);
-        t_feuilleTemps.Rows.Add(thr);
+            thr.Cells.Add(thc_Projet);
+            thr.Cells.Add(thc_Dimanche);
+            thr.Cells.Add(thc_Lundi);
+            thr.Cells.Add(thc_Mardi);
+            thr.Cells.Add(thc_Mercredi);
+            thr.Cells.Add(thc_Jeudi);
+            thr.Cells.Add(thc_Vendredi);
+            thr.Cells.Add(thc_Samedi);
+            thr.Cells.Add(thc_Commentaires);
+            t_feuilleTemps.Rows.Add(thr);
+        
     }
     Label ajoutLabel()
     {
@@ -179,6 +186,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         DropDownList ddl_Categorie = new DropDownList();
         //ddl_Categorie.ID = "ddl_Categorie";
         ddl_Categorie.CssClass = "ddl_categorie";
+        
         //ddl_Categorie.DataSource = ListeCategorie;
         //ddl_Categorie.DataBind();
         foreach (T_CategoriePro categorie in ListeCategorie)
@@ -306,120 +314,156 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     }
 
     //------------------BOUTON----------------------
+
     TextBox tbDim;
     TextBox tbLun;
-        TextBox tbMar;
-        TextBox tbMer;
-        TextBox tbJeu;
-        TextBox tbVen;
-        TextBox tbSam;
+    TextBox tbMar;
+    TextBox tbMer;
+    TextBox tbJeu;
+    TextBox tbVen;
+    TextBox tbSam;
     TextBox tbCommmentaire;
-    protected void btn_ajouter_Click(object sender, EventArgs e)
+    public void click()
     {
         btn_ajouter.Enabled = false;
+    }
+    protected void btn_ajouter_Click(object sender, EventArgs e)
+    {
+        
+            btn_ajouter.Enabled = false;
 
-        TableRow tr = new TableRow();
-        TableCell tc1 = new TableCell();
-        DropDownList ddl_Projet = new DropDownList();
+            TableRow tr = new TableRow();
+            TableCell tc1 = new TableCell();
+            DropDownList ddl_Projet = new DropDownList();
 
-        ddl_Projet.CssClass = "ddl_projet";
+            ddl_Projet.CssClass = "ddl_projet";
 
-        DropDownList ddl_Categorie = new DropDownList();
+            DropDownList ddl_Categorie = new DropDownList();
 
-        ddl_Categorie.CssClass = "ddl_categorie";
+            ddl_Categorie.CssClass = "ddl_categorie";
 
-        foreach (T_Projet projet in ListeProjet)
-        {
-            ddl_Projet.Items.Add(projet.nom);
-        }
+            ddl_Categorie.ID = "nouvCategorie";
 
-
-        tc1.Controls.Add(ddl_Projet);
-        tc1.Controls.Add(ddl_Categorie);
-
-        TableCell tc2 = new TableCell();
-        tbDim = new TextBox();
-        tbDim.ID = date.ToString();
-        tbDim.CssClass = "tbx_h";
-        tc2.Controls.Add(tbDim);
-        tc2.Controls.Add(ajoutLabel());
-        TableCell tc3 = new TableCell();
-        tbLun = new TextBox();
-        tbLun.ID = date.AddDays(1).ToString();
-        tbLun.CssClass = "tbx_h";
-        tc3.Controls.Add(tbLun);
-        tc3.Controls.Add(ajoutLabel());
-        TableCell tc4 = new TableCell();
-        tbMar = new TextBox();
-        tbMar.ID = date.AddDays(2).ToString();
-        tbMar.CssClass = "tbx_h";
-        tc4.Controls.Add(tbMar);
-        tc4.Controls.Add(ajoutLabel());
-        TableCell tc5 = new TableCell();
-        tbMer = new TextBox();
-        tbMer.ID = date.AddDays(3).ToString();
-        tbMer.CssClass = "tbx_h";
-        tc5.Controls.Add(tbMer);
-        tc5.Controls.Add(ajoutLabel());
-        TableCell tc6 = new TableCell();
-        tbJeu = new TextBox();
-        tbJeu.ID = date.AddDays(4).ToString();
-        tbJeu.CssClass = "tbx_h";
-        tc6.Controls.Add(tbJeu);
-        tc6.Controls.Add(ajoutLabel());
-        TableCell tc7 = new TableCell();
-        tbVen = new TextBox();
-        tbVen.ID = date.AddDays(5).ToString();
-        tbVen.CssClass = "tbx_h";
-        tc7.Controls.Add(tbVen);
-        tc7.Controls.Add(ajoutLabel());
-        TableCell tc8 = new TableCell();
-        tbSam = new TextBox();
-        tbSam.ID = date.AddDays(6).ToString();
-        tbSam.CssClass = "tbx_h";
-        tc8.Controls.Add(tbSam);
-        tc8.Controls.Add(ajoutLabel());
-        TableCell tc9 = new TableCell();
-        tbCommmentaire = new TextBox();
-        tbCommmentaire.ID = "tbCommmentaire";
-        tbCommmentaire.TextMode = TextBoxMode.MultiLine;
-        tc9.Controls.Add(tbCommmentaire);
+            foreach (T_Projet projet in ListeProjet)
+            {
+                ddl_Projet.Items.Add(projet.nom);
+            }
 
 
-        tr.Cells.Add(tc1);
-        tr.Cells.Add(tc2);
-        tr.Cells.Add(tc3);
-        tr.Cells.Add(tc4);
-        tr.Cells.Add(tc5);
-        tr.Cells.Add(tc6);
-        tr.Cells.Add(tc7);
-        tr.Cells.Add(tc8);
-        tr.Cells.Add(tc9);
-        t_feuilleTemps.Rows.Add(tr);
+            tc1.Controls.Add(ddl_Projet);
+            tc1.Controls.Add(ddl_Categorie);
 
-        btn_confirmer.Enabled = true;
+            TableCell tc2 = new TableCell();
+            tbDim = new TextBox();
+            tbDim.CssClass = "tbx_h";
+            tc2.Controls.Add(tbDim);
+            tc2.Controls.Add(ajoutLabel());
+            TableCell tc3 = new TableCell();
+            tbLun = new TextBox();
+            tbLun.CssClass = "tbx_h";
+            tc3.Controls.Add(tbLun);
+            tc3.Controls.Add(ajoutLabel());
+            TableCell tc4 = new TableCell();
+            tbMar = new TextBox();
+            tbMar.CssClass = "tbx_h";
+            tc4.Controls.Add(tbMar);
+            tc4.Controls.Add(ajoutLabel());
+            TableCell tc5 = new TableCell();
+            tbMer = new TextBox();
+            tbMer.CssClass = "tbx_h";
+            tc5.Controls.Add(tbMer);
+            tc5.Controls.Add(ajoutLabel());
+            TableCell tc6 = new TableCell();
+            tbJeu = new TextBox();
+            tbJeu.CssClass = "tbx_h";
+            tc6.Controls.Add(tbJeu);
+            tc6.Controls.Add(ajoutLabel());
+            TableCell tc7 = new TableCell();
+            tbVen = new TextBox();
+            tbVen.CssClass = "tbx_h";
+            tc7.Controls.Add(tbVen);
+            tc7.Controls.Add(ajoutLabel());
+            TableCell tc8 = new TableCell();
+            tbSam = new TextBox();
+            tbSam.CssClass = "tbx_h";
+            tc8.Controls.Add(tbSam);
+            tc8.Controls.Add(ajoutLabel());
+            TableCell tc9 = new TableCell();
+            tbCommmentaire = new TextBox();
+            tbCommmentaire.TextMode = TextBoxMode.MultiLine;
+            tc9.Controls.Add(tbCommmentaire);
+
+
+            tr.Cells.Add(tc1);
+            tr.Cells.Add(tc2);
+            tr.Cells.Add(tc3);
+            tr.Cells.Add(tc4);
+            tr.Cells.Add(tc5);
+            tr.Cells.Add(tc6);
+            tr.Cells.Add(tc7);
+            tr.Cells.Add(tc8);
+            tr.Cells.Add(tc9);
+            t_feuilleTemps.Rows.Add(tr);
+
+            btn_confirmer.Enabled = true;
+        
     }
     //-------------------------------
     protected void btn_confirmer_Click(object sender, EventArgs e)
     {
+
+
         btn_confirmer.Enabled = false;
+        //if (!this.IsPostBack) //ATTENTION : Premier chargement, loader seulement les choses à faire UNE fois
+        //{
+            //connexion à la BD
+            CoEco_BDDataContext BD = new CoEco_BDDataContext();
+            Table<T_FeuilleDeTemps> tableFdt = BD.T_FeuilleDeTemps;
 
-        //connexion à la BD
-        CoEco_BDDataContext BD = new CoEco_BDDataContext();
-        Table<T_FeuilleDeTemps> tableFdt= BD.T_FeuilleDeTemps;
+            List<T_FeuilleDeTemps> feuillesDeTempsEnr = new List<T_FeuilleDeTemps>();
+            string nomCat;
 
-        foreach (TextBox tb in t_feuilleTemps.Rows)
-        {
-            if (true)
+            //Colone a ajouter
+            TableRow ligneAAjouter = t_feuilleTemps.Rows[t_feuilleTemps.Rows.Count];
+            //Catégorie
+            DropDownList ddl = (DropDownList)ligneAAjouter.Cells[0].Controls[1];
+
+            nomCat = ddl.SelectedItem.Text;
+            foreach (T_CategoriePro cat in ListeCategorie)
             {
-
+                if (cat.descript == nomCat)
+                {
+                    idCat = cat.idCategorie;
+                }
             }
-        }
-        T_FeuilleDeTemps newFdt = new T_FeuilleDeTemps();
-        
-        BD_CoEco.CreateNewFeuilleDeTemps(newFdt);
-        
+            //Enrgistrement
 
+            for (int i = 1; i < ligneAAjouter.Cells.Count - 1; i++)
+            {
+                TextBox tb = (TextBox)ligneAAjouter.Cells[i].Controls[0];
+                if (tb.Text != null && int.TryParse(tb.Text, out int heures))
+                {
+                T_FeuilleDeTemps newFdt = new T_FeuilleDeTemps();
+                newFdt.idCategorie = idCat;
+                newFdt.idEmp = 66;
+                TextBox tbCommentaire = (TextBox)ligneAAjouter.Cells[ligneAAjouter.Cells.Count - 1].Controls[0];
+                if (tbCommmentaire.Text != "")
+                {
+                    newFdt.note = tbCommmentaire.Text;
+                }
+                else
+                {
+                    newFdt.note = "";
+                }
+                newFdt.temps = float.Parse(tb.Text);
+                newFdt.ddate = date.AddDays(i - 1);
+                //BD_CoEco.CreateNewFeuilleDeTemps(newFdt);
+                Label1.Text += newFdt.ddate;
+                Label1.Text += newFdt.temps;
+                }
+            }
+        //}
+        
         btn_ajouter.Enabled = true;
     }
 }

@@ -44,9 +44,6 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
   partial void InsertT_EmployeProjet(T_EmployeProjet instance);
   partial void UpdateT_EmployeProjet(T_EmployeProjet instance);
   partial void DeleteT_EmployeProjet(T_EmployeProjet instance);
-  partial void InsertT_FeuilleDeTemps(T_FeuilleDeTemps instance);
-  partial void UpdateT_FeuilleDeTemps(T_FeuilleDeTemps instance);
-  partial void DeleteT_FeuilleDeTemps(T_FeuilleDeTemps instance);
   partial void InsertT_FonctionEmploye(T_FonctionEmploye instance);
   partial void UpdateT_FonctionEmploye(T_FonctionEmploye instance);
   partial void DeleteT_FonctionEmploye(T_FonctionEmploye instance);
@@ -68,6 +65,9 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
   partial void InsertT_TauxKilo(T_TauxKilo instance);
   partial void UpdateT_TauxKilo(T_TauxKilo instance);
   partial void DeleteT_TauxKilo(T_TauxKilo instance);
+  partial void InsertT_FeuilleDeTemps(T_FeuilleDeTemps instance);
+  partial void UpdateT_FeuilleDeTemps(T_FeuilleDeTemps instance);
+  partial void DeleteT_FeuilleDeTemps(T_FeuilleDeTemps instance);
   #endregion
 	
 	public CoEco_BDDataContext() : 
@@ -140,14 +140,6 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<T_FeuilleDeTemps> T_FeuilleDeTemps
-	{
-		get
-		{
-			return this.GetTable<T_FeuilleDeTemps>();
-		}
-	}
-	
 	public System.Data.Linq.Table<T_FonctionEmploye> T_FonctionEmploye
 	{
 		get
@@ -201,6 +193,14 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<T_TauxKilo>();
+		}
+	}
+	
+	public System.Data.Linq.Table<T_FeuilleDeTemps> T_FeuilleDeTemps
+	{
+		get
+		{
+			return this.GetTable<T_FeuilleDeTemps>();
 		}
 	}
 	
@@ -296,9 +296,9 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 	
 	private EntitySet<T_Depense> _T_Depense;
 	
-	private EntitySet<T_FeuilleDeTemps> _T_FeuilleDeTemps;
-	
 	private EntitySet<T_Kilometrage> _T_Kilometrage;
+	
+	private EntitySet<T_FeuilleDeTemps> _T_FeuilleDeTemps;
 	
 	private EntityRef<T_Projet> _T_Projet;
 	
@@ -321,8 +321,8 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 	public T_CategoriePro()
 	{
 		this._T_Depense = new EntitySet<T_Depense>(new Action<T_Depense>(this.attach_T_Depense), new Action<T_Depense>(this.detach_T_Depense));
-		this._T_FeuilleDeTemps = new EntitySet<T_FeuilleDeTemps>(new Action<T_FeuilleDeTemps>(this.attach_T_FeuilleDeTemps), new Action<T_FeuilleDeTemps>(this.detach_T_FeuilleDeTemps));
 		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
+		this._T_FeuilleDeTemps = new EntitySet<T_FeuilleDeTemps>(new Action<T_FeuilleDeTemps>(this.attach_T_FeuilleDeTemps), new Action<T_FeuilleDeTemps>(this.detach_T_FeuilleDeTemps));
 		this._T_Projet = default(EntityRef<T_Projet>);
 		this._T_StatusCategorie = default(EntityRef<T_StatusCategorie>);
 		OnCreated();
@@ -429,19 +429,6 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_FeuilleDeTemps", Storage="_T_FeuilleDeTemps", ThisKey="idCategorie", OtherKey="idCategorie")]
-	public EntitySet<T_FeuilleDeTemps> T_FeuilleDeTemps
-	{
-		get
-		{
-			return this._T_FeuilleDeTemps;
-		}
-		set
-		{
-			this._T_FeuilleDeTemps.Assign(value);
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idCategorie", OtherKey="idCat")]
 	public EntitySet<T_Kilometrage> T_Kilometrage
 	{
@@ -452,6 +439,19 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 		set
 		{
 			this._T_Kilometrage.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_FeuilleDeTemps1", Storage="_T_FeuilleDeTemps", ThisKey="idCategorie", OtherKey="idCategorie")]
+	public EntitySet<T_FeuilleDeTemps> T_FeuilleDeTemps
+	{
+		get
+		{
+			return this._T_FeuilleDeTemps;
+		}
+		set
+		{
+			this._T_FeuilleDeTemps.Assign(value);
 		}
 	}
 	
@@ -555,18 +555,6 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 		entity.T_CategoriePro = null;
 	}
 	
-	private void attach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = this;
-	}
-	
-	private void detach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = null;
-	}
-	
 	private void attach_T_Kilometrage(T_Kilometrage entity)
 	{
 		this.SendPropertyChanging();
@@ -574,6 +562,18 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 	}
 	
 	private void detach_T_Kilometrage(T_Kilometrage entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_CategoriePro = null;
+	}
+	
+	private void attach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_CategoriePro = this;
+	}
+	
+	private void detach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
 	{
 		this.SendPropertyChanging();
 		entity.T_CategoriePro = null;
@@ -1136,9 +1136,9 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private EntitySet<T_EmployeProjet> _T_EmployeProjet;
 	
-	private EntitySet<T_FeuilleDeTemps> _T_FeuilleDeTemps;
-	
 	private EntitySet<T_Kilometrage> _T_Kilometrage;
+	
+	private EntitySet<T_FeuilleDeTemps> _T_FeuilleDeTemps;
 	
 	private EntityRef<T_FonctionEmploye> _T_FonctionEmploye;
 	
@@ -1168,8 +1168,8 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this._T_Depense = new EntitySet<T_Depense>(new Action<T_Depense>(this.attach_T_Depense), new Action<T_Depense>(this.detach_T_Depense));
 		this._T_EmployeProjet = new EntitySet<T_EmployeProjet>(new Action<T_EmployeProjet>(this.attach_T_EmployeProjet), new Action<T_EmployeProjet>(this.detach_T_EmployeProjet));
-		this._T_FeuilleDeTemps = new EntitySet<T_FeuilleDeTemps>(new Action<T_FeuilleDeTemps>(this.attach_T_FeuilleDeTemps), new Action<T_FeuilleDeTemps>(this.detach_T_FeuilleDeTemps));
 		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
+		this._T_FeuilleDeTemps = new EntitySet<T_FeuilleDeTemps>(new Action<T_FeuilleDeTemps>(this.attach_T_FeuilleDeTemps), new Action<T_FeuilleDeTemps>(this.detach_T_FeuilleDeTemps));
 		this._T_FonctionEmploye = default(EntityRef<T_FonctionEmploye>);
 		this._T_StatusEmploye = default(EntityRef<T_StatusEmploye>);
 		OnCreated();
@@ -1349,19 +1349,6 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Employe_T_FeuilleDeTemps", Storage="_T_FeuilleDeTemps", ThisKey="idEmploye", OtherKey="idEmp")]
-	public EntitySet<T_FeuilleDeTemps> T_FeuilleDeTemps
-	{
-		get
-		{
-			return this._T_FeuilleDeTemps;
-		}
-		set
-		{
-			this._T_FeuilleDeTemps.Assign(value);
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Employe_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idEmploye", OtherKey="idEmp")]
 	public EntitySet<T_Kilometrage> T_Kilometrage
 	{
@@ -1372,6 +1359,19 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		set
 		{
 			this._T_Kilometrage.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Employe_T_FeuilleDeTemps1", Storage="_T_FeuilleDeTemps", ThisKey="idEmploye", OtherKey="idEmp")]
+	public EntitySet<T_FeuilleDeTemps> T_FeuilleDeTemps
+	{
+		get
+		{
+			return this._T_FeuilleDeTemps;
+		}
+		set
+		{
+			this._T_FeuilleDeTemps.Assign(value);
 		}
 	}
 	
@@ -1487,18 +1487,6 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		entity.T_Employe = null;
 	}
 	
-	private void attach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Employe = this;
-	}
-	
-	private void detach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Employe = null;
-	}
-	
 	private void attach_T_Kilometrage(T_Kilometrage entity)
 	{
 		this.SendPropertyChanging();
@@ -1506,6 +1494,18 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 	
 	private void detach_T_Kilometrage(T_Kilometrage entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Employe = null;
+	}
+	
+	private void attach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Employe = this;
+	}
+	
+	private void detach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
 	{
 		this.SendPropertyChanging();
 		entity.T_Employe = null;
@@ -1679,270 +1679,6 @@ public partial class T_EmployeProjet : INotifyPropertyChanging, INotifyPropertyC
 					this._idPro = default(int);
 				}
 				this.SendPropertyChanged("T_Projet");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_FeuilleDeTemps")]
-public partial class T_FeuilleDeTemps : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _idFeuilleDeTemps;
-	
-	private System.Nullable<System.DateTime> _ddate;
-	
-	private System.Nullable<float> _temps;
-	
-	private string _note;
-	
-	private int _idEmp;
-	
-	private int _idCategorie;
-	
-	private EntityRef<T_CategoriePro> _T_CategoriePro;
-	
-	private EntityRef<T_Employe> _T_Employe;
-	
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidFeuilleDeTempsChanging(int value);
-    partial void OnidFeuilleDeTempsChanged();
-    partial void OnddateChanging(System.Nullable<System.DateTime> value);
-    partial void OnddateChanged();
-    partial void OntempsChanging(System.Nullable<float> value);
-    partial void OntempsChanged();
-    partial void OnnoteChanging(string value);
-    partial void OnnoteChanged();
-    partial void OnidEmpChanging(int value);
-    partial void OnidEmpChanged();
-    partial void OnidCategorieChanging(int value);
-    partial void OnidCategorieChanged();
-    #endregion
-	
-	public T_FeuilleDeTemps()
-	{
-		this._T_CategoriePro = default(EntityRef<T_CategoriePro>);
-		this._T_Employe = default(EntityRef<T_Employe>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idFeuilleDeTemps", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int idFeuilleDeTemps
-	{
-		get
-		{
-			return this._idFeuilleDeTemps;
-		}
-		set
-		{
-			if ((this._idFeuilleDeTemps != value))
-			{
-				this.OnidFeuilleDeTempsChanging(value);
-				this.SendPropertyChanging();
-				this._idFeuilleDeTemps = value;
-				this.SendPropertyChanged("idFeuilleDeTemps");
-				this.OnidFeuilleDeTempsChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ddate", DbType="Date")]
-	public System.Nullable<System.DateTime> ddate
-	{
-		get
-		{
-			return this._ddate;
-		}
-		set
-		{
-			if ((this._ddate != value))
-			{
-				this.OnddateChanging(value);
-				this.SendPropertyChanging();
-				this._ddate = value;
-				this.SendPropertyChanged("ddate");
-				this.OnddateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_temps", DbType="Real")]
-	public System.Nullable<float> temps
-	{
-		get
-		{
-			return this._temps;
-		}
-		set
-		{
-			if ((this._temps != value))
-			{
-				this.OntempsChanging(value);
-				this.SendPropertyChanging();
-				this._temps = value;
-				this.SendPropertyChanged("temps");
-				this.OntempsChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="VarChar(100)")]
-	public string note
-	{
-		get
-		{
-			return this._note;
-		}
-		set
-		{
-			if ((this._note != value))
-			{
-				this.OnnoteChanging(value);
-				this.SendPropertyChanging();
-				this._note = value;
-				this.SendPropertyChanged("note");
-				this.OnnoteChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmp", DbType="Int NOT NULL")]
-	public int idEmp
-	{
-		get
-		{
-			return this._idEmp;
-		}
-		set
-		{
-			if ((this._idEmp != value))
-			{
-				if (this._T_Employe.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidEmpChanging(value);
-				this.SendPropertyChanging();
-				this._idEmp = value;
-				this.SendPropertyChanged("idEmp");
-				this.OnidEmpChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int NOT NULL")]
-	public int idCategorie
-	{
-		get
-		{
-			return this._idCategorie;
-		}
-		set
-		{
-			if ((this._idCategorie != value))
-			{
-				if (this._T_CategoriePro.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidCategorieChanging(value);
-				this.SendPropertyChanging();
-				this._idCategorie = value;
-				this.SendPropertyChanged("idCategorie");
-				this.OnidCategorieChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_FeuilleDeTemps", Storage="_T_CategoriePro", ThisKey="idCategorie", OtherKey="idCategorie", IsForeignKey=true)]
-	public T_CategoriePro T_CategoriePro
-	{
-		get
-		{
-			return this._T_CategoriePro.Entity;
-		}
-		set
-		{
-			T_CategoriePro previousValue = this._T_CategoriePro.Entity;
-			if (((previousValue != value) 
-						|| (this._T_CategoriePro.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_CategoriePro.Entity = null;
-					previousValue.T_FeuilleDeTemps.Remove(this);
-				}
-				this._T_CategoriePro.Entity = value;
-				if ((value != null))
-				{
-					value.T_FeuilleDeTemps.Add(this);
-					this._idCategorie = value.idCategorie;
-				}
-				else
-				{
-					this._idCategorie = default(int);
-				}
-				this.SendPropertyChanged("T_CategoriePro");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Employe_T_FeuilleDeTemps", Storage="_T_Employe", ThisKey="idEmp", OtherKey="idEmploye", IsForeignKey=true)]
-	public T_Employe T_Employe
-	{
-		get
-		{
-			return this._T_Employe.Entity;
-		}
-		set
-		{
-			T_Employe previousValue = this._T_Employe.Entity;
-			if (((previousValue != value) 
-						|| (this._T_Employe.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_Employe.Entity = null;
-					previousValue.T_FeuilleDeTemps.Remove(this);
-				}
-				this._T_Employe.Entity = value;
-				if ((value != null))
-				{
-					value.T_FeuilleDeTemps.Add(this);
-					this._idEmp = value.idEmploye;
-				}
-				else
-				{
-					this._idEmp = default(int);
-				}
-				this.SendPropertyChanged("T_Employe");
 			}
 		}
 	}
@@ -3312,6 +3048,414 @@ public partial class T_TauxKilo : INotifyPropertyChanging, INotifyPropertyChange
 	{
 		this.SendPropertyChanging();
 		entity.T_TauxKilo = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_FeuilleDeTemps")]
+public partial class T_FeuilleDeTemps : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _idFeuilleDeTemps;
+	
+	private System.Nullable<System.DateTime> _semaine;
+	
+	private System.Nullable<float> _dimanche;
+	
+	private System.Nullable<float> _lundi;
+	
+	private System.Nullable<float> _mardi;
+	
+	private System.Nullable<float> _mercredi;
+	
+	private System.Nullable<float> _jeudi;
+	
+	private System.Nullable<float> _vendredi;
+	
+	private System.Nullable<float> _samedi;
+	
+	private string _note;
+	
+	private int _idEmp;
+	
+	private int _idCategorie;
+	
+	private EntityRef<T_CategoriePro> _T_CategoriePro;
+	
+	private EntityRef<T_Employe> _T_Employe;
+	
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidFeuilleDeTempsChanging(int value);
+    partial void OnidFeuilleDeTempsChanged();
+    partial void OnsemaineChanging(System.Nullable<System.DateTime> value);
+    partial void OnsemaineChanged();
+    partial void OndimancheChanging(System.Nullable<float> value);
+    partial void OndimancheChanged();
+    partial void OnlundiChanging(System.Nullable<float> value);
+    partial void OnlundiChanged();
+    partial void OnmardiChanging(System.Nullable<float> value);
+    partial void OnmardiChanged();
+    partial void OnmercrediChanging(System.Nullable<float> value);
+    partial void OnmercrediChanged();
+    partial void OnjeudiChanging(System.Nullable<float> value);
+    partial void OnjeudiChanged();
+    partial void OnvendrediChanging(System.Nullable<float> value);
+    partial void OnvendrediChanged();
+    partial void OnsamediChanging(System.Nullable<float> value);
+    partial void OnsamediChanged();
+    partial void OnnoteChanging(string value);
+    partial void OnnoteChanged();
+    partial void OnidEmpChanging(int value);
+    partial void OnidEmpChanged();
+    partial void OnidCategorieChanging(int value);
+    partial void OnidCategorieChanged();
+    #endregion
+	
+	public T_FeuilleDeTemps()
+	{
+		this._T_CategoriePro = default(EntityRef<T_CategoriePro>);
+		this._T_Employe = default(EntityRef<T_Employe>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idFeuilleDeTemps", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int idFeuilleDeTemps
+	{
+		get
+		{
+			return this._idFeuilleDeTemps;
+		}
+		set
+		{
+			if ((this._idFeuilleDeTemps != value))
+			{
+				this.OnidFeuilleDeTempsChanging(value);
+				this.SendPropertyChanging();
+				this._idFeuilleDeTemps = value;
+				this.SendPropertyChanged("idFeuilleDeTemps");
+				this.OnidFeuilleDeTempsChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_semaine", DbType="Date")]
+	public System.Nullable<System.DateTime> semaine
+	{
+		get
+		{
+			return this._semaine;
+		}
+		set
+		{
+			if ((this._semaine != value))
+			{
+				this.OnsemaineChanging(value);
+				this.SendPropertyChanging();
+				this._semaine = value;
+				this.SendPropertyChanged("semaine");
+				this.OnsemaineChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dimanche", DbType="Real")]
+	public System.Nullable<float> dimanche
+	{
+		get
+		{
+			return this._dimanche;
+		}
+		set
+		{
+			if ((this._dimanche != value))
+			{
+				this.OndimancheChanging(value);
+				this.SendPropertyChanging();
+				this._dimanche = value;
+				this.SendPropertyChanged("dimanche");
+				this.OndimancheChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lundi", DbType="Real")]
+	public System.Nullable<float> lundi
+	{
+		get
+		{
+			return this._lundi;
+		}
+		set
+		{
+			if ((this._lundi != value))
+			{
+				this.OnlundiChanging(value);
+				this.SendPropertyChanging();
+				this._lundi = value;
+				this.SendPropertyChanged("lundi");
+				this.OnlundiChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mardi", DbType="Real")]
+	public System.Nullable<float> mardi
+	{
+		get
+		{
+			return this._mardi;
+		}
+		set
+		{
+			if ((this._mardi != value))
+			{
+				this.OnmardiChanging(value);
+				this.SendPropertyChanging();
+				this._mardi = value;
+				this.SendPropertyChanged("mardi");
+				this.OnmardiChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mercredi", DbType="Real")]
+	public System.Nullable<float> mercredi
+	{
+		get
+		{
+			return this._mercredi;
+		}
+		set
+		{
+			if ((this._mercredi != value))
+			{
+				this.OnmercrediChanging(value);
+				this.SendPropertyChanging();
+				this._mercredi = value;
+				this.SendPropertyChanged("mercredi");
+				this.OnmercrediChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_jeudi", DbType="Real")]
+	public System.Nullable<float> jeudi
+	{
+		get
+		{
+			return this._jeudi;
+		}
+		set
+		{
+			if ((this._jeudi != value))
+			{
+				this.OnjeudiChanging(value);
+				this.SendPropertyChanging();
+				this._jeudi = value;
+				this.SendPropertyChanged("jeudi");
+				this.OnjeudiChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vendredi", DbType="Real")]
+	public System.Nullable<float> vendredi
+	{
+		get
+		{
+			return this._vendredi;
+		}
+		set
+		{
+			if ((this._vendredi != value))
+			{
+				this.OnvendrediChanging(value);
+				this.SendPropertyChanging();
+				this._vendredi = value;
+				this.SendPropertyChanged("vendredi");
+				this.OnvendrediChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_samedi", DbType="Real")]
+	public System.Nullable<float> samedi
+	{
+		get
+		{
+			return this._samedi;
+		}
+		set
+		{
+			if ((this._samedi != value))
+			{
+				this.OnsamediChanging(value);
+				this.SendPropertyChanging();
+				this._samedi = value;
+				this.SendPropertyChanged("samedi");
+				this.OnsamediChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="VarChar(100)")]
+	public string note
+	{
+		get
+		{
+			return this._note;
+		}
+		set
+		{
+			if ((this._note != value))
+			{
+				this.OnnoteChanging(value);
+				this.SendPropertyChanging();
+				this._note = value;
+				this.SendPropertyChanged("note");
+				this.OnnoteChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmp", DbType="Int NOT NULL")]
+	public int idEmp
+	{
+		get
+		{
+			return this._idEmp;
+		}
+		set
+		{
+			if ((this._idEmp != value))
+			{
+				if (this._T_Employe.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnidEmpChanging(value);
+				this.SendPropertyChanging();
+				this._idEmp = value;
+				this.SendPropertyChanged("idEmp");
+				this.OnidEmpChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int NOT NULL")]
+	public int idCategorie
+	{
+		get
+		{
+			return this._idCategorie;
+		}
+		set
+		{
+			if ((this._idCategorie != value))
+			{
+				if (this._T_CategoriePro.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnidCategorieChanging(value);
+				this.SendPropertyChanging();
+				this._idCategorie = value;
+				this.SendPropertyChanged("idCategorie");
+				this.OnidCategorieChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_FeuilleDeTemps1", Storage="_T_CategoriePro", ThisKey="idCategorie", OtherKey="idCategorie", IsForeignKey=true)]
+	public T_CategoriePro T_CategoriePro
+	{
+		get
+		{
+			return this._T_CategoriePro.Entity;
+		}
+		set
+		{
+			T_CategoriePro previousValue = this._T_CategoriePro.Entity;
+			if (((previousValue != value) 
+						|| (this._T_CategoriePro.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_CategoriePro.Entity = null;
+					previousValue.T_FeuilleDeTemps.Remove(this);
+				}
+				this._T_CategoriePro.Entity = value;
+				if ((value != null))
+				{
+					value.T_FeuilleDeTemps.Add(this);
+					this._idCategorie = value.idCategorie;
+				}
+				else
+				{
+					this._idCategorie = default(int);
+				}
+				this.SendPropertyChanged("T_CategoriePro");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Employe_T_FeuilleDeTemps1", Storage="_T_Employe", ThisKey="idEmp", OtherKey="idEmploye", IsForeignKey=true)]
+	public T_Employe T_Employe
+	{
+		get
+		{
+			return this._T_Employe.Entity;
+		}
+		set
+		{
+			T_Employe previousValue = this._T_Employe.Entity;
+			if (((previousValue != value) 
+						|| (this._T_Employe.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_Employe.Entity = null;
+					previousValue.T_FeuilleDeTemps.Remove(this);
+				}
+				this._T_Employe.Entity = value;
+				if ((value != null))
+				{
+					value.T_FeuilleDeTemps.Add(this);
+					this._idEmp = value.idEmploye;
+				}
+				else
+				{
+					this._idEmp = default(int);
+				}
+				this.SendPropertyChanged("T_Employe");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 }
 #pragma warning restore 1591
