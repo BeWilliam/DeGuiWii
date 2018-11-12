@@ -12,8 +12,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     }
 
-    protected void btn_logout_Click(object sender, ImageClickEventArgs e)
+    protected void btn_Deco_ServerClick(object sender, EventArgs e)
     {
-        Response.Redirect("Connexion.aspx");
+        Response.Redirect("index.aspx");
     }
 }

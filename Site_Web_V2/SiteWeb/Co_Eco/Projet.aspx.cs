@@ -285,7 +285,11 @@ public partial class Projet : System.Web.UI.Page
         cId.Text = id_Pro.ToString();
 
         TableCell cNom = new TableCell();
-        cNom.Text = projet.nom;
+        //cNom.Text = projet.nom;
+        HyperLink hl = new HyperLink();
+        hl.Text = projet.nom;
+        hl.NavigateUrl = "AjouterProjet.aspx?id=" + projet.idProjet.ToString();
+        cNom.Controls.Add(hl);
 
         TableCell cChef = new TableCell();
         if(projet.responsable == null || projet.responsable == 0)
