@@ -12,11 +12,6 @@ public partial class Categorie : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["username"] == null || Session["username"].ToString() == "")
-        {
-            Response.Redirect("index.aspx");
-        }
-
         btn_conf.Visible = false;
         btn_addCat.Disabled = true;
         

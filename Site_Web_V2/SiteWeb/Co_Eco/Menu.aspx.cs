@@ -9,9 +9,5 @@ public partial class Menu : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["username"] == null || Session["username"].ToString() == "")
-        {
-            Response.Redirect("index.aspx");
-        }
     }
 }

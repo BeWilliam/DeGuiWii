@@ -30,9 +30,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto" runat="server" id="ul_menu">
                     <li class="nav-item">
@@ -62,7 +59,12 @@
                     </li>
                     <li class="nav-item">
                         <div id="div_depense" runat="server">
-                            <a class="nav-link" id="text_nav4" href="Depenses.aspx">Dépenses</a>
+                            <a class="nav-link" id="text_nav4" href="AjouterDepenses.aspx">Dépenses</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div id="div_DepenseADM" runat="server">
+                            <a class="nav-link" id="text_nav7" href="DepenseAdmin.aspx">Dépenses</a>
                         </div>
                     </li>
                     <li class="nav-item" >
@@ -76,8 +78,6 @@
                 <!--</form>-->
             </div>
         </nav>
-
-
     </header>
     <form runat="server">
         <div class="row">
