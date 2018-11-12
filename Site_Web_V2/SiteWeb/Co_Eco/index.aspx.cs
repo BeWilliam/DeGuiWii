@@ -9,30 +9,53 @@ public partial class Connexion : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if(IsPostBack)
-        //{
-            Session["username"] = tbx_username.Text;
-            Session["password"] = tbx_mdp.Text;
-            Test.Text = Session.SessionID;
-        //}
+        Session["username"] = tbx_username.Text;
+        Session["password"] = tbx_mdp.Text;
     }
 
     protected void Connexion_click(object sender, EventArgs e)
     {
-        Session["username"] = tbx_username.Text;
-        Test.Text = Session.SessionID;
-
         List<T_Employe> listeEmp = BD_CoEco.GetListeEmploye();
 
-        int i = -1;
-        while (i < listeEmp.Count)
+        if(tbx_username.Text != null && tbx_username.Text != "")
         {
-            i++;
+            int i = 0;
+            bool trouve = false;
+            while (!trouve && i < listeEmp.Count) //Peut planter si 0 employé
+            {
+                if (listeEmp[i].prenom == tbx_username.Text)
+                {
+                    trouve = true;
+                }
+                if(!trouve)
+                    i++;
+            }
+            if (trouve)
+            {
+                if(listeEmp[i].mdp == null)
+                {
+                    //Alors on co
+                    Connect(BD_CoEco.GetEmpByID(listeEmp[i].idEmploye));
+                }
+                else
+                {
+                    //Il y a un mot de passe
+                    if(listeEmp[i].mdp == tbx_mdp.Text)
+                    {
+                        //Alors on co
+                        Connect(BD_CoEco.GetEmpByID(listeEmp[i].idEmploye));
+                    }
+                }
+            }
         }
+    }
 
-
+    private void Connect(T_Employe employe)
+    {
+        Session["username"] = employe.nom;
+        Session["password"] = employe.mdp;
+        Session["fonction"] = employe.idFonction;
 
         Response.Redirect("Menu.aspx");
     }
-
 }
