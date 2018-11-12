@@ -12,6 +12,10 @@ public partial class AjouterEmploye : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["username"] == null || Session["username"] == "")
+        {
+            Response.Redirect("index.aspx");
+        }
         //rendre non visible le statut, car par défaut lorsqu'on ajoute le statut est nécessairement actif
         sec_statut.Visible = false;
 

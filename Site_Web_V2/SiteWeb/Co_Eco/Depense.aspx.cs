@@ -9,8 +9,11 @@ public partial class Depense : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        if(!IsPostBack)
+        if (Session["username"] == null || Session["username"] == "")
+        {
+            Response.Redirect("index.aspx");
+        }
+        if (!IsPostBack)
         {
             //DDL_TypeDepense.Items.Clear();
             List<T_TypeDepense> typeDepense = BD_CoEco.GetListeTypeDepense();

@@ -14,6 +14,10 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["username"] == null || Session["username"] == "")
+        {
+            Response.Redirect("index.aspx");
+        }
         urlParam = Request.QueryString["id"];
 
         loadResponsable();

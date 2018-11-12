@@ -16,6 +16,10 @@ public partial class Employe : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["username"] == null || Session["username"] == "")
+        {
+            Response.Redirect("index.aspx");
+        }
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
         Table<T_Employe> tableEmp = BD.T_Employe;
         List<T_Employe> rawListeEmp = tableEmp.ToList();
