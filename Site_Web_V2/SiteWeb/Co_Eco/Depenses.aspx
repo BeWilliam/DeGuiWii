@@ -5,5 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
+    <asp:Table runat="server" ID="TableauDepenses" />
+    <asp:Table runat="server" ID="TableauKM" />
 </asp:Content>
 
