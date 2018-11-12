@@ -80,6 +80,7 @@ CREATE TABLE T_Projet(
 	responsable INT, /*ID de l'employé qui sera le responsable*/
 	dateDebut DATE,
 	dateFin DATE ,
+	heureAlloue FLOAT(30),
 	/*FOREIGN KEY*/
 	idStatus INT DEFAULT 1 NOT NULL,
 	CONSTRAINT pkIdProjet PRIMARY KEY (idProjet),
