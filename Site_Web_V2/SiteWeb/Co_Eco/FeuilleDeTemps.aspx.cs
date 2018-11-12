@@ -82,7 +82,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         enregistrements = new List<T_FeuilleDeTemps>();
         foreach (T_FeuilleDeTemps feuilleDeTemps in listeFeuilleDeTemps)
         {
-            if (feuilleDeTemps.ddate >= dt && feuilleDeTemps.ddate <= dt.AddDays(7))
+            if (feuilleDeTemps.semaine >= dt && feuilleDeTemps.semaine <= dt.AddDays(7))
             {
                 enregistrements.Add(feuilleDeTemps);
             }
@@ -109,7 +109,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
                     temp.Add(FeuilleTemps);
                 }
             }
-            ajouterRows(temp);
+           // ajouterRows(temp);
         }
     }
 

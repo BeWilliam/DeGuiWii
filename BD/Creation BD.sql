@@ -38,7 +38,7 @@ CREATE TABLE  T_StatusCategorie (
 /*-Table pour les status des Projets-*/
 CREATE TABLE  T_StatusProjet (
 	noStatusPro INT IDENTITY (1,1),
-	descript VARCHAR(10) NOT NULL,
+	descript VARCHAR(20) NOT NULL,
 	CONSTRAINT pkNoStatusPro PRIMARY KEY (noStatusPro)
 )
 
@@ -186,6 +186,7 @@ INSERT INTO T_StatusCategorie(descript) VALUES ('Inactif')
 INSERT INTO T_StatusProjet(descript) VALUES ('En cours')
 INSERT INTO T_StatusProjet(descript) VALUES ('Terminé')
 INSERT INTO T_StatusProjet(descript) VALUES ('Archivé')
+INSERT INTO T_StatusProjet(descript) VALUES ('En construction')
 
 /*Insertion des fonctions que les employés peuvent avoir*/
 INSERT INTO T_FonctionEmploye(descript) VALUES ('Employé de bureau')

@@ -15,6 +15,8 @@ public partial class Projet : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+
         List<T_StatusProjet> listeStatProjet = BD_CoEco.GetListeStatusProjet();
         List<T_Projet> rawListeProjet = BD_CoEco.GetListeProjet();
         List<T_Projet> listeProjet = rawListeProjet.OrderBy(o => o.idStatus).ThenBy(o => o.nom).ToList();
