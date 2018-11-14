@@ -155,7 +155,18 @@ public partial class AjouterEmploye : System.Web.UI.Page
     //modifier l'employé dans la BD
     protected void btn_applyMod_Click(object sender, EventArgs e)
     {
+        T_Employe newEmp = new T_Employe();
 
+        newEmp.idEmploye = int.Parse(Request.QueryString["id"]);
+        newEmp.prenom = String.Format("{0}", Request.Form["tbx_prenom"]);
+        newEmp.nom = String.Format("{0}", Request.Form["tbx_nom"]);
+        newEmp.courriel = String.Format("{0}", Request.Form["tbx_courriel"]);
+        newEmp.mdp = String.Format("{0}", Request.Form["tbx_mdp"]);
+        newEmp.idStatus = int.Parse(ddl_statut.SelectedValue);
+        newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
+        
+
+        BD_CoEco.UpdateEmploye(newEmp);
     }
 
     protected void btn_retour_Click(object sender, EventArgs e)
