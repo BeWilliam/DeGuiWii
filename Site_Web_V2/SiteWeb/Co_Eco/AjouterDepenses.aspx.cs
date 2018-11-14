@@ -11,4 +11,16 @@ public partial class Depenses : System.Web.UI.Page
     {
         
     }
+
+
+    /*-- Partie de génération de tableau --*/
+    private void loadTableauDepense()
+    {
+        
+    }
+
+    private void loadTableauKM()
+    {
+
+    }
 }

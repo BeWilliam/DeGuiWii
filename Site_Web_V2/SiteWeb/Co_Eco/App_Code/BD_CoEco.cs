@@ -321,4 +321,51 @@ public class BD_CoEco
         }
     }
     */
+
+    public static List<T_Depense> GetListeDepense()
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        Table<T_Depense> tableDepense = bd.T_Depense;
+        List<T_Depense> listeDepense = tableDepense.ToList();
+        bd.Dispose();
+        return listeDepense;
+    }
+
+    public static List<T_Kilometrage> GetListeKilometrage()
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        Table<T_Kilometrage> tableKilo = bd.T_Kilometrage;
+        List<T_Kilometrage> listeKilo = tableKilo.ToList();
+        bd.Dispose();
+        return listeKilo;
+    }
+
+    public static T_TauxKilo GetTauxKilo()
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        Table<T_TauxKilo> tableTauxKilo = bd.T_TauxKilo;
+        List<T_TauxKilo> listTauxKilo = tableTauxKilo.ToList();
+        bd.Dispose();
+        if (listTauxKilo.Count != 0)
+            return listTauxKilo[listTauxKilo.Count - 1];
+        else
+            throw new Exception("Aucun taux de kilométrage");
+    }
+
+    public static void ChangeTauxKilo(float p_newValue)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        float newValue = p_newValue;
+        bd.PS_ChangerTauxKilo(newValue);
+        bd.Dispose();
+    }
+
+    public static List<T_FeuilleDeTemps> GetListeFeuilleDeTemps()
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        Table<T_FeuilleDeTemps> tableFeuilleDeTemps = bd.T_FeuilleDeTemps;
+        List<T_FeuilleDeTemps> listFeuilleDeTemps = tableFeuilleDeTemps.ToList();
+        bd.Dispose();
+        return listFeuilleDeTemps;
+    }
 }
