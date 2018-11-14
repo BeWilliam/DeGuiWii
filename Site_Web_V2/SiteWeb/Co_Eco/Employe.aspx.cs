@@ -10,7 +10,7 @@ using iTextSharp.text.html.simpleparser;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using ListItem = System.Web.UI.WebControls.ListItem; //Anti problème
+using ListItem = System.Web.UI.WebControls.ListItem;
 
 public partial class Employe : System.Web.UI.Page
 {

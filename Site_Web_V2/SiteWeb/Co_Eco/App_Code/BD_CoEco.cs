@@ -247,6 +247,23 @@ public class BD_CoEco
         BD.Dispose();
     }
 
+    public static void UpdateEmploye(T_Employe p_employe)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+
+        T_Employe newEmp = BD.T_Employe.Single(e => e.idEmploye == p_employe.idEmploye);
+
+        newEmp.prenom = p_employe.prenom;
+        newEmp.nom = p_employe.nom;
+        newEmp.courriel = p_employe.courriel;
+        newEmp.mdp = p_employe.mdp;
+        newEmp.idFonction = p_employe.idFonction;
+        newEmp.idStatus = p_employe.idStatus;
+
+        BD.SubmitChanges();
+        BD.Dispose();
+    }
+
     public static void CreateNewCategorie(T_CategoriePro p_categorie)
     {
         CoEco_BDDataContext BD = new CoEco_BDDataContext();

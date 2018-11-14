@@ -15,13 +15,28 @@ public partial class AjouterEmploye : System.Web.UI.Page
         //rendre non visible le statut, car par défaut lorsqu'on ajoute le statut est nécessairement actif
         sec_statut.Visible = false;
 
+        btn_appliquer.Visible = false;
+
         urlParam = Request.QueryString["id"];
 
         loadFonction();
 
         if (urlParam != null)
         {
+            //ajuster les contrôles pour la page modifications et affichage
+            tbx_prenom.Disabled = true;
+            tbx_nom.Disabled = true;
+            tbx_courriel.Disabled = true;
+            tbx_mdp.Disabled = true;
+            ddl_fonction.Enabled = false;
+            ddl_statut.Enabled = false;
+            add_emp.Visible = false;
             sec_statut.Visible = true;
+
+            btn_appliquer.Visible = true;
+            btn_appliquer.Disabled = true;
+
+            //caller la méthode qui affiche l'employés cliqué
             AfficherEmp();
             
         }          
@@ -122,5 +137,40 @@ public partial class AjouterEmploye : System.Web.UI.Page
 
             }
         }
+    }
+
+    protected void btn_modEmp_Click(object sender, EventArgs e)
+    {
+        tbx_prenom.Disabled = false;
+        tbx_nom.Disabled = false;
+        tbx_courriel.Disabled = false;
+        tbx_mdp.Disabled = false;
+        ddl_fonction.Enabled = true;
+        ddl_statut.Enabled = true;
+        btn_modifier.Disabled = true;
+
+        btn_appliquer.Disabled = false;
+    }
+
+    //modifier l'employé dans la BD
+    protected void btn_applyMod_Click(object sender, EventArgs e)
+    {
+        T_Employe newEmp = new T_Employe();
+
+        newEmp.idEmploye = int.Parse(Request.QueryString["id"]);
+        newEmp.prenom = String.Format("{0}", Request.Form["tbx_prenom"]);
+        newEmp.nom = String.Format("{0}", Request.Form["tbx_nom"]);
+        newEmp.courriel = String.Format("{0}", Request.Form["tbx_courriel"]);
+        newEmp.mdp = String.Format("{0}", Request.Form["tbx_mdp"]);
+        newEmp.idStatus = int.Parse(ddl_statut.SelectedValue);
+        newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
+        
+
+        BD_CoEco.UpdateEmploye(newEmp);
+    }
+
+    protected void btn_retour_Click(object sender, EventArgs e)
+    {
+
     }
 }
