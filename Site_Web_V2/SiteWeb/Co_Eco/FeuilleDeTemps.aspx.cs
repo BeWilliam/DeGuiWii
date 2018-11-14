@@ -59,6 +59,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         {
             tr_ajout.Visible = true;
             btn_confirmer.Visible = true;
+            btn_annuler.Visible = true;
             btn_ajouter.Visible = false;
         }
         
@@ -259,6 +260,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     {
         tr_ajout.Visible = true;
         btn_confirmer.Visible = true;
+        btn_annuler.Visible = true;
         btn_ajouter.Visible = false;
     }
 
@@ -266,12 +268,13 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     {
         tr_ajout.Visible = false;
         btn_confirmer.Visible = false;
+        btn_annuler.Visible = false;
         btn_ajouter.Visible = true;
 
         if (getFirstDayOfWeek(Calendar1.SelectedDate) != null)
         {
-            if (Session["idEmp"].ToString() != null)
-            { 
+            //if (Session["idEmp"].ToString() != null)
+            //{ 
 
                 //ajouter une feuille de temps
                 //connexion à la BD
@@ -342,11 +345,11 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
 
             ajouterEnregistrement(date);
-        }
-        else
-        {
-                lb_erreur.Text += "idemp est null";
-        }
+        //}
+        //else
+        //{
+        //        lb_erreur.Text += "idemp est null";
+        //}
         }
         else
         {
@@ -358,6 +361,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     {
         tr_ajout.Visible = false;
         btn_confirmer.Visible = false;
+        btn_annuler.Visible = false;
         btn_ajouter.Visible = true;
     }
 }
