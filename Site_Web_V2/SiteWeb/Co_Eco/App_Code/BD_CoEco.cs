@@ -385,4 +385,12 @@ public class BD_CoEco
         bd.Dispose();
         return listFeuilleDeTemps;
     }
+
+    public static void AddDepense(T_Depense p_newDep)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        bd.T_Depense.InsertOnSubmit(p_newDep);
+        bd.SubmitChanges();
+        bd.Dispose();
+    }
 }

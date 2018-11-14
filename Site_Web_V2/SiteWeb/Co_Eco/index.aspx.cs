@@ -55,6 +55,7 @@ public partial class Connexion : System.Web.UI.Page
         Session["username"] = employe.nom;
         Session["password"] = employe.mdp;
         Session["fonction"] = employe.idFonction;
+        Session["idEmp"] = employe.idEmploye;
 
         Response.Redirect("Menu.aspx");
     }

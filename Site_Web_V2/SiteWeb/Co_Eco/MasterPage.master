@@ -80,6 +80,7 @@
         </nav>
     </header>
     <form runat="server">
+        
         <div class="row">
             <div class="col-sm-2">
                 <asp:ContentPlaceHolder ID="cph_left" runat="server"></asp:ContentPlaceHolder>
