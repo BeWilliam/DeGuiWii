@@ -7,10 +7,10 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server" ClientIDMode="Inherit">
-   
+    <asp:Label ID="lb_erreur" runat="server" Text="" ></asp:Label>
     <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
 
-    <asp:table ID="t_feuilleTemps" runat="server" style="width:75%" CssClass="tableau_feuille">
+    <asp:table ID="t_feuilleTemps" runat="server" style="width:75%">
       <asp:TableRow>
         <asp:TableHeaderCell ID="thc_Projet" style="width:11%">Projet</asp:TableHeaderCell>
         <asp:TableHeaderCell ID="Dimanche" style="width:11%">Dimanche</asp:TableHeaderCell>
@@ -22,10 +22,10 @@
         <asp:TableHeaderCell ID="Samedi" style="width:11%">Samedi</asp:TableHeaderCell>
         <asp:TableHeaderCell style="width:11%">Commentaires</asp:TableHeaderCell>
       </asp:TableRow>
-      <asp:TableRow>
+      <asp:TableRow ID="tr_ajout">
           <asp:TableCell>
-              <asp:DropDownList ID="DropDownList1" runat="server" CssClass="ddl_projet"></asp:DropDownList>
-              <asp:DropDownList ID="DropDownList2" runat="server" CssClass="ddl_categorie"></asp:DropDownList>
+              <asp:DropDownList ID="ddl_Projet" runat="server" CssClass="ddl_projet"></asp:DropDownList>
+              <asp:DropDownList ID="ddl_Categorie" runat="server" CssClass="ddl_categorie"></asp:DropDownList>
 
           </asp:TableCell>
           <asp:TableCell>
@@ -65,6 +65,8 @@
     </asp:table>
 
     <div class="div_bouton">
-            <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" class="btn_ajouterTemps" BackColor="#53b34f" Font-Size="18px"/>
+        <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" OnClick="btn_ajouter_Click"/>
+        <asp:Button ID="btn_confirmer" runat="server" Text="Confirmer" OnClick="btn_confirmer_Click" Visible="False" />
+        <asp:Button ID="btn_annuler" runat="server" Text="Annuler"  Visible="False" OnClick="btn_annuler_Click" />
     </div>
     </asp:Content>
