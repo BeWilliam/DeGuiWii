@@ -39,7 +39,7 @@
                      </li>
                     <li class="nav-item">
                         <div runat="server" id="div_FeuilleDeTemps">
-                            <a class="nav-link" id="text_nav" href="#">Feuilles de temps</a>
+                            <a class="nav-link" id="text_nav" href="FeuilleDeTemps.aspx">Feuilles de temps</a>
                         </div>
                     </li>
                     <li class="nav-item">
