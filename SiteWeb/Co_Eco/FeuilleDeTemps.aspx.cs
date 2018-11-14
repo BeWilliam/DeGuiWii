@@ -421,14 +421,14 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             Table<T_FeuilleDeTemps> tableFdt = BD.T_FeuilleDeTemps;
 
             List<T_FeuilleDeTemps> feuillesDeTempsEnr = new List<T_FeuilleDeTemps>();
-            string nomCat;
+            
 
             //Colone a ajouter
             TableRow ligneAAjouter = t_feuilleTemps.Rows[t_feuilleTemps.Rows.Count];
             //Catégorie
             DropDownList ddl = (DropDownList)ligneAAjouter.Cells[0].Controls[1];
 
-            nomCat = ddl.SelectedItem.Text;
+            string nomCat = ddl.SelectedItem.Text;
             foreach (T_CategoriePro cat in ListeCategorie)
             {
                 if (cat.descript == nomCat)

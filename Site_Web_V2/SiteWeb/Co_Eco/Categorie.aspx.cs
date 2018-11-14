@@ -12,14 +12,18 @@ public partial class Categorie : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        btn_conf.Visible = false;
-        btn_addCat.Disabled = true;
+        btn_apply.Visible = false;
+        btn_addCat.Enabled = false;
         
         ddl_statut.Visible = false;
+        lbl_nom.Visible = false;
+        btn_apply.Text = "Appliquer";
+        btn_addCat.Text = "Ajouter une catégorie";
 
         if (!this.IsPostBack)
         {
             loadProjet();
+            tbx_cat.Visible = false;
         }
     }
 
@@ -52,7 +56,7 @@ public partial class Categorie : System.Web.UI.Page
         if (ddl_projet.SelectedValue != "-1")
         {
             loadCat();
-            btn_addCat.Disabled = false;
+            btn_addCat.Enabled = true;
         }
         
     }
@@ -75,11 +79,7 @@ public partial class Categorie : System.Web.UI.Page
     }
 
     protected void btn_addCat_Click(object sender, EventArgs e)
-    {
-        
-        //tbx_cat.Visible = true;
-
-        
+    {        
         ddl_statut.Visible = true;
 
   
@@ -88,22 +88,19 @@ public partial class Categorie : System.Web.UI.Page
             loadStatus();
         }
 
-        
-
-       // add_cat.Visible = false;
-
-        btn_conf.Visible = true;
+        lbl_nom.Visible = true;
+        btn_apply.Visible = true;
+        tbx_cat.Visible = true;
     }
 
-    protected void btn_Conf_Click(object sender, EventArgs e)
+    protected void btn_apply_Click(object sender, EventArgs e)
     {
-
         //connexion à la BD
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
         Table<T_CategoriePro> tableEmp = BD.T_CategoriePro;
 
         T_CategoriePro newCat = new T_CategoriePro();
-        //newCat.descript = tbx_cat.Text;
+        newCat.descript = tbx_cat.Text;
 
         if (ddl_statut.SelectedValue == "Actif")
         {
@@ -119,6 +116,5 @@ public partial class Categorie : System.Web.UI.Page
         BD_CoEco.CreateNewCategorie(newCat);
 
         loadCat();
-
     }
 }
