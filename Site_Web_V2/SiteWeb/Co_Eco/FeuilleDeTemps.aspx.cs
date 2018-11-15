@@ -16,34 +16,47 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     List<T_CategoriePro> ListeCategorie;
     DateTime date;
     int idCat;
-    string urlParam;
+    string urlParamId;
+    //string urlParamDate;
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+
+
+        ListeProjet = BD_CoEco.GetListeProjet();
+        ListeCategorie = BD_CoEco.GetListeCategorie();
+
+        listeFeuilleDeTemps = BD_CoEco.GetListeFeuilleDeTemps();
+
+        BD.Dispose();
+
         if (!IsPostBack)
         {
             lb_erreur.Text += "PAS un postback";
+
+            //urlParamDate = Request.QueryString["date"];
+
+            //if (urlParamDate != null)
+            //{
+            //    ajouterEnregistrement(DateTime.Parse(urlParamDate));
+            //}
         }
         else
         {
+
             lb_erreur.Text += "EST un postback";
 
-            CoEco_BDDataContext BD = new CoEco_BDDataContext();
+            
 
+            urlParamId = Request.QueryString["id"];
 
-            ListeProjet = BD_CoEco.GetListeProjet();
-            ListeCategorie = BD_CoEco.GetListeCategorie();
-
-            listeFeuilleDeTemps = BD_CoEco.GetListeFeuilleDeTemps();
-
-            BD.Dispose();
-
-            urlParam = Request.QueryString["id"];
-
-            if (urlParam != null)
+            if (urlParamId != null)
             {
-                modifier(int.Parse(urlParam));
+                modifier(int.Parse(urlParamId));
             }
+
+            
 
         }
 
@@ -66,13 +79,14 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
             ajouterEnregistrement(date);
         }
-        else
-        {
-            tr_ajout.Visible = true;
-            btn_confirmer.Visible = true;
-            btn_annuler.Visible = true;
-            btn_ajouter.Visible = false;
-        }
+        //else
+        //{
+        //    tr_ajout.Visible = true;
+        //    btn_confirmer.Visible = true;
+        //    btn_confirmerModif.Visible = false;
+        //    btn_annuler.Visible = true;
+        //    btn_ajouter.Visible = false;
+        //}
         
     }
 
@@ -90,7 +104,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         return dt;
     }
     //---------On regarde si l'enregistrement fait partit de la semaine sélectionnée
-    void ajouterEnregistrement(DateTime dt)
+    void ajouterEnregistrement(DateTime p_dt)
     {
         //List<string> projets = new List<string>();
         /*enregistrements = new List<T_FeuilleDeTemps>();*/
@@ -99,7 +113,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             foreach (T_FeuilleDeTemps feuilleDeTemps in listeFeuilleDeTemps)
             {
                
-                if (getFirstDayOfWeek((DateTime)feuilleDeTemps.semaine) == dt)
+                if (getFirstDayOfWeek((DateTime)feuilleDeTemps.semaine) == p_dt)
                 {
                     ajouterRows(feuilleDeTemps);
                 }
@@ -280,6 +294,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     {
         tr_ajout.Visible = true;
         btn_confirmer.Visible = true;
+        btn_confirmerModif.Visible = false;
         btn_annuler.Visible = true;
         btn_ajouter.Visible = false;
     }
@@ -288,6 +303,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     {
         tr_ajout.Visible = false;
         btn_confirmer.Visible = false;
+        btn_confirmerModif.Visible = false;
         btn_annuler.Visible = false;
         btn_ajouter.Visible = true;
 
@@ -415,8 +431,94 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
     protected void btn_confirmerModif_Click(object sender, EventArgs e)
     {
+        T_FeuilleDeTemps fdt = new T_FeuilleDeTemps();
 
+        fdt.idCategorie = 3;
+
+        fdt.idEmp = int.Parse(Session["idEmp"].ToString());
+
+        fdt.idFeuilleDeTemps = int.Parse(urlParamId);
+
+        date = getFirstDayOfWeek(Calendar1.SelectedDate);
+
+        fdt.semaine = date;
+
+        if (tb_dimanche.Text != "")
+        {
+            //string o = String.Format("{0}", Request.Form["tb_dimanche"]);
+            //fdt.dimanche = float.Parse(o);
+            
+        }
+        else
+        {
+            fdt.dimanche = null;
+        }
+        if (tb_lundi.Text != "")
+        {
+            fdt.lundi = float.Parse(tb_lundi.Text);
+        }
+        else
+        {
+            fdt.lundi = null;
+        }
+        if (tb_mardi.Text != "")
+        {
+            fdt.mardi = float.Parse(tb_mardi.Text);
+        }
+        else
+        {
+            fdt.mardi = null;
+        }
+        if (tb_mercredi.Text != "")
+        {
+            fdt.mercredi = float.Parse(tb_mercredi.Text);
+        }
+        else
+        {
+            fdt.mercredi = null;
+        }
+        if (tb_jeudi.Text != "")
+        {
+            fdt.jeudi = float.Parse(tb_jeudi.Text);
+        }
+        else
+        {
+            fdt.jeudi = null;
+        }
+        if (tb_vendredi.Text != "")
+        {
+            fdt.vendredi = float.Parse(tb_vendredi.Text);
+        }
+        else
+        {
+            fdt.vendredi = null;
+        }
+        if (tb_samedi.Text != "")
+        {
+            fdt.samedi = float.Parse(tb_samedi.Text);
+        }
+        else
+        {
+            fdt.samedi = null;
+        }
+
+        if (tb_commentaire.Text != "")
+        {
+            fdt.note = tb_commentaire.Text;
+        }
+        else
+        {
+            fdt.note = null;
+        }
+
+        BD_CoEco.UpdateFeuilleDeTemps(fdt);
         clearTextBox();
+        tr_ajout.Visible = false;
+        btn_confirmer.Visible = false;
+        btn_confirmerModif.Visible = false;
+        btn_annuler.Visible = false;
+        btn_ajouter.Visible = true;
+        ajouterEnregistrement(date);
     }
 
     void clearTextBox()
@@ -433,5 +535,6 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         tb_samedi.Text = "";
         tb_commentaire.Text = "";
         tr_ajout.Visible = false;
+        btn_ajouter.Visible = true;
     }
 }
