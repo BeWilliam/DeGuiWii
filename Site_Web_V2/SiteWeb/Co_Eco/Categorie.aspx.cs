@@ -58,6 +58,8 @@ public partial class Categorie : System.Web.UI.Page
             loadCat();
             btn_addCat.Enabled = true;
         }
+
+        tbx_cat.Visible = false;
         
     }
 
@@ -82,7 +84,8 @@ public partial class Categorie : System.Web.UI.Page
     {        
         ddl_statut.Visible = true;
 
-  
+        loadCat();
+        
         if (ddl_statut.Items.Count <= 0)
         {
             loadStatus();
@@ -115,6 +118,8 @@ public partial class Categorie : System.Web.UI.Page
 
         BD_CoEco.CreateNewCategorie(newCat);
 
+        tbx_cat.Visible = false;
+        btn_addCat.Enabled = true;
         loadCat();
     }
 }
