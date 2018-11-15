@@ -16,6 +16,9 @@ public partial class AjouterProjet : System.Web.UI.Page
     {
         urlParam = Request.QueryString["id"];
 
+        btn_modifier.Visible = false;
+        btn_apply.Visible = false;
+
         if (!IsPostBack)
         {
             loadResponsable();
@@ -24,10 +27,22 @@ public partial class AjouterProjet : System.Web.UI.Page
 
         if (urlParam != null)
         {
-            afficherProject();
-        }
-        
-        
+            if (!IsPostBack)
+            {
+                afficherProject();
+                btn_addProject.Visible = false;
+                btn_apply.Visible = true;
+                btn_apply.Enabled = false;
+                btn_modifier.Visible = true;
+                tbx_nom.Enabled = false;
+                tbx_heure.Enabled = false;
+                tbx_projet.Enabled = false;
+                ddl_responsable.Enabled = false;
+                ddl_statut.Enabled = false;
+                dateDebut.Enabled = false;
+                dateFin.Enabled = false;               
+            }
+        }       
     }
 
     private void afficherProject()
@@ -38,15 +53,16 @@ public partial class AjouterProjet : System.Web.UI.Page
         {
             if (projet.idProjet == int.Parse(urlParam))
             {
-                tbx_nom.Value = projet.nom;
-                tbx_projet.Value = projet.descript;
+                tbx_nom.Text = projet.nom;
+                tbx_projet.Text = projet.descript;
                 if (projet.responsable != null)
                 {
                     ddl_responsable.SelectedValue = BD_CoEco.GetEmpByID((int)projet.responsable).idEmploye.ToString();
                 }
-                tbx_heure.Value = projet.heureAlloue.ToString();
-                dateDebut.Value = projet.dateDebut.ToString();
-                dateFin.Value = projet.dateFin.ToString();
+                tbx_heure.Text = projet.heureAlloue.ToString();
+                //dateDebut.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                dateDebut.Text = String.Format("{0:yyyy-MM-dd}", projet.dateDebut);
+                dateFin.Text = String.Format("{0:yyyy-MM-dd}", projet.dateFin);
 
                 if (projet.idStatus == 1) //en cours
                 {
@@ -64,26 +80,21 @@ public partial class AjouterProjet : System.Web.UI.Page
                 {
                     ddl_statut.SelectedIndex = 2;
                 }
-
             }
         }
-
     }
 
     protected void btn_addProject_Click(object sender, EventArgs e)
     {
-        //connexion à la BD
-        CoEco_BDDataContext BD = new CoEco_BDDataContext();
-        Table<T_Projet> tableEmp = BD.T_Projet;
 
         T_Projet monProjet = new T_Projet();
 
-        monProjet.nom = tbx_nom.Value;
-        monProjet.descript = tbx_projet.Value;
+        monProjet.nom = tbx_nom.Text;
+        monProjet.descript = tbx_projet.Text;
         monProjet.responsable = int.Parse(ddl_responsable.SelectedValue);
-        monProjet.heureAlloue = int.Parse(tbx_heure.Value);
-        monProjet.dateDebut = DateTime.Parse(dateDebut.Value);
-        monProjet.dateFin = DateTime.Parse(dateFin.Value);
+        monProjet.heureAlloue = int.Parse(tbx_heure.Text);
+        monProjet.dateDebut = DateTime.Parse(dateDebut.Text.ToString());
+        monProjet.dateFin = DateTime.Parse(dateFin.Text.ToString());
         monProjet.idStatus = int.Parse(ddl_statut.SelectedValue);
 
         BD_CoEco.CreateNewProjet(monProjet);
@@ -120,5 +131,26 @@ public partial class AjouterProjet : System.Web.UI.Page
         {
             ddl_statut.Items.Add(new ListItem(statut.descript, statut.noStatusPro.ToString()));
         }
+    }
+
+    protected void btn_retour_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Projet.aspx");
+    }
+
+    protected void btn_apply_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btn_modifier_Click(object sender, EventArgs e)
+    {
+        tbx_nom.Enabled = false;
+        tbx_heure.Enabled = false;
+        tbx_projet.Enabled = false;
+        ddl_responsable.Enabled = false;
+        ddl_statut.Enabled = false;
+        dateDebut.Enabled = false;
+        dateFin.Enabled = false;
     }
 }
