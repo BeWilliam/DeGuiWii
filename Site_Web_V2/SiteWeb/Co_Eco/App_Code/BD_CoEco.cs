@@ -264,6 +264,24 @@ public class BD_CoEco
         BD.Dispose();
     }
 
+    public static void UpdateProjet(T_Projet p_projet)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+
+        T_Projet newProjet = BD.T_Projet.Single(p => p.idProjet == p_projet.idProjet);
+
+        newProjet.nom = p_projet.nom;
+        newProjet.idStatus = p_projet.idStatus;
+        newProjet.heureAlloue = p_projet.heureAlloue;
+        newProjet.responsable = p_projet.responsable;
+        newProjet.descript = p_projet.descript;
+        newProjet.dateDebut = p_projet.dateDebut;
+        newProjet.dateFin = p_projet.dateFin;
+
+        BD.SubmitChanges();
+        BD.Dispose();
+    }
+
     public static void CreateNewCategorie(T_CategoriePro p_categorie)
     {
         CoEco_BDDataContext BD = new CoEco_BDDataContext();

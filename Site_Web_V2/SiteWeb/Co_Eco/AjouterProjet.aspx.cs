@@ -27,12 +27,18 @@ public partial class AjouterProjet : System.Web.UI.Page
 
         if (urlParam != null)
         {
+            btn_apply.Visible = true;
+            btn_apply.Enabled = true;
+
             if (!IsPostBack)
             {
                 afficherProject();
+
                 btn_addProject.Visible = false;
+
                 btn_apply.Visible = true;
                 btn_apply.Enabled = false;
+
                 btn_modifier.Visible = true;
                 tbx_nom.Enabled = false;
                 tbx_heure.Enabled = false;
@@ -40,7 +46,8 @@ public partial class AjouterProjet : System.Web.UI.Page
                 ddl_responsable.Enabled = false;
                 ddl_statut.Enabled = false;
                 dateDebut.Enabled = false;
-                dateFin.Enabled = false;               
+                dateFin.Enabled = false;    
+             
             }
         }       
     }
@@ -141,16 +148,35 @@ public partial class AjouterProjet : System.Web.UI.Page
     protected void btn_apply_Click(object sender, EventArgs e)
     {
 
+        T_Projet monProjet = new T_Projet();
+
+        monProjet.idProjet = int.Parse(Request.QueryString["id"]);
+        monProjet.nom = tbx_nom.Text;
+        monProjet.descript = tbx_projet.Text;
+        monProjet.heureAlloue = Double.Parse(tbx_heure.Text);
+        monProjet.idStatus = int.Parse(ddl_statut.SelectedValue);
+        monProjet.responsable = int.Parse(ddl_responsable.SelectedValue);
+        monProjet.dateDebut = DateTime.Parse(dateDebut.Text.ToString());
+        monProjet.dateFin = DateTime.Parse(dateFin.Text.ToString());
+
+
+        BD_CoEco.UpdateProjet(monProjet);
+
+        Response.Redirect("Projet.aspx");
+
     }
 
     protected void btn_modifier_Click(object sender, EventArgs e)
     {
-        tbx_nom.Enabled = false;
-        tbx_heure.Enabled = false;
-        tbx_projet.Enabled = false;
-        ddl_responsable.Enabled = false;
-        ddl_statut.Enabled = false;
-        dateDebut.Enabled = false;
-        dateFin.Enabled = false;
+        tbx_nom.Enabled = true;
+        tbx_heure.Enabled = true;
+        tbx_projet.Enabled = true;
+        ddl_responsable.Enabled = true;
+        ddl_statut.Enabled = true;
+        dateDebut.Enabled = true;
+        dateFin.Enabled = true;
+
+        btn_apply.Visible = true;
+        btn_apply.Enabled = true;
     }
 }
