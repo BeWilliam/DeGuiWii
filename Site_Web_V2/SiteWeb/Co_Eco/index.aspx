@@ -15,10 +15,8 @@
 
     <form class="" runat="server">
 
-        <img class="mb-4" src="App_Themes/Connexion/Image/Sprite.ico" alt="" width="300" height="180" />
-
+        <img src="App_Themes/Connexion/Image/logo_v2.png" width="300" height="180" />
         <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-
         <asp:Label ID="username" runat="server" Text="Nom d'utilisateur"></asp:Label>
         <asp:TextBox ID="tbx_username" runat="server" CssClass="form-control"></asp:TextBox>
 
