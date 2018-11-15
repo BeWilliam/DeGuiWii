@@ -463,6 +463,6 @@ public class BD_CoEco
 
     public static T_Employe GetNewEmp()
     {
-
+        return null;
     }
 }
