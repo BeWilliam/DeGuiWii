@@ -18,8 +18,9 @@ public partial class Depenses : System.Web.UI.Page
             loadEmploye();
 
             string id = Request.QueryString["id"];
-            if (id != null)
+            if (id != null && Session["fonction"].ToString() == "3")
             {
+                //C'est avec le compte admin que la page à été loader, mais on vérifie quand même
                 T_Depense depense = BD_CoEco.GetDepenseById(int.Parse(id));
                 ddl_projet.SelectedValue = depense.idProjet.ToString();
                 ddl_projet.Enabled = false;
@@ -34,15 +35,14 @@ public partial class Depenses : System.Web.UI.Page
                 Ddate.Text = string.Format("{0:yyyy-MM-dd}", depense.ddate);
                 Ddate.Enabled = false;
                 ddl_employe.SelectedValue = depense.idEmp.ToString();
+
+                btn_ok.InnerText = "Modifier";
             }
             else
             {
                 //on suppose que c'est un employé qui est connecté
                 string idEmp = Session["idEmp"].ToString();
-                //if (idEmp != null) //On vérifie quand même
-                //{
-                    ddl_employe.SelectedValue = Session["idEmp"].ToString();
-                //}
+                ddl_employe.SelectedValue = Session["idEmp"].ToString();
             }
         }
     }
@@ -104,18 +104,51 @@ public partial class Depenses : System.Web.UI.Page
 
     protected void btn_ok_ServerClick(object sender, EventArgs e)
     {
-        T_Depense newDep = new T_Depense();
-        newDep.montant = decimal.Parse(tbx_montant.Text);
-        newDep.descript = tbx_description.Text;
-        newDep.ddate = DateTime.Parse(Ddate.Text);
-        newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
-        newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
-        newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
-        newDep.idEmp = int.Parse(Session["idEmp"].ToString());
-        newDep.aprobation = null;
-        BD_CoEco.AddDepense(newDep);
+        if(btn_ok.InnerText == "Enregistrer")
+        {
+            if(Session["fonction"].ToString() != "3")
+            {
+                T_Depense newDep = new T_Depense();
+                newDep.montant = decimal.Parse(tbx_montant.Text);
+                newDep.descript = tbx_description.Text;
+                newDep.ddate = DateTime.Parse(Ddate.Text);
+                newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
+                newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
+                newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
+                newDep.idEmp = int.Parse(Session["idEmp"].ToString());
+                newDep.aprobation = null;
+                BD_CoEco.AddDepense(newDep);
 
-        Response.Redirect("AjouterDepenses.aspx");
+                Response.Redirect("AjouterDepenses.aspx");
+            }
+            else
+            {
+                //Sauvegarde Admin
+                T_Depense newDep = new T_Depense();
+                newDep.idDepense = int.Parse(Request.QueryString["id"]);
+                newDep.montant = decimal.Parse(tbx_montant.Text);
+                newDep.descript = tbx_description.Text;
+                newDep.ddate = DateTime.Parse(Ddate.Text);
+                newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
+                newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
+                newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
+                newDep.idEmp = int.Parse(Session["idEmp"].ToString());
+                newDep.aprobation = null;
+                BD_CoEco.UpdateDepense(newDep);
+                Response.Redirect("DepenseAdmin.aspx");
+            }
+        }
+        else if(btn_ok.InnerText == "Modifier")
+        {
+            ddl_projet.Enabled = true;
+            ddL_categorie.Enabled = true;
+            ddl_typeDepense.Enabled = true;
+            tbx_description.Enabled = true;
+            tbx_montant.Enabled = true;
+            Ddate.Enabled = true;
+            btn_ok.InnerText = "Enregistrer";
+        }
+        
     }
 
     protected void btn_cancel_ServerClick(object sender, EventArgs e)

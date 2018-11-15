@@ -463,6 +463,22 @@ public class BD_CoEco
 
     public static T_Employe GetNewEmp()
     {
+        return null;
+    }
 
+    public static void UpdateDepense(T_Depense depense)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Depense depenseToMod = bd.T_Depense.Single(p => p.idDepense == depense.idDepense);
+
+        depenseToMod.idProjet = depense.idProjet;
+        depenseToMod.idCategorie = depense.idCategorie;
+        depenseToMod.idType = depense.idDepense;
+        depenseToMod.descript = depense.descript;
+        depenseToMod.montant = depense.montant;
+        depenseToMod.ddate = depense.ddate;
+
+        bd.SubmitChanges();
+        bd.Dispose();
     }
 }
