@@ -36,7 +36,7 @@
     </div>
     <div>
         <button runat="server" id="btn_ok" class="btn btn-success" onserverclick="btn_ok_ServerClick">Enregistrer</button>
-        <button runat="server" id="btn_cancel" class="btn btn-danger">Annuler</button>
+        <button runat="server" id="btn_cancel" class="btn btn-danger" onserverclick="btn_cancel_ServerClick">Annuler</button>
     </div>
 
 </asp:Content>

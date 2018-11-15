@@ -62,6 +62,7 @@ CREATE TABLE T_Employe(
 	nom VARCHAR(30) NOT NULL,
 	prenom VARCHAR(30) NOT NULL,
 	courriel VARCHAR(50),
+	loginName VARCHAR(30),
 	mdp VARCHAR(30),
 	/*Foreign key*/
 	idStatus INT DEFAULT 1 NOT NULL,

@@ -16,15 +16,18 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     List<T_CategoriePro> ListeCategorie;
     DateTime date;
     int idCat;
+    string urlParam;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            
+            lb_erreur.Text += "PAS un postback";
         }
         else
         {
+            lb_erreur.Text += "EST un postback";
+
             CoEco_BDDataContext BD = new CoEco_BDDataContext();
 
 
@@ -34,9 +37,17 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             listeFeuilleDeTemps = BD_CoEco.GetListeFeuilleDeTemps();
 
             BD.Dispose();
+
+            urlParam = Request.QueryString["id"];
+
+            if (urlParam != null)
+            {
+                modifier(int.Parse(urlParam));
+            }
+
         }
 
-        tr_ajout.Visible = false;
+        //tr_ajout.Visible = false;
     }
 
 
@@ -127,10 +138,10 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         TableRow tr = new TableRow();
         TableCell tc1 = new TableCell();
         DropDownList ddl_Projet = new DropDownList();
-        ddl_Projet.CssClass = "ddl_projet";
+        ddl_Projet.CssClass = "col-sm-8";
 
         DropDownList ddl_Categorie = new DropDownList();
-        ddl_Categorie.CssClass = "ddl_categorie";
+        ddl_Categorie.CssClass ="col-sm-8";
 
         foreach (T_CategoriePro categorie in ListeCategorie)
         {
@@ -158,13 +169,14 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         tc1.Controls.Add(ddl_Categorie);
 
         TableCell tc2 = new TableCell();
+        tc2.BackColor = System.Drawing.Color.LightGray;
         TextBox tbDim = new TextBox();
         //tbDim.ID = "tbDim";
         if (p_fdt.dimanche != null)
         {
             tbDim.Text = p_fdt.dimanche.ToString();
         }
-        tbDim.CssClass = "tbx_h";
+        tbDim.CssClass = "col-sm-7";
         tc2.Controls.Add(tbDim);
         tc2.Controls.Add(ajoutLabel());
         TableCell tc3 = new TableCell();
@@ -174,7 +186,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             tbLun.Text = p_fdt.lundi.ToString();
         }
         //tbLun.ID = "tbLun";
-        tbLun.CssClass = "tbx_h";
+        tbLun.CssClass = "col-sm-7"; ;
         tc3.Controls.Add(tbLun);
         tc3.Controls.Add(ajoutLabel());
         TableCell tc4 = new TableCell();
@@ -184,7 +196,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             tbMar.Text = p_fdt.mardi.ToString();
         }
         //tbMar.ID = "tbMar";
-        tbMar.CssClass = "tbx_h";
+        tbMar.CssClass = "col-sm-7"; ;
         tc4.Controls.Add(tbMar);
         tc4.Controls.Add(ajoutLabel());
         TableCell tc5 = new TableCell();
@@ -194,7 +206,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             tbMer.Text = p_fdt.mercredi.ToString();
         }
         //tbMer.ID = "tbMer";
-        tbMer.CssClass = "tbx_h";
+        tbMer.CssClass = "col-sm-7"; ;
         tc5.Controls.Add(tbMer);
         tc5.Controls.Add(ajoutLabel());
         TableCell tc6 = new TableCell();
@@ -204,7 +216,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             tbJeu.Text = p_fdt.jeudi.ToString();
         }
         //tbJeu.ID = "tbJeu";
-        tbJeu.CssClass = "tbx_h";
+        tbJeu.CssClass = "col-sm-7"; ;
         tc6.Controls.Add(tbJeu);
         tc6.Controls.Add(ajoutLabel());
         TableCell tc7 = new TableCell();
@@ -214,17 +226,18 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             tbVen.Text = p_fdt.vendredi.ToString();
         }
         //tbVen.ID = "tbVen";
-        tbVen.CssClass = "tbx_h";
+        tbVen.CssClass = "col-sm-7"; ;
         tc7.Controls.Add(tbVen);
         tc7.Controls.Add(ajoutLabel());
         TableCell tc8 = new TableCell();
+        tc8.BackColor = System.Drawing.Color.LightGray;
         TextBox tbSam = new TextBox();
         if (p_fdt.samedi != null)
         {
             tbSam.Text = p_fdt.samedi.ToString();
         }
         //tbSam.ID = "tbSam";
-        tbSam.CssClass = "tbx_h";
+        tbSam.CssClass = "col-sm-7";
         tc8.Controls.Add(tbSam);
         tc8.Controls.Add(ajoutLabel());
         TableCell tc9 = new TableCell();
@@ -237,6 +250,12 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         tbCommmentaire.TextMode = TextBoxMode.MultiLine;
         tc9.Controls.Add(tbCommmentaire);
 
+        TableCell tc10 = new TableCell();
+        Button bt_modif = new Button();
+        bt_modif.Text = "Modifier";
+        bt_modif.PostBackUrl = "~/FeuilleDeTemps.aspx?id=" + p_fdt.idFeuilleDeTemps.ToString();
+        //?id = " + employe.idEmploye.ToString();
+        tc10.Controls.Add(bt_modif);
 
         tr.Cells.Add(tc1);
         tr.Cells.Add(tc2);
@@ -247,6 +266,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         tr.Cells.Add(tc7);
         tr.Cells.Add(tc8);
         tr.Cells.Add(tc9);
+        tr.Cells.Add(tc10);
         t_feuilleTemps.Rows.Add(tr);
     }
     Label ajoutLabel()
@@ -355,13 +375,63 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         {
             lb_erreur.Text += "Aucune date sélectionnée";
         }
+        clearTextBox();
     }
 
     protected void btn_annuler_Click(object sender, EventArgs e)
     {
         tr_ajout.Visible = false;
         btn_confirmer.Visible = false;
+        btn_confirmerModif.Visible = false;
         btn_annuler.Visible = false;
         btn_ajouter.Visible = true;
+        clearTextBox();
+    }
+
+    void modifier(int p_id)
+    {
+        tr_ajout.Visible = true;
+        btn_confirmerModif.Visible = true;
+        btn_annuler.Visible = true;
+        btn_ajouter.Visible = false;
+
+        foreach (T_FeuilleDeTemps fdt in listeFeuilleDeTemps)
+        {
+            if (fdt.idFeuilleDeTemps == p_id)
+            {
+                tb_dimanche.Text = fdt.dimanche.ToString();
+                tb_lundi.Text = fdt.lundi.ToString();
+                tb_mardi.Text = fdt.mardi.ToString();
+                tb_mercredi.Text = fdt.mercredi.ToString();
+                tb_jeudi.Text = fdt.jeudi.ToString();
+                tb_vendredi.Text = fdt.vendredi.ToString();
+                tb_samedi.Text = fdt.samedi.ToString();
+                tb_commentaire.Text = fdt.note.ToString();
+
+                break;
+            }
+        }
+    }
+
+    protected void btn_confirmerModif_Click(object sender, EventArgs e)
+    {
+
+        clearTextBox();
+    }
+
+    void clearTextBox()
+    {
+        ddl_Categorie.Items.Clear();
+        ddl_Projet.Items.Clear();
+
+        tb_dimanche.Text = "";
+        tb_lundi.Text = "";
+        tb_mardi.Text = "";
+        tb_mercredi.Text = "";
+        tb_jeudi.Text = "";
+        tb_vendredi.Text = "";
+        tb_samedi.Text = "";
+        tb_commentaire.Text = "";
+        tr_ajout.Visible = false;
     }
 }

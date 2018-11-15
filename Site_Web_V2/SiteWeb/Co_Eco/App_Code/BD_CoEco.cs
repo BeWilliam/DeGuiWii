@@ -282,6 +282,29 @@ public class BD_CoEco
         BD.Dispose();
     }
 
+    public static void UpdateFeuilleDeTemps(T_FeuilleDeTemps p_fdt)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+
+        T_FeuilleDeTemps newFdt = BD.T_FeuilleDeTemps.Single(p => p.idFeuilleDeTemps == p_fdt.idFeuilleDeTemps);
+
+        newFdt.idFeuilleDeTemps = p_fdt.idFeuilleDeTemps;
+        newFdt.idEmp = p_fdt.idEmp;
+        newFdt.idCategorie = p_fdt.idCategorie;
+        newFdt.dimanche = p_fdt.dimanche;
+        newFdt.lundi = p_fdt.lundi;
+        newFdt.mardi = p_fdt.mardi;
+        newFdt.mercredi = p_fdt.mercredi;
+        newFdt.jeudi = p_fdt.jeudi;
+        newFdt.vendredi = p_fdt.vendredi;
+        newFdt.samedi = p_fdt.samedi;
+        newFdt.note = p_fdt.note;
+
+        BD.SubmitChanges();
+        BD.Dispose();
+    }
+
+
     public static void CreateNewCategorie(T_CategoriePro p_categorie)
     {
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
@@ -418,6 +441,23 @@ public class BD_CoEco
         T_Depense t = bd.T_Depense.Single(f => f.idDepense == id);
         bd.Dispose();
         return t;
+    }
 
+    public static List<T_Projet> GetProjectByEmp(T_Employe emp)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+
+        List<T_Projet> listeProjet = new List<T_Projet>();
+        List<T_EmployeProjet> listeEmpProjet = bd.T_EmployeProjet.ToList();
+
+        foreach (T_EmployeProjet employeProjet in listeEmpProjet)
+        {
+            if(employeProjet.idEmp == emp.idEmploye)
+            {
+                listeProjet.Add(GetProByID(employeProjet.idPro));
+            }
+        }
+
+        return listeProjet;
     }
 }
