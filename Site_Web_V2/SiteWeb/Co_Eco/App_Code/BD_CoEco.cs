@@ -393,4 +393,13 @@ public class BD_CoEco
         bd.SubmitChanges();
         bd.Dispose();
     }
+
+    public static T_Depense GetDepenseById(int id)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Depense t = bd.T_Depense.Single(f => f.idDepense == id);
+        bd.Dispose();
+        return t;
+
+    }
 }

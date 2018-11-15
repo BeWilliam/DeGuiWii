@@ -28,7 +28,11 @@
     </div>
     <div>
         <label>Date</label>
-        <input id="Ddate" type="date" name="dateDebut" onchange="sessionStorage.Dob=this.value" runat="server"/>
+        <asp:TextBox runat="server" TextMode="Date" ID="Ddate"/>
+    </div>
+    <div>
+        <label>Employé</label>
+        <asp:DropDownList runat="server" ID="ddl_employe" Enabled="false"/>
     </div>
     <div>
         <button runat="server" id="btn_ok" class="btn btn-success" onserverclick="btn_ok_ServerClick">Enregistrer</button>
