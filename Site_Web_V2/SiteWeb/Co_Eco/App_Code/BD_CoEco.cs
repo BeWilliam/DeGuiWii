@@ -460,4 +460,9 @@ public class BD_CoEco
 
         return listeProjet;
     }
+
+    public static T_Employe GetNewEmp()
+    {
+
+    }
 }
