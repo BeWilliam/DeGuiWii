@@ -50,7 +50,7 @@ public partial class Depenses : System.Web.UI.Page
     private void loadDllProjet()
     {
         ddl_projet.Items.Clear();
-        List<T_Projet> listeProjet = BD_CoEco.GetListeProjet(true);
+        List<T_Projet> listeProjet = BD_CoEco.GetProjectByEmp(BD_CoEco.GetEmpByID(int.Parse(Session["idEmp"].ToString())));
         listeProjet = listeProjet.OrderBy(o => o.nom).ToList();
         foreach (T_Projet projet in listeProjet)
         {
@@ -60,12 +60,16 @@ public partial class Depenses : System.Web.UI.Page
     private void loadDdlCat()
     {
         ddL_categorie.Items.Clear();
-        List<T_CategoriePro> listeCategorie = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(ddl_projet.SelectedValue)));
-        listeCategorie = listeCategorie.OrderBy(o => o.descript).ToList();
-        foreach (T_CategoriePro categoriePro in listeCategorie)
+        if(ddl_projet.SelectedValue != null && ddl_projet.SelectedIndex != -1)
         {
-            ddL_categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
+            List<T_CategoriePro> listeCategorie = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(ddl_projet.SelectedValue)));
+            listeCategorie = listeCategorie.OrderBy(o => o.descript).ToList();
+            foreach (T_CategoriePro categoriePro in listeCategorie)
+            {
+                ddL_categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
+            }
         }
+        
     }
 
     private void loadTypeDepense()

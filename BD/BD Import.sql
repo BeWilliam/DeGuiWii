@@ -367,3 +367,6 @@ INSERT INTO T_CategoriePro(idCategorie, idProjet, descript, idStatusCat) VALUES
 (409,  20,  'FCM - TI', 1)
 
 --Insertion de QUELQUES feuilles de temps
+UPDATE T_Employe
+SET loginName = CONCAT(LOWER(prenom), '.', LOWER(nom))
+WHERE prenom <> 'admin'

@@ -23,7 +23,7 @@
         <asp:TextBox ID="tbx_username" runat="server" CssClass="form-control"></asp:TextBox>
 
         <asp:Label ID="mdp" runat="server" Text="Mot de passe"></asp:Label>
-        <asp:TextBox ID="tbx_mdp" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="tbx_mdp" type="password" runat="server" CssClass="form-control"></asp:TextBox>
         <div class="checkbox mb-3">
 
         </div>
