@@ -99,6 +99,7 @@ public partial class AjouterEmploye : System.Web.UI.Page
         newEmp.mdp = tbx_mdp.Text;
         newEmp.idStatus = 1;
         newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
+        newEmp.loginName = tbx_pseudo.Text;
 
         BD_CoEco.CreateNewEmploye(newEmp);
 
@@ -176,7 +177,8 @@ public partial class AjouterEmploye : System.Web.UI.Page
         newEmp.courriel = tbx_courriel.Text;
         newEmp.mdp = tbx_mdp.Text;
         newEmp.idStatus = int.Parse(ddl_statut.SelectedValue);
-        newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);       
+        newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
+        newEmp.loginName = tbx_pseudo.Text;
 
         BD_CoEco.UpdateEmploye(newEmp);
 

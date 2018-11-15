@@ -37,6 +37,12 @@
             <div class="valid-tooltip">
             </div>
         </div>
+        <div class="col-md-3">
+            <label for="validationTooltip01">Nom de connexion</label>
+            <asp:TextBox ID="tbx_pseudo" runat="server" CssClass="form-control"></asp:TextBox>
+            <div class="valid-tooltip">
+            </div>
+        </div>
     </div>
 
     <%--Courriel--%>

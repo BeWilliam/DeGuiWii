@@ -15,7 +15,7 @@
 
     <form class="" runat="server">
 
-        <img class="mb-4" src="App_Themes/Connexion/Image/logo_v2.jpg" alt="" width="300" height="180" />
+        <img class="mb-4" src="App_Themes/Connexion/Image/Sprite.ico" alt="" width="300" height="180" />
 
         <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
 
