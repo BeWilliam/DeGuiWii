@@ -33,25 +33,8 @@
       <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="T_CategoriePro_T_Depense" Member="T_CategoriePro" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_CategoriePro" IsForeignKey="true" />
       <Association Name="T_TypeDepense_T_Depense" Member="T_TypeDepense" ThisKey="idType" OtherKey="idDepense" Type="T_TypeDepense" IsForeignKey="true" />
-      <Association Name="T_Employe_T_Depense" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
       <Association Name="T_Projet_T_Depense" Member="T_Projet" ThisKey="idProjet" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.T_Employe" Member="T_Employe">
-    <Type Name="T_Employe">
-      <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nom" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="prenom" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="courriel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="mdp" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="idStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idFonction" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="T_Employe_T_Depense" Member="T_Depense" ThisKey="idEmploye" OtherKey="idEmp" Type="T_Depense" />
-      <Association Name="T_Employe_T_EmployeProjet" Member="T_EmployeProjet" ThisKey="idEmploye" OtherKey="idEmp" Type="T_EmployeProjet" />
-      <Association Name="T_Employe_T_FeuilleDeTemps" Member="T_FeuilleDeTemps" ThisKey="idEmploye" OtherKey="idEmp" Type="T_FeuilleDeTemps" />
-      <Association Name="T_Employe_T_Kilometrage" Member="T_Kilometrage" ThisKey="idEmploye" OtherKey="idEmp" Type="T_Kilometrage" />
-      <Association Name="T_FonctionEmploye_T_Employe" Member="T_FonctionEmploye" ThisKey="idFonction" OtherKey="idFonctionEmp" Type="T_FonctionEmploye" IsForeignKey="true" />
-      <Association Name="T_StatusEmploye_T_Employe" Member="T_StatusEmploye" ThisKey="idStatus" OtherKey="idStatusEmp" Type="T_StatusEmploye" IsForeignKey="true" />
+      <Association Name="T_Employe_T_Depense" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.T_EmployeProjet" Member="T_EmployeProjet">
@@ -59,8 +42,8 @@
       <Column Name="idEmpPro" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idPro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="T_Employe_T_EmployeProjet" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
       <Association Name="T_Projet_T_EmployeProjet" Member="T_Projet" ThisKey="idPro" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
+      <Association Name="T_Employe_T_EmployeProjet" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.T_FeuilleDeTemps" Member="T_FeuilleDeTemps">
@@ -99,9 +82,9 @@
       <Column Name="idPro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idCat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="T_CategoriePro_T_Kilometrage" Member="T_CategoriePro" ThisKey="idCat" OtherKey="idCategorie" Type="T_CategoriePro" IsForeignKey="true" />
-      <Association Name="T_Employe_T_Kilometrage" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
       <Association Name="T_Projet_T_Kilometrage" Member="T_Projet" ThisKey="idPro" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
       <Association Name="T_TauxKilo_T_Kilometrage" Member="T_TauxKilo" ThisKey="idTaux" OtherKey="idTaux" Type="T_TauxKilo" IsForeignKey="true" />
+      <Association Name="T_Employe_T_Kilometrage" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.T_Projet" Member="T_Projet">
@@ -148,6 +131,24 @@
       <Column Name="taux" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="ddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="T_TauxKilo_T_Kilometrage" Member="T_Kilometrage" ThisKey="idTaux" OtherKey="idTaux" Type="T_Kilometrage" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_Employe" Member="T_Employe">
+    <Type Name="T_Employe">
+      <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nom" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="prenom" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="courriel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="loginName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="mdp" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="idStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idFonction" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="T_Employe_T_Depense" Member="T_Depense" ThisKey="idEmploye" OtherKey="idEmp" Type="T_Depense" />
+      <Association Name="T_Employe_T_EmployeProjet" Member="T_EmployeProjet" ThisKey="idEmploye" OtherKey="idEmp" Type="T_EmployeProjet" />
+      <Association Name="T_Employe_T_FeuilleDeTemps" Member="T_FeuilleDeTemps" ThisKey="idEmploye" OtherKey="idEmp" Type="T_FeuilleDeTemps" />
+      <Association Name="T_Employe_T_Kilometrage" Member="T_Kilometrage" ThisKey="idEmploye" OtherKey="idEmp" Type="T_Kilometrage" />
+      <Association Name="T_StatusEmploye_T_Employe" Member="T_StatusEmploye" ThisKey="idStatus" OtherKey="idStatusEmp" Type="T_StatusEmploye" IsForeignKey="true" />
+      <Association Name="T_FonctionEmploye_T_Employe" Member="T_FonctionEmploye" ThisKey="idFonction" OtherKey="idFonctionEmp" Type="T_FonctionEmploye" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.PS_ChangerDateFinProjet" Method="PS_ChangerDateFinProjet">

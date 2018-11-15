@@ -22,19 +22,27 @@ public partial class Depenses : System.Web.UI.Page
             {
                 T_Depense depense = BD_CoEco.GetDepenseById(int.Parse(id));
                 ddl_projet.SelectedValue = depense.idProjet.ToString();
+                ddl_projet.Enabled = false;
                 ddL_categorie.SelectedValue = depense.idCategorie.ToString();
+                ddL_categorie.Enabled = false;
                 ddl_typeDepense.SelectedValue = depense.idType.ToString();
+                ddl_typeDepense.Enabled = false;    
                 tbx_description.Text = depense.descript;
+                tbx_description.Enabled = false;
                 tbx_montant.Text = depense.montant.ToString();
+                tbx_montant.Enabled = false;
                 Ddate.Text = string.Format("{0:yyyy-MM-dd}", depense.ddate);
+                Ddate.Enabled = false;
+                ddl_employe.SelectedValue = depense.idEmp.ToString();
             }
             else
             {
                 //on suppose que c'est un employé qui est connecté
-                if(Session["idEmp"].ToString() != null) //On vérifie quand même
-                {
+                string idEmp = Session["idEmp"].ToString();
+                //if (idEmp != null) //On vérifie quand même
+                //{
                     ddl_employe.SelectedValue = Session["idEmp"].ToString();
-                }
+                //}
             }
         }
     }
@@ -104,5 +112,19 @@ public partial class Depenses : System.Web.UI.Page
         BD_CoEco.AddDepense(newDep);
 
         Response.Redirect("AjouterDepenses.aspx");
+    }
+
+    protected void btn_cancel_ServerClick(object sender, EventArgs e)
+    {
+        string id = Request.QueryString["id"];
+        if (id != null)
+        {
+            //On est donc en admin
+            Response.Redirect("DepenseAdmin.aspx");
+        }
+        else
+        {
+            //Usager régulier
+        }
     }
 }

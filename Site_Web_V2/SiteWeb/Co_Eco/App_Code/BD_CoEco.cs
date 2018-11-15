@@ -441,6 +441,23 @@ public class BD_CoEco
         T_Depense t = bd.T_Depense.Single(f => f.idDepense == id);
         bd.Dispose();
         return t;
+    }
 
+    public static List<T_Projet> GetProjectByEmp(T_Employe emp)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+
+        List<T_Projet> listeProjet = new List<T_Projet>();
+        List<T_EmployeProjet> listeEmpProjet = bd.T_EmployeProjet.ToList();
+
+        foreach (T_EmployeProjet employeProjet in listeEmpProjet)
+        {
+            if(employeProjet.idEmp == emp.idEmploye)
+            {
+                listeProjet.Add(GetProByID(employeProjet.idPro));
+            }
+        }
+
+        return listeProjet;
     }
 }
