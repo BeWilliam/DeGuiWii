@@ -15,7 +15,27 @@ public partial class Depenses : System.Web.UI.Page
             loadDllProjet();
             loadDdlCat();
             loadTypeDepense();
-            //Ddate.Value = DateTime.Now.ToString();
+            loadEmploye();
+
+            string id = Request.QueryString["id"];
+            if (id != null)
+            {
+                T_Depense depense = BD_CoEco.GetDepenseById(int.Parse(id));
+                ddl_projet.SelectedValue = depense.idProjet.ToString();
+                ddL_categorie.SelectedValue = depense.idCategorie.ToString();
+                ddl_typeDepense.SelectedValue = depense.idType.ToString();
+                tbx_description.Text = depense.descript;
+                tbx_montant.Text = depense.montant.ToString();
+                Ddate.Text = string.Format("{0:yyyy-MM-dd}", depense.ddate);
+            }
+            else
+            {
+                //on suppose que c'est un employé qui est connecté
+                if(Session["idEmp"].ToString() != null) //On vérifie quand même
+                {
+                    ddl_employe.SelectedValue = Session["idEmp"].ToString();
+                }
+            }
         }
     }
     
@@ -51,6 +71,17 @@ public partial class Depenses : System.Web.UI.Page
         }
     }
 
+    private void loadEmploye()
+    {
+        ddl_employe.Items.Clear();
+        List<T_Employe> employes = BD_CoEco.GetListeEmploye();
+        employes = employes.OrderBy(o => o.prenom).ThenBy(o => o.nom).ToList();
+        foreach (T_Employe employe in employes)
+        {
+            ddl_employe.Items.Add(new ListItem(employe.prenom + " " + employe.nom, employe.idEmploye.ToString()));
+        }
+    }
+
 
     protected void ddl_projet_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -64,12 +95,12 @@ public partial class Depenses : System.Web.UI.Page
         T_Depense newDep = new T_Depense();
         newDep.montant = decimal.Parse(tbx_montant.Text);
         newDep.descript = tbx_description.Text;
-        newDep.ddate = DateTime.Parse(Ddate.Value);
+        newDep.ddate = DateTime.Parse(Ddate.Text);
         newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
         newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
         newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
         newDep.idEmp = int.Parse(Session["idEmp"].ToString());
-        newDep.aprobation = false;
+        newDep.aprobation = null;
         BD_CoEco.AddDepense(newDep);
 
         Response.Redirect("AjouterDepenses.aspx");
