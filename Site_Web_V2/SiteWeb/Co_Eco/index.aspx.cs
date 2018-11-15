@@ -23,7 +23,7 @@ public partial class Connexion : System.Web.UI.Page
             bool trouve = false;
             while (!trouve && i < listeEmp.Count) //Peut planter si 0 employé
             {
-                if (listeEmp[i].prenom == tbx_username.Text)
+                if (listeEmp[i].loginName == tbx_username.Text)
                 {
                     trouve = true;
                 }
@@ -52,7 +52,7 @@ public partial class Connexion : System.Web.UI.Page
 
     private void Connect(T_Employe employe)
     {
-        Session["username"] = employe.nom;
+        Session["username"] = employe.loginName;
         Session["password"] = employe.mdp;
         Session["fonction"] = employe.idFonction;
         Session["idEmp"] = employe.idEmploye;
