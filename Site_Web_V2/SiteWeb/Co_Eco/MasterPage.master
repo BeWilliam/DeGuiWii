@@ -43,6 +43,11 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <div runat="server" id="div_FeuilleDeTempsADM">
+                            <a class="nav-link" id="text_nav8" href="FeuilleDeTempsADM.aspx">Feuilles de temps</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
                         <div runat="server" id="div_projet">
                             <a class="nav-link" id="text_nav1" href="Projet.aspx">Projets</a>
                         </div>
