@@ -32,12 +32,13 @@
       </asp:TableRow>
       <asp:TableRow ID="tr_ajout"  Visible = "false">
           <asp:TableCell>
-              <asp:DropDownList ID="ddl_Projet" runat="server" CssClass="col-md-12"></asp:DropDownList>
+              <asp:DropDownList ID="ddl_Projet" runat="server" CssClass="col-md-12" OnSelectedIndexChanged="ddl_Projet_SelectedIndexChanged"></asp:DropDownList>
               <asp:DropDownList ID="ddl_Categorie" runat="server" CssClass="col-md-12"></asp:DropDownList>
 
           </asp:TableCell>
           <asp:TableCell>
               <asp:TextBox ID="tb_dimanche" runat="server" MaxLength="4"  CssClass="col-sm-5"></asp:TextBox>
+              
               <asp:Label ID="Label1" runat="server" Text="H"></asp:Label>
           </asp:TableCell>
           <asp:TableCell>
@@ -71,5 +72,4 @@
       </asp:TableRow>
 
     </asp:table>
-    <asp:Button ID="Button1" runat="server" Text="Button"/>
     </asp:Content>
