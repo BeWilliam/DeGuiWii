@@ -26,9 +26,9 @@ INSERT INTO T_Kilometrage(idEmp, idPro, idCat, idTaux, nbKilo, commentaire) VALU
 INSERT INTO T_Kilometrage(idEmp, idPro, idCat, idTaux, nbKilo, commentaire) VALUES (3,1,1,2,50,'SMB-QC')
 
 INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,1,2.5,2.5,2.5,2.5,2.5,2.5,2.5, 'Débugage', GETDATE())
-INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,1,5,5,5,5,5,5,5, 'Débugage', GETDATE())
-INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,1,2,2,2,2,2,2,2, 'Débugage', GETDATE())
-INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,1,2,2,5,5,5,2.5,2.5, 'Débugage', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,2,5,5,5,5,5,5,5, 'Débugage', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,3,2,2,2,2,2,2,2, 'Débugage', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,4,2,2,5,5,5,2.5,2.5, 'Débugage', GETDATE())
 
 INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES (1,2)
 INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES (2,2)
