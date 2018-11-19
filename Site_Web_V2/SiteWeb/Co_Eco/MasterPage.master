@@ -64,7 +64,7 @@
                     </li>
                     <li class="nav-item">
                         <div id="div_depense" runat="server">
-                            <a class="nav-link" id="text_nav4" href="AjouterDepenses.aspx">Dépenses</a>
+                            <a class="nav-link" id="text_nav4" href="DepenseEMP.aspx">Dépenses</a>
                         </div>
                     </li>
                     <li class="nav-item">

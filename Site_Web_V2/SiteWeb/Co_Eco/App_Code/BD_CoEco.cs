@@ -70,6 +70,32 @@ public class BD_CoEco
         return rtnList;
     }
 
+
+    /// <summary>
+    /// Méthode permettant obtenir la liste des dépenses. Retourne tous les dépenses par défaut
+    /// </summary>
+    /// <returns></returns>
+    public static List<T_Depense> GetListeDepenseEmp(int idEmploye)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_Depense> tableDepense = BD.T_Depense;
+        List<T_Depense> listeDepense = tableDepense.ToList();
+        List<T_Depense> rtnList = listeDepense;
+
+            rtnList = new List<T_Depense>();
+            foreach (T_Depense dep in listeDepense)
+            {
+                if (dep.idEmp == idEmploye)
+                {
+                    rtnList.Add(dep);
+                }
+            
+        }
+
+        BD.Dispose();
+        return rtnList;
+    }
+
     /// <summary>
     /// Méthode permettant d'obtenir les catégories pour un projet en particulié
     /// </summary>

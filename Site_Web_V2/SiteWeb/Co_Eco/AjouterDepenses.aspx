@@ -4,9 +4,17 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" runat="Server">
 
-    <asp:button runat="server" type="button" id="btn_ok" class="btn btn-success" OnClick="btn_ok_ServerClick" Style="margin-top: 10px; width: 100%; color: #000000; margin-left:5px;" Text="Ajouter"></asp:button>
+    <asp:Button runat="server" type="button" ID="btn_ok" class="btn btn-success" OnClick="btn_ok_ServerClick" Style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" Text="Ajouter"></asp:Button>
 
-    <asp:button runat="server" type="button" id="btn_cancel" class="btn btn-danger" OnClick="btn_cancel_ServerClick" Style="margin-top: 10px; width: 100%; color: #000000; margin-left:5px;" Text="Annuler"></asp:button>
+    <asp:Button runat="server" type="button" ID="btn_apply" class="btn btn-success" OnClick="btn_apply_Click" Style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" Text="Appliquer"></asp:Button>
+
+    <asp:Button runat="server" type="button" ID="btn_modifier" class="btn btn-success" OnClick="btn_modifier_Click" Style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" Text="Modifier"></asp:Button>
+
+    <asp:Button runat="server" type="button" ID="btn_cancel" class="btn btn-danger" OnClick="btn_cancel_ServerClick" Style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" Text="Annuler"></asp:Button>
+
+    <asp:Button runat="server" type="button" ID="btn_retour" class="btn btn-danger" OnClick="btn_retour_Click" Style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" Text="Retour"></asp:Button>
+
+
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">

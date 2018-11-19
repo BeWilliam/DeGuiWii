@@ -100,4 +100,9 @@ public partial class DepenseAdmin : System.Web.UI.Page
         tr.Cells.Add(tc_autorize);
         tableauDepense.Rows.Add(tr);
     }
+
+    protected void btn_ajouter_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AjouterDepenses.aspx");
+    }
 }
