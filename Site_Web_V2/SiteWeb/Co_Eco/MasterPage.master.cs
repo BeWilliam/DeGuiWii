@@ -18,6 +18,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             //Bureau
             div_Menu.Visible = true;
             div_FeuilleDeTemps.Visible = true;
+            div_FeuilleDeTempsADM.Visible = false;
             div_projet.Visible = true;
             div_Employe.Visible = false;
             div_categorie.Visible = false;
@@ -30,6 +31,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             //Terrain
             div_Menu.Visible = true;
             div_FeuilleDeTemps.Visible = true;
+            div_FeuilleDeTempsADM.Visible = false;
             div_projet.Visible = false;
             div_Employe.Visible = false;
             div_categorie.Visible = false;
@@ -41,7 +43,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             //Admin
             div_Menu.Visible = true;
-            div_FeuilleDeTemps.Visible = true;
+            div_FeuilleDeTemps.Visible = false;
+            div_FeuilleDeTempsADM.Visible = true;
             div_projet.Visible = true;
             div_Employe.Visible = true;
             div_categorie.Visible = true;
