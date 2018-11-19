@@ -36,7 +36,7 @@ public partial class Depenses : System.Web.UI.Page
                 Ddate.Enabled = false;
                 ddl_employe.SelectedValue = depense.idEmp.ToString();
 
-                btn_ok.InnerText = "Modifier";
+                btn_ok.Text = "Modifier";
             }
             else
             {
@@ -104,7 +104,7 @@ public partial class Depenses : System.Web.UI.Page
 
     protected void btn_ok_ServerClick(object sender, EventArgs e)
     {
-        if(btn_ok.InnerText == "Enregistrer")
+        if(btn_ok.Text == "Ajouter")
         {
             if(Session["fonction"].ToString() != "3")
             {
@@ -119,7 +119,7 @@ public partial class Depenses : System.Web.UI.Page
                 newDep.aprobation = null;
                 BD_CoEco.AddDepense(newDep);
 
-                Response.Redirect("AjouterDepenses.aspx");
+                Response.Redirect("Menu.aspx");
             }
             else
             {
@@ -135,10 +135,10 @@ public partial class Depenses : System.Web.UI.Page
                 newDep.idEmp = int.Parse(Session["idEmp"].ToString());
                 newDep.aprobation = null;
                 BD_CoEco.UpdateDepense(newDep);
-                Response.Redirect("DepenseAdmin.aspx");
+                Response.Redirect("Menu.aspx");
             }
         }
-        else if(btn_ok.InnerText == "Modifier")
+        else if(btn_ok.Text == "Modifier")
         {
             ddl_projet.Enabled = true;
             ddL_categorie.Enabled = true;
@@ -146,7 +146,7 @@ public partial class Depenses : System.Web.UI.Page
             tbx_description.Enabled = true;
             tbx_montant.Enabled = true;
             Ddate.Enabled = true;
-            btn_ok.InnerText = "Enregistrer";
+            btn_ok.Text = "Ajouter";
         }
         
     }
@@ -162,6 +162,7 @@ public partial class Depenses : System.Web.UI.Page
         else
         {
             //Usager régulier
+            Response.Redirect("Menu.aspx");
         }
     }
 }
