@@ -70,6 +70,37 @@ public class BD_CoEco
         return rtnList;
     }
 
+    /// <summary>
+    /// Méthode permettant obtenir la liste des nouveaux projets.
+    /// </summary>
+    /// <param name="p_Inactif">Si ce flag est mit à True, retourne seulement les projets actifs</param>
+    /// <returns></returns>
+    public static List<T_Projet> GetListeNewProjet()
+    {
+        DateTime today = DateTime.Now;
+
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_Projet> tableProjet = BD.T_Projet;
+
+        List<T_Projet> listeProjet = tableProjet.ToList();
+        List<T_Projet> rtnList = listeProjet;
+    
+        rtnList = new List<T_Projet>();
+
+        foreach (T_Projet pro in listeProjet)
+        {
+            if (pro.idStatus == 1)
+            {
+                if (pro.dateDebut >= today.AddDays(-30))
+                {
+                    rtnList.Add(pro);
+                }  
+            }
+        }
+        BD.Dispose();
+        return rtnList;
+    }
+
 
     /// <summary>
     /// Méthode permettant obtenir la liste des dépenses. Retourne tous les dépenses par défaut
@@ -204,6 +235,36 @@ public class BD_CoEco
         else
         {
             throw new Exception("Id correspondant à aucun employé existant");
+        }
+
+    }
+
+    /// <summary>
+    /// Méthode permettant d'obtenir une catégoeie selon l'ID fourni. Throw une exception si pas trouvé
+    /// </summary>
+    /// <param name="id">L'id de la catégorie</param>
+    /// <returns></returns>
+    public static T_CategoriePro GeCatByID(int id)
+    {
+        List<T_CategoriePro> listeCat = GetListeCategorie();
+
+        bool trouve = false;
+        int i = -1;
+        while (i < listeCat.Count - 1 && !trouve)
+        {
+            i++;
+            if (listeCat[i].idCategorie == id)
+            {
+                trouve = true;
+            }
+        }
+        if (trouve)
+        {
+            return listeCat[i];
+        }
+        else
+        {
+            throw new Exception("Id correspondant à aucune catégorie existante");
         }
 
     }
@@ -499,10 +560,12 @@ public class BD_CoEco
 
         depenseToMod.idProjet = depense.idProjet;
         depenseToMod.idCategorie = depense.idCategorie;
-        depenseToMod.idType = depense.idDepense;
+        depenseToMod.idType = depense.idType;
         depenseToMod.descript = depense.descript;
         depenseToMod.montant = depense.montant;
         depenseToMod.ddate = depense.ddate;
+        depenseToMod.idEmp = depenseToMod.idEmp;
+        depenseToMod.aprobation = depense.aprobation;
 
         bd.SubmitChanges();
         bd.Dispose();
