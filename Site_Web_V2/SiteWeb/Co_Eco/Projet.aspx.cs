@@ -80,7 +80,7 @@ public partial class Projet : System.Web.UI.Page
         for (int i = 0; i < Tableau_Projets.Rows.Count; i++) //Lignes
         {
             tableau.AddCell(Tableau_Projets.Rows[i].Cells[0].Text); //ID
-            tableau.AddCell(Tableau_Projets.Rows[i].Cells[1].Text); //NOM
+            tableau.AddCell(((HyperLink)Tableau_Projets.Rows[i].Cells[1].Controls[0]).Text); //NOM
             tableau.AddCell(Tableau_Projets.Rows[i].Cells[3].Text); //STATUS
         }
 
