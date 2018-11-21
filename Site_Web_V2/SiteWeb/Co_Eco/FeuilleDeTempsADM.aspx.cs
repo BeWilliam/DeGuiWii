@@ -11,9 +11,11 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
+        if (!IsPostBack)
         {
             //First load
+            tbx_Semaine.Text = DateTime.Today.Year + "-W" + getWeek(DateTime.Today);
+            load();
         }
 
     }
@@ -33,29 +35,33 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
 
     protected void tbx_Semaine_TextChanged(object sender, EventArgs e)
     {
+        load();
+    }
+
+    private void load()
+    {
         string t = tbx_Semaine.Text;
 
         List<T_FeuilleDeTemps> toutFdt = BD_CoEco.GetListeFeuilleDeTemps();
         List<T_FeuilleDeTemps> semaineFdt = new List<T_FeuilleDeTemps>();
 
         int annee = int.Parse(t.Split('-')[0]);
-        int semaine = int.Parse(t.Split('-')[1].Remove(0,1));
+        int semaine = int.Parse(t.Split('-')[1].Remove(0, 1));
 
         foreach (T_FeuilleDeTemps fdt in toutFdt)
         {
             int fdtNumSem = getWeek((DateTime)fdt.semaine);
             int fdtAnnee = ((DateTime)fdt.semaine).Year;
 
-            if(fdtAnnee == annee && fdtNumSem == semaine)
+            if (fdtAnnee == annee && fdtNumSem == semaine)
             {
                 //Il faut donc la montrer
                 semaineFdt.Add(fdt);
-                
+
             }
         }
         semaineFdt = semaineFdt.OrderBy(o => BD_CoEco.GetEmpByID(o.idEmp).prenom).ThenBy(o => BD_CoEco.GetEmpByID(o.idEmp).nom).ToList();
         addTable(semaineFdt);
-
     }
 
     private void addTable(List<T_FeuilleDeTemps> fdt)
@@ -76,7 +82,11 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
             TableRow tr = new TableRow();
             TableCell tc_nom = new TableCell();
             T_Employe emp = BD_CoEco.GetEmpByID(fdt[i].idEmp);
-            tc_nom.Text = emp.prenom + " " + emp.nom;
+
+            HyperLink hl = new HyperLink();
+            hl.Text = emp.prenom + " " + emp.nom;
+            hl.NavigateUrl = "ApprouveFDT.aspx?idFTD=" + fdt[i].idFeuilleDeTemps;
+            tc_nom.Controls.Add(hl);
             tr.Cells.Add(tc_nom);
             TableCell tc_Confirm = new TableCell();
             CheckBox cbx_confirm = new CheckBox();
@@ -86,14 +96,23 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
             tr.Cells.Add(tc_Confirm);
             tab_emp.Rows.Add(tr);
         }
-        
+
     }
 
-    protected void btn_allCheck_Click(object sender, EventArgs e)
+
+    protected void btn_App_Click(object sender, EventArgs e)
     {
-        foreach (TableRow tr in tab_emp.Rows)
-        {
-            ((CheckBox)tr.Cells[1].Controls[0]).Checked = true;
-        }
+        // System.Diagnostics.Debug.WriteLine(tab_emp.Rows[0].Cells[1].Controls[0]);
+        load();
     }
+
+    //[System.Web.Services.WebMethod]
+    //[System.Web.Script.Services.ScriptMethod()]
+    private static void enre()
+    {
+        System.Diagnostics.Debug.WriteLine("yay");
+
+
+    }
+
 }

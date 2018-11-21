@@ -4,13 +4,15 @@
     Feuille de temps
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
-    <asp:TextBox TextMode="Week" CssClass="form-control" runat="server" ID="tbx_Semaine" OnTextChanged="tbx_Semaine_TextChanged" AutoPostBack="true" />
-    <button ID="btn_allCheck" class="btn btn-success">Tout sélectionner</button>
+    <asp:TextBox TextMode="Week" CssClass="form-control" runat="server" ID="tbx_Semaine" OnTextChanged="tbx_Semaine_TextChanged" AutoPostBack="true" Style="width:100%;margin-left:5px; margin-top:5px;"/>
+    <input id="btn_allCheck" type="button" class="btn btn-success" value="Tout sélectionner"Style="width:100%;margin-left:5px; margin-top:5px;" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
     <asp:Table runat="server" ID="tab_emp" CssClass="table"/>
-    <asp:Button runat="server" Text="Appliquer" CssClass="btn btn-success"/>
+    <input id="btn_App_Click" type="button" class="btn btn-success" value="Appliquer" onclick="enr()"/>
+
+    
 
 
 </asp:Content>

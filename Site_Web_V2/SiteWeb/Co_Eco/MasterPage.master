@@ -96,7 +96,7 @@
         </div>
     </form>
 
-    <script src="Lib/jquery-3.2.1.js"></script>
+    <script src="Lib/jquery-3.3.1.js"></script>
     <script src="Lib/jquery-ui.js"></script>
     <script src="Js/Js1.js"></script>
     <script src="Js/Js2.js"></script>
