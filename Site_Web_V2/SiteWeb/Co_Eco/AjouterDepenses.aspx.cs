@@ -30,23 +30,26 @@ public partial class Depenses : System.Web.UI.Page
             }
 
             string id = Request.QueryString["id"];
+
             if (id != null && Session["fonction"].ToString() == "3")
             {
                 //C'est avec le compte admin que la page à été loader, mais on vérifie quand même
-                T_Depense depense = BD_CoEco.GetDepenseById(int.Parse(id));
-                ddl_projet.SelectedValue = depense.idProjet.ToString();
-                ddl_projet.Enabled = false;
-                ddL_categorie.SelectedValue = depense.idCategorie.ToString();
-                ddL_categorie.Enabled = false;
-                ddl_typeDepense.SelectedValue = depense.idType.ToString();
-                ddl_typeDepense.Enabled = false;
-                tbx_description.Text = depense.descript;
-                tbx_description.Enabled = false;
-                tbx_montant.Text = depense.montant.ToString();
-                tbx_montant.Enabled = false;
-                Ddate.Text = string.Format("{0:yyyy-MM-dd}", depense.ddate);
-                Ddate.Enabled = false;
-                ddl_employe.SelectedValue = depense.idEmp.ToString();
+                //T_Depense depense = BD_CoEco.GetDepenseById(int.Parse(id));
+                //ddl_projet.SelectedValue = depense.idProjet.ToString();
+                //ddl_projet.Enabled = false;
+                //ddL_categorie.SelectedValue = depense.idCategorie.ToString();
+                //ddL_categorie.Enabled = false;
+                //ddl_typeDepense.SelectedValue = depense.idType.ToString();
+                //ddl_typeDepense.Enabled = false;
+                //tbx_description.Text = depense.descript;
+                //tbx_description.Enabled = false;
+                //tbx_montant.Text = depense.montant.ToString();
+                //tbx_montant.Enabled = false;
+                //Ddate.Text = string.Format("{0:yyyy-MM-dd}", depense.ddate);
+                //Ddate.Enabled = false;
+                //ddl_employe.SelectedValue = depense.idEmp.ToString();
+
+                afficherDepense();
 
                 btn_modifier.Visible = true;
                 btn_ok.Visible = false;
@@ -83,23 +86,27 @@ public partial class Depenses : System.Web.UI.Page
 
     private void afficherDepense()
     {
+        ddl_projet.Enabled = false;
+        ddL_categorie.Enabled = false;
+        ddl_typeDepense.Enabled = false;
+        tbx_description.Enabled = false;
+        tbx_description.Enabled = false;
+        tbx_montant.Enabled = false;
+        Ddate.Enabled = false;
+
         string id = Request.QueryString["id"];
 
         T_Depense depense = BD_CoEco.GetDepenseById(int.Parse(id));
 
-         ddl_projet.SelectedValue = depense.idProjet.ToString();
-         ddl_projet.Enabled = false;
-         ddL_categorie.SelectedValue = depense.idCategorie.ToString();
-         ddL_categorie.Enabled = false;
-         ddl_typeDepense.SelectedValue = depense.idType.ToString();
-         ddl_typeDepense.Enabled = false;
-         tbx_description.Text = depense.descript;
-         tbx_description.Enabled = false;
-         tbx_montant.Text = depense.montant.ToString();
-         tbx_montant.Enabled = false;
-         Ddate.Text = string.Format("{0:yyyy-MM-dd}", depense.ddate);
-         Ddate.Enabled = false;
-         ddl_employe.SelectedValue = depense.idEmp.ToString();
+        ddl_projet.SelectedValue = depense.idProjet.ToString();
+
+        loadDdlCat();
+        ddL_categorie.SelectedValue = BD_CoEco.GeCatByID((int)depense.idCategorie).idCategorie.ToString();
+        ddl_typeDepense.SelectedValue = depense.idType.ToString();    
+        tbx_description.Text = depense.descript;     
+        tbx_montant.Text = depense.montant.ToString();      
+        Ddate.Text = string.Format("{0:yyyy-MM-dd}", depense.ddate);        
+        ddl_employe.SelectedValue = depense.idEmp.ToString();
     }
     
     private void loadDllProjet()
@@ -107,6 +114,7 @@ public partial class Depenses : System.Web.UI.Page
         ddl_projet.Items.Clear();
         List<T_Projet> listeProjet = BD_CoEco.GetProjectByEmp(BD_CoEco.GetEmpByID(int.Parse(Session["idEmp"].ToString())));
         listeProjet = listeProjet.OrderBy(o => o.nom).ToList();
+        ddl_projet.Items.Add(new ListItem("Choisir un projet", "-1"));
         foreach (T_Projet projet in listeProjet)
         {
             ddl_projet.Items.Add(new ListItem(projet.nom, projet.idProjet.ToString()));
@@ -153,7 +161,7 @@ public partial class Depenses : System.Web.UI.Page
     protected void ddl_projet_SelectedIndexChanged(object sender, EventArgs e)
     {
         loadDdlCat();
-        btn_apply.Visible = true;
+        btn_apply.Visible = false;
     }
 
 
@@ -165,33 +173,43 @@ public partial class Depenses : System.Web.UI.Page
         //{
             if(Session["fonction"].ToString() != "3")
             {
+            try
+            {
                 T_Depense newDep = new T_Depense();
                 newDep.montant = decimal.Parse(tbx_montant.Text);
                 newDep.descript = tbx_description.Text;
                 newDep.ddate = DateTime.Parse(Ddate.Text);
                 newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
                 newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
+
+                //plante ici
                 newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
+
                 newDep.idEmp = int.Parse(Session["idEmp"].ToString());
                 newDep.aprobation = null;
-                BD_CoEco.AddDepense(newDep);
 
-                Response.Redirect("Menu.aspx");
-            //}
-            //else //ajouter une dépense en tant qu'admin
-            //{
-                //T_Depense newDep = new T_Depense();
-                //newDep.montant = decimal.Parse(tbx_montant.Text);
-                //newDep.descript = tbx_description.Text;
-                //newDep.ddate = DateTime.Parse(Ddate.Text);
-                //newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
-                //newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
-                //newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
-                //newDep.idEmp = int.Parse(Session["idEmp"].ToString());
-                //newDep.aprobation = null;
-                //BD_CoEco.AddDepense(newDep);
-                //Response.Redirect("DepenseAdmin.aspx");
-            //}
+                BD_CoEco.AddDepense(newDep);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+             Response.Redirect("DepenseEMP.aspx");
+        }
+        else //ajouter une dépense en tant qu'admin
+        {
+            T_Depense newDep = new T_Depense();
+            newDep.montant = decimal.Parse(tbx_montant.Text);
+            newDep.descript = tbx_description.Text;
+            newDep.ddate = DateTime.Parse(Ddate.Text);
+            newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
+            newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
+            newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
+            newDep.idEmp = int.Parse(Session["idEmp"].ToString());
+            newDep.aprobation = null;
+            BD_CoEco.AddDepense(newDep);
+            Response.Redirect("DepenseAdmin.aspx");
         }
         //else if(btn_ok.Text == "Modifier")
         //{
@@ -246,6 +264,7 @@ public partial class Depenses : System.Web.UI.Page
     protected void btn_apply_Click(object sender, EventArgs e)
     {
         T_Depense newDep = new T_Depense();
+
         newDep.idDepense = int.Parse(Request.QueryString["id"]);
         newDep.montant = decimal.Parse(tbx_montant.Text);
         newDep.descript = tbx_description.Text;
@@ -255,6 +274,7 @@ public partial class Depenses : System.Web.UI.Page
         newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
         newDep.idEmp = int.Parse(Session["idEmp"].ToString());
         newDep.aprobation = null;
+
         BD_CoEco.UpdateDepense(newDep);
 
         if (Session["fonction"].ToString() != "3")

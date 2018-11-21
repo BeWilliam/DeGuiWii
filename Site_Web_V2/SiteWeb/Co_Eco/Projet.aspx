@@ -6,7 +6,8 @@
         <div class="form-row" style="margin: 0 auto">
             <div class="col">
                 <label for="validationTooltip01" style="text-align: center">Nom de Projet</label>
-                <input type="text" class="form-control" id="tbx_nom" name="tbx_nom" value="">
+                <%--<input type="text" class="form-control"  id="tbx_nom" name="tbx_nom" value="">--%>
+                <asp:TextBox CssClass="form-control" ID="tbx_nom" runat="server"/>
                 <div class="valid-tooltip">
                 </div>
             </div>
@@ -34,7 +35,8 @@
         <div class="form-row" style="margin: 0 auto">
             <div class="col">
                 <label for="validationTooltip01">Description</label>
-                <input type="text" class="form-control" id="tbx_descript" name="tbx_descript" value="">
+                <%--<input type="text" class="form-control" id="tbx_descript" name="tbx_descript" value="">--%>
+                <asp:TextBox CssClass="form-control" id="tbx_descript" runat="server" />
                 <div class="valid-tooltip">
                 </div>
             </div>

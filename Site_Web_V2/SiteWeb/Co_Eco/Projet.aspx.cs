@@ -24,10 +24,30 @@ public partial class Projet : System.Web.UI.Page
         {
             loadResponsable();
             loadStatut();
+        
+        string nom = Request.QueryString["nom"];
+        string idRep = Request.QueryString["idRep"];
+        string idStat = Request.QueryString["idStat"];
+        string descript = Request.QueryString["descript"];
+
+        if (nom != null)
+        {
+            tbx_nom.Text = nom;
         }
-
-        rech(); //Pour être sur d'être uniforme
-
+        if (idRep != null)
+        {
+            DDL_Responsable.SelectedValue = idRep;
+        }
+        if (idStat != null)
+        {
+            DDL_Status.SelectedValue = idStat;
+        }
+        if (descript != null)
+        {
+            tbx_descript.Text = descript;
+        }
+        rech();
+        }
     }
 
     protected void btn_addProject_Click(object sender, ImageClickEventArgs e)
@@ -80,7 +100,10 @@ public partial class Projet : System.Web.UI.Page
         for (int i = 0; i < Tableau_Projets.Rows.Count; i++) //Lignes
         {
             tableau.AddCell(Tableau_Projets.Rows[i].Cells[0].Text); //ID
-            tableau.AddCell(((HyperLink)Tableau_Projets.Rows[i].Cells[1].Controls[0]).Text); //NOM
+            if (i >= 1)
+                tableau.AddCell(((HyperLink)Tableau_Projets.Rows[i].Cells[1].Controls[0]).Text); //NOM
+            else
+                tableau.AddCell(Tableau_Projets.Rows[i].Cells[1].Text); //Nom(Titre)
             tableau.AddCell(Tableau_Projets.Rows[i].Cells[3].Text); //STATUS
         }
 
@@ -137,7 +160,21 @@ public partial class Projet : System.Web.UI.Page
 
     protected void btn_recherche_ServerClick(object sender, EventArgs e)
     {
-        rech();
+        string nom = "";
+        string idrep = "";
+        string idStat = "";
+        string descript = "";
+        if (tbx_nom.Text != "")
+        {
+            nom = "nom=" + tbx_nom.Text;
+        }
+        idrep = "idRep=" + DDL_Responsable.SelectedValue;
+        idStat = "idStat=" + DDL_Status.SelectedValue;
+        if (tbx_nom.Text != "")
+        {
+            descript = "descript=" + tbx_descript.Text;
+        }
+        Response.Redirect("Projet.aspx?" + nom + "&" + idrep + "&" + idStat + "&" + descript);
     }
 
     private void rech()
@@ -150,11 +187,11 @@ public partial class Projet : System.Web.UI.Page
 
         //Recherche sur le nom
 
-        if (String.Format("{0}", Request.Form["tbx_nom"]) != null && String.Format("{0}", Request.Form["tbx_nom"]) != "")
+        if (tbx_nom.Text != null && tbx_nom.Text != "")
         {
             for (int i = 0; i < tousLesProjets.Count; i++)
             {
-                if (tousLesProjets[i].nom.ToLower().Contains(String.Format("{0}", Request.Form["tbx_nom"]).ToLower()))
+                if (tousLesProjets[i].nom.ToLower().Contains(tbx_nom.Text.ToLower()))
                 {
                     rechercheA.Add(i);
                 }
@@ -211,13 +248,13 @@ public partial class Projet : System.Web.UI.Page
 
         //Recherche description
 
-        if (String.Format("{0}", Request.Form["tbx_descript"]) != null && String.Format("{0}", Request.Form["tbx_descript"]) != "")
+        if (tbx_descript.Text != null && tbx_descript.Text != "")
         {
             for (int i = 0; i < tousLesProjets.Count; i++)
             {
                 if (tousLesProjets[i].descript != null)
                 {
-                    if (tousLesProjets[i].descript.ToLower().Contains(String.Format("{0}", Request.Form["tbx_descript"]).ToLower()))
+                    if (tousLesProjets[i].descript.ToLower().Contains(tbx_descript.Text.ToLower()))
                     {
                         rechercheD.Add(i);
                     }
@@ -274,6 +311,8 @@ public partial class Projet : System.Web.UI.Page
         {
             showResult(projet.idProjet);
         }
+
+        
     }
 
     private void showResult(int id_Pro)
