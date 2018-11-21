@@ -2,6 +2,7 @@
     //Load à chaque refresh de page
 
 
+
     //Événement sur le clic du bouton "Tout sélectionner"
     $('#btn_allCheck').click(function () {
         var tab = document.getElementById('cph_contenu_tab_emp');
@@ -14,3 +15,7 @@
 
 });
 
+// Material Select Initialization
+$(document).ready(function () {
+    $('.mdb-select').materialSelect();
+});

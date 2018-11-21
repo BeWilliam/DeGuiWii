@@ -36,7 +36,7 @@
                         <div id="div_Menu" runat="server">
                             <a class="nav-link" href="Menu.aspx" id="text_nav6">Menu <span class="sr-only">(current)</span></a>
                         </div>
-                     </li>
+                    </li>
                     <li class="nav-item">
                         <div runat="server" id="div_FeuilleDeTemps">
                             <a class="nav-link" id="text_nav" href="FeuilleDeTemps.aspx">Feuilles de temps</a>
@@ -72,20 +72,20 @@
                             <a class="nav-link" id="text_nav7" href="DepenseAdmin.aspx">Dépenses</a>
                         </div>
                     </li>
-                    <li class="nav-item" >
+                    <li class="nav-item">
                         <div runat="server" id="div_Rapports">
                             <a class="nav-link" id="text_nav5" href="Rapports.aspx">Rapports</a>
                         </div>
                     </li>
                 </ul>
                 <!--<form class="form-inline my-2 my-lg-0">-->
-                    <button id="btn_Deco" runat="server" class="btn btn-dark my-2 my-sm-0" type="submit" onserverclick="btn_Deco_ServerClick">Déconnexion</button>
+                <button id="btn_Deco" runat="server" class="btn btn-dark my-2 my-sm-0" type="submit" onserverclick="btn_Deco_ServerClick">Déconnexion</button>
                 <!--</form>-->
             </div>
         </nav>
     </header>
     <form runat="server">
-        
+
         <div class="row">
             <div class="col-sm-2">
                 <asp:ContentPlaceHolder ID="cph_left" runat="server"></asp:ContentPlaceHolder>
@@ -102,10 +102,8 @@
     <script src="Js/Js2.js"></script>
     <script src="Js/Js3.js"></script>
     <script src="Js/main.js"></script>
-    
-    <%--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--%>
-    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>--%>
-    <%--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>--%>
+
+
 </body>
 
 </html>

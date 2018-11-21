@@ -23,6 +23,7 @@ public partial class AjouterProjet : System.Web.UI.Page
         {
             loadResponsable();
             loadStatut();
+            afficherEmpLst();
         }
 
         if (urlParam != null)
@@ -178,5 +179,103 @@ public partial class AjouterProjet : System.Web.UI.Page
 
         btn_apply.Visible = true;
         btn_apply.Enabled = true;
+    }
+
+    private void afficherEmpLst()
+    {
+        List<T_Employe> listeEmp = BD_CoEco.GetListeEmploye();
+        List<T_Employe> listeEmploye = new List<T_Employe>();
+
+        foreach (T_Employe employe in listeEmp)
+        {
+            if (employe.idFonction == 1) //Employé de bureau
+            {
+                listeEmploye.Add(employe);
+
+            }
+        }
+
+        listeEmploye = listeEmploye.OrderBy(o => o.prenom).ThenBy(o => o.prenom).ToList();
+        foreach (T_Employe emp in listeEmploye)
+        {
+            lst_employe.Items.Add(new ListItem(emp.prenom + " " + emp.nom, emp.idEmploye.ToString()));
+        }
+
+    }
+
+    private void ajouterEmp(int idRetirer)
+    {
+        List<T_Employe> listeEmp = BD_CoEco.GetListeEmploye();
+        List<T_Employe> listeEmploye = new List<T_Employe>();
+
+        foreach (T_Employe employe in listeEmp)
+        {
+            if (employe.idFonction == 1 && employe.idEmploye == idRetirer) //Employé de bureau
+            {
+                listeEmploye.Add(employe);
+
+            }
+        }
+
+        listeEmploye = listeEmploye.OrderBy(o => o.prenom).ThenBy(o => o.prenom).ToList();
+        foreach (T_Employe emp in listeEmploye)
+        {
+            lst_employeAjouter.Items.Add(new ListItem(emp.prenom + " " + emp.nom, emp.idEmploye.ToString()));
+        }
+
+    }
+
+    private void retirerEmp(int idRetirer)
+    {
+        List<T_Employe> listeEmp = BD_CoEco.GetListeEmploye();
+        List<T_Employe> listeEmploye = new List<T_Employe>();
+
+        foreach (T_Employe employe in listeEmp)
+        {
+            if (employe.idFonction == 1 && employe.idEmploye == idRetirer) //Employé de bureau
+            {
+                listeEmploye.Add(employe);
+
+            }
+        }
+
+        listeEmploye = listeEmploye.OrderBy(o => o.prenom).ThenBy(o => o.prenom).ToList();
+        foreach (T_Employe emp in listeEmploye)
+        {
+            lst_employe.Items.Add(new ListItem(emp.prenom + " " + emp.nom, emp.idEmploye.ToString()));
+        }
+
+    }
+
+    protected void btn_ajouter_Click(object sender, EventArgs e)
+    {
+        T_Employe employeSelected = new T_Employe();
+        int empId = int.Parse(lst_employe.SelectedValue);
+        int indexEmp = lst_employe.SelectedIndex;
+
+        lst_employe.Items.RemoveAt(indexEmp);
+
+        T_Employe empP = BD_CoEco.GetEmpByID(empId);
+
+        ajouterEmp(empId);
+
+    }
+
+    protected void btn_retirer_Click(object sender, EventArgs e)
+    {
+        T_Employe employeSelected = new T_Employe();
+        int empId = int.Parse(lst_employeAjouter.SelectedValue);
+        int indexEmp = lst_employeAjouter.SelectedIndex;
+
+        lst_employeAjouter.Items.RemoveAt(indexEmp);
+
+        T_Employe empP = BD_CoEco.GetEmpByID(empId);
+
+        retirerEmp(empId);
+
+        //retirer le listebox lst_employe
+        
+        
+        
     }
 }
