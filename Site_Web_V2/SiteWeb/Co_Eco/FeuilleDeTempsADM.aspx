@@ -5,11 +5,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
     <asp:TextBox TextMode="Week" CssClass="form-control" runat="server" ID="tbx_Semaine" OnTextChanged="tbx_Semaine_TextChanged" AutoPostBack="true" />
-    <asp:Button runat="server" ID="btn_allCheck" Text="Tout sélectionner" OnClick="btn_allCheck_Click" AutoPostBack="false" />
+    <button ID="btn_allCheck" class="btn btn-success">Tout sélectionner</button>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
     <asp:Table runat="server" ID="tab_emp" CssClass="table"/>
+    <asp:Button runat="server" Text="Appliquer" CssClass="btn btn-success"/>
 
 
 </asp:Content>
