@@ -334,6 +334,19 @@ public class BD_CoEco
         BD.Dispose();
     }
 
+    public static void CreateNewEmpAtProject(T_EmployeProjet p_emp)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        int? maxID = 0;
+        BD.PS_GetMaxIdEmpPro(ref maxID);
+        maxID++;
+        p_emp.idEmpPro = (int)maxID;
+
+        BD.T_EmployeProjet.InsertOnSubmit(p_emp);
+        BD.SubmitChanges();
+        BD.Dispose();
+    }
+
     public static void UpdateEmploye(T_Employe p_employe)
     {
         CoEco_BDDataContext BD = new CoEco_BDDataContext();

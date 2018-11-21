@@ -55,7 +55,7 @@
                     <button id="Button1" runat="server" class="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_cancel_ServerClick">Annuler</button>
 
                     <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: #000000;"
-                        class="btn btn-success" onserverclick="bt_AjouterEmploye_Click">
+                        class="btn btn-success" onserverclick="bt_AjouterEmploye_Click"><i class="fas fa-plus"></i>
                         Ajouter Employé</button>
 
                     <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: #000000;"

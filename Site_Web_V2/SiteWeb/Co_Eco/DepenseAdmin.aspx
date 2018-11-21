@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
 
-        <asp:Button runat="server" type="button" ID="btn_ajouter" class="btn btn-success" OnClick="btn_ajouter_Click" Style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" Text="Ajouter"></asp:Button>
+        <asp:LinkButton runat="server" type="button" ID="btn_ajouter" class="btn btn-success" OnClick="btn_ajouter_Click" Style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;"><i class="fas fa-plus"></i> Ajouter</asp:LinkButton>
         
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
