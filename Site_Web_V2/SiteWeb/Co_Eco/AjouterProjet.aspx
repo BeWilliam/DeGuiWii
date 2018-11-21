@@ -70,6 +70,21 @@
         </div>
     </div>
 
+    <div class="form-row" style="margin-top: 10px;">
+        <div class="col-md-3">
+            <label for="validationTooltip01">Liste d'employés</label>
+            <asp:ListBox runat="server" CssClass="form-control" ID="lst_employe" style="height: 300px;"></asp:ListBox>
+        </div>
+        <div class="col-md-1" style="margin-top: 140px;">
+            <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" CssClass="btn btn-primary" OnClick="btn_ajouter_Click" style="margin-bottom:10px; width:100%"/>
+            <asp:Button ID="btn_retirer" runat="server" Text="Retirer" CssClass="btn btn-primary" OnClick="btn_retirer_Click" style="width:100%"/>
+        </div>
+        <div class="col-md-3">
+            <label for="validationTooltip01">Liste d'employés liées au projets</label>
+            <asp:ListBox runat="server" CssClass="form-control" ID="lst_employeAjouter" style="height: 300px;"></asp:ListBox>
+        </div>
+    </div>
+
 
 </asp:Content>
 

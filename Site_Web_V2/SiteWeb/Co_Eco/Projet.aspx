@@ -53,7 +53,7 @@
                     <button id="btn_remFiltre" runat="server" class="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_remFiltre_ServerClick">Retirer filtre</button>
 
                     <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: #000000;"
-                        class="btn btn-success" onserverclick="btn_ajouter_Click">
+                        class="btn btn-success" onserverclick="btn_ajouter_Click"><i class="fas fa-plus"></i>
                         Ajouter Projet</button>
 
                     <button type="button" runat="server" style="margin-top: 10px;  width: 100%; color: #000000;"

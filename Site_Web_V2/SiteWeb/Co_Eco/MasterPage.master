@@ -15,6 +15,8 @@
 
     <%--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">--%>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
     <link href="App_Themes/Default/bootstrap.css" rel="stylesheet" />
     <link href="App_Themes/Default/Default.css" rel="stylesheet" />
 
@@ -34,58 +36,58 @@
                 <ul class="navbar-nav mr-auto" runat="server" id="ul_menu">
                     <li class="nav-item">
                         <div id="div_Menu" runat="server">
-                            <a class="nav-link" href="Menu.aspx" id="text_nav6">Menu <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="Menu.aspx" id="text_nav6"><i class="fas fa-home"></i> Menu <span class="sr-only">(current)</span></a>
                         </div>
-                     </li>
+                    </li>
                     <li class="nav-item">
                         <div runat="server" id="div_FeuilleDeTemps">
-                            <a class="nav-link" id="text_nav" href="FeuilleDeTemps.aspx">Feuilles de temps</a>
+                            <a class="nav-link" id="text_nav" href="FeuilleDeTemps.aspx"><i class="fas fa-clipboard-list"></i> Feuilles de temps</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div runat="server" id="div_FeuilleDeTempsADM">
-                            <a class="nav-link" id="text_nav8" href="FeuilleDeTempsADM.aspx">Feuilles de temps</a>
-                        </div>
+                            <a class="nav-link" id="text_nav8" href="FeuilleDeTempsADM.aspx"><i class="fas fa-clipboard-list"></i> Feuilles de temps</a>
+                        </div> 
                     </li>
                     <li class="nav-item">
                         <div runat="server" id="div_projet">
-                            <a class="nav-link" id="text_nav1" href="Projet.aspx">Projets</a>
+                            <a class="nav-link" id="text_nav1" href="Projet.aspx"><i class="fas fa-cube"></i> Projets</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div runat="server" id="div_Employe">
-                            <a class="nav-link" id="text_nav2" href="Employe.aspx">Employés</a>
+                            <a class="nav-link" id="text_nav2" href="Employe.aspx"><i class="fas fa-user"></i> Employés</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div runat="server" id="div_categorie">
-                            <a class="nav-link" id="text_nav3" href="Categorie.aspx">Catégories</a>
+                            <a class="nav-link" id="text_nav3" href="Categorie.aspx"><i class="fas fa-cubes"></i> Catégories</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div id="div_depense" runat="server">
-                            <a class="nav-link" id="text_nav4" href="DepenseEMP.aspx">Dépenses</a>
+                            <a class="nav-link" id="text_nav4" href="DepenseEMP.aspx"><i class="fas fa-money-check-alt"></i> Dépenses</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div id="div_DepenseADM" runat="server">
-                            <a class="nav-link" id="text_nav7" href="DepenseAdmin.aspx">Dépenses</a>
+                            <a class="nav-link" id="text_nav7" href="DepenseAdmin.aspx"><i class="fas fa-money-check-alt"></i> Dépenses</a>
                         </div>
                     </li>
-                    <li class="nav-item" >
+                    <li class="nav-item">
                         <div runat="server" id="div_Rapports">
-                            <a class="nav-link" id="text_nav5" href="Rapports.aspx">Rapports</a>
+                            <a class="nav-link" id="text_nav5" href="Rapports.aspx"><i class="fas fa-database"></i> Rapports</a>
                         </div>
                     </li>
                 </ul>
                 <!--<form class="form-inline my-2 my-lg-0">-->
-                    <button id="btn_Deco" runat="server" class="btn btn-dark my-2 my-sm-0" type="submit" onserverclick="btn_Deco_ServerClick">Déconnexion</button>
+                <button id="btn_Deco" runat="server" class="btn btn-dark my-2 my-sm-0" type="submit" onserverclick="btn_Deco_ServerClick">Déconnexion</button>
                 <!--</form>-->
             </div>
         </nav>
     </header>
     <form runat="server">
-        
+
         <div class="row">
             <div class="col-sm-2">
                 <asp:ContentPlaceHolder ID="cph_left" runat="server"></asp:ContentPlaceHolder>
@@ -102,10 +104,8 @@
     <script src="Js/Js2.js"></script>
     <script src="Js/Js3.js"></script>
     <script src="Js/main.js"></script>
-    
-    <%--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--%>
-    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>--%>
-    <%--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>--%>
+
+
 </body>
 
 </html>

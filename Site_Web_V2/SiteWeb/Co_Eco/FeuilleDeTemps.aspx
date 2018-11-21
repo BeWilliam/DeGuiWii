@@ -6,7 +6,7 @@
     Feuilles de temps 
 
         <div class="div_bouton">
-        <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" OnClick="btn_ajouter_Click"/>
+        <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" Visible="false" OnClick="btn_ajouter_Click"/>
         <asp:Button ID="btn_confirmer" runat="server" Text="Confirmer" OnClick="btn_confirmer_Click" Visible="False" />
         <asp:Button ID="btn_annuler" runat="server" Text="Annuler"  Visible="False" OnClick="btn_annuler_Click" />
         <asp:Button ID="btn_confirmerModif" runat="server" Text="Confirmer la modification" OnClick="btn_confirmerModif_Click" Visible="false"/>
@@ -70,6 +70,47 @@
           </asp:TableCell>
 
       </asp:TableRow>
+         <asp:TableRow ID="tr_modif"  Visible = "false">
+          <asp:TableCell>
+              <asp:DropDownList ID="ddl_projetModif" runat="server" CssClass="col-md-12" OnSelectedIndexChanged="ddl_Projet_SelectedIndexChanged"></asp:DropDownList>
+              <asp:DropDownList ID="ddl_categorieModif" runat="server" CssClass="col-md-12"></asp:DropDownList>
+
+          </asp:TableCell>
+          <asp:TableCell>
+              <asp:TextBox ID="tb_dimancheModif" runat="server" MaxLength="4"  CssClass="col-sm-5"></asp:TextBox>
+              
+              <asp:Label ID="Label8" runat="server" Text="H"></asp:Label>
+          </asp:TableCell>
+          <asp:TableCell>
+              <asp:TextBox ID="tb_lundiModif" runat="server" MaxLength="4"  CssClass="col-sm-5"></asp:TextBox>
+              <asp:Label ID="Label9" runat="server" Text="H"></asp:Label>
+          </asp:TableCell>
+          <asp:TableCell>
+              <asp:TextBox ID="tb_mardiModif" runat="server" MaxLength="4" CssClass="col-sm-5"></asp:TextBox>
+              <asp:Label ID="Label10" runat="server" Text="H"></asp:Label>
+          </asp:TableCell>
+          <asp:TableCell>
+              <asp:TextBox ID="tb_mercrediModif" runat="server" MaxLength="4" CssClass="col-sm-5"></asp:TextBox>
+              <asp:Label ID="Label11" runat="server" Text="H"></asp:Label>
+          </asp:TableCell>
+          <asp:TableCell>
+              <asp:TextBox ID="tb_jeudiModif" runat="server" MaxLength="4" CssClass="col-sm-5"></asp:TextBox>
+              <asp:Label ID="Label12" runat="server" Text="H"></asp:Label>
+          </asp:TableCell>
+          <asp:TableCell>
+              <asp:TextBox ID="tb_vendrediModif" runat="server" MaxLength="4" CssClass="col-sm-5"></asp:TextBox>
+              <asp:Label ID="Label13" runat="server" Text="H"></asp:Label>
+          </asp:TableCell>
+          <asp:TableCell>
+              <asp:TextBox ID="tb_samediModif" runat="server" MaxLength="4" CssClass="col-sm-5"></asp:TextBox>
+              <asp:Label ID="Label14" runat="server" Text="H"></asp:Label>
+          </asp:TableCell>
+          <asp:TableCell>
+              <asp:TextBox ID="tb_commentaireModif" runat="server"></asp:TextBox>
+          </asp:TableCell>
+
+      </asp:TableRow>
 
     </asp:table>
+    <%--<asp:Button ID="bt_modifier" runat="server" Text="modif" OnClick="bt_modifier_Click" />--%>
     </asp:Content>
