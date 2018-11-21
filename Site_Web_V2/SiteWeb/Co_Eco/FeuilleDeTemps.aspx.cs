@@ -11,12 +11,19 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
     TableHeaderRow thr;
     List<T_FeuilleDeTemps> listeFeuilleDeTemps;
-    List<T_FeuilleDeTemps> enregistrements;
-    List<T_Projet> ListeProjet;
+    //List<T_FeuilleDeTemps> enregistrements;
+    List<T_Projet> projetsDeLemploye;
     List<T_CategoriePro> ListeCategorie;
+    List<T_CategoriePro> ListeCatGlobal;
+    List<T_Projet> projetsGlobal;
     DateTime date;
     int idCat;
     string urlParamId;
+
+    int idEmp; 
+
+    //bool modif = false;
+    //bool ajout = true;
 
     float totDim;
     float totLun;
@@ -28,21 +35,14 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
+       
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
 
-
-        ListeProjet = BD_CoEco.GetListeProjet();
-
-        ddl_Projet.Items.Clear();
-        foreach (T_Projet projet in ListeProjet)
-        {
-            ddl_Projet.Items.Add(projet.descript);
-        }
-
-        ListeCategorie = BD_CoEco.GetListeCategorie();
-
+        ListeCatGlobal = BD_CoEco.GetListeCategorie();
+        projetsGlobal = BD_CoEco.GetListeProjet();
         listeFeuilleDeTemps = BD_CoEco.GetListeFeuilleDeTemps();
-
+        
         BD.Dispose();
 
         if (!IsPostBack)
@@ -58,6 +58,21 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         }
         else
         {
+            idEmp = int.Parse(Session["idEmp"].ToString());
+
+            ddl_Projet.Items.Clear();
+            ddl_projetModif.Items.Clear();
+            projetsDeLemploye = BD_CoEco.GetProjectByEmp(BD_CoEco.GetEmpByID(idEmp));
+
+
+
+            foreach (T_Projet proj in projetsDeLemploye)
+            {
+                ddl_Projet.Items.Add(proj.descript);
+                ddl_projetModif.Items.Add(proj.descript);
+            }
+
+            ListeCategorie = GetListeCateByProjet(projetsDeLemploye);
 
             lb_erreur.Text += "EST un postback";
 
@@ -69,7 +84,10 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
             if (urlParamId != null)
             {
-                modifier(int.Parse(urlParamId));
+
+                    modifier(int.Parse(urlParamId));
+
+                
             }
 
             
@@ -82,8 +100,8 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
-        if (btn_ajouter.Visible == true)
-        {
+        //if (ajout)
+        //{
             date = getFirstDayOfWeek(Calendar1.SelectedDate);
             Dimanche.Text = "Dimanche " + (date.Day);
             Lundi.Text = "Lundi " + (date.AddDays(1).Day);
@@ -94,7 +112,10 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             Samedi.Text = "Samedi " + (date.AddDays(6).Day);
 
             ajouterEnregistrement(date);
-        }
+
+        btn_ajouter.Visible = true;
+
+        //}
         //else
         //{
         //    tr_ajout.Visible = true;
@@ -102,8 +123,9 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         //    btn_confirmerModif.Visible = false;
         //    btn_annuler.Visible = true;
         //    btn_ajouter.Visible = false;
+        //    ajout = false;
         //}
-        
+
     }
 
     //-----Donne la premiere journée de la semaine (Dimanche)
@@ -128,11 +150,18 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         {
             foreach (T_FeuilleDeTemps feuilleDeTemps in listeFeuilleDeTemps)
             {
-               
-                if (getFirstDayOfWeek((DateTime)feuilleDeTemps.semaine) == p_dt)
+                if (idEmp != 0)
                 {
-                    ajouterRows(feuilleDeTemps);
+                    if (feuilleDeTemps.idEmp == idEmp)
+                    {
+                        if (getFirstDayOfWeek((DateTime)feuilleDeTemps.semaine) == p_dt)
+                        {
+                            ajouterRows(feuilleDeTemps);
+                        }
+                    }
+                    
                 }
+                
             }
             //ajouterCategories();
         }
@@ -171,12 +200,12 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
         TextBox tbProjet = new TextBox();
         TextBox tbCategorie = new TextBox();
-        foreach (T_CategoriePro categorie in ListeCategorie)
+        foreach (T_CategoriePro categorie in ListeCatGlobal)
         {
             if (categorie.idCategorie == p_fdt.idCategorie)
             {
 
-                foreach (T_Projet projet in ListeProjet)
+                foreach (T_Projet projet in projetsGlobal)
                 {
                     if (projet.idProjet == categorie.idProjet)
                     {
@@ -298,6 +327,8 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         Button bt_modif = new Button();
         bt_modif.Text = "Modifier";
         bt_modif.PostBackUrl = "~/FeuilleDeTemps.aspx?id=" + p_fdt.idFeuilleDeTemps.ToString();
+        
+        bt_modif.Click += new EventHandler(this.bt_modifier_Click1);
         //?id = " + employe.idEmploye.ToString();
         tc10.Controls.Add(bt_modif);
 
@@ -323,22 +354,24 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     protected void btn_ajouter_Click(object sender, EventArgs e)
     {
         tr_ajout.Visible = true;
+        //ajout = false;
         btn_confirmer.Visible = true;
         btn_confirmerModif.Visible = false;
         btn_annuler.Visible = true;
         btn_ajouter.Visible = false;
 
-        
+
 
     }
 
     protected void btn_confirmer_Click(object sender, EventArgs e)
     {
-        tr_ajout.Visible = false;
-        btn_confirmer.Visible = false;
-        btn_confirmerModif.Visible = false;
-        btn_annuler.Visible = false;
-        btn_ajouter.Visible = true;
+        //tr_ajout.Visible = false;
+        ////ajout = true;
+        //btn_confirmer.Visible = false;
+        //btn_confirmerModif.Visible = false;
+        //btn_annuler.Visible = false;
+        //btn_ajouter.Visible = true;
 
         if (getFirstDayOfWeek(Calendar1.SelectedDate) != null)
         {
@@ -411,51 +444,56 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             BD_CoEco.CreateNewFeuilleDeTemps(newFdt);
             listeFeuilleDeTemps = BD_CoEco.GetListeFeuilleDeTemps();
             BD.Dispose();
+            Response.Redirect("FeuilleDeTemps.aspx");
 
-
-            ajouterEnregistrement(date);
-        //}
-        //else
-        //{
-        //        lb_erreur.Text += "idemp est null";
-        //}
+            // ajouterEnregistrement(date);
+            //}
+            //else
+            //{
+            //        lb_erreur.Text += "idemp est null";
+            //}
         }
         else
         {
             lb_erreur.Text += "Aucune date sélectionnée";
         }
-        clearTextBox();
+        //clearTextBox();
     }
 
     protected void btn_annuler_Click(object sender, EventArgs e)
     {
-        tr_ajout.Visible = false;
-        btn_confirmer.Visible = false;
-        btn_confirmerModif.Visible = false;
-        btn_annuler.Visible = false;
-        btn_ajouter.Visible = true;
-        clearTextBox();
+        //tr_ajout.Visible = false;
+        //btn_confirmer.Visible = false;
+        //btn_confirmerModif.Visible = false;
+        //btn_annuler.Visible = false;
+        //btn_ajouter.Visible = true;
+        //ajout = true;
+        //clearTextBox();
+        Response.Redirect("FeuilleDeTemps.aspx");
     }
 
     void modifier(int p_id)
     {
-        tr_ajout.Visible = true;
+        tr_ajout.Visible = false;
+        tr_modif.Visible = true;
         btn_confirmerModif.Visible = true;
         btn_annuler.Visible = true;
         btn_ajouter.Visible = false;
+        //ajout = false;
+        
 
         foreach (T_FeuilleDeTemps fdt in listeFeuilleDeTemps)
         {
             if (fdt.idFeuilleDeTemps == p_id)
             {
-                tb_dimanche.Text = fdt.dimanche.ToString();
-                tb_lundi.Text = fdt.lundi.ToString();
-                tb_mardi.Text = fdt.mardi.ToString();
-                tb_mercredi.Text = fdt.mercredi.ToString();
-                tb_jeudi.Text = fdt.jeudi.ToString();
-                tb_vendredi.Text = fdt.vendredi.ToString();
-                tb_samedi.Text = fdt.samedi.ToString();
-                tb_commentaire.Text = fdt.note.ToString();
+                tb_dimancheModif.Text = fdt.dimanche.ToString();
+                tb_lundiModif.Text = fdt.lundi.ToString();
+                tb_mardiModif.Text = fdt.mardi.ToString();
+                tb_mercrediModif.Text = fdt.mercredi.ToString();
+                tb_jeudiModif.Text = fdt.jeudi.ToString();
+                tb_vendrediModif.Text = fdt.vendredi.ToString();
+                tb_samediModif.Text = fdt.samedi.ToString();
+                tb_commentaireModif.Text = fdt.note.ToString();
 
                 break;
             }
@@ -467,7 +505,9 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     {
         T_FeuilleDeTemps fdt = new T_FeuilleDeTemps();
 
-        fdt.idCategorie = 3;
+        T_CategoriePro temp = GetcategorieByName(ddl_categorieModif.SelectedItem.Text);
+
+        fdt.idCategorie = temp.idCategorie;
 
         fdt.idEmp = int.Parse(Session["idEmp"].ToString());
 
@@ -503,99 +543,135 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         //{
         //    fdt.dimanche = float.Parse(String.Format("{0}", Request.Form["tb_dimanche"]));
         //}
-        string dimanche = Request.Form[""];
-        if (dimanche != "")
+        string dim = Request.Form["ctl00$cph_contenu$tb_dimancheModif"];
+        if (dim != "")
         {
-            fdt.dimanche = float.Parse(dimanche);
+            
+            fdt.dimanche = float.Parse(dim);
         }
         else
         {
             fdt.dimanche = null;
         }
-        if (tb_lundi.Text != "")
+        string lun = Request.Form["ctl00$cph_contenu$tb_lundiModif"];
+        if (lun != "")
         {
-            fdt.lundi = float.Parse(tb_lundi.Text);
+            fdt.lundi = float.Parse(lun);
         }
         else
         {
             fdt.lundi = null;
         }
-        if (tb_mardi.Text != "")
+        string mar = Request.Form["ctl00$cph_contenu$tb_mardiModif"];
+        if (mar != "")
         {
-            fdt.mardi = float.Parse(tb_mardi.Text);
+            fdt.mardi = float.Parse(mar);
         }
         else
         {
             fdt.mardi = null;
         }
-        if (tb_mercredi.Text != "")
+        string mer = Request.Form["ctl00$cph_contenu$tb_mercrediModif"];
+        if (mer != "")
         {
-            fdt.mercredi = float.Parse(tb_mercredi.Text);
+            fdt.mercredi = float.Parse(mer);
         }
         else
         {
             fdt.mercredi = null;
         }
-        if (tb_jeudi.Text != "")
+        string jeu = Request.Form["ctl00$cph_contenu$tb_jeudiModif"];
+        if (jeu != "")
         {
-            fdt.jeudi = float.Parse(tb_jeudi.Text);
+            fdt.jeudi = float.Parse(jeu);
         }
         else
         {
             fdt.jeudi = null;
         }
-        if (tb_vendredi.Text != "")
+        string ven = Request.Form["ctl00$cph_contenu$tb_vendrediModif"];
+        if (ven != "")
         {
-            fdt.vendredi = float.Parse(tb_vendredi.Text);
+            fdt.vendredi = float.Parse(ven);
         }
         else
         {
             fdt.vendredi = null;
         }
-        if (tb_samedi.Text != "")
+        string sam = Request.Form["ctl00$cph_contenu$tb_samediModif"];
+        if (sam != "")
         {
-            fdt.samedi = float.Parse(tb_samedi.Text);
+            fdt.samedi = float.Parse(sam);
         }
         else
         {
             fdt.samedi = null;
         }
-
-        if (tb_commentaire.Text != "")
+        string com = Request.Form["ctl00$cph_contenu$tb_commentaireModif"];
+        if (com != "")
         {
-            fdt.note = tb_commentaire.Text;
+            fdt.note = tb_commentaireModif.Text;
         }
         else
         {
             fdt.note = null;
         }
-
+        fdt.approbation = false;
         BD_CoEco.UpdateFeuilleDeTemps(fdt);
-        clearTextBox();
-        tr_ajout.Visible = false;
-        btn_confirmer.Visible = false;
-        btn_confirmerModif.Visible = false;
-        btn_annuler.Visible = false;
-        btn_ajouter.Visible = true;
-        ajouterEnregistrement(date);
+        //clearTextBox();
+
+        //tr_ajout.Visible = false;
+        //tr_modif.Visible = false;
+        //btn_confirmer.Visible = false;
+        //btn_confirmerModif.Visible = false;
+        //btn_annuler.Visible = false;
+        //btn_ajouter.Visible = true;
+        //ajout = true;
+        //ajouterEnregistrement(date);
+
+        Response.Redirect("FeuilleDeTemps.aspx");
     }
 
-    void clearTextBox()
-    {
-        ddl_Categorie.Items.Clear();
-        ddl_Projet.Items.Clear();
+    //void clearTextBox()
+    //{
+    //    //ddl_Categorie.Items.Clear();
+    //    //ddl_Projet.Items.Clear();
 
-        tb_dimanche.Text = "";
-        tb_lundi.Text = "";
-        tb_mardi.Text = "";
-        tb_mercredi.Text = "";
-        tb_jeudi.Text = "";
-        tb_vendredi.Text = "";
-        tb_samedi.Text = "";
-        tb_commentaire.Text = "";
-        tr_ajout.Visible = false;
-        btn_ajouter.Visible = true;
-    }
+    //    //tb_dimanche.Text = "";
+    //    //tb_lundi.Text = "";
+    //    //tb_mardi.Text = "";
+    //    //tb_mercredi.Text = "";
+    //    //tb_jeudi.Text = "";
+    //    //tb_vendredi.Text = "";
+    //    //tb_samedi.Text = "";
+    //    //tb_commentaire.Text = "";
+
+    //    //ddl_categorieModif.Items.Clear();
+    //    //ddl_projetModif.Items.Clear();
+
+    //    //tb_dimancheModif.Text = "";
+    //    //tb_lundiModif.Text = "";
+    //    //tb_mardiModif.Text = "";
+    //    //tb_mercrediModif.Text = "";
+    //    //tb_jeudiModif.Text = "";
+    //    //tb_vendrediModif.Text = "";
+    //    //tb_samediModif.Text = "";
+    //    //tb_commentaireModif.Text = "";
+
+    //    for (int i = 0; i < t_feuilleTemps.Rows.Count; i++)
+    //    {
+    //        if (i != 0)
+    //        {
+    //            t_feuilleTemps.Rows[i].Cells.Clear();
+    //        }
+    //    }
+
+    //    tr_modif.Visible = false;
+
+    //    tr_ajout.Visible = false;
+    //    btn_ajouter.Visible = true;
+    //    //ajout = true;
+    //}
     void clearTotal()
     {
         totDim = 0;
@@ -695,14 +771,49 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
     protected void ddl_Projet_SelectedIndexChanged(object sender, EventArgs e)
     {
-        foreach (T_Projet projet in ListeProjet)
-        {
-
-        }
-
+        ddl_categorieModif.Items.Clear();
+        ddl_Categorie.Items.Clear();
         foreach (T_CategoriePro categories in ListeCategorie)
         {
-
+            foreach (T_Projet projet in projetsDeLemploye)
+            {
+                if (categories.idProjet == projet.idProjet)
+                {
+                    ddl_Categorie.Items.Add(categories.descript);
+                    ddl_categorieModif.Items.Add(categories.descript);
+                }
+            }
         }
+    }
+
+    protected void bt_modifier_Click1(object sender, EventArgs e)
+    {
+        //modif = true;
+    }
+
+    List<T_CategoriePro> GetListeCateByProjet(List<T_Projet> p_projet)
+    {
+        List<T_CategoriePro> lc = BD_CoEco.GetListeCategorie();
+        List<T_CategoriePro> lcProjet = new List<T_CategoriePro>();
+
+        foreach (T_Projet proj in p_projet)
+        {
+            foreach (T_CategoriePro cat in lc)
+            {
+                if (cat.idProjet == proj.idProjet)
+                {
+                    lcProjet.Add(cat);
+                }
+            }
+        }
+
+        return lcProjet;
+    }
+    public static T_CategoriePro GetcategorieByName(string name)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_CategoriePro t = bd.T_CategoriePro.Single(f => f.descript == name);
+        bd.Dispose();
+        return t;
     }
 }
