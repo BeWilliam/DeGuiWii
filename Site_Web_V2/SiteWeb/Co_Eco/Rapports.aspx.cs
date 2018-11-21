@@ -126,5 +126,10 @@ public partial class Rapports : System.Web.UI.Page
         Response.End();
     }
 
-    
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+    }
 }
