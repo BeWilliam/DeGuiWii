@@ -171,7 +171,7 @@ CREATE TABLE T_EmployeProjet(
 )
 
 
-
+INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES(7, 28)
 
 /*Insertion des informations de base pour le bon fonctionnement de la DB*/
 
@@ -205,5 +205,6 @@ INSERT INTO T_TypeDepense (descript) VALUES ('Autre')
 
 /*Insertion de l'employé Administrateur*/
 INSERT INTO T_Employe(idFonction, idStatus, mdp, nom, prenom, loginName) VALUES (3, 1, 'mobius', ' ', 'admin', 'admin')
+
 
 

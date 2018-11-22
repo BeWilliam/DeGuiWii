@@ -34,6 +34,7 @@ public partial class AjouterProjet : System.Web.UI.Page
             if (!IsPostBack)
             {
                 afficherProject();
+                loadCat();
 
                 btn_addProject.Visible = false;
 
@@ -272,9 +273,23 @@ public partial class AjouterProjet : System.Web.UI.Page
 
         retirerEmp(empId);
 
-        //retirer le listebox lst_employe
-        
-        
-        
+        //retirer le listebox lst_employe     
+    }
+
+    private void loadCat()
+    {
+        List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(Request.QueryString["id"])));
+        listCat = listCat.OrderBy(o => o.descript).ToList();
+        foreach (T_CategoriePro categoriePro in listCat)
+        {
+            TableRow tr = new TableRow();
+            TableCell tc1 = new TableCell();
+
+            tc1.Text = categoriePro.descript;
+
+            tr.Cells.Add(tc1);
+
+            tableau_categorie.Rows.Add(tr);
+        }
     }
 }

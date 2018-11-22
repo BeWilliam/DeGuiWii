@@ -1,35 +1,40 @@
-Changer nom d'utilisateur pour seulement le prénom
-Changer la page de connexion pour qu'on puisse y accèder avec un bouton
-Rentrer une dépense sans être lié à une catégorie
-Mettre un commentaire pour chaque entrée (EMP)
-Banque d'heure!!!
+Changer nom d'utilisateur pour seulement le prénom 				- Guillaume
+
+Rentrer une dépense sans être lié à une catégorie				- William
+
+Mettre un commentaire pour chaque entrée (EMP)					-Denis
+
+Banque d'heure!!!								-Denis
+
 	Chaque an, banque d'heure init (on rentre les données)
 	Maladie, Congé perso, heure supp vacances Férier
 
 
-FTD ADM
+FTD ADM										-Guillaume
 Afficher une liste avec Projet, catégorie
 Détail des entrées qui corresponde aux heures
 
 
 PRojet
-Coche innactifs
+Coche innactifs									-William
 
-Retirer numéro pour les rapports
+Retirer numéro pour les rapports						-Guillaume
 
 
-Catégorie sera dans projet à la place
+Catégorie sera dans projet à la place						-William
 
-À place des numéros de dépense, on met la date de la dépense
+À place des numéros de dépense, on met la date de la dépense			-William
+
 Approuver tous d'une shot
-Rentrer une dépense pour un employé en tant qu'Admin
+							
+Rentrer une dépense pour un employé en tant qu'Admin				-William
 
 
-Taux kilométrage
+Taux kilométrage								-Denis
 
-Employé de terrain a pas accès à la banque d'heure
-
-Ajouter une interface pour assigner des types de dépenses à des fonctions
+Employé de terrain a pas accès à la banque d'heure				-Denis
+	
+Ajouter une interface pour assigner des types de dépenses à des fonctions	-Je sais Pas
 	2 types de véhicule
 		Auto, camion
 
