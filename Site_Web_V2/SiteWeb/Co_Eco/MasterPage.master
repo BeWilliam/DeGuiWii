@@ -89,7 +89,7 @@
     <form runat="server">
 
         <div class="row">
-            <div class="col-sm-2">
+            <div>
                 <asp:ContentPlaceHolder ID="cph_left" runat="server"></asp:ContentPlaceHolder>
             </div>
             <div class="col-sm-10">
