@@ -23,6 +23,30 @@ public partial class Employe : System.Web.UI.Page
 
         if(!IsPostBack)
         {
+
+            string nom = Request.QueryString["nom"];
+            string prenom = Request.QueryString["prenom"];
+            string idFonction = Request.QueryString["idFonction"];
+            string idStatut = Request.QueryString["idStatut"];
+
+            if (nom != null)
+            {
+                tbx_nom.Text = nom;
+            }
+            if (prenom != null)
+            {
+                tbx_prenom.Text = prenom;
+            }
+            if (idFonction != null)
+            {
+                ddl_fonction.SelectedValue = idFonction;
+            }
+            if (idStatut != null)
+            {
+                ddl_Status.Text = idStatut;
+            }
+
+
             loadFonction();
             loadStatut();
             Recherche();
@@ -94,7 +118,29 @@ public partial class Employe : System.Web.UI.Page
 
     protected void btn_rech_ServerClick(object sender, EventArgs e)
     {
+
+        string nom = "";
+        string prenom = "";
+        string idFonction = "";
+        string idStatut = "";
+
+        if (tbx_nom.Text != "")
+        {
+            nom = "nom=" + tbx_nom.Text;
+        }
+
+        if (tbx_prenom.Text != "")
+        {
+            prenom = "prenom=" + tbx_prenom.Text;
+        }
+
+        idFonction = "idFonc=" + ddl_fonction.SelectedValue;
+        idStatut = "idStatut=" + ddl_Status.SelectedValue;
+
+        Response.Redirect("Employe.aspx?" + nom + "&" + prenom + "&" + idFonction + "&" + idStatut);
+
         Recherche();
+
     }
 
     private void loadFonction()
@@ -131,11 +177,11 @@ public partial class Employe : System.Web.UI.Page
 
         //Recherche sur les prénoms
 
-        if (String.Format("{0}", Request.Form["tbx_prenom"]) != "" && String.Format("{0}", Request.Form["tbx_prenom"]) != null)
+        if (tbx_prenom.Text != "" && tbx_prenom != null)
         {
             for (int i = 0; i < tousLesEmp.Count; i++)
             {
-                if(tousLesEmp[i].prenom.ToLower().Contains(String.Format("{0}", Request.Form["tbx_prenom"]).ToLower()))
+                if(tousLesEmp[i].prenom.ToLower().Contains(tbx_prenom.Text.ToLower()))
                 {
                     rechercheA.Add(i);
                 }
@@ -150,11 +196,11 @@ public partial class Employe : System.Web.UI.Page
         }
 
         //Recherche sur les noms
-        if (String.Format("{0}", Request.Form["tbx_nom"]) != "" && String.Format("{0}", Request.Form["tbx_nom"]) != null)
+        if (tbx_nom.Text != "" && tbx_nom != null)
         {
             for (int i = 0; i < tousLesEmp.Count; i++)
             {
-                if (tousLesEmp[i].nom.ToLower().Contains(String.Format("{0}", Request.Form["tbx_nom"]).ToLower()))
+                if (tousLesEmp[i].nom.ToLower().Contains(tbx_nom.Text.ToLower()))
                 {
                     rechercheB.Add(i);
                 }
@@ -276,10 +322,6 @@ public partial class Employe : System.Web.UI.Page
 
     protected void btn_cancel_ServerClick(object sender, EventArgs e)
     {
-        //tbx_prenom.Text = "";
-        //tbx_nom.Text = "";
-        //ddl_fonction.SelectedIndex = 0;
-        //ddl_statut.SelectedIndex = 0;
-        Recherche();
+        Response.Redirect("Employe.aspx");
     }
 }

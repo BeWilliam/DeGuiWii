@@ -10,7 +10,8 @@
         <div class="form-row" style="margin: 0 auto">
             <div class="col">
                 <label for="validationTooltip01" style="text-align: center">Prénom</label>
-                <input type="text" class="form-control" id="tbx_prenom" name="tbx_prenom" value="">
+                <asp:TextBox ID="tbx_prenom" runat="server" CssClass="form-control"></asp:TextBox>
+                <%--<input type="text" class="form-control" id="tbx_prenom" name="tbx_prenom" value="" runat="server">--%>
                 <div class="valid-tooltip">
                 </div>
             </div>
@@ -19,7 +20,8 @@
         <div class="form-row" style="margin: 0 auto">
             <div class="col">
                 <label for="validationTooltip01" style="text-align: center">Nom</label>
-                <input type="text" class="form-control" id="tbx_nom" name="tbx_nom" value="">
+                <asp:TextBox ID="tbx_nom" runat="server" CssClass="form-control"></asp:TextBox>
+                <%--<input type="text" class="form-control" id="tbx_nom" name="tbx_nom" value="">--%>
                 <div class="valid-tooltip">
                 </div>
             </div>
