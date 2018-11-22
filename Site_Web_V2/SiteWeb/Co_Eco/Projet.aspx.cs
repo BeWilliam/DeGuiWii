@@ -123,6 +123,9 @@ public partial class Projet : System.Web.UI.Page
         Response.AppendHeader("Content-Disposition", "attachment; filename=Rapport Projet " + jour + "-" + mois + "-" + annee + ".pdf");
         Response.TransmitFile(@"~\Downloadss\RapportProjet " + DateTime.Now.ToString("ddMMyyyy") + ".pdf");
         Response.End();
+
+        if(File.Exists(fileName))
+            File.Delete(fileName);
     }
 
     protected void btn_ajouter_Click(object sender, EventArgs e)
