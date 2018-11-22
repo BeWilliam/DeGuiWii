@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
     Feuilles de temps 
-
+    <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
         <div class="div_bouton">
         <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" Visible="false" OnClick="btn_ajouter_Click"/>
         <asp:Button ID="btn_confirmer" runat="server" Text="Confirmer" OnClick="btn_confirmer_Click" Visible="False" />
@@ -16,7 +16,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server" ClientIDMode="Inherit">
     <asp:Label ID="lb_erreur" runat="server" Text="" ></asp:Label>
-    <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
+    
 
     <asp:table ID="t_feuilleTemps" runat="server" CssClass="table table-striped table-hover">
       <asp:TableRow>
@@ -32,7 +32,8 @@
       </asp:TableRow>
       <asp:TableRow ID="tr_ajout"  Visible = "false">
           <asp:TableCell>
-              <asp:DropDownList ID="ddl_Projet" runat="server" CssClass="col-md-12" OnSelectedIndexChanged="ddl_Projet_SelectedIndexChanged"></asp:DropDownList>
+                           <asp:DropDownList ID="ddl_Projet" runat="server" CssClass="col-md-12" AutoPostBack="True" OnSelectedIndexChanged="ddl_Projet_SelectedIndexChanged"></asp:DropDownList>
+
               <asp:DropDownList ID="ddl_Categorie" runat="server" CssClass="col-md-12"></asp:DropDownList>
 
           </asp:TableCell>
@@ -72,7 +73,8 @@
       </asp:TableRow>
          <asp:TableRow ID="tr_modif"  Visible = "false">
           <asp:TableCell>
-              <asp:DropDownList ID="ddl_projetModif" runat="server" CssClass="col-md-12" OnSelectedIndexChanged="ddl_Projet_SelectedIndexChanged"></asp:DropDownList>
+                  <asp:DropDownList ID="ddl_projetModif" runat="server" CssClass="col-md-12" AutoPostBack="True" OnSelectedIndexChanged="ddl_Projet_SelectedIndexChanged"></asp:DropDownList>
+              
               <asp:DropDownList ID="ddl_categorieModif" runat="server" CssClass="col-md-12"></asp:DropDownList>
 
           </asp:TableCell>
@@ -112,5 +114,6 @@
       </asp:TableRow>
 
     </asp:table>
+
     <%--<asp:Button ID="bt_modifier" runat="server" Text="modif" OnClick="bt_modifier_Click" />--%>
     </asp:Content>

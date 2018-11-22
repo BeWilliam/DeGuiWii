@@ -36,7 +36,6 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-       
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
 
         ListeCatGlobal = BD_CoEco.GetListeCategorie();
@@ -47,7 +46,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-            lb_erreur.Text += "PAS un postback";
+            //lb_erreur.Text += "PAS un postback";
 
             //urlParamDate = Request.QueryString["date"];
 
@@ -68,13 +67,13 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
             foreach (T_Projet proj in projetsDeLemploye)
             {
-                ddl_Projet.Items.Add(proj.descript);
-                ddl_projetModif.Items.Add(proj.descript);
+                ddl_Projet.Items.Add(proj.nom);
+                ddl_projetModif.Items.Add(proj.nom);
             }
 
             ListeCategorie = GetListeCateByProjet(projetsDeLemploye);
 
-            lb_erreur.Text += "EST un postback";
+            //lb_erreur.Text += "EST un postback";
 
             clearTotal();
             
@@ -323,14 +322,6 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         tbCommmentaire.ReadOnly = true;
         tc9.Controls.Add(tbCommmentaire);
 
-        TableCell tc10 = new TableCell();
-        Button bt_modif = new Button();
-        bt_modif.Text = "Modifier";
-        bt_modif.PostBackUrl = "~/FeuilleDeTemps.aspx?id=" + p_fdt.idFeuilleDeTemps.ToString();
-        
-        bt_modif.Click += new EventHandler(this.bt_modifier_Click1);
-        //?id = " + employe.idEmploye.ToString();
-        tc10.Controls.Add(bt_modif);
 
         tr.Cells.Add(tc1);
         tr.Cells.Add(tc2);
@@ -341,7 +332,20 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         tr.Cells.Add(tc7);
         tr.Cells.Add(tc8);
         tr.Cells.Add(tc9);
-        tr.Cells.Add(tc10);
+
+        if (p_fdt.approbation != null && !(bool)p_fdt.approbation)
+        {
+            TableCell tc10 = new TableCell();
+            Button bt_modif = new Button();
+            bt_modif.Text = "Modifier";
+            bt_modif.PostBackUrl = "~/FeuilleDeTemps.aspx?id=" + p_fdt.idFeuilleDeTemps.ToString();
+
+            bt_modif.Click += new EventHandler(this.bt_modifier_Click1);
+            //?id = " + employe.idEmploye.ToString();
+            tc10.Controls.Add(bt_modif);
+            tr.Cells.Add(tc10);
+        }
+
         t_feuilleTemps.Rows.Add(tr);
     }
     Label ajoutLabel()
@@ -486,14 +490,41 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         {
             if (fdt.idFeuilleDeTemps == p_id)
             {
-                tb_dimancheModif.Text = fdt.dimanche.ToString();
-                tb_lundiModif.Text = fdt.lundi.ToString();
-                tb_mardiModif.Text = fdt.mardi.ToString();
-                tb_mercrediModif.Text = fdt.mercredi.ToString();
-                tb_jeudiModif.Text = fdt.jeudi.ToString();
-                tb_vendrediModif.Text = fdt.vendredi.ToString();
-                tb_samediModif.Text = fdt.samedi.ToString();
-                tb_commentaireModif.Text = fdt.note.ToString();
+                if (fdt.dimanche != null)
+                {
+                    tb_dimancheModif.Text = fdt.dimanche.ToString();
+                }
+                if (fdt.lundi != null)
+                {
+                    tb_lundiModif.Text = fdt.lundi.ToString();
+                }
+                if (fdt.mardi != null)
+                {
+                    tb_mardiModif.Text = fdt.mardi.ToString();
+                }
+                if (tb_mercrediModif != null)
+                {
+                    tb_mercrediModif.Text = fdt.mercredi.ToString();
+                    
+                }
+
+                if (fdt.jeudi != null)
+                {
+                    tb_jeudiModif.Text = fdt.jeudi.ToString();
+                }
+                if (fdt.vendredi != null)
+                {
+                    tb_vendrediModif.Text = fdt.vendredi.ToString();
+                }
+
+                if (fdt.samedi != null)
+                {
+                    tb_samediModif.Text = fdt.samedi.ToString();
+                }
+                if (fdt.note != null)
+                {
+                    tb_commentaireModif.Text = fdt.note.ToString();
+                }
 
                 break;
             }
@@ -771,17 +802,26 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
     protected void ddl_Projet_SelectedIndexChanged(object sender, EventArgs e)
     {
+
+
         ddl_categorieModif.Items.Clear();
         ddl_Categorie.Items.Clear();
+        T_Projet temp = new T_Projet();
+        foreach (T_Projet proj in projetsDeLemploye)
+        {
+            if (proj.nom == ddl_Projet.SelectedItem.Text || proj.nom == ddl_projetModif.SelectedItem.Text)
+            {
+                temp = proj;
+            }
+        }
+
         foreach (T_CategoriePro categories in ListeCategorie)
         {
-            foreach (T_Projet projet in projetsDeLemploye)
+
+            if (categories.idProjet == temp.idProjet)
             {
-                if (categories.idProjet == projet.idProjet)
-                {
-                    ddl_Categorie.Items.Add(categories.descript);
-                    ddl_categorieModif.Items.Add(categories.descript);
-                }
+                ddl_Categorie.Items.Add(categories.descript);
+                ddl_categorieModif.Items.Add(categories.descript);
             }
         }
     }
