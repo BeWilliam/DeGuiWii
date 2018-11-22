@@ -232,10 +232,11 @@ public class BD_CoEco
         {
             return listeEmp[i];
         }
-        else
-        {
-            throw new Exception("Id correspondant à aucun employé existant");
-        }
+        //else
+        //{
+        //throw new Exception("Id correspondant à aucun employé existant");
+        //}
+        return null;
 
     }
 

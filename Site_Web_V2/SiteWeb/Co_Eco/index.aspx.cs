@@ -60,6 +60,11 @@ public partial class Connexion : System.Web.UI.Page
                     }
                 }
             }
+            else
+            {
+                tbx_mdp.Text = "";
+                tbx_username.Text = "";
+            }
         }
     }
 
