@@ -19,7 +19,7 @@
                 ena = true;
             }
             for (var i = 1; i < tab.rows.length; i++) {
-                tab.rows[i].cells[1].childNodes[0].childNodes[0].checked = ena;
+                tab.rows[i].cells[2].childNodes[0].childNodes[0].checked = ena;
             }
         }
     });
@@ -44,8 +44,3 @@ function enr() {
     });
 
 }
-
-// Material Select Initialization
-$(document).ready(function () {
-    $('.mdb-select').materialSelect();
-});

@@ -101,7 +101,8 @@ public partial class Depenses : System.Web.UI.Page
         ddl_projet.SelectedValue = depense.idProjet.ToString();
 
         loadDdlCat();
-        ddL_categorie.SelectedValue = BD_CoEco.GeCatByID((int)depense.idCategorie).idCategorie.ToString();
+        // ddL_categorie.SelectedValue = BD_CoEco.GetCatByID((int)depense.idCategorie).idCategorie.ToString();
+        ddL_categorie.SelectedValue = depense.idCategorie.ToString();
         ddl_typeDepense.SelectedValue = depense.idType.ToString();    
         tbx_description.Text = depense.descript;     
         tbx_montant.Text = depense.montant.ToString();      

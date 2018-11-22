@@ -63,6 +63,10 @@ public class Utilitaires
 
         if (nom == null)
             nom = "";
+        if (idRep == null || idRep == "-1")
+            idRep = "";
+        if (idStat == null || idStat == "-1")
+            idStat = "";
         if (descript == null)
             descript = "";
 
@@ -73,11 +77,11 @@ public class Utilitaires
                 {
                     researchA.Add(listeProjet[i]);
                 }
-            if(listeProjet[i].responsable.ToString() == idRep)
+            if(listeProjet[i].responsable.ToString().Contains(idRep))
             {
                 researchB.Add(listeProjet[i]);
             }
-            if (listeProjet[i].idStatus.ToString() == idStat)
+            if (listeProjet[i].idStatus.ToString().Contains(idStat))
             {
                 researchC.Add(listeProjet[i]);
             }
@@ -104,7 +108,7 @@ public class Utilitaires
         {
             for (int j = 0; j < B.Count; j++)
             {
-                if(A[i].idProjet == B[i].idProjet)
+                if(A[i].idProjet == B[j].idProjet)
                 {
                     rtnList.Add(A[i]);
                 }

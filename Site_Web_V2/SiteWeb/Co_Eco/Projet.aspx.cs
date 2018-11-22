@@ -107,7 +107,7 @@ public partial class Projet : System.Web.UI.Page
         {
             tableau.AddCell(Projets[i].idProjet.ToString()); //ID
             tableau.AddCell(Projets[i].nom); //NOM
-            tableau.AddCell("1"); //STATUS
+            tableau.AddCell(BD_CoEco.GetStatusProjetById(Projets[i].idStatus).descript); //STATUS
         }
 
 
