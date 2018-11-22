@@ -16,7 +16,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         if(Session["fonction"].ToString() == "1")
         {
             //Bureau
-            div_Menu.Visible = true;
             div_FeuilleDeTemps.Visible = true;
             div_FeuilleDeTempsADM.Visible = false;
             div_projet.Visible = true;
@@ -29,7 +28,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         if (Session["fonction"].ToString() == "2")
         {
             //Terrain
-            div_Menu.Visible = true;
             div_FeuilleDeTemps.Visible = true;
             div_FeuilleDeTempsADM.Visible = false;
             div_projet.Visible = false;
@@ -42,7 +40,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         if (Session["fonction"].ToString() == "3")
         {
             //Admin
-            div_Menu.Visible = true;
             div_FeuilleDeTemps.Visible = false;
             div_FeuilleDeTempsADM.Visible = true;
             div_projet.Visible = true;
