@@ -48,6 +48,7 @@
             <div class="form-row" style="margin: 0 auto">
                 <div class="col">
 
+                    <button id="btn_recherche" runat="server" class="btn btn-primary" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_recherche_ServerClick">Rechercher</button>
 
                     <button id="btn_remFiltre" runat="server" class="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_remFiltre_ServerClick">Retirer filtre</button>
 

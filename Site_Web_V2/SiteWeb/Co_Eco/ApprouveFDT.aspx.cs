@@ -117,6 +117,7 @@ public partial class ApprouveFDT : System.Web.UI.Page
         newFDT.idEmp = oldFDT.idEmp;
 
         BD_CoEco.UpdateFeuilleDeTemps(newFDT);
+        Response.Redirect("FeuilleDeTempsADM.aspx");
 
     }
 

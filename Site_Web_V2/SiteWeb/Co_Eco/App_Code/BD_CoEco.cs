@@ -244,7 +244,7 @@ public class BD_CoEco
     /// </summary>
     /// <param name="id">L'id de la catégorie</param>
     /// <returns></returns>
-    public static T_CategoriePro GeCatByID(int id)
+    public static T_CategoriePro GetCatByID(int id)
     {
         List<T_CategoriePro> listeCat = GetListeCategorie();
 
@@ -399,6 +399,7 @@ public class BD_CoEco
         newFdt.vendredi = p_fdt.vendredi;
         newFdt.samedi = p_fdt.samedi;
         newFdt.note = p_fdt.note;
+        newFdt.approbation = p_fdt.approbation;
 
         BD.SubmitChanges();
         BD.Dispose();
@@ -611,4 +612,13 @@ public class BD_CoEco
         bd.SubmitChanges();
         bd.Dispose();
     }*/
+
+    public static T_StatusProjet GetStatusProjetById(int id)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_StatusProjet statpro = bd.T_StatusProjet.Single(o => o.noStatusPro == id);
+        bd.Dispose();
+        return statpro;
+
+    }
 }
