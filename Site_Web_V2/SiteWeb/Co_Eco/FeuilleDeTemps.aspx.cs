@@ -442,7 +442,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
 
             date = getFirstDayOfWeek(Calendar1.SelectedDate);
-
+            newFdt.approbation = false;
             newFdt.semaine = date;
 
             BD_CoEco.CreateNewFeuilleDeTemps(newFdt);

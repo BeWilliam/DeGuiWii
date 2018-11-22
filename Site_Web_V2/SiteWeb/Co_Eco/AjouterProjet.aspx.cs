@@ -65,29 +65,17 @@ public partial class AjouterProjet : System.Web.UI.Page
                 tbx_projet.Text = projet.descript;
                 if (projet.responsable != null)
                 {
-                    ddl_responsable.SelectedValue = BD_CoEco.GetEmpByID((int)projet.responsable).idEmploye.ToString();
+                    if (projet.responsable != -1)
+                        ddl_responsable.SelectedValue = BD_CoEco.GetEmpByID((int)projet.responsable).idEmploye.ToString();
+                    else
+                        ddl_responsable.SelectedValue = "1";
                 }
                 tbx_heure.Text = projet.heureAlloue.ToString();
                 //dateDebut.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 dateDebut.Text = String.Format("{0:yyyy-MM-dd}", projet.dateDebut);
                 dateFin.Text = String.Format("{0:yyyy-MM-dd}", projet.dateFin);
 
-                if (projet.idStatus == 1) //en cours
-                {
-                    ddl_statut.SelectedIndex = 3;
-                }
-                else if (projet.idStatus == 2) //terminer
-                {
-                    ddl_statut.SelectedIndex = 4;
-                }
-                else if (projet.idStatus == 3) //archiver
-                {
-                    ddl_statut.SelectedIndex = 1;
-                }
-                else //en construction
-                {
-                    ddl_statut.SelectedIndex = 2;
-                }
+                ddl_statut.SelectedValue = projet.idStatus.ToString();
             }
         }
     }
@@ -98,11 +86,15 @@ public partial class AjouterProjet : System.Web.UI.Page
         T_Projet monProjet = new T_Projet();
 
         monProjet.nom = tbx_nom.Text;
-        monProjet.descript = tbx_projet.Text;
+        if(tbx_projet.Text != "")
+            monProjet.descript = tbx_projet.Text;
         monProjet.responsable = int.Parse(ddl_responsable.SelectedValue);
-        monProjet.heureAlloue = int.Parse(tbx_heure.Text);
-        monProjet.dateDebut = DateTime.Parse(dateDebut.Text.ToString());
-        monProjet.dateFin = DateTime.Parse(dateFin.Text.ToString());
+        if(tbx_heure.Text != "")
+            monProjet.heureAlloue = int.Parse(tbx_heure.Text);
+        if(dateDebut.Text != "")
+            monProjet.dateDebut = DateTime.Parse(dateDebut.Text.ToString());
+        if(dateFin.Text != "")
+            monProjet.dateFin = DateTime.Parse(dateFin.Text.ToString());
         monProjet.idStatus = int.Parse(ddl_statut.SelectedValue);
 
         BD_CoEco.CreateNewProjet(monProjet);
@@ -123,7 +115,7 @@ public partial class AjouterProjet : System.Web.UI.Page
             }
         }
         listeResponsable = listeResponsable.OrderBy(o => o.prenom).ThenBy(o => o.prenom).ToList();
-        ddl_responsable.Items.Add(new ListItem("Tous les responsables", "-1"));
+        ddl_responsable.Items.Add(new ListItem("Aucun responsable", "-1"));
         foreach (T_Employe responsable in listeResponsable)
         {
             ddl_responsable.Items.Add(new ListItem(responsable.prenom + " " + responsable.nom, responsable.idEmploye.ToString()));
@@ -134,11 +126,12 @@ public partial class AjouterProjet : System.Web.UI.Page
     {
         List<T_StatusProjet> listeStatusProjet = BD_CoEco.GetListeStatusProjet();
         listeStatusProjet = listeStatusProjet.OrderBy(o => o.descript).ToList();
-        ddl_statut.Items.Add(new ListItem("Tous les statuts", "-1"));
+        //ddl_statut.Items.Add(new ListItem("Tous les statuts", "-1"));
         foreach (T_StatusProjet statut in listeStatusProjet)
         {
             ddl_statut.Items.Add(new ListItem(statut.descript, statut.noStatusPro.ToString()));
         }
+        ddl_statut.SelectedValue = "1";
     }
 
     protected void btn_retour_Click(object sender, EventArgs e)
@@ -152,13 +145,19 @@ public partial class AjouterProjet : System.Web.UI.Page
         T_Projet monProjet = new T_Projet();
 
         monProjet.idProjet = int.Parse(Request.QueryString["id"]);
+
         monProjet.nom = tbx_nom.Text;
-        monProjet.descript = tbx_projet.Text;
-        monProjet.heureAlloue = Double.Parse(tbx_heure.Text);
+        if(tbx_projet.Text != "")
+            monProjet.descript = tbx_projet.Text;
+        if(tbx_heure.Text != "")
+            monProjet.heureAlloue = float.Parse(tbx_heure.Text);
         monProjet.idStatus = int.Parse(ddl_statut.SelectedValue);
-        monProjet.responsable = int.Parse(ddl_responsable.SelectedValue);
-        monProjet.dateDebut = DateTime.Parse(dateDebut.Text.ToString());
-        monProjet.dateFin = DateTime.Parse(dateFin.Text.ToString());
+        if(ddl_responsable.SelectedValue != "-1")
+            monProjet.responsable = int.Parse(ddl_responsable.SelectedValue);
+        if(dateDebut.Text != "")
+            monProjet.dateDebut = DateTime.Parse(dateDebut.Text.ToString());
+        if(dateFin.Text != "")
+            monProjet.dateFin = DateTime.Parse(dateFin.Text.ToString());
 
 
         BD_CoEco.UpdateProjet(monProjet);

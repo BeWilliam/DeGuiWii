@@ -337,8 +337,16 @@ public partial class Projet : System.Web.UI.Page
         }
         else
         {
-            T_Employe responsable = BD_CoEco.GetEmpByID((int)projet.responsable);
-            cChef.Text = responsable.prenom + " " + responsable.nom;
+            if(projet.responsable != -1)
+            {
+                T_Employe responsable = BD_CoEco.GetEmpByID((int)projet.responsable);
+                cChef.Text = responsable.prenom + " " + responsable.nom;
+            }
+            else
+            {
+                cChef.Text = "-";
+            }
+            
         }
         //tc4.Text = listeStatProjet[p_projet.idStatus - 1].descript;
         TableCell cStatut = new TableCell();
