@@ -621,4 +621,53 @@ public class BD_CoEco
         return statpro;
 
     }
+
+    public static float banqueHeuresProj(T_Projet proj)
+    {
+        float banqueHeure = 0;
+
+        List<T_CategoriePro> listCat = GetListeCategorie(proj);
+        List<T_FeuilleDeTemps> listeFdt = GetListeFeuilleDeTemps();
+
+        foreach (T_FeuilleDeTemps fdt in listeFdt)
+        {
+            foreach (T_CategoriePro cat in listCat)
+            {
+                if (cat.idCategorie == fdt.idCategorie)
+                {
+                    if (fdt.dimanche!=null)
+                    {
+                        banqueHeure += (float)fdt.dimanche;
+                    }
+                    if (fdt.lundi != null)
+                    {
+                        banqueHeure += (float)fdt.lundi;
+                    }
+                    if (fdt.mardi != null)
+                    {
+                        banqueHeure += (float)fdt.mardi;
+                    }
+                    if (fdt.mercredi != null)
+                    {
+                        banqueHeure += (float)fdt.mercredi;
+                    }
+                    if (fdt.jeudi != null)
+                    {
+                        banqueHeure += (float)fdt.jeudi;
+                    }
+                    if (fdt.vendredi != null)
+                    {
+                        banqueHeure += (float)fdt.vendredi;
+                    }
+                    if (fdt.samedi != null)
+                    {
+                        banqueHeure += (float)fdt.samedi;
+                    }
+                }
+            }
+        }
+
+        return banqueHeure;
+    }
+
 }
