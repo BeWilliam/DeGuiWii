@@ -94,17 +94,20 @@ public partial class Projet : System.Web.UI.Page
 
         tableau.SetWidths(new float[] { 0.1f, 0.8f, 0.2f });
 
+        string nom = Request.QueryString["nom"];
+        string idRep = Request.QueryString["idRep"];
+        string idStat = Request.QueryString["idStat"];
+        string descript = Request.QueryString["descript"];
+        List<T_Projet> Projets = Utilitaires.GetListeProjetsTri(nom, idRep, idStat, descript);
+        Projets = Projets.OrderBy(o => o.nom).ToList();
 
         //Formatage du tableau
 
-        for (int i = 0; i < Tableau_Projets.Rows.Count; i++) //Lignes
+        for (int i = 0; i < Projets.Count; i++) //Lignes
         {
-            tableau.AddCell(Tableau_Projets.Rows[i].Cells[0].Text); //ID
-            if (i >= 1)
-                tableau.AddCell(((HyperLink)Tableau_Projets.Rows[i].Cells[1].Controls[0]).Text); //NOM
-            else
-                tableau.AddCell(Tableau_Projets.Rows[i].Cells[1].Text); //Nom(Titre)
-            tableau.AddCell(Tableau_Projets.Rows[i].Cells[3].Text); //STATUS
+            tableau.AddCell(Projets[i].idProjet.ToString()); //ID
+            tableau.AddCell(Projets[i].nom); //NOM
+            tableau.AddCell("1"); //STATUS
         }
 
 

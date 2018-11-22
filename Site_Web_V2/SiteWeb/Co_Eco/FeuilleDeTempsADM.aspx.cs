@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Globalization;
+
 
 
 public partial class FeuilleDeTempsADM : System.Web.UI.Page
@@ -14,22 +14,10 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
         if (!IsPostBack)
         {
             //First load
-            tbx_Semaine.Text = DateTime.Today.Year + "-W" + getWeek(DateTime.Today);
+            tbx_Semaine.Text = DateTime.Today.Year + "-W" + Utilitaires.GetWeek(DateTime.Today);
             load();
         }
 
-    }
-
-    private int getWeek(DateTime input)
-    {
-        //Ref : https://social.msdn.microsoft.com/Forums/vstudio/en-US/6768f963-a568-468f-a0a5-b8841e13ffcd/c-display-week-of-the-year-in-a-label?forum=winforms
-        DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(input);
-        if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
-        {
-            input = input.AddDays(3);
-        }
-
-        return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(input, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
     }
 
 
@@ -50,14 +38,13 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
 
         foreach (T_FeuilleDeTemps fdt in toutFdt)
         {
-            int fdtNumSem = getWeek((DateTime)fdt.semaine);
+            int fdtNumSem = Utilitaires.GetWeek((DateTime)fdt.semaine);
             int fdtAnnee = ((DateTime)fdt.semaine).Year;
 
             if (fdtAnnee == annee && fdtNumSem == semaine)
             {
                 //Il faut donc la montrer
                 semaineFdt.Add(fdt);
-
             }
         }
         semaineFdt = semaineFdt.OrderBy(o => BD_CoEco.GetEmpByID(o.idEmp).prenom).ThenBy(o => BD_CoEco.GetEmpByID(o.idEmp).nom).ToList();
@@ -69,13 +56,17 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
         TableHeaderRow thr = new TableHeaderRow();
         TableHeaderCell thc_nom = new TableHeaderCell();
         thc_nom.Text = "Nom employé";
+        TableHeaderCell thc_Heures = new TableHeaderCell();
+        thc_Heures.Text = "Heures";
         TableHeaderCell thc_Approuve = new TableHeaderCell();
         thc_Approuve.Text = "Approuvé";
 
         thr.Cells.Add(thc_nom);
+        thr.Cells.Add(thc_Heures);
         thr.Cells.Add(thc_Approuve);
         tab_emp.Rows.Add(thr);
 
+        float nbHeures = 0;
 
         for (int i = 0; i < fdt.Count; i++)
         {
@@ -88,6 +79,10 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
             hl.NavigateUrl = "ApprouveFDT.aspx?idFTD=" + fdt[i].idFeuilleDeTemps;
             tc_nom.Controls.Add(hl);
             tr.Cells.Add(tc_nom);
+            TableCell tc_heures = new TableCell();
+            tc_heures.Text = Utilitaires.GetHeureFDT(fdt[i].idFeuilleDeTemps).ToString();
+            nbHeures += Utilitaires.GetHeureFDT(fdt[i].idFeuilleDeTemps);
+            tr.Cells.Add(tc_heures);
             TableCell tc_Confirm = new TableCell();
             CheckBox cbx_confirm = new CheckBox();
             cbx_confirm.Checked = (bool)fdt[i].approbation;
@@ -97,6 +92,14 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
             tab_emp.Rows.Add(tr);
         }
 
+        TableFooterRow tfr = new TableFooterRow();
+        TableCell tcNULL = new TableCell();
+        tfr.Cells.Add(tcNULL);
+        TableCell tcNbH = new TableCell();
+        tcNbH.Text = "Total : " + nbHeures.ToString() + "h";
+        tcNbH.ColumnSpan = 2;
+        tfr.Cells.Add(tcNbH);
+        tab_emp.Rows.Add(tfr);
     }
 
 
@@ -106,13 +109,5 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
         load();
     }
 
-    //[System.Web.Services.WebMethod]
-    //[System.Web.Script.Services.ScriptMethod()]
-    private static void enre()
-    {
-        System.Diagnostics.Debug.WriteLine("yay");
-
-
-    }
-
+    
 }

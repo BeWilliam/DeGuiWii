@@ -15,44 +15,40 @@ public partial class ApprouveFDT : System.Web.UI.Page
             Response.Redirect("Menu.aspx");
         }
 
-        //if(!IsPostBack)
-        //{
-            string idFDT = Request.QueryString["idFTD"];
-            if(idFDT == null || idFDT == "")
-            {
-                Response.Redirect("FeuilleDeTempsADM.aspx"); 
-            }
-            loadTable();
+        string idFDT = Request.QueryString["idFTD"];
+        if(idFDT == null || idFDT == "")
+        {
+            Response.Redirect("FeuilleDeTempsADM.aspx"); 
+        }
+        loadTable();
 
-            T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(int.Parse(idFDT));
-            if(fdt.approbation == true)
-            {
-                btn_app.Text = "Désapprouver";
-            }
-            else
-            {
-                btn_app.Text = "Approuver";
-            }
-        //}
+        T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(int.Parse(idFDT));
+        if(fdt.approbation == true)
+        {
+            btn_app.Text = "Désapprouver";
+        }
+        else
+        {
+            btn_app.Text = "Approuver";
+        }
+
+        T_Employe emp = BD_CoEco.GetEmpByID(BD_CoEco.GetFeuilleDeTempsById(int.Parse(idFDT)).idEmp);
+        lbl_nomEmp.Text = emp.prenom + " " + emp.nom;
+
+        DateTime ddate = (DateTime)BD_CoEco.GetFeuilleDeTempsById(int.Parse(idFDT)).semaine;
+        lbl_idSem.Text = "Semaine #" + Utilitaires.GetWeek(ddate).ToString() + " de l'année " + ddate.Year.ToString();
     }
 
     private void loadTable()
     {
         TableHeaderRow thr = new TableHeaderRow();
         TableRow tr = new TableRow();
-        string[] weekDay = new string[7];
-        weekDay[0] = "Dimanche";
-        weekDay[1] = "Lundi";
-        weekDay[2] = "Mardi";
-        weekDay[3] = "Mercredi";
-        weekDay[4] = "Jeudi";
-        weekDay[5] = "Vendredi";
-        weekDay[6] = "Samedi";
+        
 
-        for (int i = 0; i < weekDay.Length; i++)
+        for (int i = 0; i < 7; i++)
         {
             TableHeaderCell thc_day = new TableHeaderCell();
-            thc_day.Text = weekDay[i];
+            thc_day.Text = Utilitaires.GetDayOfWeekName(i);
             thc_day.Width = new Unit("14%");
             thr.Cells.Add(thc_day);
             TableCell tc_day = new TableCell();
@@ -100,9 +96,32 @@ public partial class ApprouveFDT : System.Web.UI.Page
 
     protected void btn_app_Click(object sender, EventArgs e)
     {
-        for (int i = 0; i < 7; i++)
-        {
-            ((TextBox)tab_FDT.Rows[1].Cells[i].Controls[0]).Text = "TEST";
-        }
+        int idFDT = int.Parse(Request.QueryString["idFTD"]);
+        T_FeuilleDeTemps newFDT = new T_FeuilleDeTemps();
+        T_FeuilleDeTemps oldFDT = BD_CoEco.GetFeuilleDeTempsById(idFDT);
+        newFDT.idFeuilleDeTemps = idFDT;
+        //((TextBox)tab_FDT.Rows[1].Cells[i].Controls[0]).Text = "TEST";
+
+        newFDT.dimanche = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[0].Controls[0]).Text);
+        newFDT.lundi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[1].Controls[0]).Text);
+        newFDT.mardi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[2].Controls[0]).Text);
+        newFDT.mercredi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[3].Controls[0]).Text);
+        newFDT.jeudi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[4].Controls[0]).Text);
+        newFDT.vendredi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[5].Controls[0]).Text);
+        newFDT.samedi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[6].Controls[0]).Text);
+
+        newFDT.note = oldFDT.note;
+        newFDT.semaine = oldFDT.semaine;
+        newFDT.approbation = true; //à changer
+        newFDT.idCategorie = oldFDT.idCategorie;
+        newFDT.idEmp = oldFDT.idEmp;
+
+        BD_CoEco.UpdateFeuilleDeTemps(newFDT);
+
+    }
+
+    protected void btn_retour_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("FeuilleDeTempsADM.aspx");
     }
 }

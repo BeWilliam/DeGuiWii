@@ -592,7 +592,7 @@ public class BD_CoEco
         return fdt;
     }
 
-    public static void UpdateFeuilleDeTemps(T_FeuilleDeTemps newFdt)
+    /*public static void UpdateFeuilleDeTemps(T_FeuilleDeTemps newFdt)
     {
         CoEco_BDDataContext bd = new CoEco_BDDataContext();
         T_FeuilleDeTemps fdt = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == newFdt.idFeuilleDeTemps);
@@ -610,5 +610,5 @@ public class BD_CoEco
 
         bd.SubmitChanges();
         bd.Dispose();
-    }
+    }*/
 }

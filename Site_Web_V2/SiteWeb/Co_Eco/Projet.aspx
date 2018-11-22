@@ -7,7 +7,7 @@
             <div class="col">
                 <label for="validationTooltip01" style="text-align: center">Nom de Projet</label>
                 <%--<input type="text" class="form-control"  id="tbx_nom" name="tbx_nom" value="">--%>
-                <asp:TextBox CssClass="form-control" ID="tbx_nom" runat="server"/>
+                <asp:TextBox CssClass="form-control" ID="tbx_nom" TextMode="Search" runat="server"/>
                 <div class="valid-tooltip">
                 </div>
             </div>
@@ -36,7 +36,7 @@
             <div class="col">
                 <label for="validationTooltip01">Description</label>
                 <%--<input type="text" class="form-control" id="tbx_descript" name="tbx_descript" value="">--%>
-                <asp:TextBox CssClass="form-control" id="tbx_descript" runat="server" />
+                <asp:TextBox CssClass="form-control" id="tbx_descript" TextMode="Search" runat="server" />
                 <div class="valid-tooltip">
                 </div>
             </div>
@@ -48,7 +48,6 @@
             <div class="form-row" style="margin: 0 auto">
                 <div class="col">
 
-                    <button id="btn_recherche" runat="server" class="btn btn-primary" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_recherche_ServerClick">Filtrer</button>
 
                     <button id="btn_remFiltre" runat="server" class="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000;" onserverclick="btn_remFiltre_ServerClick">Retirer filtre</button>
 
