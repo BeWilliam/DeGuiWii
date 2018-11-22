@@ -75,6 +75,9 @@ public partial class Connexion : System.Web.UI.Page
         Session["fonction"] = employe.idFonction;
         Session["idEmp"] = employe.idEmploye;
 
-        Response.Redirect("FeuilleDeTemps.aspx");
+        if (employe.idFonction != 3)
+            Response.Redirect("FeuilleDeTemps.aspx");
+        else
+            Response.Redirect("FeuilleDeTempsADM.aspx");
     }
 }

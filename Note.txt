@@ -15,8 +15,12 @@ Afficher une liste avec Projet, catégorie
 Détail des entrées qui corresponde aux heures
 
 
+
 PRojet
 Coche innactifs									-William
+
+Projet
+Coche innactifs
 
 Retirer numéro pour les rapports						-Guillaume
 
