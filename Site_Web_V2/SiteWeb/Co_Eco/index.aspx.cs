@@ -34,8 +34,16 @@ public partial class Connexion : System.Web.UI.Page
             {
                 if(listeEmp[i].mdp == null)
                 {
-                    //Alors on co
-                    Connect(BD_CoEco.GetEmpByID(listeEmp[i].idEmploye));
+                    if(tbx_mdp.Text == "")
+                    {
+                        //Alors on co
+                        Connect(BD_CoEco.GetEmpByID(listeEmp[i].idEmploye));
+                    }
+                    else
+                    {
+                        tbx_mdp.Text = "";
+                        tbx_username.Text = "";
+                    }
                 }
                 else
                 {
@@ -44,6 +52,11 @@ public partial class Connexion : System.Web.UI.Page
                     {
                         //Alors on co
                         Connect(BD_CoEco.GetEmpByID(listeEmp[i].idEmploye));
+                    }
+                    else
+                    {
+                        tbx_mdp.Text = "";
+                        tbx_username.Text = "";
                     }
                 }
             }
