@@ -1,0 +1,36 @@
+Changer nom d'utilisateur pour seulement le prénom
+Changer la page de connexion pour qu'on puisse y accèder avec un bouton
+Rentrer une dépense sans être lié à une catégorie
+Mettre un commentaire pour chaque entrée (EMP)
+Banque d'heure!!!
+	Chaque an, banque d'heure init (on rentre les données)
+	Maladie, Congé perso, heure supp vacances Férier
+
+
+FTD ADM
+Afficher une liste avec Projet, catégorie
+Détail des entrées qui corresponde aux heures
+
+
+PRojet
+Coche innactifs
+
+Retirer numéro pour les rapports
+
+
+Catégorie sera dans projet à la place
+
+À place des numéros de dépense, on met la date de la dépense
+Approuver tous d'une shot
+Rentrer une dépense pour un employé en tant qu'Admin
+
+
+Taux kilométrage
+
+Employé de terrain a pas accès à la banque d'heure
+
+Ajouter une interface pour assigner des types de dépenses à des fonctions
+	2 types de véhicule
+		Auto, camion
+
+
