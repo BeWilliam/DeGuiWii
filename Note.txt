@@ -1,5 +1,3 @@
-Changer nom d'utilisateur pour seulement le prénom
-Changer la page de connexion pour qu'on puisse y accèder avec un bouton
 Rentrer une dépense sans être lié à une catégorie
 Mettre un commentaire pour chaque entrée (EMP)
 Banque d'heure!!!

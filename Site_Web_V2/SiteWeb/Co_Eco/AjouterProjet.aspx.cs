@@ -111,7 +111,6 @@ public partial class AjouterProjet : System.Web.UI.Page
             if (employe.idFonction == 1) //Employé de bureau
             {
                 listeResponsable.Add(employe);
-
             }
         }
         listeResponsable = listeResponsable.OrderBy(o => o.prenom).ThenBy(o => o.prenom).ToList();

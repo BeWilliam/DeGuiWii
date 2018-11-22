@@ -15,7 +15,6 @@ INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (4, 2, 'Congé
 INSERT INTO T_Employe(idFonction, idStatus, nom, prenom) VALUES (1,1,'Gagnon','Guillaume')
 INSERT INTO T_Employe(idFonction, idStatus, nom, prenom) VALUES (1,1,'Lemieux','William')
 INSERT INTO T_Employe(idFonction, idStatus, nom, prenom) VALUES (1,1,'Thériault','Denis')
-INSERT INTO T_Employe(idFonction, idStatus, nom, prenom) VALUES (1,1,'une bd parfaite','Jai plante')
 
 INSERT INTO T_Depense(idType, idProjet, idEmp, montant) VALUES (1,1,1,20)
 INSERT INTO T_Depense(idType, idProjet, idEmp, montant) VALUES (1,1,2,30)

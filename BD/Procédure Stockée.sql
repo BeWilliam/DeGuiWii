@@ -28,19 +28,6 @@ EXEC PS_DepenseProjet
 SELECT @total
 
 
-/*Procédure permettant de changer le taux de kilometrage*/
-IF OBJECT_ID ( 'PS_ChangerTauxKilo', 'P' ) IS NOT NULL 
-    DROP PROCEDURE PS_ChangerTauxKilo 
-GO
-
-CREATE PROCEDURE PS_ChangerTauxKilo
-	@newValue FLOAT(3)
-AS
-	INSERT INTO T_TauxKilo(taux, ddate)  VALUES (@newValue, GETDATE())
-
-GO
-
-/*EXEC PS_ChangerTauxKilo 0.44*/
 
 
 /*Procédure permettant de changer l'état d'un projet*/
@@ -116,39 +103,6 @@ AS
 	SET dateFin = @ddateFin
 	WHERE idProjet = @idProjet
 GO
-
-/*DECLARE @ddate DATE
-SET @ddate = GETDATE()
-EXEC PS_ChangerDateFinProjet 1, @ddate*/
-
-
-
-/*Procédure permettant d'ajouter des projets*/
-
-
-/*REPACE ICI CHOSE*/
-/*
-IF OBJECT_ID ( 'PS_ChangerDateFinProjet', 'P' ) IS NOT NULL 
-    DROP PROCEDURE PS_ChangerDateFinProjet 
-GO
-
-CREATE PROCEDURE PS_AjouterProjets
-	@nom VARCHAR(100),
-	@descript VARCHAR(500),
-	@responsable INT, 
-	@dateDebut DATE,
-	@dateFin DATE ,
-	@idStatus INT
-AS
-DECLARE @maximum AS INT
-Set @maximum = SELECT MAX(idProjet) FROM Projet
-
-
-
-INSERT INTO Projet(nom, descript, responsable, dateDebut, dateFin, idStatus) VALUES (@nom, @descript, @responsable, @dateDebut, @dateFin, @idStatus) 
-
-GO*/
-
 
 /*Procédure permettant d'ajouter un employé au projet*/
 IF OBJECT_ID ( 'PS_GetMaxIdEmpolye', 'P' ) IS NOT NULL 

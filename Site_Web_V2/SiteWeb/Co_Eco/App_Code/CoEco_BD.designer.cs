@@ -29,9 +29,24 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 	
   #region Définitions de méthodes d'extensibilité
   partial void OnCreated();
+  partial void InsertT_CategoriePro(T_CategoriePro instance);
+  partial void UpdateT_CategoriePro(T_CategoriePro instance);
+  partial void DeleteT_CategoriePro(T_CategoriePro instance);
   partial void InsertT_TypeDepense(T_TypeDepense instance);
   partial void UpdateT_TypeDepense(T_TypeDepense instance);
   partial void DeleteT_TypeDepense(T_TypeDepense instance);
+  partial void InsertT_Depense(T_Depense instance);
+  partial void UpdateT_Depense(T_Depense instance);
+  partial void DeleteT_Depense(T_Depense instance);
+  partial void InsertT_Employe(T_Employe instance);
+  partial void UpdateT_Employe(T_Employe instance);
+  partial void DeleteT_Employe(T_Employe instance);
+  partial void InsertT_EmployeProjet(T_EmployeProjet instance);
+  partial void UpdateT_EmployeProjet(T_EmployeProjet instance);
+  partial void DeleteT_EmployeProjet(T_EmployeProjet instance);
+  partial void InsertT_FeuilleDeTemps(T_FeuilleDeTemps instance);
+  partial void UpdateT_FeuilleDeTemps(T_FeuilleDeTemps instance);
+  partial void DeleteT_FeuilleDeTemps(T_FeuilleDeTemps instance);
   partial void InsertT_FonctionEmploye(T_FonctionEmploye instance);
   partial void UpdateT_FonctionEmploye(T_FonctionEmploye instance);
   partial void DeleteT_FonctionEmploye(T_FonctionEmploye instance);
@@ -53,21 +68,9 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
   partial void InsertT_TauxKilo(T_TauxKilo instance);
   partial void UpdateT_TauxKilo(T_TauxKilo instance);
   partial void DeleteT_TauxKilo(T_TauxKilo instance);
-  partial void InsertT_CategoriePro(T_CategoriePro instance);
-  partial void UpdateT_CategoriePro(T_CategoriePro instance);
-  partial void DeleteT_CategoriePro(T_CategoriePro instance);
-  partial void InsertT_Depense(T_Depense instance);
-  partial void UpdateT_Depense(T_Depense instance);
-  partial void DeleteT_Depense(T_Depense instance);
-  partial void InsertT_Employe(T_Employe instance);
-  partial void UpdateT_Employe(T_Employe instance);
-  partial void DeleteT_Employe(T_Employe instance);
-  partial void InsertT_EmployeProjet(T_EmployeProjet instance);
-  partial void UpdateT_EmployeProjet(T_EmployeProjet instance);
-  partial void DeleteT_EmployeProjet(T_EmployeProjet instance);
-  partial void InsertT_FeuilleDeTemps(T_FeuilleDeTemps instance);
-  partial void UpdateT_FeuilleDeTemps(T_FeuilleDeTemps instance);
-  partial void DeleteT_FeuilleDeTemps(T_FeuilleDeTemps instance);
+  partial void InsertT_TypeAuto(T_TypeAuto instance);
+  partial void UpdateT_TypeAuto(T_TypeAuto instance);
+  partial void DeleteT_TypeAuto(T_TypeAuto instance);
   #endregion
 	
 	public CoEco_BDDataContext() : 
@@ -100,11 +103,51 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
+	public System.Data.Linq.Table<T_CategoriePro> T_CategoriePro
+	{
+		get
+		{
+			return this.GetTable<T_CategoriePro>();
+		}
+	}
+	
 	public System.Data.Linq.Table<T_TypeDepense> T_TypeDepense
 	{
 		get
 		{
 			return this.GetTable<T_TypeDepense>();
+		}
+	}
+	
+	public System.Data.Linq.Table<T_Depense> T_Depense
+	{
+		get
+		{
+			return this.GetTable<T_Depense>();
+		}
+	}
+	
+	public System.Data.Linq.Table<T_Employe> T_Employe
+	{
+		get
+		{
+			return this.GetTable<T_Employe>();
+		}
+	}
+	
+	public System.Data.Linq.Table<T_EmployeProjet> T_EmployeProjet
+	{
+		get
+		{
+			return this.GetTable<T_EmployeProjet>();
+		}
+	}
+	
+	public System.Data.Linq.Table<T_FeuilleDeTemps> T_FeuilleDeTemps
+	{
+		get
+		{
+			return this.GetTable<T_FeuilleDeTemps>();
 		}
 	}
 	
@@ -164,43 +207,11 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<T_CategoriePro> T_CategoriePro
+	public System.Data.Linq.Table<T_TypeAuto> T_TypeAuto
 	{
 		get
 		{
-			return this.GetTable<T_CategoriePro>();
-		}
-	}
-	
-	public System.Data.Linq.Table<T_Depense> T_Depense
-	{
-		get
-		{
-			return this.GetTable<T_Depense>();
-		}
-	}
-	
-	public System.Data.Linq.Table<T_Employe> T_Employe
-	{
-		get
-		{
-			return this.GetTable<T_Employe>();
-		}
-	}
-	
-	public System.Data.Linq.Table<T_EmployeProjet> T_EmployeProjet
-	{
-		get
-		{
-			return this.GetTable<T_EmployeProjet>();
-		}
-	}
-	
-	public System.Data.Linq.Table<T_FeuilleDeTemps> T_FeuilleDeTemps
-	{
-		get
-		{
-			return this.GetTable<T_FeuilleDeTemps>();
+			return this.GetTable<T_TypeAuto>();
 		}
 	}
 	
@@ -237,13 +248,6 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 	public int PS_ChangerStatusEmp([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idEmploye, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idStatus)
 	{
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idEmploye, idStatus);
-		return ((int)(result.ReturnValue));
-	}
-	
-	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PS_ChangerTauxKilo")]
-	public int PS_ChangerTauxKilo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Real")] System.Nullable<float> newValue)
-	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), newValue);
 		return ((int)(result.ReturnValue));
 	}
 	
@@ -285,6 +289,306 @@ public partial class CoEco_BDDataContext : System.Data.Linq.DataContext
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idFeuilleTemps);
 		idFeuilleTemps = ((System.Nullable<int>)(result.GetParameterValue(0)));
 		return ((int)(result.ReturnValue));
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_CategoriePro")]
+public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _idCategorie;
+	
+	private string _descript;
+	
+	private int _idProjet;
+	
+	private int _idStatusCat;
+	
+	private EntitySet<T_Depense> _T_Depense;
+	
+	private EntitySet<T_FeuilleDeTemps> _T_FeuilleDeTemps;
+	
+	private EntitySet<T_Kilometrage> _T_Kilometrage;
+	
+	private EntityRef<T_Projet> _T_Projet;
+	
+	private EntityRef<T_StatusCategorie> _T_StatusCategorie;
+	
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidCategorieChanging(int value);
+    partial void OnidCategorieChanged();
+    partial void OndescriptChanging(string value);
+    partial void OndescriptChanged();
+    partial void OnidProjetChanging(int value);
+    partial void OnidProjetChanged();
+    partial void OnidStatusCatChanging(int value);
+    partial void OnidStatusCatChanged();
+    #endregion
+	
+	public T_CategoriePro()
+	{
+		this._T_Depense = new EntitySet<T_Depense>(new Action<T_Depense>(this.attach_T_Depense), new Action<T_Depense>(this.detach_T_Depense));
+		this._T_FeuilleDeTemps = new EntitySet<T_FeuilleDeTemps>(new Action<T_FeuilleDeTemps>(this.attach_T_FeuilleDeTemps), new Action<T_FeuilleDeTemps>(this.detach_T_FeuilleDeTemps));
+		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
+		this._T_Projet = default(EntityRef<T_Projet>);
+		this._T_StatusCategorie = default(EntityRef<T_StatusCategorie>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	public int idCategorie
+	{
+		get
+		{
+			return this._idCategorie;
+		}
+		set
+		{
+			if ((this._idCategorie != value))
+			{
+				this.OnidCategorieChanging(value);
+				this.SendPropertyChanging();
+				this._idCategorie = value;
+				this.SendPropertyChanged("idCategorie");
+				this.OnidCategorieChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string descript
+	{
+		get
+		{
+			return this._descript;
+		}
+		set
+		{
+			if ((this._descript != value))
+			{
+				this.OndescriptChanging(value);
+				this.SendPropertyChanging();
+				this._descript = value;
+				this.SendPropertyChanged("descript");
+				this.OndescriptChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjet", DbType="Int NOT NULL")]
+	public int idProjet
+	{
+		get
+		{
+			return this._idProjet;
+		}
+		set
+		{
+			if ((this._idProjet != value))
+			{
+				if (this._T_Projet.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnidProjetChanging(value);
+				this.SendPropertyChanging();
+				this._idProjet = value;
+				this.SendPropertyChanged("idProjet");
+				this.OnidProjetChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idStatusCat", DbType="Int NOT NULL")]
+	public int idStatusCat
+	{
+		get
+		{
+			return this._idStatusCat;
+		}
+		set
+		{
+			if ((this._idStatusCat != value))
+			{
+				if (this._T_StatusCategorie.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnidStatusCatChanging(value);
+				this.SendPropertyChanging();
+				this._idStatusCat = value;
+				this.SendPropertyChanged("idStatusCat");
+				this.OnidStatusCatChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Depense", Storage="_T_Depense", ThisKey="idCategorie", OtherKey="idCategorie")]
+	public EntitySet<T_Depense> T_Depense
+	{
+		get
+		{
+			return this._T_Depense;
+		}
+		set
+		{
+			this._T_Depense.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_FeuilleDeTemps", Storage="_T_FeuilleDeTemps", ThisKey="idCategorie", OtherKey="idCategorie")]
+	public EntitySet<T_FeuilleDeTemps> T_FeuilleDeTemps
+	{
+		get
+		{
+			return this._T_FeuilleDeTemps;
+		}
+		set
+		{
+			this._T_FeuilleDeTemps.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idCategorie", OtherKey="idCat")]
+	public EntitySet<T_Kilometrage> T_Kilometrage
+	{
+		get
+		{
+			return this._T_Kilometrage;
+		}
+		set
+		{
+			this._T_Kilometrage.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_CategoriePro", Storage="_T_Projet", ThisKey="idProjet", OtherKey="idProjet", IsForeignKey=true)]
+	public T_Projet T_Projet
+	{
+		get
+		{
+			return this._T_Projet.Entity;
+		}
+		set
+		{
+			T_Projet previousValue = this._T_Projet.Entity;
+			if (((previousValue != value) 
+						|| (this._T_Projet.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_Projet.Entity = null;
+					previousValue.T_CategoriePro.Remove(this);
+				}
+				this._T_Projet.Entity = value;
+				if ((value != null))
+				{
+					value.T_CategoriePro.Add(this);
+					this._idProjet = value.idProjet;
+				}
+				else
+				{
+					this._idProjet = default(int);
+				}
+				this.SendPropertyChanged("T_Projet");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusCategorie_T_CategoriePro", Storage="_T_StatusCategorie", ThisKey="idStatusCat", OtherKey="idStatusCat", IsForeignKey=true)]
+	public T_StatusCategorie T_StatusCategorie
+	{
+		get
+		{
+			return this._T_StatusCategorie.Entity;
+		}
+		set
+		{
+			T_StatusCategorie previousValue = this._T_StatusCategorie.Entity;
+			if (((previousValue != value) 
+						|| (this._T_StatusCategorie.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_StatusCategorie.Entity = null;
+					previousValue.T_CategoriePro.Remove(this);
+				}
+				this._T_StatusCategorie.Entity = value;
+				if ((value != null))
+				{
+					value.T_CategoriePro.Add(this);
+					this._idStatusCat = value.idStatusCat;
+				}
+				else
+				{
+					this._idStatusCat = default(int);
+				}
+				this.SendPropertyChanged("T_StatusCategorie");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_T_Depense(T_Depense entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_CategoriePro = this;
+	}
+	
+	private void detach_T_Depense(T_Depense entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_CategoriePro = null;
+	}
+	
+	private void attach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_CategoriePro = this;
+	}
+	
+	private void detach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_CategoriePro = null;
+	}
+	
+	private void attach_T_Kilometrage(T_Kilometrage entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_CategoriePro = this;
+	}
+	
+	private void detach_T_Kilometrage(T_Kilometrage entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_CategoriePro = null;
 	}
 }
 
@@ -402,1677 +706,6 @@ public partial class T_TypeDepense : INotifyPropertyChanging, INotifyPropertyCha
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_FonctionEmploye")]
-public partial class T_FonctionEmploye : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _idFonctionEmp;
-	
-	private string _descript;
-	
-	private EntitySet<T_Employe> _T_Employe;
-	
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidFonctionEmpChanging(int value);
-    partial void OnidFonctionEmpChanged();
-    partial void OndescriptChanging(string value);
-    partial void OndescriptChanged();
-    #endregion
-	
-	public T_FonctionEmploye()
-	{
-		this._T_Employe = new EntitySet<T_Employe>(new Action<T_Employe>(this.attach_T_Employe), new Action<T_Employe>(this.detach_T_Employe));
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idFonctionEmp", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int idFonctionEmp
-	{
-		get
-		{
-			return this._idFonctionEmp;
-		}
-		set
-		{
-			if ((this._idFonctionEmp != value))
-			{
-				this.OnidFonctionEmpChanging(value);
-				this.SendPropertyChanging();
-				this._idFonctionEmp = value;
-				this.SendPropertyChanged("idFonctionEmp");
-				this.OnidFonctionEmpChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(20)")]
-	public string descript
-	{
-		get
-		{
-			return this._descript;
-		}
-		set
-		{
-			if ((this._descript != value))
-			{
-				this.OndescriptChanging(value);
-				this.SendPropertyChanging();
-				this._descript = value;
-				this.SendPropertyChanged("descript");
-				this.OndescriptChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_FonctionEmploye_T_Employe", Storage="_T_Employe", ThisKey="idFonctionEmp", OtherKey="idFonction")]
-	public EntitySet<T_Employe> T_Employe
-	{
-		get
-		{
-			return this._T_Employe;
-		}
-		set
-		{
-			this._T_Employe.Assign(value);
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_T_Employe(T_Employe entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_FonctionEmploye = this;
-	}
-	
-	private void detach_T_Employe(T_Employe entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_FonctionEmploye = null;
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_Kilometrage")]
-public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _idKilo;
-	
-	private float _nbKilo;
-	
-	private string _commentaire;
-	
-	private System.Nullable<System.DateTime> _ddate;
-	
-	private int _idTaux;
-	
-	private int _idEmp;
-	
-	private int _idPro;
-	
-	private int _idCat;
-	
-	private EntityRef<T_Projet> _T_Projet;
-	
-	private EntityRef<T_TauxKilo> _T_TauxKilo;
-	
-	private EntityRef<T_CategoriePro> _T_CategoriePro;
-	
-	private EntityRef<T_Employe> _T_Employe;
-	
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidKiloChanging(int value);
-    partial void OnidKiloChanged();
-    partial void OnnbKiloChanging(float value);
-    partial void OnnbKiloChanged();
-    partial void OncommentaireChanging(string value);
-    partial void OncommentaireChanged();
-    partial void OnddateChanging(System.Nullable<System.DateTime> value);
-    partial void OnddateChanged();
-    partial void OnidTauxChanging(int value);
-    partial void OnidTauxChanged();
-    partial void OnidEmpChanging(int value);
-    partial void OnidEmpChanged();
-    partial void OnidProChanging(int value);
-    partial void OnidProChanged();
-    partial void OnidCatChanging(int value);
-    partial void OnidCatChanged();
-    #endregion
-	
-	public T_Kilometrage()
-	{
-		this._T_Projet = default(EntityRef<T_Projet>);
-		this._T_TauxKilo = default(EntityRef<T_TauxKilo>);
-		this._T_CategoriePro = default(EntityRef<T_CategoriePro>);
-		this._T_Employe = default(EntityRef<T_Employe>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idKilo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int idKilo
-	{
-		get
-		{
-			return this._idKilo;
-		}
-		set
-		{
-			if ((this._idKilo != value))
-			{
-				this.OnidKiloChanging(value);
-				this.SendPropertyChanging();
-				this._idKilo = value;
-				this.SendPropertyChanged("idKilo");
-				this.OnidKiloChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nbKilo", DbType="Real NOT NULL")]
-	public float nbKilo
-	{
-		get
-		{
-			return this._nbKilo;
-		}
-		set
-		{
-			if ((this._nbKilo != value))
-			{
-				this.OnnbKiloChanging(value);
-				this.SendPropertyChanging();
-				this._nbKilo = value;
-				this.SendPropertyChanged("nbKilo");
-				this.OnnbKiloChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_commentaire", DbType="VarChar(100)")]
-	public string commentaire
-	{
-		get
-		{
-			return this._commentaire;
-		}
-		set
-		{
-			if ((this._commentaire != value))
-			{
-				this.OncommentaireChanging(value);
-				this.SendPropertyChanging();
-				this._commentaire = value;
-				this.SendPropertyChanged("commentaire");
-				this.OncommentaireChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ddate", DbType="Date")]
-	public System.Nullable<System.DateTime> ddate
-	{
-		get
-		{
-			return this._ddate;
-		}
-		set
-		{
-			if ((this._ddate != value))
-			{
-				this.OnddateChanging(value);
-				this.SendPropertyChanging();
-				this._ddate = value;
-				this.SendPropertyChanged("ddate");
-				this.OnddateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTaux", DbType="Int NOT NULL")]
-	public int idTaux
-	{
-		get
-		{
-			return this._idTaux;
-		}
-		set
-		{
-			if ((this._idTaux != value))
-			{
-				if (this._T_TauxKilo.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidTauxChanging(value);
-				this.SendPropertyChanging();
-				this._idTaux = value;
-				this.SendPropertyChanged("idTaux");
-				this.OnidTauxChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmp", DbType="Int NOT NULL")]
-	public int idEmp
-	{
-		get
-		{
-			return this._idEmp;
-		}
-		set
-		{
-			if ((this._idEmp != value))
-			{
-				if (this._T_Employe.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidEmpChanging(value);
-				this.SendPropertyChanging();
-				this._idEmp = value;
-				this.SendPropertyChanged("idEmp");
-				this.OnidEmpChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPro", DbType="Int NOT NULL")]
-	public int idPro
-	{
-		get
-		{
-			return this._idPro;
-		}
-		set
-		{
-			if ((this._idPro != value))
-			{
-				if (this._T_Projet.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidProChanging(value);
-				this.SendPropertyChanging();
-				this._idPro = value;
-				this.SendPropertyChanged("idPro");
-				this.OnidProChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCat", DbType="Int NOT NULL")]
-	public int idCat
-	{
-		get
-		{
-			return this._idCat;
-		}
-		set
-		{
-			if ((this._idCat != value))
-			{
-				if (this._T_CategoriePro.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidCatChanging(value);
-				this.SendPropertyChanging();
-				this._idCat = value;
-				this.SendPropertyChanged("idCat");
-				this.OnidCatChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_Kilometrage", Storage="_T_Projet", ThisKey="idPro", OtherKey="idProjet", IsForeignKey=true)]
-	public T_Projet T_Projet
-	{
-		get
-		{
-			return this._T_Projet.Entity;
-		}
-		set
-		{
-			T_Projet previousValue = this._T_Projet.Entity;
-			if (((previousValue != value) 
-						|| (this._T_Projet.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_Projet.Entity = null;
-					previousValue.T_Kilometrage.Remove(this);
-				}
-				this._T_Projet.Entity = value;
-				if ((value != null))
-				{
-					value.T_Kilometrage.Add(this);
-					this._idPro = value.idProjet;
-				}
-				else
-				{
-					this._idPro = default(int);
-				}
-				this.SendPropertyChanged("T_Projet");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_TauxKilo_T_Kilometrage", Storage="_T_TauxKilo", ThisKey="idTaux", OtherKey="idTaux", IsForeignKey=true)]
-	public T_TauxKilo T_TauxKilo
-	{
-		get
-		{
-			return this._T_TauxKilo.Entity;
-		}
-		set
-		{
-			T_TauxKilo previousValue = this._T_TauxKilo.Entity;
-			if (((previousValue != value) 
-						|| (this._T_TauxKilo.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_TauxKilo.Entity = null;
-					previousValue.T_Kilometrage.Remove(this);
-				}
-				this._T_TauxKilo.Entity = value;
-				if ((value != null))
-				{
-					value.T_Kilometrage.Add(this);
-					this._idTaux = value.idTaux;
-				}
-				else
-				{
-					this._idTaux = default(int);
-				}
-				this.SendPropertyChanged("T_TauxKilo");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Kilometrage", Storage="_T_CategoriePro", ThisKey="idCat", OtherKey="idCategorie", IsForeignKey=true)]
-	public T_CategoriePro T_CategoriePro
-	{
-		get
-		{
-			return this._T_CategoriePro.Entity;
-		}
-		set
-		{
-			T_CategoriePro previousValue = this._T_CategoriePro.Entity;
-			if (((previousValue != value) 
-						|| (this._T_CategoriePro.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_CategoriePro.Entity = null;
-					previousValue.T_Kilometrage.Remove(this);
-				}
-				this._T_CategoriePro.Entity = value;
-				if ((value != null))
-				{
-					value.T_Kilometrage.Add(this);
-					this._idCat = value.idCategorie;
-				}
-				else
-				{
-					this._idCat = default(int);
-				}
-				this.SendPropertyChanged("T_CategoriePro");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Employe_T_Kilometrage", Storage="_T_Employe", ThisKey="idEmp", OtherKey="idEmploye", IsForeignKey=true)]
-	public T_Employe T_Employe
-	{
-		get
-		{
-			return this._T_Employe.Entity;
-		}
-		set
-		{
-			T_Employe previousValue = this._T_Employe.Entity;
-			if (((previousValue != value) 
-						|| (this._T_Employe.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_Employe.Entity = null;
-					previousValue.T_Kilometrage.Remove(this);
-				}
-				this._T_Employe.Entity = value;
-				if ((value != null))
-				{
-					value.T_Kilometrage.Add(this);
-					this._idEmp = value.idEmploye;
-				}
-				else
-				{
-					this._idEmp = default(int);
-				}
-				this.SendPropertyChanged("T_Employe");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_Projet")]
-public partial class T_Projet : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _idProjet;
-	
-	private string _nom;
-	
-	private string _descript;
-	
-	private System.Nullable<int> _responsable;
-	
-	private System.Nullable<System.DateTime> _dateDebut;
-	
-	private System.Nullable<System.DateTime> _dateFin;
-	
-	private System.Nullable<double> _heureAlloue;
-	
-	private int _idStatus;
-	
-	private EntitySet<T_Kilometrage> _T_Kilometrage;
-	
-	private EntitySet<T_CategoriePro> _T_CategoriePro;
-	
-	private EntitySet<T_Depense> _T_Depense;
-	
-	private EntitySet<T_EmployeProjet> _T_EmployeProjet;
-	
-	private EntityRef<T_StatusProjet> _T_StatusProjet;
-	
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidProjetChanging(int value);
-    partial void OnidProjetChanged();
-    partial void OnnomChanging(string value);
-    partial void OnnomChanged();
-    partial void OndescriptChanging(string value);
-    partial void OndescriptChanged();
-    partial void OnresponsableChanging(System.Nullable<int> value);
-    partial void OnresponsableChanged();
-    partial void OndateDebutChanging(System.Nullable<System.DateTime> value);
-    partial void OndateDebutChanged();
-    partial void OndateFinChanging(System.Nullable<System.DateTime> value);
-    partial void OndateFinChanged();
-    partial void OnheureAlloueChanging(System.Nullable<double> value);
-    partial void OnheureAlloueChanged();
-    partial void OnidStatusChanging(int value);
-    partial void OnidStatusChanged();
-    #endregion
-	
-	public T_Projet()
-	{
-		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
-		this._T_CategoriePro = new EntitySet<T_CategoriePro>(new Action<T_CategoriePro>(this.attach_T_CategoriePro), new Action<T_CategoriePro>(this.detach_T_CategoriePro));
-		this._T_Depense = new EntitySet<T_Depense>(new Action<T_Depense>(this.attach_T_Depense), new Action<T_Depense>(this.detach_T_Depense));
-		this._T_EmployeProjet = new EntitySet<T_EmployeProjet>(new Action<T_EmployeProjet>(this.attach_T_EmployeProjet), new Action<T_EmployeProjet>(this.detach_T_EmployeProjet));
-		this._T_StatusProjet = default(EntityRef<T_StatusProjet>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjet", DbType="Int NOT NULL", IsPrimaryKey=true)]
-	public int idProjet
-	{
-		get
-		{
-			return this._idProjet;
-		}
-		set
-		{
-			if ((this._idProjet != value))
-			{
-				this.OnidProjetChanging(value);
-				this.SendPropertyChanging();
-				this._idProjet = value;
-				this.SendPropertyChanged("idProjet");
-				this.OnidProjetChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nom", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-	public string nom
-	{
-		get
-		{
-			return this._nom;
-		}
-		set
-		{
-			if ((this._nom != value))
-			{
-				this.OnnomChanging(value);
-				this.SendPropertyChanging();
-				this._nom = value;
-				this.SendPropertyChanged("nom");
-				this.OnnomChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(500)")]
-	public string descript
-	{
-		get
-		{
-			return this._descript;
-		}
-		set
-		{
-			if ((this._descript != value))
-			{
-				this.OndescriptChanging(value);
-				this.SendPropertyChanging();
-				this._descript = value;
-				this.SendPropertyChanged("descript");
-				this.OndescriptChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_responsable", DbType="Int")]
-	public System.Nullable<int> responsable
-	{
-		get
-		{
-			return this._responsable;
-		}
-		set
-		{
-			if ((this._responsable != value))
-			{
-				this.OnresponsableChanging(value);
-				this.SendPropertyChanging();
-				this._responsable = value;
-				this.SendPropertyChanged("responsable");
-				this.OnresponsableChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateDebut", DbType="Date")]
-	public System.Nullable<System.DateTime> dateDebut
-	{
-		get
-		{
-			return this._dateDebut;
-		}
-		set
-		{
-			if ((this._dateDebut != value))
-			{
-				this.OndateDebutChanging(value);
-				this.SendPropertyChanging();
-				this._dateDebut = value;
-				this.SendPropertyChanged("dateDebut");
-				this.OndateDebutChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateFin", DbType="Date")]
-	public System.Nullable<System.DateTime> dateFin
-	{
-		get
-		{
-			return this._dateFin;
-		}
-		set
-		{
-			if ((this._dateFin != value))
-			{
-				this.OndateFinChanging(value);
-				this.SendPropertyChanging();
-				this._dateFin = value;
-				this.SendPropertyChanged("dateFin");
-				this.OndateFinChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_heureAlloue", DbType="Float")]
-	public System.Nullable<double> heureAlloue
-	{
-		get
-		{
-			return this._heureAlloue;
-		}
-		set
-		{
-			if ((this._heureAlloue != value))
-			{
-				this.OnheureAlloueChanging(value);
-				this.SendPropertyChanging();
-				this._heureAlloue = value;
-				this.SendPropertyChanged("heureAlloue");
-				this.OnheureAlloueChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idStatus", DbType="Int NOT NULL")]
-	public int idStatus
-	{
-		get
-		{
-			return this._idStatus;
-		}
-		set
-		{
-			if ((this._idStatus != value))
-			{
-				if (this._T_StatusProjet.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidStatusChanging(value);
-				this.SendPropertyChanging();
-				this._idStatus = value;
-				this.SendPropertyChanged("idStatus");
-				this.OnidStatusChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idProjet", OtherKey="idPro")]
-	public EntitySet<T_Kilometrage> T_Kilometrage
-	{
-		get
-		{
-			return this._T_Kilometrage;
-		}
-		set
-		{
-			this._T_Kilometrage.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_CategoriePro", Storage="_T_CategoriePro", ThisKey="idProjet", OtherKey="idProjet")]
-	public EntitySet<T_CategoriePro> T_CategoriePro
-	{
-		get
-		{
-			return this._T_CategoriePro;
-		}
-		set
-		{
-			this._T_CategoriePro.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_Depense", Storage="_T_Depense", ThisKey="idProjet", OtherKey="idProjet")]
-	public EntitySet<T_Depense> T_Depense
-	{
-		get
-		{
-			return this._T_Depense;
-		}
-		set
-		{
-			this._T_Depense.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_EmployeProjet", Storage="_T_EmployeProjet", ThisKey="idProjet", OtherKey="idPro")]
-	public EntitySet<T_EmployeProjet> T_EmployeProjet
-	{
-		get
-		{
-			return this._T_EmployeProjet;
-		}
-		set
-		{
-			this._T_EmployeProjet.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusProjet_T_Projet", Storage="_T_StatusProjet", ThisKey="idStatus", OtherKey="noStatusPro", IsForeignKey=true)]
-	public T_StatusProjet T_StatusProjet
-	{
-		get
-		{
-			return this._T_StatusProjet.Entity;
-		}
-		set
-		{
-			T_StatusProjet previousValue = this._T_StatusProjet.Entity;
-			if (((previousValue != value) 
-						|| (this._T_StatusProjet.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_StatusProjet.Entity = null;
-					previousValue.T_Projet.Remove(this);
-				}
-				this._T_StatusProjet.Entity = value;
-				if ((value != null))
-				{
-					value.T_Projet.Add(this);
-					this._idStatus = value.noStatusPro;
-				}
-				else
-				{
-					this._idStatus = default(int);
-				}
-				this.SendPropertyChanged("T_StatusProjet");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_T_Kilometrage(T_Kilometrage entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Projet = this;
-	}
-	
-	private void detach_T_Kilometrage(T_Kilometrage entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Projet = null;
-	}
-	
-	private void attach_T_CategoriePro(T_CategoriePro entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Projet = this;
-	}
-	
-	private void detach_T_CategoriePro(T_CategoriePro entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Projet = null;
-	}
-	
-	private void attach_T_Depense(T_Depense entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Projet = this;
-	}
-	
-	private void detach_T_Depense(T_Depense entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Projet = null;
-	}
-	
-	private void attach_T_EmployeProjet(T_EmployeProjet entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Projet = this;
-	}
-	
-	private void detach_T_EmployeProjet(T_EmployeProjet entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Projet = null;
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_StatusCategorie")]
-public partial class T_StatusCategorie : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _idStatusCat;
-	
-	private string _descript;
-	
-	private EntitySet<T_CategoriePro> _T_CategoriePro;
-	
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidStatusCatChanging(int value);
-    partial void OnidStatusCatChanged();
-    partial void OndescriptChanging(string value);
-    partial void OndescriptChanged();
-    #endregion
-	
-	public T_StatusCategorie()
-	{
-		this._T_CategoriePro = new EntitySet<T_CategoriePro>(new Action<T_CategoriePro>(this.attach_T_CategoriePro), new Action<T_CategoriePro>(this.detach_T_CategoriePro));
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idStatusCat", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int idStatusCat
-	{
-		get
-		{
-			return this._idStatusCat;
-		}
-		set
-		{
-			if ((this._idStatusCat != value))
-			{
-				this.OnidStatusCatChanging(value);
-				this.SendPropertyChanging();
-				this._idStatusCat = value;
-				this.SendPropertyChanged("idStatusCat");
-				this.OnidStatusCatChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-	public string descript
-	{
-		get
-		{
-			return this._descript;
-		}
-		set
-		{
-			if ((this._descript != value))
-			{
-				this.OndescriptChanging(value);
-				this.SendPropertyChanging();
-				this._descript = value;
-				this.SendPropertyChanged("descript");
-				this.OndescriptChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusCategorie_T_CategoriePro", Storage="_T_CategoriePro", ThisKey="idStatusCat", OtherKey="idStatusCat")]
-	public EntitySet<T_CategoriePro> T_CategoriePro
-	{
-		get
-		{
-			return this._T_CategoriePro;
-		}
-		set
-		{
-			this._T_CategoriePro.Assign(value);
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_T_CategoriePro(T_CategoriePro entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_StatusCategorie = this;
-	}
-	
-	private void detach_T_CategoriePro(T_CategoriePro entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_StatusCategorie = null;
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_StatusEmploye")]
-public partial class T_StatusEmploye : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _idStatusEmp;
-	
-	private string _descript;
-	
-	private EntitySet<T_Employe> _T_Employe;
-	
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidStatusEmpChanging(int value);
-    partial void OnidStatusEmpChanged();
-    partial void OndescriptChanging(string value);
-    partial void OndescriptChanged();
-    #endregion
-	
-	public T_StatusEmploye()
-	{
-		this._T_Employe = new EntitySet<T_Employe>(new Action<T_Employe>(this.attach_T_Employe), new Action<T_Employe>(this.detach_T_Employe));
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idStatusEmp", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int idStatusEmp
-	{
-		get
-		{
-			return this._idStatusEmp;
-		}
-		set
-		{
-			if ((this._idStatusEmp != value))
-			{
-				this.OnidStatusEmpChanging(value);
-				this.SendPropertyChanging();
-				this._idStatusEmp = value;
-				this.SendPropertyChanged("idStatusEmp");
-				this.OnidStatusEmpChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-	public string descript
-	{
-		get
-		{
-			return this._descript;
-		}
-		set
-		{
-			if ((this._descript != value))
-			{
-				this.OndescriptChanging(value);
-				this.SendPropertyChanging();
-				this._descript = value;
-				this.SendPropertyChanged("descript");
-				this.OndescriptChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusEmploye_T_Employe", Storage="_T_Employe", ThisKey="idStatusEmp", OtherKey="idStatus")]
-	public EntitySet<T_Employe> T_Employe
-	{
-		get
-		{
-			return this._T_Employe;
-		}
-		set
-		{
-			this._T_Employe.Assign(value);
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_T_Employe(T_Employe entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_StatusEmploye = this;
-	}
-	
-	private void detach_T_Employe(T_Employe entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_StatusEmploye = null;
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_StatusProjet")]
-public partial class T_StatusProjet : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _noStatusPro;
-	
-	private string _descript;
-	
-	private EntitySet<T_Projet> _T_Projet;
-	
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnnoStatusProChanging(int value);
-    partial void OnnoStatusProChanged();
-    partial void OndescriptChanging(string value);
-    partial void OndescriptChanged();
-    #endregion
-	
-	public T_StatusProjet()
-	{
-		this._T_Projet = new EntitySet<T_Projet>(new Action<T_Projet>(this.attach_T_Projet), new Action<T_Projet>(this.detach_T_Projet));
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_noStatusPro", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int noStatusPro
-	{
-		get
-		{
-			return this._noStatusPro;
-		}
-		set
-		{
-			if ((this._noStatusPro != value))
-			{
-				this.OnnoStatusProChanging(value);
-				this.SendPropertyChanging();
-				this._noStatusPro = value;
-				this.SendPropertyChanged("noStatusPro");
-				this.OnnoStatusProChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-	public string descript
-	{
-		get
-		{
-			return this._descript;
-		}
-		set
-		{
-			if ((this._descript != value))
-			{
-				this.OndescriptChanging(value);
-				this.SendPropertyChanging();
-				this._descript = value;
-				this.SendPropertyChanged("descript");
-				this.OndescriptChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusProjet_T_Projet", Storage="_T_Projet", ThisKey="noStatusPro", OtherKey="idStatus")]
-	public EntitySet<T_Projet> T_Projet
-	{
-		get
-		{
-			return this._T_Projet;
-		}
-		set
-		{
-			this._T_Projet.Assign(value);
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_T_Projet(T_Projet entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_StatusProjet = this;
-	}
-	
-	private void detach_T_Projet(T_Projet entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_StatusProjet = null;
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_TauxKilo")]
-public partial class T_TauxKilo : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _idTaux;
-	
-	private float _taux;
-	
-	private System.Nullable<System.DateTime> _ddate;
-	
-	private EntitySet<T_Kilometrage> _T_Kilometrage;
-	
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidTauxChanging(int value);
-    partial void OnidTauxChanged();
-    partial void OntauxChanging(float value);
-    partial void OntauxChanged();
-    partial void OnddateChanging(System.Nullable<System.DateTime> value);
-    partial void OnddateChanged();
-    #endregion
-	
-	public T_TauxKilo()
-	{
-		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTaux", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int idTaux
-	{
-		get
-		{
-			return this._idTaux;
-		}
-		set
-		{
-			if ((this._idTaux != value))
-			{
-				this.OnidTauxChanging(value);
-				this.SendPropertyChanging();
-				this._idTaux = value;
-				this.SendPropertyChanged("idTaux");
-				this.OnidTauxChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_taux", DbType="Real NOT NULL")]
-	public float taux
-	{
-		get
-		{
-			return this._taux;
-		}
-		set
-		{
-			if ((this._taux != value))
-			{
-				this.OntauxChanging(value);
-				this.SendPropertyChanging();
-				this._taux = value;
-				this.SendPropertyChanged("taux");
-				this.OntauxChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ddate", DbType="Date")]
-	public System.Nullable<System.DateTime> ddate
-	{
-		get
-		{
-			return this._ddate;
-		}
-		set
-		{
-			if ((this._ddate != value))
-			{
-				this.OnddateChanging(value);
-				this.SendPropertyChanging();
-				this._ddate = value;
-				this.SendPropertyChanged("ddate");
-				this.OnddateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_TauxKilo_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idTaux", OtherKey="idTaux")]
-	public EntitySet<T_Kilometrage> T_Kilometrage
-	{
-		get
-		{
-			return this._T_Kilometrage;
-		}
-		set
-		{
-			this._T_Kilometrage.Assign(value);
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_T_Kilometrage(T_Kilometrage entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_TauxKilo = this;
-	}
-	
-	private void detach_T_Kilometrage(T_Kilometrage entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_TauxKilo = null;
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_CategoriePro")]
-public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _idCategorie;
-	
-	private string _descript;
-	
-	private int _idProjet;
-	
-	private int _idStatusCat;
-	
-	private EntitySet<T_Kilometrage> _T_Kilometrage;
-	
-	private EntitySet<T_Depense> _T_Depense;
-	
-	private EntitySet<T_FeuilleDeTemps> _T_FeuilleDeTemps;
-	
-	private EntityRef<T_Projet> _T_Projet;
-	
-	private EntityRef<T_StatusCategorie> _T_StatusCategorie;
-	
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidCategorieChanging(int value);
-    partial void OnidCategorieChanged();
-    partial void OndescriptChanging(string value);
-    partial void OndescriptChanged();
-    partial void OnidProjetChanging(int value);
-    partial void OnidProjetChanged();
-    partial void OnidStatusCatChanging(int value);
-    partial void OnidStatusCatChanged();
-    #endregion
-	
-	public T_CategoriePro()
-	{
-		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
-		this._T_Depense = new EntitySet<T_Depense>(new Action<T_Depense>(this.attach_T_Depense), new Action<T_Depense>(this.detach_T_Depense));
-		this._T_FeuilleDeTemps = new EntitySet<T_FeuilleDeTemps>(new Action<T_FeuilleDeTemps>(this.attach_T_FeuilleDeTemps), new Action<T_FeuilleDeTemps>(this.detach_T_FeuilleDeTemps));
-		this._T_Projet = default(EntityRef<T_Projet>);
-		this._T_StatusCategorie = default(EntityRef<T_StatusCategorie>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int NOT NULL", IsPrimaryKey=true)]
-	public int idCategorie
-	{
-		get
-		{
-			return this._idCategorie;
-		}
-		set
-		{
-			if ((this._idCategorie != value))
-			{
-				this.OnidCategorieChanging(value);
-				this.SendPropertyChanging();
-				this._idCategorie = value;
-				this.SendPropertyChanged("idCategorie");
-				this.OnidCategorieChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string descript
-	{
-		get
-		{
-			return this._descript;
-		}
-		set
-		{
-			if ((this._descript != value))
-			{
-				this.OndescriptChanging(value);
-				this.SendPropertyChanging();
-				this._descript = value;
-				this.SendPropertyChanged("descript");
-				this.OndescriptChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjet", DbType="Int NOT NULL")]
-	public int idProjet
-	{
-		get
-		{
-			return this._idProjet;
-		}
-		set
-		{
-			if ((this._idProjet != value))
-			{
-				if (this._T_Projet.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidProjetChanging(value);
-				this.SendPropertyChanging();
-				this._idProjet = value;
-				this.SendPropertyChanged("idProjet");
-				this.OnidProjetChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idStatusCat", DbType="Int NOT NULL")]
-	public int idStatusCat
-	{
-		get
-		{
-			return this._idStatusCat;
-		}
-		set
-		{
-			if ((this._idStatusCat != value))
-			{
-				if (this._T_StatusCategorie.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidStatusCatChanging(value);
-				this.SendPropertyChanging();
-				this._idStatusCat = value;
-				this.SendPropertyChanged("idStatusCat");
-				this.OnidStatusCatChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idCategorie", OtherKey="idCat")]
-	public EntitySet<T_Kilometrage> T_Kilometrage
-	{
-		get
-		{
-			return this._T_Kilometrage;
-		}
-		set
-		{
-			this._T_Kilometrage.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Depense", Storage="_T_Depense", ThisKey="idCategorie", OtherKey="idCategorie")]
-	public EntitySet<T_Depense> T_Depense
-	{
-		get
-		{
-			return this._T_Depense;
-		}
-		set
-		{
-			this._T_Depense.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_FeuilleDeTemps", Storage="_T_FeuilleDeTemps", ThisKey="idCategorie", OtherKey="idCategorie")]
-	public EntitySet<T_FeuilleDeTemps> T_FeuilleDeTemps
-	{
-		get
-		{
-			return this._T_FeuilleDeTemps;
-		}
-		set
-		{
-			this._T_FeuilleDeTemps.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_CategoriePro", Storage="_T_Projet", ThisKey="idProjet", OtherKey="idProjet", IsForeignKey=true)]
-	public T_Projet T_Projet
-	{
-		get
-		{
-			return this._T_Projet.Entity;
-		}
-		set
-		{
-			T_Projet previousValue = this._T_Projet.Entity;
-			if (((previousValue != value) 
-						|| (this._T_Projet.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_Projet.Entity = null;
-					previousValue.T_CategoriePro.Remove(this);
-				}
-				this._T_Projet.Entity = value;
-				if ((value != null))
-				{
-					value.T_CategoriePro.Add(this);
-					this._idProjet = value.idProjet;
-				}
-				else
-				{
-					this._idProjet = default(int);
-				}
-				this.SendPropertyChanged("T_Projet");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusCategorie_T_CategoriePro", Storage="_T_StatusCategorie", ThisKey="idStatusCat", OtherKey="idStatusCat", IsForeignKey=true)]
-	public T_StatusCategorie T_StatusCategorie
-	{
-		get
-		{
-			return this._T_StatusCategorie.Entity;
-		}
-		set
-		{
-			T_StatusCategorie previousValue = this._T_StatusCategorie.Entity;
-			if (((previousValue != value) 
-						|| (this._T_StatusCategorie.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_StatusCategorie.Entity = null;
-					previousValue.T_CategoriePro.Remove(this);
-				}
-				this._T_StatusCategorie.Entity = value;
-				if ((value != null))
-				{
-					value.T_CategoriePro.Add(this);
-					this._idStatusCat = value.idStatusCat;
-				}
-				else
-				{
-					this._idStatusCat = default(int);
-				}
-				this.SendPropertyChanged("T_StatusCategorie");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_T_Kilometrage(T_Kilometrage entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = this;
-	}
-	
-	private void detach_T_Kilometrage(T_Kilometrage entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = null;
-	}
-	
-	private void attach_T_Depense(T_Depense entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = this;
-	}
-	
-	private void detach_T_Depense(T_Depense entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = null;
-	}
-	
-	private void attach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = this;
-	}
-	
-	private void detach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = null;
-	}
-}
-
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_Depense")]
 public partial class T_Depense : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -2099,11 +732,11 @@ public partial class T_Depense : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private EntityRef<T_CategoriePro> _T_CategoriePro;
 	
-	private EntityRef<T_Projet> _T_Projet;
-	
 	private EntityRef<T_TypeDepense> _T_TypeDepense;
 	
 	private EntityRef<T_Employe> _T_Employe;
+	
+	private EntityRef<T_Projet> _T_Projet;
 	
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
@@ -2132,9 +765,9 @@ public partial class T_Depense : INotifyPropertyChanging, INotifyPropertyChanged
 	public T_Depense()
 	{
 		this._T_CategoriePro = default(EntityRef<T_CategoriePro>);
-		this._T_Projet = default(EntityRef<T_Projet>);
 		this._T_TypeDepense = default(EntityRef<T_TypeDepense>);
 		this._T_Employe = default(EntityRef<T_Employe>);
+		this._T_Projet = default(EntityRef<T_Projet>);
 		OnCreated();
 	}
 	
@@ -2368,40 +1001,6 @@ public partial class T_Depense : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_Depense", Storage="_T_Projet", ThisKey="idProjet", OtherKey="idProjet", IsForeignKey=true)]
-	public T_Projet T_Projet
-	{
-		get
-		{
-			return this._T_Projet.Entity;
-		}
-		set
-		{
-			T_Projet previousValue = this._T_Projet.Entity;
-			if (((previousValue != value) 
-						|| (this._T_Projet.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_Projet.Entity = null;
-					previousValue.T_Depense.Remove(this);
-				}
-				this._T_Projet.Entity = value;
-				if ((value != null))
-				{
-					value.T_Depense.Add(this);
-					this._idProjet = value.idProjet;
-				}
-				else
-				{
-					this._idProjet = default(int);
-				}
-				this.SendPropertyChanged("T_Projet");
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_TypeDepense_T_Depense", Storage="_T_TypeDepense", ThisKey="idType", OtherKey="idDepense", IsForeignKey=true)]
 	public T_TypeDepense T_TypeDepense
 	{
@@ -2470,6 +1069,40 @@ public partial class T_Depense : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_Depense", Storage="_T_Projet", ThisKey="idProjet", OtherKey="idProjet", IsForeignKey=true)]
+	public T_Projet T_Projet
+	{
+		get
+		{
+			return this._T_Projet.Entity;
+		}
+		set
+		{
+			T_Projet previousValue = this._T_Projet.Entity;
+			if (((previousValue != value) 
+						|| (this._T_Projet.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_Projet.Entity = null;
+					previousValue.T_Depense.Remove(this);
+				}
+				this._T_Projet.Entity = value;
+				if ((value != null))
+				{
+					value.T_Depense.Add(this);
+					this._idProjet = value.idProjet;
+				}
+				else
+				{
+					this._idProjet = default(int);
+				}
+				this.SendPropertyChanged("T_Projet");
+			}
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -2513,17 +1146,17 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _idFonction;
 	
-	private EntitySet<T_Kilometrage> _T_Kilometrage;
-	
 	private EntitySet<T_Depense> _T_Depense;
 	
 	private EntitySet<T_EmployeProjet> _T_EmployeProjet;
 	
 	private EntitySet<T_FeuilleDeTemps> _T_FeuilleDeTemps;
 	
-	private EntityRef<T_StatusEmploye> _T_StatusEmploye;
+	private EntitySet<T_Kilometrage> _T_Kilometrage;
 	
 	private EntityRef<T_FonctionEmploye> _T_FonctionEmploye;
+	
+	private EntityRef<T_StatusEmploye> _T_StatusEmploye;
 	
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
@@ -2549,12 +1182,12 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public T_Employe()
 	{
-		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
 		this._T_Depense = new EntitySet<T_Depense>(new Action<T_Depense>(this.attach_T_Depense), new Action<T_Depense>(this.detach_T_Depense));
 		this._T_EmployeProjet = new EntitySet<T_EmployeProjet>(new Action<T_EmployeProjet>(this.attach_T_EmployeProjet), new Action<T_EmployeProjet>(this.detach_T_EmployeProjet));
 		this._T_FeuilleDeTemps = new EntitySet<T_FeuilleDeTemps>(new Action<T_FeuilleDeTemps>(this.attach_T_FeuilleDeTemps), new Action<T_FeuilleDeTemps>(this.detach_T_FeuilleDeTemps));
-		this._T_StatusEmploye = default(EntityRef<T_StatusEmploye>);
+		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
 		this._T_FonctionEmploye = default(EntityRef<T_FonctionEmploye>);
+		this._T_StatusEmploye = default(EntityRef<T_StatusEmploye>);
 		OnCreated();
 	}
 	
@@ -2726,19 +1359,6 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Employe_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idEmploye", OtherKey="idEmp")]
-	public EntitySet<T_Kilometrage> T_Kilometrage
-	{
-		get
-		{
-			return this._T_Kilometrage;
-		}
-		set
-		{
-			this._T_Kilometrage.Assign(value);
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Employe_T_Depense", Storage="_T_Depense", ThisKey="idEmploye", OtherKey="idEmp")]
 	public EntitySet<T_Depense> T_Depense
 	{
@@ -2778,37 +1398,16 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusEmploye_T_Employe", Storage="_T_StatusEmploye", ThisKey="idStatus", OtherKey="idStatusEmp", IsForeignKey=true)]
-	public T_StatusEmploye T_StatusEmploye
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Employe_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idEmploye", OtherKey="idEmp")]
+	public EntitySet<T_Kilometrage> T_Kilometrage
 	{
 		get
 		{
-			return this._T_StatusEmploye.Entity;
+			return this._T_Kilometrage;
 		}
 		set
 		{
-			T_StatusEmploye previousValue = this._T_StatusEmploye.Entity;
-			if (((previousValue != value) 
-						|| (this._T_StatusEmploye.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_StatusEmploye.Entity = null;
-					previousValue.T_Employe.Remove(this);
-				}
-				this._T_StatusEmploye.Entity = value;
-				if ((value != null))
-				{
-					value.T_Employe.Add(this);
-					this._idStatus = value.idStatusEmp;
-				}
-				else
-				{
-					this._idStatus = default(int);
-				}
-				this.SendPropertyChanged("T_StatusEmploye");
-			}
+			this._T_Kilometrage.Assign(value);
 		}
 	}
 	
@@ -2846,6 +1445,40 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusEmploye_T_Employe", Storage="_T_StatusEmploye", ThisKey="idStatus", OtherKey="idStatusEmp", IsForeignKey=true)]
+	public T_StatusEmploye T_StatusEmploye
+	{
+		get
+		{
+			return this._T_StatusEmploye.Entity;
+		}
+		set
+		{
+			T_StatusEmploye previousValue = this._T_StatusEmploye.Entity;
+			if (((previousValue != value) 
+						|| (this._T_StatusEmploye.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_StatusEmploye.Entity = null;
+					previousValue.T_Employe.Remove(this);
+				}
+				this._T_StatusEmploye.Entity = value;
+				if ((value != null))
+				{
+					value.T_Employe.Add(this);
+					this._idStatus = value.idStatusEmp;
+				}
+				else
+				{
+					this._idStatus = default(int);
+				}
+				this.SendPropertyChanged("T_StatusEmploye");
+			}
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -2864,18 +1497,6 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
-	}
-	
-	private void attach_T_Kilometrage(T_Kilometrage entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Employe = this;
-	}
-	
-	private void detach_T_Kilometrage(T_Kilometrage entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_Employe = null;
 	}
 	
 	private void attach_T_Depense(T_Depense entity)
@@ -2909,6 +1530,18 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 	
 	private void detach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Employe = null;
+	}
+	
+	private void attach_T_Kilometrage(T_Kilometrage entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Employe = this;
+	}
+	
+	private void detach_T_Kilometrage(T_Kilometrage entity)
 	{
 		this.SendPropertyChanging();
 		entity.T_Employe = null;
@@ -3536,6 +2169,1556 @@ public partial class T_FeuilleDeTemps : INotifyPropertyChanging, INotifyProperty
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_FonctionEmploye")]
+public partial class T_FonctionEmploye : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _idFonctionEmp;
+	
+	private string _descript;
+	
+	private EntitySet<T_Employe> _T_Employe;
+	
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidFonctionEmpChanging(int value);
+    partial void OnidFonctionEmpChanged();
+    partial void OndescriptChanging(string value);
+    partial void OndescriptChanged();
+    #endregion
+	
+	public T_FonctionEmploye()
+	{
+		this._T_Employe = new EntitySet<T_Employe>(new Action<T_Employe>(this.attach_T_Employe), new Action<T_Employe>(this.detach_T_Employe));
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idFonctionEmp", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int idFonctionEmp
+	{
+		get
+		{
+			return this._idFonctionEmp;
+		}
+		set
+		{
+			if ((this._idFonctionEmp != value))
+			{
+				this.OnidFonctionEmpChanging(value);
+				this.SendPropertyChanging();
+				this._idFonctionEmp = value;
+				this.SendPropertyChanged("idFonctionEmp");
+				this.OnidFonctionEmpChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(20)")]
+	public string descript
+	{
+		get
+		{
+			return this._descript;
+		}
+		set
+		{
+			if ((this._descript != value))
+			{
+				this.OndescriptChanging(value);
+				this.SendPropertyChanging();
+				this._descript = value;
+				this.SendPropertyChanged("descript");
+				this.OndescriptChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_FonctionEmploye_T_Employe", Storage="_T_Employe", ThisKey="idFonctionEmp", OtherKey="idFonction")]
+	public EntitySet<T_Employe> T_Employe
+	{
+		get
+		{
+			return this._T_Employe;
+		}
+		set
+		{
+			this._T_Employe.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_T_Employe(T_Employe entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_FonctionEmploye = this;
+	}
+	
+	private void detach_T_Employe(T_Employe entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_FonctionEmploye = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_Kilometrage")]
+public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _idKilo;
+	
+	private float _nbKilo;
+	
+	private string _commentaire;
+	
+	private System.Nullable<System.DateTime> _ddate;
+	
+	private int _idTaux;
+	
+	private int _idEmp;
+	
+	private int _idPro;
+	
+	private int _idCat;
+	
+	private EntityRef<T_CategoriePro> _T_CategoriePro;
+	
+	private EntityRef<T_Employe> _T_Employe;
+	
+	private EntityRef<T_Projet> _T_Projet;
+	
+	private EntityRef<T_TauxKilo> _T_TauxKilo;
+	
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidKiloChanging(int value);
+    partial void OnidKiloChanged();
+    partial void OnnbKiloChanging(float value);
+    partial void OnnbKiloChanged();
+    partial void OncommentaireChanging(string value);
+    partial void OncommentaireChanged();
+    partial void OnddateChanging(System.Nullable<System.DateTime> value);
+    partial void OnddateChanged();
+    partial void OnidTauxChanging(int value);
+    partial void OnidTauxChanged();
+    partial void OnidEmpChanging(int value);
+    partial void OnidEmpChanged();
+    partial void OnidProChanging(int value);
+    partial void OnidProChanged();
+    partial void OnidCatChanging(int value);
+    partial void OnidCatChanged();
+    #endregion
+	
+	public T_Kilometrage()
+	{
+		this._T_CategoriePro = default(EntityRef<T_CategoriePro>);
+		this._T_Employe = default(EntityRef<T_Employe>);
+		this._T_Projet = default(EntityRef<T_Projet>);
+		this._T_TauxKilo = default(EntityRef<T_TauxKilo>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idKilo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int idKilo
+	{
+		get
+		{
+			return this._idKilo;
+		}
+		set
+		{
+			if ((this._idKilo != value))
+			{
+				this.OnidKiloChanging(value);
+				this.SendPropertyChanging();
+				this._idKilo = value;
+				this.SendPropertyChanged("idKilo");
+				this.OnidKiloChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nbKilo", DbType="Real NOT NULL")]
+	public float nbKilo
+	{
+		get
+		{
+			return this._nbKilo;
+		}
+		set
+		{
+			if ((this._nbKilo != value))
+			{
+				this.OnnbKiloChanging(value);
+				this.SendPropertyChanging();
+				this._nbKilo = value;
+				this.SendPropertyChanged("nbKilo");
+				this.OnnbKiloChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_commentaire", DbType="VarChar(100)")]
+	public string commentaire
+	{
+		get
+		{
+			return this._commentaire;
+		}
+		set
+		{
+			if ((this._commentaire != value))
+			{
+				this.OncommentaireChanging(value);
+				this.SendPropertyChanging();
+				this._commentaire = value;
+				this.SendPropertyChanged("commentaire");
+				this.OncommentaireChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ddate", DbType="Date")]
+	public System.Nullable<System.DateTime> ddate
+	{
+		get
+		{
+			return this._ddate;
+		}
+		set
+		{
+			if ((this._ddate != value))
+			{
+				this.OnddateChanging(value);
+				this.SendPropertyChanging();
+				this._ddate = value;
+				this.SendPropertyChanged("ddate");
+				this.OnddateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTaux", DbType="Int NOT NULL")]
+	public int idTaux
+	{
+		get
+		{
+			return this._idTaux;
+		}
+		set
+		{
+			if ((this._idTaux != value))
+			{
+				if (this._T_TauxKilo.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnidTauxChanging(value);
+				this.SendPropertyChanging();
+				this._idTaux = value;
+				this.SendPropertyChanged("idTaux");
+				this.OnidTauxChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmp", DbType="Int NOT NULL")]
+	public int idEmp
+	{
+		get
+		{
+			return this._idEmp;
+		}
+		set
+		{
+			if ((this._idEmp != value))
+			{
+				if (this._T_Employe.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnidEmpChanging(value);
+				this.SendPropertyChanging();
+				this._idEmp = value;
+				this.SendPropertyChanged("idEmp");
+				this.OnidEmpChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPro", DbType="Int NOT NULL")]
+	public int idPro
+	{
+		get
+		{
+			return this._idPro;
+		}
+		set
+		{
+			if ((this._idPro != value))
+			{
+				if (this._T_Projet.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnidProChanging(value);
+				this.SendPropertyChanging();
+				this._idPro = value;
+				this.SendPropertyChanged("idPro");
+				this.OnidProChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCat", DbType="Int NOT NULL")]
+	public int idCat
+	{
+		get
+		{
+			return this._idCat;
+		}
+		set
+		{
+			if ((this._idCat != value))
+			{
+				if (this._T_CategoriePro.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnidCatChanging(value);
+				this.SendPropertyChanging();
+				this._idCat = value;
+				this.SendPropertyChanged("idCat");
+				this.OnidCatChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Kilometrage", Storage="_T_CategoriePro", ThisKey="idCat", OtherKey="idCategorie", IsForeignKey=true)]
+	public T_CategoriePro T_CategoriePro
+	{
+		get
+		{
+			return this._T_CategoriePro.Entity;
+		}
+		set
+		{
+			T_CategoriePro previousValue = this._T_CategoriePro.Entity;
+			if (((previousValue != value) 
+						|| (this._T_CategoriePro.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_CategoriePro.Entity = null;
+					previousValue.T_Kilometrage.Remove(this);
+				}
+				this._T_CategoriePro.Entity = value;
+				if ((value != null))
+				{
+					value.T_Kilometrage.Add(this);
+					this._idCat = value.idCategorie;
+				}
+				else
+				{
+					this._idCat = default(int);
+				}
+				this.SendPropertyChanged("T_CategoriePro");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Employe_T_Kilometrage", Storage="_T_Employe", ThisKey="idEmp", OtherKey="idEmploye", IsForeignKey=true)]
+	public T_Employe T_Employe
+	{
+		get
+		{
+			return this._T_Employe.Entity;
+		}
+		set
+		{
+			T_Employe previousValue = this._T_Employe.Entity;
+			if (((previousValue != value) 
+						|| (this._T_Employe.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_Employe.Entity = null;
+					previousValue.T_Kilometrage.Remove(this);
+				}
+				this._T_Employe.Entity = value;
+				if ((value != null))
+				{
+					value.T_Kilometrage.Add(this);
+					this._idEmp = value.idEmploye;
+				}
+				else
+				{
+					this._idEmp = default(int);
+				}
+				this.SendPropertyChanged("T_Employe");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_Kilometrage", Storage="_T_Projet", ThisKey="idPro", OtherKey="idProjet", IsForeignKey=true)]
+	public T_Projet T_Projet
+	{
+		get
+		{
+			return this._T_Projet.Entity;
+		}
+		set
+		{
+			T_Projet previousValue = this._T_Projet.Entity;
+			if (((previousValue != value) 
+						|| (this._T_Projet.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_Projet.Entity = null;
+					previousValue.T_Kilometrage.Remove(this);
+				}
+				this._T_Projet.Entity = value;
+				if ((value != null))
+				{
+					value.T_Kilometrage.Add(this);
+					this._idPro = value.idProjet;
+				}
+				else
+				{
+					this._idPro = default(int);
+				}
+				this.SendPropertyChanged("T_Projet");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_TauxKilo_T_Kilometrage", Storage="_T_TauxKilo", ThisKey="idTaux", OtherKey="idTaux", IsForeignKey=true)]
+	public T_TauxKilo T_TauxKilo
+	{
+		get
+		{
+			return this._T_TauxKilo.Entity;
+		}
+		set
+		{
+			T_TauxKilo previousValue = this._T_TauxKilo.Entity;
+			if (((previousValue != value) 
+						|| (this._T_TauxKilo.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_TauxKilo.Entity = null;
+					previousValue.T_Kilometrage.Remove(this);
+				}
+				this._T_TauxKilo.Entity = value;
+				if ((value != null))
+				{
+					value.T_Kilometrage.Add(this);
+					this._idTaux = value.idTaux;
+				}
+				else
+				{
+					this._idTaux = default(int);
+				}
+				this.SendPropertyChanged("T_TauxKilo");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_Projet")]
+public partial class T_Projet : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _idProjet;
+	
+	private string _nom;
+	
+	private string _descript;
+	
+	private System.Nullable<int> _responsable;
+	
+	private System.Nullable<System.DateTime> _dateDebut;
+	
+	private System.Nullable<System.DateTime> _dateFin;
+	
+	private System.Nullable<double> _heureAlloue;
+	
+	private int _idStatus;
+	
+	private EntitySet<T_CategoriePro> _T_CategoriePro;
+	
+	private EntitySet<T_Depense> _T_Depense;
+	
+	private EntitySet<T_EmployeProjet> _T_EmployeProjet;
+	
+	private EntitySet<T_Kilometrage> _T_Kilometrage;
+	
+	private EntityRef<T_StatusProjet> _T_StatusProjet;
+	
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidProjetChanging(int value);
+    partial void OnidProjetChanged();
+    partial void OnnomChanging(string value);
+    partial void OnnomChanged();
+    partial void OndescriptChanging(string value);
+    partial void OndescriptChanged();
+    partial void OnresponsableChanging(System.Nullable<int> value);
+    partial void OnresponsableChanged();
+    partial void OndateDebutChanging(System.Nullable<System.DateTime> value);
+    partial void OndateDebutChanged();
+    partial void OndateFinChanging(System.Nullable<System.DateTime> value);
+    partial void OndateFinChanged();
+    partial void OnheureAlloueChanging(System.Nullable<double> value);
+    partial void OnheureAlloueChanged();
+    partial void OnidStatusChanging(int value);
+    partial void OnidStatusChanged();
+    #endregion
+	
+	public T_Projet()
+	{
+		this._T_CategoriePro = new EntitySet<T_CategoriePro>(new Action<T_CategoriePro>(this.attach_T_CategoriePro), new Action<T_CategoriePro>(this.detach_T_CategoriePro));
+		this._T_Depense = new EntitySet<T_Depense>(new Action<T_Depense>(this.attach_T_Depense), new Action<T_Depense>(this.detach_T_Depense));
+		this._T_EmployeProjet = new EntitySet<T_EmployeProjet>(new Action<T_EmployeProjet>(this.attach_T_EmployeProjet), new Action<T_EmployeProjet>(this.detach_T_EmployeProjet));
+		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
+		this._T_StatusProjet = default(EntityRef<T_StatusProjet>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProjet", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	public int idProjet
+	{
+		get
+		{
+			return this._idProjet;
+		}
+		set
+		{
+			if ((this._idProjet != value))
+			{
+				this.OnidProjetChanging(value);
+				this.SendPropertyChanging();
+				this._idProjet = value;
+				this.SendPropertyChanged("idProjet");
+				this.OnidProjetChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nom", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+	public string nom
+	{
+		get
+		{
+			return this._nom;
+		}
+		set
+		{
+			if ((this._nom != value))
+			{
+				this.OnnomChanging(value);
+				this.SendPropertyChanging();
+				this._nom = value;
+				this.SendPropertyChanged("nom");
+				this.OnnomChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(500)")]
+	public string descript
+	{
+		get
+		{
+			return this._descript;
+		}
+		set
+		{
+			if ((this._descript != value))
+			{
+				this.OndescriptChanging(value);
+				this.SendPropertyChanging();
+				this._descript = value;
+				this.SendPropertyChanged("descript");
+				this.OndescriptChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_responsable", DbType="Int")]
+	public System.Nullable<int> responsable
+	{
+		get
+		{
+			return this._responsable;
+		}
+		set
+		{
+			if ((this._responsable != value))
+			{
+				this.OnresponsableChanging(value);
+				this.SendPropertyChanging();
+				this._responsable = value;
+				this.SendPropertyChanged("responsable");
+				this.OnresponsableChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateDebut", DbType="Date")]
+	public System.Nullable<System.DateTime> dateDebut
+	{
+		get
+		{
+			return this._dateDebut;
+		}
+		set
+		{
+			if ((this._dateDebut != value))
+			{
+				this.OndateDebutChanging(value);
+				this.SendPropertyChanging();
+				this._dateDebut = value;
+				this.SendPropertyChanged("dateDebut");
+				this.OndateDebutChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateFin", DbType="Date")]
+	public System.Nullable<System.DateTime> dateFin
+	{
+		get
+		{
+			return this._dateFin;
+		}
+		set
+		{
+			if ((this._dateFin != value))
+			{
+				this.OndateFinChanging(value);
+				this.SendPropertyChanging();
+				this._dateFin = value;
+				this.SendPropertyChanged("dateFin");
+				this.OndateFinChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_heureAlloue", DbType="Float")]
+	public System.Nullable<double> heureAlloue
+	{
+		get
+		{
+			return this._heureAlloue;
+		}
+		set
+		{
+			if ((this._heureAlloue != value))
+			{
+				this.OnheureAlloueChanging(value);
+				this.SendPropertyChanging();
+				this._heureAlloue = value;
+				this.SendPropertyChanged("heureAlloue");
+				this.OnheureAlloueChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idStatus", DbType="Int NOT NULL")]
+	public int idStatus
+	{
+		get
+		{
+			return this._idStatus;
+		}
+		set
+		{
+			if ((this._idStatus != value))
+			{
+				if (this._T_StatusProjet.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnidStatusChanging(value);
+				this.SendPropertyChanging();
+				this._idStatus = value;
+				this.SendPropertyChanged("idStatus");
+				this.OnidStatusChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_CategoriePro", Storage="_T_CategoriePro", ThisKey="idProjet", OtherKey="idProjet")]
+	public EntitySet<T_CategoriePro> T_CategoriePro
+	{
+		get
+		{
+			return this._T_CategoriePro;
+		}
+		set
+		{
+			this._T_CategoriePro.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_Depense", Storage="_T_Depense", ThisKey="idProjet", OtherKey="idProjet")]
+	public EntitySet<T_Depense> T_Depense
+	{
+		get
+		{
+			return this._T_Depense;
+		}
+		set
+		{
+			this._T_Depense.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_EmployeProjet", Storage="_T_EmployeProjet", ThisKey="idProjet", OtherKey="idPro")]
+	public EntitySet<T_EmployeProjet> T_EmployeProjet
+	{
+		get
+		{
+			return this._T_EmployeProjet;
+		}
+		set
+		{
+			this._T_EmployeProjet.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_Projet_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idProjet", OtherKey="idPro")]
+	public EntitySet<T_Kilometrage> T_Kilometrage
+	{
+		get
+		{
+			return this._T_Kilometrage;
+		}
+		set
+		{
+			this._T_Kilometrage.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusProjet_T_Projet", Storage="_T_StatusProjet", ThisKey="idStatus", OtherKey="noStatusPro", IsForeignKey=true)]
+	public T_StatusProjet T_StatusProjet
+	{
+		get
+		{
+			return this._T_StatusProjet.Entity;
+		}
+		set
+		{
+			T_StatusProjet previousValue = this._T_StatusProjet.Entity;
+			if (((previousValue != value) 
+						|| (this._T_StatusProjet.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_StatusProjet.Entity = null;
+					previousValue.T_Projet.Remove(this);
+				}
+				this._T_StatusProjet.Entity = value;
+				if ((value != null))
+				{
+					value.T_Projet.Add(this);
+					this._idStatus = value.noStatusPro;
+				}
+				else
+				{
+					this._idStatus = default(int);
+				}
+				this.SendPropertyChanged("T_StatusProjet");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_T_CategoriePro(T_CategoriePro entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Projet = this;
+	}
+	
+	private void detach_T_CategoriePro(T_CategoriePro entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Projet = null;
+	}
+	
+	private void attach_T_Depense(T_Depense entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Projet = this;
+	}
+	
+	private void detach_T_Depense(T_Depense entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Projet = null;
+	}
+	
+	private void attach_T_EmployeProjet(T_EmployeProjet entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Projet = this;
+	}
+	
+	private void detach_T_EmployeProjet(T_EmployeProjet entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Projet = null;
+	}
+	
+	private void attach_T_Kilometrage(T_Kilometrage entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Projet = this;
+	}
+	
+	private void detach_T_Kilometrage(T_Kilometrage entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_Projet = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_StatusCategorie")]
+public partial class T_StatusCategorie : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _idStatusCat;
+	
+	private string _descript;
+	
+	private EntitySet<T_CategoriePro> _T_CategoriePro;
+	
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidStatusCatChanging(int value);
+    partial void OnidStatusCatChanged();
+    partial void OndescriptChanging(string value);
+    partial void OndescriptChanged();
+    #endregion
+	
+	public T_StatusCategorie()
+	{
+		this._T_CategoriePro = new EntitySet<T_CategoriePro>(new Action<T_CategoriePro>(this.attach_T_CategoriePro), new Action<T_CategoriePro>(this.detach_T_CategoriePro));
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idStatusCat", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int idStatusCat
+	{
+		get
+		{
+			return this._idStatusCat;
+		}
+		set
+		{
+			if ((this._idStatusCat != value))
+			{
+				this.OnidStatusCatChanging(value);
+				this.SendPropertyChanging();
+				this._idStatusCat = value;
+				this.SendPropertyChanged("idStatusCat");
+				this.OnidStatusCatChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+	public string descript
+	{
+		get
+		{
+			return this._descript;
+		}
+		set
+		{
+			if ((this._descript != value))
+			{
+				this.OndescriptChanging(value);
+				this.SendPropertyChanging();
+				this._descript = value;
+				this.SendPropertyChanged("descript");
+				this.OndescriptChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusCategorie_T_CategoriePro", Storage="_T_CategoriePro", ThisKey="idStatusCat", OtherKey="idStatusCat")]
+	public EntitySet<T_CategoriePro> T_CategoriePro
+	{
+		get
+		{
+			return this._T_CategoriePro;
+		}
+		set
+		{
+			this._T_CategoriePro.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_T_CategoriePro(T_CategoriePro entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_StatusCategorie = this;
+	}
+	
+	private void detach_T_CategoriePro(T_CategoriePro entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_StatusCategorie = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_StatusEmploye")]
+public partial class T_StatusEmploye : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _idStatusEmp;
+	
+	private string _descript;
+	
+	private EntitySet<T_Employe> _T_Employe;
+	
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidStatusEmpChanging(int value);
+    partial void OnidStatusEmpChanged();
+    partial void OndescriptChanging(string value);
+    partial void OndescriptChanged();
+    #endregion
+	
+	public T_StatusEmploye()
+	{
+		this._T_Employe = new EntitySet<T_Employe>(new Action<T_Employe>(this.attach_T_Employe), new Action<T_Employe>(this.detach_T_Employe));
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idStatusEmp", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int idStatusEmp
+	{
+		get
+		{
+			return this._idStatusEmp;
+		}
+		set
+		{
+			if ((this._idStatusEmp != value))
+			{
+				this.OnidStatusEmpChanging(value);
+				this.SendPropertyChanging();
+				this._idStatusEmp = value;
+				this.SendPropertyChanged("idStatusEmp");
+				this.OnidStatusEmpChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+	public string descript
+	{
+		get
+		{
+			return this._descript;
+		}
+		set
+		{
+			if ((this._descript != value))
+			{
+				this.OndescriptChanging(value);
+				this.SendPropertyChanging();
+				this._descript = value;
+				this.SendPropertyChanged("descript");
+				this.OndescriptChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusEmploye_T_Employe", Storage="_T_Employe", ThisKey="idStatusEmp", OtherKey="idStatus")]
+	public EntitySet<T_Employe> T_Employe
+	{
+		get
+		{
+			return this._T_Employe;
+		}
+		set
+		{
+			this._T_Employe.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_T_Employe(T_Employe entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_StatusEmploye = this;
+	}
+	
+	private void detach_T_Employe(T_Employe entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_StatusEmploye = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_StatusProjet")]
+public partial class T_StatusProjet : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _noStatusPro;
+	
+	private string _descript;
+	
+	private EntitySet<T_Projet> _T_Projet;
+	
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnnoStatusProChanging(int value);
+    partial void OnnoStatusProChanged();
+    partial void OndescriptChanging(string value);
+    partial void OndescriptChanged();
+    #endregion
+	
+	public T_StatusProjet()
+	{
+		this._T_Projet = new EntitySet<T_Projet>(new Action<T_Projet>(this.attach_T_Projet), new Action<T_Projet>(this.detach_T_Projet));
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_noStatusPro", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int noStatusPro
+	{
+		get
+		{
+			return this._noStatusPro;
+		}
+		set
+		{
+			if ((this._noStatusPro != value))
+			{
+				this.OnnoStatusProChanging(value);
+				this.SendPropertyChanging();
+				this._noStatusPro = value;
+				this.SendPropertyChanged("noStatusPro");
+				this.OnnoStatusProChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+	public string descript
+	{
+		get
+		{
+			return this._descript;
+		}
+		set
+		{
+			if ((this._descript != value))
+			{
+				this.OndescriptChanging(value);
+				this.SendPropertyChanging();
+				this._descript = value;
+				this.SendPropertyChanged("descript");
+				this.OndescriptChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_StatusProjet_T_Projet", Storage="_T_Projet", ThisKey="noStatusPro", OtherKey="idStatus")]
+	public EntitySet<T_Projet> T_Projet
+	{
+		get
+		{
+			return this._T_Projet;
+		}
+		set
+		{
+			this._T_Projet.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_T_Projet(T_Projet entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_StatusProjet = this;
+	}
+	
+	private void detach_T_Projet(T_Projet entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_StatusProjet = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_TauxKilo")]
+public partial class T_TauxKilo : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _idTaux;
+	
+	private float _taux;
+	
+	private System.Nullable<System.DateTime> _ddate;
+	
+	private int _idTypeAuto;
+	
+	private EntitySet<T_Kilometrage> _T_Kilometrage;
+	
+	private EntityRef<T_TypeAuto> _T_TypeAuto;
+	
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidTauxChanging(int value);
+    partial void OnidTauxChanged();
+    partial void OntauxChanging(float value);
+    partial void OntauxChanged();
+    partial void OnddateChanging(System.Nullable<System.DateTime> value);
+    partial void OnddateChanged();
+    partial void OnidTypeAutoChanging(int value);
+    partial void OnidTypeAutoChanged();
+    #endregion
+	
+	public T_TauxKilo()
+	{
+		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
+		this._T_TypeAuto = default(EntityRef<T_TypeAuto>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTaux", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int idTaux
+	{
+		get
+		{
+			return this._idTaux;
+		}
+		set
+		{
+			if ((this._idTaux != value))
+			{
+				this.OnidTauxChanging(value);
+				this.SendPropertyChanging();
+				this._idTaux = value;
+				this.SendPropertyChanged("idTaux");
+				this.OnidTauxChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_taux", DbType="Real NOT NULL")]
+	public float taux
+	{
+		get
+		{
+			return this._taux;
+		}
+		set
+		{
+			if ((this._taux != value))
+			{
+				this.OntauxChanging(value);
+				this.SendPropertyChanging();
+				this._taux = value;
+				this.SendPropertyChanged("taux");
+				this.OntauxChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ddate", DbType="Date")]
+	public System.Nullable<System.DateTime> ddate
+	{
+		get
+		{
+			return this._ddate;
+		}
+		set
+		{
+			if ((this._ddate != value))
+			{
+				this.OnddateChanging(value);
+				this.SendPropertyChanging();
+				this._ddate = value;
+				this.SendPropertyChanged("ddate");
+				this.OnddateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypeAuto", DbType="Int NOT NULL")]
+	public int idTypeAuto
+	{
+		get
+		{
+			return this._idTypeAuto;
+		}
+		set
+		{
+			if ((this._idTypeAuto != value))
+			{
+				if (this._T_TypeAuto.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnidTypeAutoChanging(value);
+				this.SendPropertyChanging();
+				this._idTypeAuto = value;
+				this.SendPropertyChanged("idTypeAuto");
+				this.OnidTypeAutoChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_TauxKilo_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idTaux", OtherKey="idTaux")]
+	public EntitySet<T_Kilometrage> T_Kilometrage
+	{
+		get
+		{
+			return this._T_Kilometrage;
+		}
+		set
+		{
+			this._T_Kilometrage.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_TypeAuto_T_TauxKilo", Storage="_T_TypeAuto", ThisKey="idTypeAuto", OtherKey="idType", IsForeignKey=true)]
+	public T_TypeAuto T_TypeAuto
+	{
+		get
+		{
+			return this._T_TypeAuto.Entity;
+		}
+		set
+		{
+			T_TypeAuto previousValue = this._T_TypeAuto.Entity;
+			if (((previousValue != value) 
+						|| (this._T_TypeAuto.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._T_TypeAuto.Entity = null;
+					previousValue.T_TauxKilo.Remove(this);
+				}
+				this._T_TypeAuto.Entity = value;
+				if ((value != null))
+				{
+					value.T_TauxKilo.Add(this);
+					this._idTypeAuto = value.idType;
+				}
+				else
+				{
+					this._idTypeAuto = default(int);
+				}
+				this.SendPropertyChanged("T_TypeAuto");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_T_Kilometrage(T_Kilometrage entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_TauxKilo = this;
+	}
+	
+	private void detach_T_Kilometrage(T_Kilometrage entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_TauxKilo = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.T_TypeAuto")]
+public partial class T_TypeAuto : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _idType;
+	
+	private string _descript;
+	
+	private EntitySet<T_TauxKilo> _T_TauxKilo;
+	
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidTypeChanging(int value);
+    partial void OnidTypeChanged();
+    partial void OndescriptChanging(string value);
+    partial void OndescriptChanged();
+    #endregion
+	
+	public T_TypeAuto()
+	{
+		this._T_TauxKilo = new EntitySet<T_TauxKilo>(new Action<T_TauxKilo>(this.attach_T_TauxKilo), new Action<T_TauxKilo>(this.detach_T_TauxKilo));
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idType", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int idType
+	{
+		get
+		{
+			return this._idType;
+		}
+		set
+		{
+			if ((this._idType != value))
+			{
+				this.OnidTypeChanging(value);
+				this.SendPropertyChanging();
+				this._idType = value;
+				this.SendPropertyChanged("idType");
+				this.OnidTypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descript", DbType="VarChar(50)")]
+	public string descript
+	{
+		get
+		{
+			return this._descript;
+		}
+		set
+		{
+			if ((this._descript != value))
+			{
+				this.OndescriptChanging(value);
+				this.SendPropertyChanging();
+				this._descript = value;
+				this.SendPropertyChanged("descript");
+				this.OndescriptChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_TypeAuto_T_TauxKilo", Storage="_T_TauxKilo", ThisKey="idType", OtherKey="idTypeAuto")]
+	public EntitySet<T_TauxKilo> T_TauxKilo
+	{
+		get
+		{
+			return this._T_TauxKilo;
+		}
+		set
+		{
+			this._T_TauxKilo.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_T_TauxKilo(T_TauxKilo entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_TypeAuto = this;
+	}
+	
+	private void detach_T_TauxKilo(T_TauxKilo entity)
+	{
+		this.SendPropertyChanging();
+		entity.T_TypeAuto = null;
 	}
 }
 #pragma warning restore 1591

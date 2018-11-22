@@ -8,10 +8,10 @@
     font-size: 25px;
 }
 
-#text_nav, #text_nav1, #text_nav2, #text_nav3, #text_nav4, #text_nav5, #text_nav6, #text_nav7, #text_nav8 {
+#text_nav, #text_nav1, #text_nav2, #text_nav3, #text_nav4, #text_nav5, #text_nav6, #text_nav7, #text_nav8, #text_nav9 {
     color: #ffffff;
 }
 
-#text_nav:hover, #text_nav1:hover, #text_nav2:hover, #text_nav3:hover, #text_nav4:hover, #text_nav5:hover, #text_nav6:hover, #text_nav7:hover, #text_nav8:hover {
-    color: #fff000;
-}
+    #text_nav:hover, #text_nav1:hover, #text_nav2:hover, #text_nav3:hover, #text_nav4:hover, #text_nav5:hover, #text_nav6:hover, #text_nav7:hover, #text_nav8:hover, #text_nav9:hover {
+        color: #fff000;
+    }

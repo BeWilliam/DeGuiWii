@@ -39,6 +39,7 @@ public partial class AjouterEmploye : System.Web.UI.Page
                 tbx_nom.Enabled = false;
                 tbx_courriel.Enabled = false;
                 tbx_mdp.Enabled = false;
+                tbx_pseudo.Enabled = false;
                 ddl_fonction.Enabled = false;
                 ddl_statut.Enabled = false;
                 btn_addEmp.Visible = false;
@@ -51,9 +52,7 @@ public partial class AjouterEmploye : System.Web.UI.Page
                 //caller la méthode qui affiche l'employés cliqué
                 AfficherEmp();
             }
-
         }          
-
     }
 
     private void loadStatut()
@@ -122,7 +121,8 @@ public partial class AjouterEmploye : System.Web.UI.Page
                 tbx_prenom.Text = emp.prenom;
                 tbx_nom.Text = emp.nom;
                 tbx_courriel.Text = emp.courriel;
-                tbx_mdp.Text = emp.mdp;               
+                tbx_mdp.Text = emp.mdp;
+                tbx_pseudo.Text = emp.loginName;
 
                 if (emp.idFonction == 1) //bureau
                 {
@@ -157,6 +157,7 @@ public partial class AjouterEmploye : System.Web.UI.Page
         tbx_nom.Enabled = true;
         tbx_courriel.Enabled = true;
         tbx_mdp.Enabled = true;
+        tbx_pseudo.Enabled = true;
         ddl_fonction.Enabled = true;
         ddl_statut.Enabled = true;
         btn_modifier.Enabled = false;
@@ -176,6 +177,7 @@ public partial class AjouterEmploye : System.Web.UI.Page
         newEmp.nom = tbx_nom.Text;
         newEmp.courriel = tbx_courriel.Text;
         newEmp.mdp = tbx_mdp.Text;
+        newEmp.loginName = tbx_pseudo.Text;
         newEmp.idStatus = int.Parse(ddl_statut.SelectedValue);
         newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
         newEmp.loginName = tbx_pseudo.Text;
