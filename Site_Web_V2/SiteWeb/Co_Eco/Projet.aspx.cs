@@ -279,9 +279,6 @@ public partial class Projet : System.Web.UI.Page
         //Traitement de chaque cas fait, donc effectuer la recherche
 
         TableHeaderRow thr = new TableHeaderRow();
-        TableHeaderCell thc_ID = new TableHeaderCell();
-        thc_ID.Text = "#";
-        thc_ID.Width = new Unit("25%");
         TableHeaderCell thc_Projet = new TableHeaderCell();
         thc_Projet.Text = "Nom du projet";
         thc_Projet.Width = new Unit("25%");
@@ -291,7 +288,6 @@ public partial class Projet : System.Web.UI.Page
         TableHeaderCell thc_statut = new TableHeaderCell();
         thc_statut.Text = "Statut";
         thc_statut.Width = new Unit("25%");
-        thr.Cells.Add(thc_ID);
         thr.Cells.Add(thc_Projet);
         thr.Cells.Add(thc_responsable);
         thr.Cells.Add(thc_statut);
@@ -327,9 +323,6 @@ public partial class Projet : System.Web.UI.Page
 
         TableRow tr = new TableRow();
 
-        TableCell cId = new TableCell();
-        cId.Text = id_Pro.ToString();
-
         TableCell cNom = new TableCell();
         //cNom.Text = projet.nom;
         HyperLink hl = new HyperLink();
@@ -351,7 +344,6 @@ public partial class Projet : System.Web.UI.Page
         TableCell cStatut = new TableCell();
         cStatut.Text = BD_CoEco.GetListeStatusProjet()[projet.idStatus - 1].descript;
 
-        tr.Cells.Add(cId);
         tr.Cells.Add(cNom);
         tr.Cells.Add(cChef);
         tr.Cells.Add(cStatut);
