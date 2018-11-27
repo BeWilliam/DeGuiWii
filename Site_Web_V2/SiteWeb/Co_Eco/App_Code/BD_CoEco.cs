@@ -395,6 +395,7 @@ public class BD_CoEco
         newEmp.mdp = p_employe.mdp;
         newEmp.idFonction = p_employe.idFonction;
         newEmp.idStatus = p_employe.idStatus;
+        newEmp.loginName = p_employe.loginName;
 
         BD.SubmitChanges();
         BD.Dispose();
@@ -547,14 +548,6 @@ public class BD_CoEco
             throw new Exception("Aucun taux de kilométrage");
     }
 
-    public static void ChangeTauxKilo(float p_newValue)
-    {
-        CoEco_BDDataContext bd = new CoEco_BDDataContext();
-        float newValue = p_newValue;
-        bd.PS_ChangerTauxKilo(newValue);
-        bd.Dispose();
-    }
-
     public static List<T_FeuilleDeTemps> GetListeFeuilleDeTemps()
     {
         CoEco_BDDataContext bd = new CoEco_BDDataContext();
@@ -704,6 +697,40 @@ public class BD_CoEco
         }
 
         return banqueHeure;
+    }
+
+    public static float GetTauxKiloAuto()
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        List<T_TauxKilo> listeTauxKilo = bd.T_TauxKilo.Where(o => o.idTypeAuto == 1).OrderBy(o => o.idTaux).ToList();
+        bd.Dispose();
+        return listeTauxKilo[listeTauxKilo.Count - 1].taux;
+    }
+
+    public static float GetTauxKiloCamion()
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        List<T_TauxKilo> listeTauxKilo = bd.T_TauxKilo.Where(o => o.idTypeAuto == 2).OrderBy(o => o.idTaux).ToList();
+        bd.Dispose();
+        return listeTauxKilo[listeTauxKilo.Count - 1].taux;
+    }
+
+    /// <summary>
+    /// Ajoute un nouveau taux
+    /// </summary>
+    /// <param name="newTaux">nouveau taux</param>
+    /// <param name="type">1 = Auto, 2 = Camion</param>
+    public static void AddTauxKilo(float newTaux, int type)
+    {
+        T_TauxKilo tauxKilo = new T_TauxKilo();
+        tauxKilo.taux = newTaux;
+        tauxKilo.ddate = DateTime.Today;
+        tauxKilo.idTypeAuto = type;
+
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        bd.T_TauxKilo.InsertOnSubmit(tauxKilo);
+        bd.SubmitChanges();
+        bd.Dispose();
     }
 
 }

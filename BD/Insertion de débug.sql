@@ -15,7 +15,6 @@ INSERT INTO T_CategoriePro(idCategorie, idProjet, descript) VALUES (4, 2, 'Congé
 INSERT INTO T_Employe(idFonction, idStatus, nom, prenom) VALUES (1,1,'Gagnon','Guillaume')
 INSERT INTO T_Employe(idFonction, idStatus, nom, prenom) VALUES (1,1,'Lemieux','William')
 INSERT INTO T_Employe(idFonction, idStatus, nom, prenom) VALUES (1,1,'Thériault','Denis')
-INSERT INTO T_Employe(idFonction, idStatus, nom, prenom) VALUES (1,1,'une bd parfaite','Jai plante')
 
 INSERT INTO T_Depense(idType, idProjet, idEmp, montant) VALUES (1,1,1,20)
 INSERT INTO T_Depense(idType, idProjet, idEmp, montant) VALUES (1,1,2,30)
@@ -29,6 +28,8 @@ INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercred
 INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,2,5,5,5,5,5,5,5, 'Débugage', GETDATE())
 INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,3,2,2,2,2,2,2,2, 'Débugage', GETDATE())
 INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,4,2,2,5,5,5,2.5,2.5, 'Débugage', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,5,2,2,5,5,5,2.5,2.5, 'Débugage', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (135,4,2,2,5,5,5,2.5,2.5, 'Débugage', GETDATE())
 
 INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES (1,2)
 INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES (2,2)

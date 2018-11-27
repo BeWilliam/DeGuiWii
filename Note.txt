@@ -1,4 +1,8 @@
-Changer nom d'utilisateur pour seulement le prénom 				- Guillaume
+Rentrer une dépense sans être lié à une catégorie
+Mettre un commentaire pour chaque entrée (EMP)
+Banque d'heure!!!
+
+Changer nom d'utilisateur pour seulement le prénom 				- Guillaume (DONE)
 
 Rentrer une dépense sans être lié à une catégorie				- William
 
@@ -34,7 +38,7 @@ Approuver tous d'une shot
 Rentrer une dépense pour un employé en tant qu'Admin				-William
 
 
-Taux kilométrage								-Denis
+Taux kilométrage								-Guillaume (DONE)
 
 Employé de terrain a pas accès à la banque d'heure				-Denis
 	
