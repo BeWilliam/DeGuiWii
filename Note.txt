@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 Rentrer une dépense sans être lié à une catégorie
 Mettre un commentaire pour chaque entrée (EMP)
 Banque d'heure!!!
-=======
-Changer nom d'utilisateur pour seulement le prénom 				- Guillaume
+
+Changer nom d'utilisateur pour seulement le prénom 				- Guillaume (DONE)
 
 Rentrer une dépense sans être lié à une catégorie				- William
 
@@ -11,7 +10,6 @@ Mettre un commentaire pour chaque entrée (EMP)					-Denis
 
 Banque d'heure!!!								-Denis
 
->>>>>>> a493c2f77e5d36fedc695300e4d5d85493eb9e85
 	Chaque an, banque d'heure init (on rentre les données)
 	Maladie, Congé perso, heure supp vacances Férier
 
@@ -40,7 +38,7 @@ Approuver tous d'une shot
 Rentrer une dépense pour un employé en tant qu'Admin				-William
 
 
-Taux kilométrage								-Denis
+Taux kilométrage								-Guillaume (DONE)
 
 Employé de terrain a pas accès à la banque d'heure				-Denis
 	

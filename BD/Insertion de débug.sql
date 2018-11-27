@@ -28,6 +28,8 @@ INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercred
 INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,2,5,5,5,5,5,5,5, 'Débugage', GETDATE())
 INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,3,2,2,2,2,2,2,2, 'Débugage', GETDATE())
 INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,4,2,2,5,5,5,2.5,2.5, 'Débugage', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (1,5,2,2,5,5,5,2.5,2.5, 'Débugage', GETDATE())
+INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, note, semaine) VALUES (135,4,2,2,5,5,5,2.5,2.5, 'Débugage', GETDATE())
 
 INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES (1,2)
 INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES (2,2)

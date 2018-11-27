@@ -9,12 +9,9 @@
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
-
-    <asp:Table runat="server" ID="tab_emp" CssClass="table"/>
-    <input id="btn_App_Click" type="button" class="btn btn-success" value="Appliquer" onclick="enr()"/>
-
     
+    <asp:Panel runat="server" ID="panel_Contenu">
 
+    </asp:Panel>
 
 </asp:Content>
-
