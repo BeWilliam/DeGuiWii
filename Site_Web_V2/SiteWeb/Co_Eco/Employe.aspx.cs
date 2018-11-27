@@ -23,10 +23,12 @@ public partial class Employe : System.Web.UI.Page
 
         if(!IsPostBack)
         {
+            loadFonction();
+            loadStatut();
 
             string nom = Request.QueryString["nom"];
             string prenom = Request.QueryString["prenom"];
-            string idFonction = Request.QueryString["idFonction"];
+            string idFonction = Request.QueryString["idFonc"];
             string idStatut = Request.QueryString["idStatut"];
 
             if (nom != null)
@@ -43,16 +45,11 @@ public partial class Employe : System.Web.UI.Page
             }
             if (idStatut != null)
             {
-                ddl_Status.Text = idStatut;
+                ddl_Status.SelectedValue = idStatut;
             }
-
-
-            loadFonction();
-            loadStatut();
             Recherche();
         }
     }
-
 
     protected void bt_AjouterEmploye_Click(object sender, EventArgs e)
     {
@@ -118,7 +115,6 @@ public partial class Employe : System.Web.UI.Page
 
     protected void btn_rech_ServerClick(object sender, EventArgs e)
     {
-
         string nom = "";
         string prenom = "";
         string idFonction = "";
@@ -138,8 +134,6 @@ public partial class Employe : System.Web.UI.Page
         idStatut = "idStatut=" + ddl_Status.SelectedValue;
 
         Response.Redirect("Employe.aspx?" + nom + "&" + prenom + "&" + idFonction + "&" + idStatut);
-
-        Recherche();
 
     }
 
@@ -239,7 +233,7 @@ public partial class Employe : System.Web.UI.Page
         {
             for(int i = 0; i < tousLesEmp.Count; i++)
             {
-                if(ddl_Status.SelectedIndex == tousLesEmp[i].idStatus)
+                if(ddl_Status.SelectedValue == tousLesEmp[i].idStatus.ToString())
                 {
                     rechercheD.Add(i);
                 }
@@ -252,8 +246,6 @@ public partial class Employe : System.Web.UI.Page
                 rechercheD.Add(i);
             }
         }
-
-
 
         TableHeaderRow thr = new TableHeaderRow();
         TableHeaderCell thc_id = new TableHeaderCell();
@@ -272,6 +264,7 @@ public partial class Employe : System.Web.UI.Page
         thr.Cells.Add(thc_prenom);
         thr.Cells.Add(thc_Nom);
         thr.Cells.Add(thc_Statut);
+        thr.ID = "thr_ID";
         Tableau_Employes.Rows.Add(thr);
 
 

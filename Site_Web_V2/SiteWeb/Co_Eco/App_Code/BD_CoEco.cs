@@ -44,6 +44,8 @@ public class BD_CoEco
         return rtnList;
     }
 
+
+
     /// <summary>
     /// Méthode permettant obtenir la liste des projets. Retourne tous les projets par défaut
     /// </summary>
@@ -64,6 +66,30 @@ public class BD_CoEco
                 {
                     rtnList.Add(pro);
                 }
+            }
+        }
+        BD.Dispose();
+        return rtnList;
+    }
+
+    /// <summary>
+    /// Méthode permettant obtenir la liste des employés au projet. Retourne tous les emp au projet par défaut
+    /// </summary>
+    /// <param name="p_Inactif">Si ce flag est mit à True, retourne seulement les employé au projet actifs</param>
+    /// <returns></returns>
+    public static List<T_EmployeProjet> GetListeEmpPro(bool p_Actifs = false)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_EmployeProjet> tableEmpPro = BD.T_EmployeProjet;
+        List<T_EmployeProjet> listeEmpPro = tableEmpPro.ToList();
+        List<T_EmployeProjet> rtnList = listeEmpPro;
+
+        if (p_Actifs == true)
+        {
+            rtnList = new List<T_EmployeProjet>();
+            foreach (T_EmployeProjet emppro in listeEmpPro)
+            {
+                    rtnList.Add(emppro);
             }
         }
         BD.Dispose();
@@ -320,6 +346,15 @@ public class BD_CoEco
         BD.T_Projet.InsertOnSubmit(p_projet);
         BD.SubmitChanges();
         BD.Dispose();
+    }
+
+    public static int? getNewIdProject()
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        int? maxID = 0;
+        BD.PS_GetMaxIdProjet(ref maxID);
+        maxID++;
+        return maxID;
     }
 
     public static void CreateNewEmploye(T_Employe p_employe)
