@@ -16,8 +16,8 @@ public partial class AjouterProjet : System.Web.UI.Page
     {
         urlParam = Request.QueryString["id"];
 
-        btn_modifier.Visible = false;
-        btn_apply.Visible = false;
+        btn_modifier.Enabled = true;
+        btn_apply.Enabled = false;
 
         if (!IsPostBack)
         {
@@ -26,6 +26,16 @@ public partial class AjouterProjet : System.Web.UI.Page
             afficherEmpLst();
             btn_lieEmp.Visible = false;
             ddl_employe.Visible = false;
+            lst_employeAjouter2.Visible = false;
+            lbl_listeEmp2.Visible = false;
+            lbl_nom.Visible = false;
+            tbx_cat.Visible = false;
+            btn_ajouterCategorie.Visible = false;
+            titreC.Visible = false;
+            btn_lieEmp.Enabled = false;
+            btn_ajouterCategorie.Enabled = false;
+            tbx_cat.Enabled = false;
+            lst_employeAjouter2.Enabled = false;
         }
 
         if (urlParam != null)
@@ -37,6 +47,15 @@ public partial class AjouterProjet : System.Web.UI.Page
             btn_ajouter.Visible = false;
             btn_lieEmp.Visible = true;
             ddl_employe.Visible = true;
+            lbl_listeEmp.Visible = false;
+            lbl_listeEmpA.Visible = false;
+            lst_employeAjouter.Visible = false;
+            lst_employeAjouter2.Visible = true;
+            lbl_listeEmp2.Visible = true;
+            lbl_nom.Visible = true;
+            tbx_cat.Visible = true;
+            btn_ajouterCategorie.Visible = true;
+            titreC.Visible = true;
 
             if (!IsPostBack)
             {
@@ -54,11 +73,15 @@ public partial class AjouterProjet : System.Web.UI.Page
                 tbx_heure.Enabled = false;
                 tbx_projet.Enabled = false;
                 ddl_responsable.Enabled = false;
+                ddl_employe.Enabled = false;
                 ddl_statut.Enabled = false;
                 dateDebut.Enabled = false;
                 dateFin.Enabled = false;
                 lst_employe.Enabled = false;
                 lst_employeAjouter.Enabled = false;
+                btn_lieEmp.Enabled = false;
+                btn_ajouterCategorie.Enabled = false;
+
              
             }
         }       
@@ -96,7 +119,7 @@ public partial class AjouterProjet : System.Web.UI.Page
                 {
                     if (empPro.idPro == projet.idProjet)
                     {
-                        lst_employeAjouter.Items.Add(new ListItem(BD_CoEco.GetEmpByID(empPro.idEmp).prenom + " " + BD_CoEco.GetEmpByID(empPro.idEmp).nom, BD_CoEco.GetEmpByID(empPro.idEmp).idEmploye.ToString()));
+                        lst_employeAjouter2.Items.Add(new ListItem(BD_CoEco.GetEmpByID(empPro.idEmp).prenom + " " + BD_CoEco.GetEmpByID(empPro.idEmp).nom, BD_CoEco.GetEmpByID(empPro.idEmp).idEmploye.ToString()));
 
                         T_Employe newEmp = new T_Employe();
                         newEmp.idEmploye = BD_CoEco.GetEmpByID(empPro.idEmp).idEmploye;
@@ -165,18 +188,18 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     private void loadEmploye()
     {
-        List<T_Employe> listEmp = BD_CoEco.GetListeEmploye();
+        List<T_Employe> listEmp = BD_CoEco.GetListeEmploye(true);
         List<T_Employe> list = new List<T_Employe>();
 
         foreach (T_Employe emp in listEmp)
         {
             if (emp.idFonction != 3)
             {
-                if (lst_employeAjouter.Items.Count > 0)
+                if (lst_employeAjouter2.Items.Count > 0)
                 {
-                    for (int i = 0; i < lst_employeAjouter.Items.Count; i++)
+                    for (int i = 0; i < lst_employeAjouter2.Items.Count; i++)
                     {
-                        if (int.Parse(lst_employeAjouter.Items[i].Value) != emp.idEmploye)
+                        if (int.Parse(lst_employeAjouter2.Items[i].Value) != emp.idEmploye)
                         {
                             list.Add(emp);
                         }
@@ -235,7 +258,7 @@ public partial class AjouterProjet : System.Web.UI.Page
 
         BD_CoEco.UpdateProjet(monProjet);
 
-
+        ajouterEmpLie();
 
         Response.Redirect("Projet.aspx");
 
@@ -247,14 +270,19 @@ public partial class AjouterProjet : System.Web.UI.Page
         tbx_heure.Enabled = true;
         tbx_projet.Enabled = true;
         ddl_responsable.Enabled = true;
+        ddl_employe.Enabled = true;
         ddl_statut.Enabled = true;
         dateDebut.Enabled = true;
         dateFin.Enabled = true;
         lst_employe.Enabled = true;
-        lst_employeAjouter.Enabled = true;
-
+        lst_employeAjouter2.Enabled = true;
+        btn_lieEmp.Enabled = true;
         btn_apply.Visible = true;
         btn_apply.Enabled = true;
+        btn_lieEmp.Enabled = true;
+        btn_ajouterCategorie.Enabled = true;
+        tbx_cat.Enabled = true;
+        btn_modifier.Enabled = false;
     }
 
     private void afficherEmpLst()
@@ -301,6 +329,12 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     }
 
+    private void ajouterEmp2(int idAjouter)
+    {
+        List<T_Employe> listeEmploye = new List<T_Employe>();
+
+    }
+
     private void retirerEmp(int idRetirer)
     {
         List<T_Employe> listeEmp = BD_CoEco.GetListeEmploye();
@@ -330,8 +364,6 @@ public partial class AjouterProjet : System.Web.UI.Page
 
         lst_employe.Items.RemoveAt(indexEmp);
 
-        T_Employe empP = BD_CoEco.GetEmpByID(empId);
-
         ajouterEmp(empId);
 
     }
@@ -352,8 +384,7 @@ public partial class AjouterProjet : System.Web.UI.Page
         T_Employe empP = BD_CoEco.GetEmpByID(empId);
 
         retirerEmp(empId);
-
-        //retirer le listebox lst_employe     
+ 
     }
 
     private void loadCat()
@@ -372,5 +403,72 @@ public partial class AjouterProjet : System.Web.UI.Page
             tableau_categorie.Rows.Add(tr);
         }
     }
+
+
+    protected void btn_lieEmp_Click(object sender, EventArgs e)
+    {
+        btn_lieEmp.Enabled = true;
+        int empId = int.Parse(ddl_employe.SelectedValue);
+        int indexEmp = ddl_employe.SelectedIndex;
+
+        T_Employe emp = BD_CoEco.GetEmpByID(empId);
+
+        ddl_employe.Items.RemoveAt(indexEmp);
+        lst_employeAjouter2.Items.Add(new ListItem(emp.prenom + " " + emp.nom, emp.idEmploye.ToString()));
+
+    }
+
+    private void ajouterEmpLie()
+    {
+        List<T_Employe> listeEmpAuProjet = new List<T_Employe>();
+        T_Projet monProjet = new T_Projet();
+        monProjet.idProjet = int.Parse(Request.QueryString["id"]);
+
+        List<T_Employe> listEmpPro = BD_CoEco.GetEmpByProject(monProjet);
+
+        foreach (T_Employe EmpPro in listEmpPro)
+        {
+            for (int i = 0; i < lst_employeAjouter2.Items.Count; i++)
+            {
+                if (EmpPro.idEmploye != int.Parse(lst_employeAjouter2.Items[i].Value))
+                {
+                    T_Employe emp = BD_CoEco.GetEmpByID(int.Parse(lst_employeAjouter2.Items[i].Value));
+                    listeEmpAuProjet.Add(emp);
+                }
+            }
+        }
+
+        for (int i = 0; i < listeEmpAuProjet.Count; i++)
+        {   
+            T_EmployeProjet empPro = new T_EmployeProjet();
+            empPro.idEmp = listeEmpAuProjet[i].idEmploye;
+            empPro.idPro = monProjet.idProjet;
+            BD_CoEco.CreateNewEmpAtProject(empPro);
+        }
+    }
+
+    protected void btn_ajouterCategorie_Click(object sender, EventArgs e)
+    {
+        TableRow tr = new TableRow();
+        TableCell tc1 = new TableCell();
+
+        tc1.Text = tbx_cat.Text;
+
+        tr.Cells.Add(tc1);
+        tableau_categorie.Rows.Add(tr);
+        CreateCat();
+    }
+
+    private void CreateCat()
+    {
+        T_CategoriePro newCat = new T_CategoriePro();
+        newCat.descript = tbx_cat.Text;
+        newCat.idStatusCat = 1;
+        newCat.idProjet = int.Parse(Request.QueryString["id"]);
+        BD_CoEco.CreateNewCategorie(newCat);
+    }
+
+
+
 
 }
