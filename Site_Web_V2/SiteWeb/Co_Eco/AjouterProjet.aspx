@@ -74,16 +74,27 @@
                 <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_statut" AutoPostBack="True" />
             </div>
 
-
+            <div class="col-md-auto" style="text-align: center; float: left;">
+                <label for="validationTooltip01">Employés non liés</label>
+                <asp:DropDownList ID="ddl_employe" runat="server" CssClass="form-control"></asp:DropDownList>
+            </div>
+            <div class="col-md-auto" style="text-align: center; float: left; margin-top: 8px;">
+                <asp:Button ID="btn_lieEmp" runat="server" CssClass="btn btn-primary" Text="Ajouter" OnClick="btn_lieEmp_Click" />
+            </div>
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-lg-5">
+                        <label for="validationTooltip01" runat="server" id="lbl_listeEmp2">Liste d'employés liées au projets</label>
+                        <asp:ListBox runat="server" CssClass="form-control" ID="lst_employeAjouter2" Style="height: 200px;"></asp:ListBox>
+                    </div>
+                </div>
+            </div>
 
             <div class="container">
                 <div class="row justify-content-md-center">
 
-                    <asp:DropDownList ID="ddl_employe" runat="server" CssClass="form-control"></asp:DropDownList>
-                    <asp:Button ID="btn_lieEmp" runat="server" CssClass="btn btn-primary" Text="Ajouter" />
-
                     <div class="col-xl-5">
-                        <label for="validationTooltip01">Liste d'employés</label>
+                        <label id="lbl_listeEmp" for="validationTooltip01" runat="server">Liste d'employés</label>
                         <asp:ListBox runat="server" CssClass="form-control" ID="lst_employe" Style="height: 200px;"></asp:ListBox>
                     </div>
 
@@ -93,7 +104,7 @@
                     </div>
 
                     <div class="col-lg-5">
-                        <label for="validationTooltip01">Liste d'employés liées au projets</label>
+                        <label for="validationTooltip01" runat="server" id="lbl_listeEmpA">Liste d'employés liées au projets</label>
                         <asp:ListBox runat="server" CssClass="form-control" ID="lst_employeAjouter" Style="height: 200px;"></asp:ListBox>
                     </div>
 
@@ -101,7 +112,7 @@
             </div>
 
             <div class="col-md-auto" style="text-align: center; float: left;">
-                <h2>Catégories</h2>
+                <h2 id="titreC" runat="server">Catégories</h2>
 
             </div>
             <div class="container">
@@ -109,6 +120,9 @@
                     <div class="col-lg-6" style="text-align: center; float: left; text-align: center;">
                         <asp:Table ID="tableau_categorie" runat="server" CssClass="table" Style="float: right;">
                         </asp:Table>
+                        <asp:Label ID="lbl_nom" runat="server" Text="Nom de la catégorie"></asp:Label>
+                        <asp:TextBox ID="tbx_cat" runat="server" CssClass="form-control" Style="margin-bottom: 10px;"></asp:TextBox>
+                        <asp:Button ID="btn_ajouterCategorie" runat="server" Text="Ajouter" CssClass="btn btn-primary" OnClick="btn_ajouterCategorie_Click" />
                     </div>
                 </div>
             </div>
