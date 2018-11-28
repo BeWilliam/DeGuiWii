@@ -93,10 +93,18 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
                                 Table tab = new Table();
                                 tab.CssClass = "table";
                                 TableRow tr = new TableRow();
+
+                                //Partie pour les noms
                                 TableCell tc_nom = new TableCell();
                                 tc_nom.Width = new Unit("33%");
-                                tc_nom.Text = emp.prenom + " " + emp.nom;
+                                HyperLink hl = new HyperLink();
+                                hl.Text = emp.prenom + " " + emp.nom;
+                                hl.NavigateUrl = "FDT_ConsultationAdm.aspx?idFDT=" + fdt.idFeuilleDeTemps.ToString();
+                                tc_nom.Controls.Add(hl);
                                 tr.Cells.Add(tc_nom);
+
+
+
                                 TableCell tc_FDT = new TableCell();
                                 tc_FDT.Width = new Unit("33%");
                                 tc_FDT.Text = Utilitaires.GetHeureFDT(fdt.idFeuilleDeTemps).ToString();

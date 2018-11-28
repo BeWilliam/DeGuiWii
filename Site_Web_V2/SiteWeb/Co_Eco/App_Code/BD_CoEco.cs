@@ -587,26 +587,6 @@ public class BD_CoEco
         return fdt;
     }
 
-    /*public static void UpdateFeuilleDeTemps(T_FeuilleDeTemps newFdt)
-    {
-        CoEco_BDDataContext bd = new CoEco_BDDataContext();
-        T_FeuilleDeTemps fdt = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == newFdt.idFeuilleDeTemps);
-        fdt.dimanche = newFdt.dimanche;
-        fdt.lundi = newFdt.lundi;
-        fdt.mardi = newFdt.mardi;
-        fdt.mercredi = newFdt.mercredi;
-        fdt.jeudi = newFdt.jeudi;
-        fdt.vendredi = newFdt.vendredi;
-        fdt.samedi = newFdt.samedi;
-        fdt.approbation = newFdt.approbation;
-        fdt.idCategorie = newFdt.idCategorie;
-        fdt.idEmp = newFdt.idEmp;
-        fdt.note = newFdt.note;
-
-        bd.SubmitChanges();
-        bd.Dispose();
-    }*/
-
     public static T_StatusProjet GetStatusProjetById(int id)
     {
         CoEco_BDDataContext bd = new CoEco_BDDataContext();
