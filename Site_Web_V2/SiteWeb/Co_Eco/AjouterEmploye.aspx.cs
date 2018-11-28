@@ -17,12 +17,14 @@ public partial class AjouterEmploye : System.Web.UI.Page
 
         btn_appliquer.Visible = false;
         btn_modifier.Visible = false;
+        ddl_statut.Enabled = false;
 
         urlParam = Request.QueryString["id"];
 
         if (!IsPostBack)
         {
             loadFonction();
+            loadStatut();
         }
 
         btn_addEmp.Text = "Ajouter";

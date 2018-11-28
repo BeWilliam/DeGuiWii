@@ -248,9 +248,7 @@ public partial class Employe : System.Web.UI.Page
         }
 
         TableHeaderRow thr = new TableHeaderRow();
-        TableHeaderCell thc_id = new TableHeaderCell();
-        thc_id.Text = "#";
-        thc_id.Width = new Unit("25%");
+
         TableHeaderCell thc_prenom = new TableHeaderCell();
         thc_prenom.Text = "Prénom";
         thc_prenom.Width = new Unit("25%");
@@ -260,7 +258,7 @@ public partial class Employe : System.Web.UI.Page
         TableHeaderCell thc_Statut = new TableHeaderCell();
         thc_Statut.Text = "Statut";
         thc_Statut.Width = new Unit("25%");
-        thr.Cells.Add(thc_id);
+
         thr.Cells.Add(thc_prenom);
         thr.Cells.Add(thc_Nom);
         thr.Cells.Add(thc_Statut);
@@ -293,8 +291,6 @@ public partial class Employe : System.Web.UI.Page
     private void ShowEmp(T_Employe employe)
     {
         TableRow tr = new TableRow();
-        TableCell tc_Id = new TableCell();
-        tc_Id.Text = employe.idEmploye.ToString();
         TableCell tc_Prenom = new TableCell();
         HyperLink hl = new HyperLink();
         hl.Text = employe.prenom;
@@ -305,7 +301,6 @@ public partial class Employe : System.Web.UI.Page
         tc_Nom.Text = employe.nom;
         TableCell tc_Statut = new TableCell();
         tc_Statut.Text = BD_CoEco.GetListeStatusEmploye()[employe.idStatus - 1].descript;
-        tr.Cells.Add(tc_Id);
         tr.Cells.Add(tc_Prenom);
         tr.Cells.Add(tc_Nom);
         tr.Cells.Add(tc_Statut);
