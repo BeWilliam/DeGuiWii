@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AjouterDepenses.aspx.cs" Inherits="Depenses" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AjouterDepenses.aspx.cs" Inherits="Depenses" Theme="DepensesADM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" runat="Server">
 </asp:Content>
@@ -79,6 +79,9 @@
             </div>
         </div>
     </div>
+
+    <asp:Button ID="btn_approuver" runat="server" OnClick="btn_approuver_Click" Visible="false" Text="Approuver" CssClass="btn btn-success"/>
+    <asp:Button ID="btn_desapprouver" runat="server" OnClick="btn_desapprouver_Click" Visible="false" Text="Désapprouver" CssClass="btn btn-danger"/>
 
 </asp:Content>
 

@@ -13,6 +13,12 @@ public partial class Depenses : System.Web.UI.Page
         btn_modifier.Visible = false;
         btn_apply.Visible = false;
 
+        if(Session["fonction"].ToString() == "3")
+        {
+            btn_approuver.Visible = true;
+            btn_desapprouver.Visible = true;
+        }
+
         if(!IsPostBack)
         {
             //First Load
@@ -66,6 +72,8 @@ public partial class Depenses : System.Web.UI.Page
         {
             ddl_projet.Items.Add(new ListItem(projet.nom, projet.idProjet.ToString()));
         }
+        
+
     }
 
     private void afficherDepense()
@@ -263,5 +271,21 @@ public partial class Depenses : System.Web.UI.Page
             Response.Redirect("DepenseAdmin.aspx");
         }
         
+    }
+
+    protected void btn_approuver_Click(object sender, EventArgs e)
+    {
+        T_Depense actuDep = BD_CoEco.GetDepenseById(int.Parse(Request.QueryString["id"]));
+        actuDep.aprobation = true;
+        BD_CoEco.UpdateDepense(actuDep);
+        Response.Redirect("DepenseAdmin.aspx");
+    }
+
+    protected void btn_desapprouver_Click(object sender, EventArgs e)
+    {
+        T_Depense actuDep = BD_CoEco.GetDepenseById(int.Parse(Request.QueryString["id"]));
+        actuDep.aprobation = false;
+        BD_CoEco.UpdateDepense(actuDep);
+        Response.Redirect("DepenseAdmin.aspx");
     }
 }
