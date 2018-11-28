@@ -110,7 +110,7 @@ public partial class ApprouveFDT : System.Web.UI.Page
         newFDT.vendredi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[5].Controls[0]).Text);
         newFDT.samedi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[6].Controls[0]).Text);
 
-        newFDT.note = oldFDT.note;
+        //newFDT.note = oldFDT.note;
         newFDT.semaine = oldFDT.semaine;
         newFDT.approbation = true; //à changer
         newFDT.idCategorie = oldFDT.idCategorie;

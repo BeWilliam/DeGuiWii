@@ -9,9 +9,9 @@ using ListItem = System.Web.UI.WebControls.ListItem;
 public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
 {
     int idEmp;
+    int idFdt;
     List<T_Projet> projetsDeLemploye;
     List<T_CategoriePro> ListeCategorie;
-    string urlParamId;
     protected void Page_Load(object sender, EventArgs e)
     {
         //idEmp = int.Parse(Session["idEmp"].ToString());
@@ -32,8 +32,14 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
 
         if (!IsPostBack)
         {
+            idFdt = int.Parse(Request.QueryString["idFdt"]);
 
             ddl_Categorie.Items.Add(new ListItem("Aucune Catégorie", "-1"));
+
+            if (idFdt != -1)
+            {
+                modifFdt(idFdt);
+            }
         }
         else
         {
@@ -74,7 +80,8 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
 
         fdt.idEmp = int.Parse(Session["idEmp"].ToString());
 
-        fdt.idFeuilleDeTemps = int.Parse(urlParamId);
+
+
         DateTime date;
         date = DateTime.Parse(Request.QueryString["date"]);
         //date = getFirstDayOfWeek(Calendar1.SelectedDate);
@@ -148,76 +155,148 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         //-----------COM
         if (tb_dimancheCommentaire.Text != "")
         {
+            fdt.commentaireDimanche = tb_dimancheCommentaire.Text;
 
-            
+
         }
         else
         {
-            fdt.dimanche = null;
+            fdt.commentaireDimanche = null;
         }
         if (tb_lundiCommentaire.Text != "")
         {
-            fdt.lundi = float.Parse(tb_lundiCommentaire.Text);
+            fdt.commentaireLundi = tb_lundiCommentaire.Text;
         }
         else
         {
-            fdt.lundi = null;
+            fdt.commentaireLundi = null;
         }
         if (tb_mardiCommentaire.Text != "")
         {
-            fdt.mardi = float.Parse(tb_mardiCommentaire.Text);
+            fdt.commentaireMardi = tb_mardiCommentaire.Text;
         }
         else
         {
-            fdt.mardi = null;
+            fdt.commentaireMardi = null;
         }
         if (tb_mercrediCommentaire.Text != "")
         {
-            fdt.mercredi = float.Parse(tb_mercrediCommentaire.Text);
+            fdt.commentaireMercredi = tb_mercrediCommentaire.Text;
         }
         else
         {
-            fdt.mercredi = null;
+            fdt.commentaireMercredi = null;
         }
         if (tb_jeudiCommentaire.Text != "")
         {
-            fdt.jeudi = float.Parse(tb_jeudiCommentaire.Text);
+            fdt.commentaireJeudi = tb_jeudiCommentaire.Text;
         }
         else
         {
-            fdt.jeudi = null;
+            fdt.commentaireJeudi = null;
         }
         if (tb_vendrediCommentaire.Text != "")
         {
-            fdt.vendredi = float.Parse(tb_vendrediCommentaire.Text);
+            fdt.commentaireVendredi = tb_vendrediCommentaire.Text;
         }
         else
         {
-            fdt.vendredi = null;
+            fdt.commentaireVendredi = null;
         }
         if (tb_samediCommentaire.Text != "")
         {
-            fdt.samedi = float.Parse(tb_samediCommentaire.Text);
+            fdt.commentaireSamedi = tb_samediCommentaire.Text;
         }
         else
         {
-            fdt.samedi = null;
+            fdt.commentaireSamedi = null;
         }
 
-        //fdt.approbation = false;
-        //BD_CoEco.UpdateFeuilleDeTemps(fdt);
-        //clearTextBox();
-
-        //tr_ajout.Visible = false;
-        //tr_modif.Visible = false;
-        //btn_confirmer.Visible = false;
-        //btn_confirmerModif.Visible = false;
-        //btn_annuler.Visible = false;
-        //btn_ajouter.Visible = true;
-        //ajout = true;
-        //ajouterEnregistrement(date);
+        fdt.approbation = false;
+        
+        //Modif
+        if (idFdt != -1)
+        {
+            fdt.idFeuilleDeTemps = idFdt;
+            BD_CoEco.UpdateFeuilleDeTemps(fdt);
+        }
+        //Ajout
+        else
+        {
+            BD_CoEco.CreateNewFeuilleDeTemps(fdt);
+        }
 
         Response.Redirect("FeuilleDeTemps.aspx");
+    }
+
+    void modifFdt(int p_id)
+    {
+        T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(p_id);
+
+        if (fdt.dimanche != null)
+        {
+            tb_dimanche.Text = fdt.dimanche.ToString();
+        }
+        if (fdt.lundi != null)
+        {
+            tb_lundi.Text = fdt.lundi.ToString();
+        }
+        if (fdt.mardi != null)
+        {
+            tb_mardi.Text = fdt.mardi.ToString();
+        }
+        if (fdt.mercredi != null)
+        {
+            tb_mercredi.Text = fdt.mercredi.ToString();
+
+        }
+
+        if (fdt.jeudi != null)
+        {
+            tb_jeudi.Text = fdt.jeudi.ToString();
+        }
+        if (fdt.vendredi != null)
+        {
+            tb_vendredi.Text = fdt.vendredi.ToString();
+        }
+
+        if (fdt.samedi != null)
+        {
+            tb_samedi.Text = fdt.samedi.ToString();
+        }
+        //--COM
+        if (fdt.commentaireDimanche != null)
+        {
+            tb_dimancheCommentaire.Text = fdt.commentaireDimanche.ToString();
+        }
+        if (fdt.commentaireLundi != null)
+        {
+            tb_lundiCommentaire.Text = fdt.commentaireLundi.ToString();
+        }
+        if (fdt.commentaireMardi != null)
+        {
+            tb_mardiCommentaire.Text = fdt.commentaireMardi.ToString();
+        }
+        if (fdt.commentaireMercredi != null)
+        {
+            tb_mercrediCommentaire.Text = fdt.commentaireMercredi.ToString();
+
+        }
+
+        if (fdt.commentaireJeudi != null)
+        {
+            tb_jeudiCommentaire.Text = fdt.commentaireJeudi.ToString();
+        }
+        if (fdt.commentaireVendredi != null)
+        {
+            tb_vendrediCommentaire.Text = fdt.commentaireVendredi.ToString();
+        }
+
+        if (fdt.commentaireSamedi != null)
+        {
+            tb_samediCommentaire.Text = fdt.commentaireSamedi.ToString();
+        }
+        loadDdlCat();
     }
 
     protected void btn_annuler_Click(object sender, EventArgs e)
@@ -236,7 +315,7 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
             ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
         }
         ddl_Projet.SelectedValue = listCat[0].idProjet.ToString();
-
+        ddl_Categorie.Items.Add(new ListItem("Aucune Catégorie", "-1"));
     }
     private void loadDllProjet()
     {
