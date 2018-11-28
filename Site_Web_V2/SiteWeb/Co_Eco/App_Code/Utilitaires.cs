@@ -48,6 +48,38 @@ public class Utilitaires
         return somme;
     }
 
+    public static float GetHeuresByDay(int idDay, int idFDT)
+    {
+        T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(idFDT);
+        float? rtnValue = 0;
+        switch (idDay)
+        {
+            case 0:
+                rtnValue = fdt.dimanche;
+                break;
+            case 1:
+                rtnValue = fdt.lundi;
+                break;
+            case 2:
+                rtnValue = fdt.mardi;
+                break;
+            case 3:
+                rtnValue = fdt.mercredi;
+                break;
+            case 4:
+                rtnValue = fdt.jeudi;
+                break;
+            case 5:
+                rtnValue = fdt.vendredi;
+                break;
+            case 6:
+                rtnValue = fdt.samedi;
+                break;
+        }
+
+        return (float)rtnValue;
+    }
+
     public static List<T_Projet> GetListeProjetsTri(string p_nom, string p_idRep, string p_id_Stat, string p_descript)
     {
         List<T_Projet> listeProjet = BD_CoEco.GetListeProjet();
