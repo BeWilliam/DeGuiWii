@@ -291,7 +291,6 @@ public partial class Projet : System.Web.UI.Page
         thr.Cells.Add(thc_Projet);
         thr.Cells.Add(thc_responsable);
         thr.Cells.Add(thc_statut);
-        //thr.CssClass = "thead-dark";
         thr.ID = "thr_ID";
         Tableau_Projets.Rows.Add(thr);
 
@@ -333,6 +332,7 @@ public partial class Projet : System.Web.UI.Page
         cNom.Controls.Add(hl);
 
         TableCell cChef = new TableCell();
+
         if(projet.responsable == null || projet.responsable == 0)
         {
             cChef.Text = " - ";

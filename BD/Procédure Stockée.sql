@@ -81,6 +81,9 @@ AS
 GO
 
 --Procédure qui retourne le dernier ID de catégorie créer
+IF OBJECT_ID ( 'PS_GetMaxIdCategorie', 'P' ) IS NOT NULL 
+    DROP PROCEDURE PS_GetMaxIdCategorie
+GO
 CREATE PROCEDURE PS_GetMaxIdCategorie
 	@idCat INT OUTPUT
 AS

@@ -181,8 +181,6 @@ CREATE TABLE T_EmployeProjet(
 )
 
 
-INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES(7, 28)
-
 /*Insertion des informations de base pour le bon fonctionnement de la DB*/
 
 /*Insertion des infos pour le status des employés*/

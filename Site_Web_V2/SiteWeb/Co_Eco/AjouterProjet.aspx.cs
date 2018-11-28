@@ -24,18 +24,25 @@ public partial class AjouterProjet : System.Web.UI.Page
             loadResponsable();
             loadStatut();
             afficherEmpLst();
+            btn_lieEmp.Visible = false;
+            ddl_employe.Visible = false;
         }
 
         if (urlParam != null)
         {
             btn_apply.Visible = true;
             btn_apply.Enabled = true;
+            lst_employe.Visible = false;
+            btn_retirer.Visible = false;
+            btn_ajouter.Visible = false;
+            btn_lieEmp.Visible = true;
+            ddl_employe.Visible = true;
 
             if (!IsPostBack)
             {
                 afficherProject();
                 loadCat();
-
+                loadEmploye();
                 btn_addProject.Enabled = false;
 
                 btn_apply.Visible = true;
@@ -153,6 +160,40 @@ public partial class AjouterProjet : System.Web.UI.Page
         foreach (T_Employe responsable in listeResponsable)
         {
             ddl_responsable.Items.Add(new ListItem(responsable.prenom + " " + responsable.nom, responsable.idEmploye.ToString()));
+        }
+    }
+
+    private void loadEmploye()
+    {
+        List<T_Employe> listEmp = BD_CoEco.GetListeEmploye();
+        List<T_Employe> list = new List<T_Employe>();
+
+        foreach (T_Employe emp in listEmp)
+        {
+            if (emp.idFonction != 3)
+            {
+                if (lst_employeAjouter.Items.Count > 0)
+                {
+                    for (int i = 0; i < lst_employeAjouter.Items.Count; i++)
+                    {
+                        if (int.Parse(lst_employeAjouter.Items[i].Value) != emp.idEmploye)
+                        {
+                            list.Add(emp);
+                        }
+                    }
+                }
+                else
+                {
+                    list.Add(emp);
+                }
+                
+            }
+        }
+
+        list = list.OrderBy(o => o.prenom).ThenBy(o => o.prenom).ToList();
+        foreach (T_Employe emp in list)
+        {
+            ddl_employe.Items.Add(new ListItem(emp.prenom + " " + emp.nom, emp.idEmploye.ToString()));
         }
     }
 

@@ -74,8 +74,14 @@
                 <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_statut" AutoPostBack="True" />
             </div>
 
+
+
             <div class="container">
                 <div class="row justify-content-md-center">
+
+                    <asp:DropDownList ID="ddl_employe" runat="server" CssClass="form-control"></asp:DropDownList>
+                    <asp:Button ID="btn_lieEmp" runat="server" CssClass="btn btn-primary" Text="Ajouter" />
+
                     <div class="col-xl-5">
                         <label for="validationTooltip01">Liste d'employés</label>
                         <asp:ListBox runat="server" CssClass="form-control" ID="lst_employe" Style="height: 200px;"></asp:ListBox>
@@ -93,6 +99,7 @@
 
                 </div>
             </div>
+
             <div class="col-md-auto" style="text-align: center; float: left;">
                 <h2>Catégories</h2>
 
@@ -105,6 +112,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 

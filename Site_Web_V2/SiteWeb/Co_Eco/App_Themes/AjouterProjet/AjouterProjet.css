@@ -69,11 +69,6 @@ section {
     font-size: 15px;
 }
 
-.tbx_description {
-    width: 400px;
-    height: 50px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
 
 .row {
     display: flex;
