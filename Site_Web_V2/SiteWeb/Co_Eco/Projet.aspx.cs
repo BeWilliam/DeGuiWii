@@ -176,7 +176,7 @@ public partial class Projet : System.Web.UI.Page
         }
         idrep = "idRep=" + DDL_Responsable.SelectedValue;
         idStat = "idStat=" + DDL_Status.SelectedValue;
-        if (tbx_nom.Text != "")
+        if (tbx_descript.Text != "")
         {
             descript = "descript=" + tbx_descript.Text;
         }
@@ -291,6 +291,8 @@ public partial class Projet : System.Web.UI.Page
         thr.Cells.Add(thc_Projet);
         thr.Cells.Add(thc_responsable);
         thr.Cells.Add(thc_statut);
+        //thr.CssClass = "thead-dark";
+        thr.ID = "thr_ID";
         Tableau_Projets.Rows.Add(thr);
 
         List<T_Projet> projectToShow = new List<T_Projet>();

@@ -10,7 +10,7 @@ public partial class AjouterProjet : System.Web.UI.Page
 {
 
     string urlParam;
-
+    List<T_Employe> listEmp = new List<T_Employe>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -36,11 +36,12 @@ public partial class AjouterProjet : System.Web.UI.Page
                 afficherProject();
                 loadCat();
 
-                btn_addProject.Visible = false;
+                btn_addProject.Enabled = false;
 
                 btn_apply.Visible = true;
                 btn_apply.Enabled = false;
-
+                btn_ajouter.Enabled = false;
+                btn_retirer.Enabled = false;
                 btn_modifier.Visible = true;
                 tbx_nom.Enabled = false;
                 tbx_heure.Enabled = false;
@@ -48,7 +49,9 @@ public partial class AjouterProjet : System.Web.UI.Page
                 ddl_responsable.Enabled = false;
                 ddl_statut.Enabled = false;
                 dateDebut.Enabled = false;
-                dateFin.Enabled = false;    
+                dateFin.Enabled = false;
+                lst_employe.Enabled = false;
+                lst_employeAjouter.Enabled = false;
              
             }
         }       
@@ -56,7 +59,10 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     private void afficherProject()
     {
+        listEmp = new List<T_Employe>();
+
         List<T_Projet> tousLesProjet = BD_CoEco.GetListeProjet();
+        List<T_Employe> tousLesEmp = new List<T_Employe>();
 
         foreach (T_Projet projet in tousLesProjet)
         {
@@ -72,11 +78,24 @@ public partial class AjouterProjet : System.Web.UI.Page
                         ddl_responsable.SelectedValue = "1";
                 }
                 tbx_heure.Text = projet.heureAlloue.ToString();
-                //dateDebut.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 dateDebut.Text = String.Format("{0:yyyy-MM-dd}", projet.dateDebut);
                 dateFin.Text = String.Format("{0:yyyy-MM-dd}", projet.dateFin);
 
                 ddl_statut.SelectedValue = projet.idStatus.ToString();
+
+                List<T_EmployeProjet> tousLesEmpInPro = BD_CoEco.GetListeEmpPro();
+
+                foreach (T_EmployeProjet empPro in tousLesEmpInPro)
+                {
+                    if (empPro.idPro == projet.idProjet)
+                    {
+                        lst_employeAjouter.Items.Add(new ListItem(BD_CoEco.GetEmpByID(empPro.idEmp).prenom + " " + BD_CoEco.GetEmpByID(empPro.idEmp).nom, BD_CoEco.GetEmpByID(empPro.idEmp).idEmploye.ToString()));
+
+                        T_Employe newEmp = new T_Employe();
+                        newEmp.idEmploye = BD_CoEco.GetEmpByID(empPro.idEmp).idEmploye;
+                        listEmp.Add(newEmp);
+                    }
+                }
             }
         }
     }
@@ -85,6 +104,7 @@ public partial class AjouterProjet : System.Web.UI.Page
     {
 
         T_Projet monProjet = new T_Projet();
+        List <T_Employe> listeEmpAuProjet = new List<T_Employe>();
 
         monProjet.nom = tbx_nom.Text;
         if(tbx_projet.Text != "")
@@ -99,6 +119,20 @@ public partial class AjouterProjet : System.Web.UI.Page
         monProjet.idStatus = int.Parse(ddl_statut.SelectedValue);
 
         BD_CoEco.CreateNewProjet(monProjet);
+
+        for (int i = 0; i < lst_employeAjouter.Items.Count; i++)
+        {
+            T_Employe emp = BD_CoEco.GetEmpByID(int.Parse(lst_employeAjouter.Items[i].Value));
+            listeEmpAuProjet.Add(emp);
+        }
+
+        for (int i = 0; i < listeEmpAuProjet.Count; i++)
+        {
+            T_EmployeProjet empPro = new T_EmployeProjet();
+            empPro.idEmp = listeEmpAuProjet[i].idEmploye;
+            empPro.idPro = (int)BD_CoEco.getNewIdProject() - 1;
+            BD_CoEco.CreateNewEmpAtProject(empPro);
+        }
 
         Response.Redirect("Projet.aspx");
     }
@@ -126,7 +160,6 @@ public partial class AjouterProjet : System.Web.UI.Page
     {
         List<T_StatusProjet> listeStatusProjet = BD_CoEco.GetListeStatusProjet();
         listeStatusProjet = listeStatusProjet.OrderBy(o => o.descript).ToList();
-        //ddl_statut.Items.Add(new ListItem("Tous les statuts", "-1"));
         foreach (T_StatusProjet statut in listeStatusProjet)
         {
             ddl_statut.Items.Add(new ListItem(statut.descript, statut.noStatusPro.ToString()));
@@ -159,8 +192,9 @@ public partial class AjouterProjet : System.Web.UI.Page
         if(dateFin.Text != "")
             monProjet.dateFin = DateTime.Parse(dateFin.Text.ToString());
 
-
         BD_CoEco.UpdateProjet(monProjet);
+
+
 
         Response.Redirect("Projet.aspx");
 
@@ -175,6 +209,8 @@ public partial class AjouterProjet : System.Web.UI.Page
         ddl_statut.Enabled = true;
         dateDebut.Enabled = true;
         dateFin.Enabled = true;
+        lst_employe.Enabled = true;
+        lst_employeAjouter.Enabled = true;
 
         btn_apply.Visible = true;
         btn_apply.Enabled = true;
@@ -234,11 +270,11 @@ public partial class AjouterProjet : System.Web.UI.Page
             if (employe.idFonction == 1 && employe.idEmploye == idRetirer) //Employé de bureau
             {
                 listeEmploye.Add(employe);
-
             }
         }
 
         listeEmploye = listeEmploye.OrderBy(o => o.prenom).ThenBy(o => o.prenom).ToList();
+
         foreach (T_Employe emp in listeEmploye)
         {
             lst_employe.Items.Add(new ListItem(emp.prenom + " " + emp.nom, emp.idEmploye.ToString()));
@@ -248,7 +284,6 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     protected void btn_ajouter_Click(object sender, EventArgs e)
     {
-        T_Employe employeSelected = new T_Employe();
         int empId = int.Parse(lst_employe.SelectedValue);
         int indexEmp = lst_employe.SelectedIndex;
 
@@ -258,6 +293,11 @@ public partial class AjouterProjet : System.Web.UI.Page
 
         ajouterEmp(empId);
 
+    }
+
+    private void ajouterEmpMod()
+    {
+        int empId = int.Parse(Request.QueryString["cph_contenu_lst_employe.SelectedValue"]);
     }
 
     protected void btn_retirer_Click(object sender, EventArgs e)
@@ -291,4 +331,5 @@ public partial class AjouterProjet : System.Web.UI.Page
             tableau_categorie.Rows.Add(tr);
         }
     }
+
 }
