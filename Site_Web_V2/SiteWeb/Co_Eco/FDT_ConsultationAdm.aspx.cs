@@ -58,7 +58,14 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
             TableCell tc = new TableCell();
             TextBox tbx_heures = new TextBox();
             tbx_heures.Text = Utilitaires.GetHeuresByDay(i,fdt.idFeuilleDeTemps).ToString();
+
+            TextBox tbx_note = new TextBox();
+            tbx_note.TextMode = TextBoxMode.MultiLine;
+            tbx_note.Height = new Unit("100px");
+            tbx_note.Text = Utilitaires.GetNoteByDay(i, fdt.idFeuilleDeTemps);
+
             tc.Controls.Add(tbx_heures);
+            tc.Controls.Add(tbx_note);
             tr.Cells.Add(tc);
         }
 
@@ -71,6 +78,7 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
         T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(int.Parse(Request.QueryString["idFDT"].ToString()));
         fdt.approbation = true;
 
+        //Première row
         if(((TextBox)tab_FDT.Rows[1].Cells[1].Controls[0]).Text != "")
             fdt.dimanche = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[1].Controls[0]).Text);
         if (((TextBox)tab_FDT.Rows[1].Cells[2].Controls[0]).Text != "")
@@ -85,6 +93,21 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
             fdt.vendredi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[6].Controls[0]).Text);
         if (((TextBox)tab_FDT.Rows[1].Cells[7].Controls[0]).Text != "")
             fdt.samedi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[7].Controls[0]).Text);
+        //Deuxième row
+        if (((TextBox)tab_FDT.Rows[1].Cells[1].Controls[1]).Text != "")
+            fdt.commentaireDimanche = ((TextBox)tab_FDT.Rows[1].Cells[1].Controls[1]).Text;
+        if (((TextBox)tab_FDT.Rows[1].Cells[2].Controls[1]).Text != "")
+            fdt.commentaireLundi = ((TextBox)tab_FDT.Rows[1].Cells[2].Controls[1]).Text;
+        if (((TextBox)tab_FDT.Rows[1].Cells[3].Controls[1]).Text != "")
+            fdt.commentaireMardi = ((TextBox)tab_FDT.Rows[1].Cells[3].Controls[1]).Text;
+        if (((TextBox)tab_FDT.Rows[1].Cells[4].Controls[1]).Text != "")
+            fdt.commentaireMercredi = ((TextBox)tab_FDT.Rows[1].Cells[4].Controls[1]).Text;
+        if (((TextBox)tab_FDT.Rows[1].Cells[5].Controls[1]).Text != "")
+            fdt.commentaireJeudi= ((TextBox)tab_FDT.Rows[1].Cells[5].Controls[1]).Text;
+        if (((TextBox)tab_FDT.Rows[1].Cells[6].Controls[1]).Text != "")
+            fdt.commentaireVendredi = ((TextBox)tab_FDT.Rows[1].Cells[6].Controls[1]).Text;
+        if (((TextBox)tab_FDT.Rows[1].Cells[7].Controls[1]).Text != "")
+            fdt.commentaireSamedi = ((TextBox)tab_FDT.Rows[1].Cells[7].Controls[1]).Text;
 
 
         BD_CoEco.UpdateFeuilleDeTemps(fdt);

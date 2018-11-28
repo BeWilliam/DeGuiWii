@@ -2444,6 +2444,8 @@ public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyCha
 	
 	private System.Nullable<System.DateTime> _ddate;
 	
+	private System.Nullable<bool> _approbation;
+	
 	private int _idTaux;
 	
 	private int _idEmp;
@@ -2472,6 +2474,8 @@ public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyCha
     partial void OncommentaireChanged();
     partial void OnddateChanging(System.Nullable<System.DateTime> value);
     partial void OnddateChanged();
+    partial void OnapprobationChanging(System.Nullable<bool> value);
+    partial void OnapprobationChanged();
     partial void OnidTauxChanging(int value);
     partial void OnidTauxChanged();
     partial void OnidEmpChanging(int value);
@@ -2567,6 +2571,26 @@ public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyCha
 				this._ddate = value;
 				this.SendPropertyChanged("ddate");
 				this.OnddateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approbation", DbType="Bit")]
+	public System.Nullable<bool> approbation
+	{
+		get
+		{
+			return this._approbation;
+		}
+		set
+		{
+			if ((this._approbation != value))
+			{
+				this.OnapprobationChanging(value);
+				this.SendPropertyChanging();
+				this._approbation = value;
+				this.SendPropertyChanged("approbation");
+				this.OnapprobationChanged();
 			}
 		}
 	}

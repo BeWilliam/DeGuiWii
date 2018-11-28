@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 public partial class Depenses : System.Web.UI.Page
 {
@@ -25,10 +26,12 @@ public partial class Depenses : System.Web.UI.Page
             loadDdlCat();
             loadTypeDepense();
             loadEmploye();
+            loadTypeAuto();
 
             if (Session["fonction"].ToString() == "3")
             {
                 loadProjetAdm();
+                ddl_employe.Enabled = true;
             }
             else
             {
@@ -43,6 +46,7 @@ public partial class Depenses : System.Web.UI.Page
 
                 btn_modifier.Visible = true;
                 btn_ok.Visible = false;
+                ddl_employe.Enabled = true; 
             }
             else if (id != null)
             {
@@ -74,6 +78,32 @@ public partial class Depenses : System.Web.UI.Page
         }
         
 
+    }
+
+    private void loadTypeAuto()
+    {
+        List<T_TypeAuto> ts = BD_CoEco.GetListTypesVehicules();
+        
+        ts = ts.OrderBy(o => o.descript).ToList();
+        foreach (T_TypeAuto auto in ts)
+        {
+            float taux = 0;
+            if(auto.idType == 1)
+            {
+                taux = BD_CoEco.GetTauxKiloAuto();
+            }
+            else
+            {
+                taux = BD_CoEco.GetTauxKiloCamion();
+            }
+            taux *= 100;
+            taux = (float)Math.Round(taux);
+            taux /= 100;
+
+            string tauxstring = string.Format("{0:c}", taux);
+
+            ddl_typeVehicule.Items.Add(new ListItem(auto.descript + " - " + tauxstring, auto.idType.ToString()));
+        }
     }
 
     private void afficherDepense()
@@ -134,10 +164,13 @@ public partial class Depenses : System.Web.UI.Page
         ddl_typeDepense.Items.Clear();
         List<T_TypeDepense> listeTypeDepense = BD_CoEco.GetListeTypeDepense();
         listeTypeDepense = listeTypeDepense.OrderBy(o => o.descript).ToList();
+
         foreach (T_TypeDepense typeDepense in listeTypeDepense)
         {
             ddl_typeDepense.Items.Add(new ListItem(typeDepense.descript, typeDepense.idDepense.ToString()));
         }
+        ddl_typeDepense.Items.Add(new ListItem("Kilométrage", "-1"));
+
     }
 
     private void loadEmploye()
@@ -163,26 +196,42 @@ public partial class Depenses : System.Web.UI.Page
     protected void btn_ok_ServerClick(object sender, EventArgs e)
     {
 
-        //if(btn_ok.Text == "Ajouter")
-        //{
-            if(Session["fonction"].ToString() != "3")
-            {
+        if(Session["fonction"].ToString() != "3")
+        {
             try
             {
-                T_Depense newDep = new T_Depense();
-                newDep.montant = decimal.Parse(tbx_montant.Text);
-                newDep.descript = tbx_description.Text;
-                newDep.ddate = DateTime.Parse(Ddate.Text);
-                newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
-                newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
+                if(ddl_typeDepense.SelectedValue != "-1")
+                {
+                    T_Depense newDep = new T_Depense();
+                    newDep.montant = decimal.Parse(tbx_montant.Text);
+                    newDep.descript = tbx_description.Text;
+                    newDep.ddate = DateTime.Parse(Ddate.Text);
+                    newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
+                    newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
 
-                //plante ici
-                newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
+                    //plante ici
+                    newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
 
-                newDep.idEmp = int.Parse(Session["idEmp"].ToString());
-                newDep.aprobation = null;
+                    newDep.idEmp = int.Parse(Session["idEmp"].ToString());
+                    newDep.aprobation = null;
 
-                BD_CoEco.AddDepense(newDep);
+                    BD_CoEco.AddDepense(newDep);
+                }
+                else
+                {
+                    //Kilométrage
+                    T_Kilometrage newKilo = new T_Kilometrage();
+                    newKilo.nbKilo = float.Parse(tbx_montant.Text);
+                    newKilo.commentaire = tbx_description.Text;
+                    newKilo.ddate = DateTime.Parse(Ddate.Text);
+                    newKilo.idEmp = int.Parse(Session["idEmp"].ToString());
+                    //Cette partie à retirer / modifier
+                    newKilo.idPro = int.Parse(ddl_projet.SelectedValue);
+                    newKilo.idCat = int.Parse(ddL_categorie.SelectedValue);
+                    newKilo.idTaux = BD_CoEco.GetIdTauxKilo(int.Parse(ddl_typeVehicule.SelectedValue));
+                    BD_CoEco.AjouterDepKilometrage(newKilo);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -287,5 +336,20 @@ public partial class Depenses : System.Web.UI.Page
         actuDep.aprobation = false;
         BD_CoEco.UpdateDepense(actuDep);
         Response.Redirect("DepenseAdmin.aspx");
+    }
+
+    protected void ddl_typeDepense_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //Checker si le kilométrage est sélectionner
+        if(ddl_typeDepense.SelectedValue == "-1")
+        {
+            div_KM.Visible = true;
+            lbl_MontantOuKm.InnerText = "Total km";
+        }
+        else
+        {
+            div_KM.Visible = false;
+            lbl_MontantOuKm.InnerText = "Montant";
+        }
     }
 }

@@ -102,6 +102,7 @@
       <Column Name="nbKilo" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="commentaire" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="ddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="approbation" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="idTaux" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idPro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />

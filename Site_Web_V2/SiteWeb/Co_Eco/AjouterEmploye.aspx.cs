@@ -13,10 +13,8 @@ public partial class AjouterEmploye : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //rendre non visible le statut, car par défaut lorsqu'on ajoute le statut est nécessairement actif
-        sec_statut.Visible = false;
-
-        btn_appliquer.Visible = false;
-        btn_modifier.Visible = false;
+        btn_appliquer.Enabled = false;
+        btn_modifier.Enabled = false;
         ddl_statut.Enabled = false;
 
         urlParam = Request.QueryString["id"];
@@ -44,12 +42,11 @@ public partial class AjouterEmploye : System.Web.UI.Page
                 tbx_pseudo.Enabled = false;
                 ddl_fonction.Enabled = false;
                 ddl_statut.Enabled = false;
-                btn_addEmp.Visible = false;
-                sec_statut.Visible = true;
+                btn_addEmp.Enabled = false;
 
-                btn_appliquer.Visible = true;
+                btn_appliquer.Enabled = true;
                 btn_appliquer.Enabled = false;
-                btn_modifier.Visible = true;
+                btn_modifier.Enabled = true;
 
                 //caller la méthode qui affiche l'employés cliqué
                 AfficherEmp();
@@ -89,7 +86,7 @@ public partial class AjouterEmploye : System.Web.UI.Page
 
     protected void btn_addEmp_Click(object sender, EventArgs e)
     {
-        btn_modifier.Visible = false;
+        btn_modifier.Enabled = false;
 
         //ajouter un employé
 
@@ -164,8 +161,7 @@ public partial class AjouterEmploye : System.Web.UI.Page
         ddl_statut.Enabled = true;
         btn_modifier.Enabled = false;
 
-        btn_appliquer.Visible = true;
-        sec_statut.Visible = true;
+        btn_appliquer.Enabled = true;
         btn_appliquer.Enabled = true;
     }
 
@@ -185,8 +181,6 @@ public partial class AjouterEmploye : System.Web.UI.Page
         newEmp.loginName = tbx_pseudo.Text;
 
         BD_CoEco.UpdateEmploye(newEmp);
-
-        sec_statut.Visible = true;
 
         Response.Redirect("Employe.aspx");
 

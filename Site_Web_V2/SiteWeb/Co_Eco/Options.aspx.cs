@@ -57,7 +57,7 @@ public partial class Options : System.Web.UI.Page
             tbx_TauxCamion.Enabled = false;
             btn_ModTauxCamion.Text = "Modifier";
             //Enregistrer le tout
-            BD_CoEco.AddTauxKilo(float.Parse(tbx_TauxAuto.Text), 2);
+            BD_CoEco.AddTauxKilo(float.Parse(tbx_TauxCamion.Text), 2);
         }
     }
 }
