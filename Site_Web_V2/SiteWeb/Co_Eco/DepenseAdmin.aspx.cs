@@ -80,15 +80,15 @@ public partial class DepenseAdmin : System.Web.UI.Page
 
         /*Partie de la croix*/
         TableCell tc_autorize = new TableCell();
-        Image check = new Image();
+        Panel check = new Panel();
         check.Width = new Unit(25, UnitType.Pixel);
         check.Height = new Unit(25, UnitType.Pixel);
         if (p_toAdd.aprobation == true)
-            check.ImageUrl = @"~/App_Themes/Depenses/Images/ok.png";
+            check.CssClass = "fas fa-check";
         else if (p_toAdd.aprobation == false)
-            check.ImageUrl = @"~/App_Themes/Depenses/Images/remove.png";
+            check.CssClass = "fas fa-times";
         else
-            check.ImageUrl = @"~/App_Themes/Depenses/Images/no.png";
+            check.CssClass = "fas fa-question";
 
         tc_autorize.Controls.Add(check);
 

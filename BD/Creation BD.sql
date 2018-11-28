@@ -142,7 +142,13 @@ CREATE TABLE T_FeuilleDeTemps(
 	jeudi FLOAT(3),
 	vendredi FLOAT(3),
 	samedi FLOAT(3), /*À tester*/
-	note VARCHAR(100),
+	commentaireDimanche VARCHAR(100),
+	commentaireLundi VARCHAR(100),
+	commentaireMardi VARCHAR(100),
+	commentaireMercredi VARCHAR(100),
+	commentaireJeudi VARCHAR(100),
+	commentaireVendredi VARCHAR(100),
+	commentaireSamedi VARCHAR(100),
 	approbation BIT DEFAULT 0,
 	/*FOREIGN KEY*/
 	idEmp INT NOT NULL,

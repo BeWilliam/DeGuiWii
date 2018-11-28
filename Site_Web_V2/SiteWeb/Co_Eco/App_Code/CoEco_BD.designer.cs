@@ -1764,7 +1764,19 @@ public partial class T_FeuilleDeTemps : INotifyPropertyChanging, INotifyProperty
 	
 	private System.Nullable<float> _samedi;
 	
-	private string _note;
+	private string _commentaireDimanche;
+	
+	private string _commentaireLundi;
+	
+	private string _commentaireMardi;
+	
+	private string _commentaireMercredi;
+	
+	private string _commentaireJeudi;
+	
+	private string _commentaireVendredi;
+	
+	private string _commentaireSamedi;
 	
 	private System.Nullable<bool> _approbation;
 	
@@ -1798,8 +1810,20 @@ public partial class T_FeuilleDeTemps : INotifyPropertyChanging, INotifyProperty
     partial void OnvendrediChanged();
     partial void OnsamediChanging(System.Nullable<float> value);
     partial void OnsamediChanged();
-    partial void OnnoteChanging(string value);
-    partial void OnnoteChanged();
+    partial void OncommentaireDimancheChanging(string value);
+    partial void OncommentaireDimancheChanged();
+    partial void OncommentaireLundiChanging(string value);
+    partial void OncommentaireLundiChanged();
+    partial void OncommentaireMardiChanging(string value);
+    partial void OncommentaireMardiChanged();
+    partial void OncommentaireMercrediChanging(string value);
+    partial void OncommentaireMercrediChanged();
+    partial void OncommentaireJeudiChanging(string value);
+    partial void OncommentaireJeudiChanged();
+    partial void OncommentaireVendrediChanging(string value);
+    partial void OncommentaireVendrediChanged();
+    partial void OncommentaireSamediChanging(string value);
+    partial void OncommentaireSamediChanged();
     partial void OnapprobationChanging(System.Nullable<bool> value);
     partial void OnapprobationChanged();
     partial void OnidEmpChanging(int value);
@@ -1995,22 +2019,142 @@ public partial class T_FeuilleDeTemps : INotifyPropertyChanging, INotifyProperty
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="VarChar(100)")]
-	public string note
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_commentaireDimanche", DbType="VarChar(100)")]
+	public string commentaireDimanche
 	{
 		get
 		{
-			return this._note;
+			return this._commentaireDimanche;
 		}
 		set
 		{
-			if ((this._note != value))
+			if ((this._commentaireDimanche != value))
 			{
-				this.OnnoteChanging(value);
+				this.OncommentaireDimancheChanging(value);
 				this.SendPropertyChanging();
-				this._note = value;
-				this.SendPropertyChanged("note");
-				this.OnnoteChanged();
+				this._commentaireDimanche = value;
+				this.SendPropertyChanged("commentaireDimanche");
+				this.OncommentaireDimancheChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_commentaireLundi", DbType="VarChar(100)")]
+	public string commentaireLundi
+	{
+		get
+		{
+			return this._commentaireLundi;
+		}
+		set
+		{
+			if ((this._commentaireLundi != value))
+			{
+				this.OncommentaireLundiChanging(value);
+				this.SendPropertyChanging();
+				this._commentaireLundi = value;
+				this.SendPropertyChanged("commentaireLundi");
+				this.OncommentaireLundiChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_commentaireMardi", DbType="VarChar(100)")]
+	public string commentaireMardi
+	{
+		get
+		{
+			return this._commentaireMardi;
+		}
+		set
+		{
+			if ((this._commentaireMardi != value))
+			{
+				this.OncommentaireMardiChanging(value);
+				this.SendPropertyChanging();
+				this._commentaireMardi = value;
+				this.SendPropertyChanged("commentaireMardi");
+				this.OncommentaireMardiChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_commentaireMercredi", DbType="VarChar(100)")]
+	public string commentaireMercredi
+	{
+		get
+		{
+			return this._commentaireMercredi;
+		}
+		set
+		{
+			if ((this._commentaireMercredi != value))
+			{
+				this.OncommentaireMercrediChanging(value);
+				this.SendPropertyChanging();
+				this._commentaireMercredi = value;
+				this.SendPropertyChanged("commentaireMercredi");
+				this.OncommentaireMercrediChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_commentaireJeudi", DbType="VarChar(100)")]
+	public string commentaireJeudi
+	{
+		get
+		{
+			return this._commentaireJeudi;
+		}
+		set
+		{
+			if ((this._commentaireJeudi != value))
+			{
+				this.OncommentaireJeudiChanging(value);
+				this.SendPropertyChanging();
+				this._commentaireJeudi = value;
+				this.SendPropertyChanged("commentaireJeudi");
+				this.OncommentaireJeudiChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_commentaireVendredi", DbType="VarChar(100)")]
+	public string commentaireVendredi
+	{
+		get
+		{
+			return this._commentaireVendredi;
+		}
+		set
+		{
+			if ((this._commentaireVendredi != value))
+			{
+				this.OncommentaireVendrediChanging(value);
+				this.SendPropertyChanging();
+				this._commentaireVendredi = value;
+				this.SendPropertyChanged("commentaireVendredi");
+				this.OncommentaireVendrediChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_commentaireSamedi", DbType="VarChar(100)")]
+	public string commentaireSamedi
+	{
+		get
+		{
+			return this._commentaireSamedi;
+		}
+		set
+		{
+			if ((this._commentaireSamedi != value))
+			{
+				this.OncommentaireSamediChanging(value);
+				this.SendPropertyChanging();
+				this._commentaireSamedi = value;
+				this.SendPropertyChanged("commentaireSamedi");
+				this.OncommentaireSamediChanged();
 			}
 		}
 	}

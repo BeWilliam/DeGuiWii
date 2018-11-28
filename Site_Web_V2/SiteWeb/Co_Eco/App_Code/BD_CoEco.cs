@@ -435,7 +435,13 @@ public class BD_CoEco
         newFdt.jeudi = p_fdt.jeudi;
         newFdt.vendredi = p_fdt.vendredi;
         newFdt.samedi = p_fdt.samedi;
-        newFdt.note = p_fdt.note;
+        newFdt.commentaireDimanche = p_fdt.commentaireDimanche;
+        newFdt.commentaireLundi = p_fdt.commentaireLundi;
+        newFdt.commentaireMardi = p_fdt.commentaireMardi;
+        newFdt.commentaireMercredi = p_fdt.commentaireMercredi;
+        newFdt.commentaireJeudi = p_fdt.commentaireJeudi;
+        newFdt.commentaireVendredi = p_fdt.commentaireVendredi;
+        newFdt.commentaireSamedi = p_fdt.commentaireSamedi;
         newFdt.approbation = p_fdt.approbation;
 
         BD.SubmitChanges();
@@ -621,26 +627,6 @@ public class BD_CoEco
         bd.Dispose();
         return fdt;
     }
-
-    /*public static void UpdateFeuilleDeTemps(T_FeuilleDeTemps newFdt)
-    {
-        CoEco_BDDataContext bd = new CoEco_BDDataContext();
-        T_FeuilleDeTemps fdt = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == newFdt.idFeuilleDeTemps);
-        fdt.dimanche = newFdt.dimanche;
-        fdt.lundi = newFdt.lundi;
-        fdt.mardi = newFdt.mardi;
-        fdt.mercredi = newFdt.mercredi;
-        fdt.jeudi = newFdt.jeudi;
-        fdt.vendredi = newFdt.vendredi;
-        fdt.samedi = newFdt.samedi;
-        fdt.approbation = newFdt.approbation;
-        fdt.idCategorie = newFdt.idCategorie;
-        fdt.idEmp = newFdt.idEmp;
-        fdt.note = newFdt.note;
-
-        bd.SubmitChanges();
-        bd.Dispose();
-    }*/
 
     public static T_StatusProjet GetStatusProjetById(int id)
     {
