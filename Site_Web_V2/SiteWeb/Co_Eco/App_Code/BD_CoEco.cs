@@ -435,7 +435,13 @@ public class BD_CoEco
         newFdt.jeudi = p_fdt.jeudi;
         newFdt.vendredi = p_fdt.vendredi;
         newFdt.samedi = p_fdt.samedi;
-        newFdt.note = p_fdt.note;
+        newFdt.commentaireDimanche = p_fdt.commentaireDimanche;
+        newFdt.commentaireLundi = p_fdt.commentaireLundi;
+        newFdt.commentaireMardi = p_fdt.commentaireMardi;
+        newFdt.commentaireMercredi = p_fdt.commentaireMercredi;
+        newFdt.commentaireJeudi = p_fdt.commentaireJeudi;
+        newFdt.commentaireVendredi = p_fdt.commentaireVendredi;
+        newFdt.commentaireSamedi = p_fdt.commentaireSamedi;
         newFdt.approbation = p_fdt.approbation;
 
         BD.SubmitChanges();

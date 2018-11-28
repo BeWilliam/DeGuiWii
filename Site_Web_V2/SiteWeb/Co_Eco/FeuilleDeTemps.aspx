@@ -7,7 +7,7 @@
         <div class="div_bouton">
         <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" Visible="false" OnClick="btn_ajouter_Click" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />
         <asp:Button ID="btn_confirmer" runat="server" Text="Confirmer" OnClick="btn_confirmer_Click" Visible="False" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />
-        <asp:Button ID="btn_annuler" runat="server" Text="Annuler"  Visible="False" OnClick="btn_annuler_Click" CssClass="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />
+        <%--<asp:Button ID="btn_annuler" runat="server" Text="Annuler"  Visible="False" OnClick="btn_annuler_Click" CssClass="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />--%>
         <asp:Button ID="btn_confirmerModif" runat="server" Text="Confirmer la modification" OnClick="btn_confirmerModif_Click" Visible="false" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;"/>
     </div>
 
@@ -29,9 +29,9 @@
         <asp:TableHeaderCell ID="Samedi" BackColor="LightGray">Samedi</asp:TableHeaderCell>
         <asp:TableHeaderCell >Commentaires</asp:TableHeaderCell>
       </asp:TableRow>
-      <asp:TableRow ID="tr_ajout"  Visible = "false">
-          <asp:TableCell>
-                           <asp:DropDownList ID="ddl_Projet" runat="server" CssClass="col-md-12" AutoPostBack="True" OnSelectedIndexChanged="ddl_Projet_SelectedIndexChanged"></asp:DropDownList>
+<%--      <asp:TableRow ID="tr_ajout"  Visible = "false">
+          <asp:TableCell>--%>
+<%--                           <asp:DropDownList ID="ddl_Projet" runat="server" CssClass="col-md-12" AutoPostBack="True" OnSelectedIndexChanged="ddl_Projet_SelectedIndexChanged"></asp:DropDownList>
 
               <asp:DropDownList ID="ddl_Categorie" runat="server" CssClass="col-md-12"></asp:DropDownList>
 
@@ -110,7 +110,7 @@
               <asp:TextBox ID="tb_commentaireModif" runat="server"></asp:TextBox>
           </asp:TableCell>
 
-      </asp:TableRow>
+      </asp:TableRow>--%>
 
     </asp:table>
 
