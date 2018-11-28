@@ -335,7 +335,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             TableCell tc10 = new TableCell();
             Button bt_modif = new Button();
             bt_modif.Text = "Modifier";
-            bt_modif.PostBackUrl = "~/FeuilleDeTemps.aspx?id=" + p_fdt.idFeuilleDeTemps.ToString();
+            bt_modif.PostBackUrl = "~/FeuilleDeTemps.aspx?date=" + Calendar1.SelectedDate + "&idFdt=" + p_fdt.idFeuilleDeTemps.ToString();
 
             bt_modif.Click += new EventHandler(this.bt_modifier_Click1);
             //?id = " + employe.idEmploye.ToString();
@@ -361,8 +361,14 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         //btn_annuler.Visible = true;
         //btn_ajouter.Visible = false;
 
-
-        Response.Redirect("AjoutFeuilleDeTemps.aspx?date="+Calendar1.SelectedDate);
+        if (Calendar1.SelectedDate!= null)
+        {
+            Response.Redirect("AjoutFeuilleDeTemps.aspx?date=" + Calendar1.SelectedDate + "&idFdt=" + (-1));
+        }
+        else
+        {
+            lb_erreur.Text = "Veuillez choisir une date!";
+        }
     }
 
     protected void btn_confirmer_Click(object sender, EventArgs e)
