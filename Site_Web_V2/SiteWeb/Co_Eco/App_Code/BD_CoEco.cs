@@ -307,7 +307,7 @@ public class BD_CoEco
 
         bool trouve = false;
         int i = -1;
-        while (i < listeProjet.Count && !trouve)
+        while (i + 1 < listeProjet.Count && !trouve)
         {
             i++;
             if (listeProjet[i].idProjet == id)
@@ -319,10 +319,7 @@ public class BD_CoEco
         {
             return listeProjet[i];
         }
-        else
-        {
-            throw new Exception("Id correspondant à aucun projet existant");
-        }
+        return null;
     }
 
     public static List<T_TypeDepense> GetListeTypeDepense()
