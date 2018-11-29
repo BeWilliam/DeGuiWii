@@ -6,6 +6,8 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
+        <asp:Table runat="server" ID="Tableau_Employes" CssClass="table" />
+
 
 </asp:Content>
 
