@@ -26,15 +26,15 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         //}
         //ListeCategorie = GetListeCateByProjet(projetsDeLemploye);
         loadDllProjet();
-        
+
 
         //urlParamId = Request.QueryString["id"];
-
+        idFdt = int.Parse(Request.QueryString["idFdt"]);
         if (!IsPostBack)
         {
-            idFdt = int.Parse(Request.QueryString["idFdt"]);
+            
 
-            ddl_Categorie.Items.Add(new ListItem("Aucune Catégorie", "-1"));
+            
 
             if (idFdt != -1)
             {
@@ -76,8 +76,11 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
     {
         T_FeuilleDeTemps fdt = new T_FeuilleDeTemps();
 
-        fdt.idCategorie = int.Parse(ddl_Categorie.SelectedValue);
-
+       
+            fdt.idCategorie = int.Parse(ddl_Categorie.SelectedValue);
+      
+        
+        
         fdt.idEmp = int.Parse(Session["idEmp"].ToString());
 
 
@@ -296,7 +299,15 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         {
             tb_samediCommentaire.Text = fdt.commentaireSamedi.ToString();
         }
-        loadDdlCat();
+
+        ddl_Projet.SelectedValue = BD_CoEco.GetCatByID(fdt.idCategorie).idProjet.ToString();
+        List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(ddl_Projet.SelectedValue)));
+        listCat = listCat.OrderBy(o => o.descript).ToList();
+        foreach (T_CategoriePro categoriePro in listCat)
+        {
+            ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
+        }
+        ddl_Categorie.SelectedValue = fdt.idCategorie.ToString();
     }
 
     protected void btn_annuler_Click(object sender, EventArgs e)
@@ -315,7 +326,6 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
             ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
         }
         ddl_Projet.SelectedValue = listCat[0].idProjet.ToString();
-        ddl_Categorie.Items.Add(new ListItem("Aucune Catégorie", "-1"));
     }
     private void loadDllProjet()
     {

@@ -1142,6 +1142,16 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _mdp;
 	
+	private System.Nullable<float> _congesMaladie;
+	
+	private System.Nullable<float> _congesFeries;
+	
+	private System.Nullable<float> _vacances;
+	
+	private System.Nullable<float> _heuresAccumuleesOuSansSolde;
+	
+	private System.Nullable<float> _congesPersonnels;
+	
 	private int _idStatus;
 	
 	private int _idFonction;
@@ -1174,6 +1184,16 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnloginNameChanged();
     partial void OnmdpChanging(string value);
     partial void OnmdpChanged();
+    partial void OncongesMaladieChanging(System.Nullable<float> value);
+    partial void OncongesMaladieChanged();
+    partial void OncongesFeriesChanging(System.Nullable<float> value);
+    partial void OncongesFeriesChanged();
+    partial void OnvacancesChanging(System.Nullable<float> value);
+    partial void OnvacancesChanged();
+    partial void OnheuresAccumuleesOuSansSoldeChanging(System.Nullable<float> value);
+    partial void OnheuresAccumuleesOuSansSoldeChanged();
+    partial void OncongesPersonnelsChanging(System.Nullable<float> value);
+    partial void OncongesPersonnelsChanged();
     partial void OnidStatusChanging(int value);
     partial void OnidStatusChanged();
     partial void OnidFonctionChanging(int value);
@@ -1307,6 +1327,106 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 				this._mdp = value;
 				this.SendPropertyChanged("mdp");
 				this.OnmdpChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_congesMaladie", DbType="Real")]
+	public System.Nullable<float> congesMaladie
+	{
+		get
+		{
+			return this._congesMaladie;
+		}
+		set
+		{
+			if ((this._congesMaladie != value))
+			{
+				this.OncongesMaladieChanging(value);
+				this.SendPropertyChanging();
+				this._congesMaladie = value;
+				this.SendPropertyChanged("congesMaladie");
+				this.OncongesMaladieChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_congesFeries", DbType="Real")]
+	public System.Nullable<float> congesFeries
+	{
+		get
+		{
+			return this._congesFeries;
+		}
+		set
+		{
+			if ((this._congesFeries != value))
+			{
+				this.OncongesFeriesChanging(value);
+				this.SendPropertyChanging();
+				this._congesFeries = value;
+				this.SendPropertyChanged("congesFeries");
+				this.OncongesFeriesChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vacances", DbType="Real")]
+	public System.Nullable<float> vacances
+	{
+		get
+		{
+			return this._vacances;
+		}
+		set
+		{
+			if ((this._vacances != value))
+			{
+				this.OnvacancesChanging(value);
+				this.SendPropertyChanging();
+				this._vacances = value;
+				this.SendPropertyChanged("vacances");
+				this.OnvacancesChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_heuresAccumuleesOuSansSolde", DbType="Real")]
+	public System.Nullable<float> heuresAccumuleesOuSansSolde
+	{
+		get
+		{
+			return this._heuresAccumuleesOuSansSolde;
+		}
+		set
+		{
+			if ((this._heuresAccumuleesOuSansSolde != value))
+			{
+				this.OnheuresAccumuleesOuSansSoldeChanging(value);
+				this.SendPropertyChanging();
+				this._heuresAccumuleesOuSansSolde = value;
+				this.SendPropertyChanged("heuresAccumuleesOuSansSolde");
+				this.OnheuresAccumuleesOuSansSoldeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_congesPersonnels", DbType="Real")]
+	public System.Nullable<float> congesPersonnels
+	{
+		get
+		{
+			return this._congesPersonnels;
+		}
+		set
+		{
+			if ((this._congesPersonnels != value))
+			{
+				this.OncongesPersonnelsChanging(value);
+				this.SendPropertyChanging();
+				this._congesPersonnels = value;
+				this.SendPropertyChanged("congesPersonnels");
+				this.OncongesPersonnelsChanged();
 			}
 		}
 	}
@@ -2444,8 +2564,6 @@ public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyCha
 	
 	private System.Nullable<System.DateTime> _ddate;
 	
-	private System.Nullable<bool> _approbation;
-	
 	private int _idTaux;
 	
 	private int _idEmp;
@@ -2474,8 +2592,6 @@ public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyCha
     partial void OncommentaireChanged();
     partial void OnddateChanging(System.Nullable<System.DateTime> value);
     partial void OnddateChanged();
-    partial void OnapprobationChanging(System.Nullable<bool> value);
-    partial void OnapprobationChanged();
     partial void OnidTauxChanging(int value);
     partial void OnidTauxChanged();
     partial void OnidEmpChanging(int value);
@@ -2571,26 +2687,6 @@ public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyCha
 				this._ddate = value;
 				this.SendPropertyChanged("ddate");
 				this.OnddateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approbation", DbType="Bit")]
-	public System.Nullable<bool> approbation
-	{
-		get
-		{
-			return this._approbation;
-		}
-		set
-		{
-			if ((this._approbation != value))
-			{
-				this.OnapprobationChanging(value);
-				this.SendPropertyChanging();
-				this._approbation = value;
-				this.SendPropertyChanged("approbation");
-				this.OnapprobationChanged();
 			}
 		}
 	}
