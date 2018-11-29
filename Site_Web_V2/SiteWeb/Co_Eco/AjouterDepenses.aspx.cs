@@ -56,6 +56,25 @@ public partial class Depenses : System.Web.UI.Page
                 btn_retour.Visible = true;
                 btn_modifier.Visible = true;
                 btn_ok.Visible = false;
+
+                if(type == "1")
+                {
+                    if (BD_CoEco.GetDepenseById(int.Parse(id)).aprobation == null)
+                    {
+                        btn_modifier.Enabled = true;
+                    }
+                    else
+                        btn_modifier.Enabled = false;
+                }
+                else
+                {
+                    if (BD_CoEco.GetKiloById(int.Parse(id)).approbation == null)
+                    {
+                        btn_modifier.Enabled = true;
+                    }
+                    else
+                        btn_modifier.Enabled = false;
+                }
                 
             }
             else
@@ -366,18 +385,39 @@ public partial class Depenses : System.Web.UI.Page
 
     protected void btn_approuver_Click(object sender, EventArgs e)
     {
-        T_Depense actuDep = BD_CoEco.GetDepenseById(int.Parse(Request.QueryString["id"]));
-        actuDep.aprobation = true;
-        BD_CoEco.UpdateDepense(actuDep);
-        Response.Redirect("DepenseAdmin.aspx");
+        if(Request.QueryString["Type"].ToString() == "1")
+        {
+            T_Depense actuDep = BD_CoEco.GetDepenseById(int.Parse(Request.QueryString["id"]));
+            actuDep.aprobation = true;
+            BD_CoEco.UpdateDepense(actuDep);
+            Response.Redirect("DepenseAdmin.aspx");
+        }
+        else
+        {
+            T_Kilometrage actuKilo = BD_CoEco.GetKiloById(int.Parse(Request.QueryString["id"]));
+            actuKilo.approbation = true;
+            BD_CoEco.UpdateKilometrage(actuKilo);
+            Response.Redirect("DepenseAdmin.aspx");
+        }
+        
     }
 
     protected void btn_desapprouver_Click(object sender, EventArgs e)
     {
-        T_Depense actuDep = BD_CoEco.GetDepenseById(int.Parse(Request.QueryString["id"]));
-        actuDep.aprobation = false;
-        BD_CoEco.UpdateDepense(actuDep);
-        Response.Redirect("DepenseAdmin.aspx");
+        if (Request.QueryString["Type"].ToString() == "1")
+        {
+            T_Depense actuDep = BD_CoEco.GetDepenseById(int.Parse(Request.QueryString["id"]));
+            actuDep.aprobation = false;
+            BD_CoEco.UpdateDepense(actuDep);
+            Response.Redirect("DepenseAdmin.aspx");
+        }
+        else
+        {
+            T_Kilometrage actuKilo = BD_CoEco.GetKiloById(int.Parse(Request.QueryString["id"]));
+            actuKilo.approbation = false;
+            BD_CoEco.UpdateKilometrage(actuKilo);
+            Response.Redirect("DepenseAdmin.aspx");
+        }
     }
 
     protected void ddl_typeDepense_SelectedIndexChanged(object sender, EventArgs e)

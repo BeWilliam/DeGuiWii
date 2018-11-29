@@ -53,6 +53,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void btn_Deco_ServerClick(object sender, EventArgs e)
     {
+        Session["username"] = null;
+        Session["password"] = null;
+        Session["fonction"] = null;
+        Session["idEmp"] = null;
         Response.Redirect("index.aspx");
     }
 }

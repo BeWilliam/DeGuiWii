@@ -8,6 +8,7 @@
         
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
-    <asp:Table runat="server" ID="tableauDepense" CssClass="table" />
+    <%--<asp:Table runat="server" ID="tableauDepense" CssClass="table" />--%>
+    <asp:Panel runat="server" ID="pnl_master" />
 </asp:Content>
 

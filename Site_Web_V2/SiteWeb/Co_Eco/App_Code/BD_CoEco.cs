@@ -605,7 +605,7 @@ public class BD_CoEco
         T_Depense depenseToMod = bd.T_Depense.Single(p => p.idDepense == depense.idDepense);
 
         depenseToMod.idProjet = depense.idProjet;
-        depenseToMod.idCategorie = depense.idCategorie;
+        //depenseToMod.idCategorie = depense.idCategorie;
         depenseToMod.idType = depense.idType;
         depenseToMod.descript = depense.descript;
         depenseToMod.montant = depense.montant;
