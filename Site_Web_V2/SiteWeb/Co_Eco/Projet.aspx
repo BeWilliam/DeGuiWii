@@ -2,6 +2,12 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
 
+    <div class="col-md-6 offset-md-3">
+        <div class="col-md-auto" style="text-align: center;">
+            <h2>Projets</h2>
+        </div>
+    </div>
+
     <div class="form-row" style="margin: 0 auto">
 
         <div class="col-sm-2">
@@ -35,21 +41,21 @@
 
         <div class="col-sm-1">
 
-            <button id="btn_recherche" runat="server" class="btn btn-primary" style="margin-top: 32px; width: 100%; color: #000000;" onserverclick="btn_recherche_ServerClick">Rechercher</button>
+            <button id="btn_recherche" runat="server" class="btn btn-primary" style="margin-top: 32px; width: 100%; color: white;" onserverclick="btn_recherche_ServerClick">Rechercher</button>
 
         </div>
 
         <div class="col-sm-1">
-            <button id="btn_remFiltre" runat="server" class="btn btn-danger" style="margin-top: 32px; width: 100%; color: #000000;" onserverclick="btn_remFiltre_ServerClick">Retirer filtre</button>
+            <button id="btn_remFiltre" runat="server" class="btn btn-danger" style="margin-top: 32px; width: 100%; color: white;" onserverclick="btn_remFiltre_ServerClick">Retirer filtre</button>
         </div>
 
         <div class="col-sm-1">
-            <button type="button" runat="server" style="margin-top: 32px; width: 100%; color: #000000;"
+            <button type="button" runat="server" style="margin-top: 32px; width: 100%; color: white;"
                 class="btn btn-success" onserverclick="btn_ajouter_Click">
                 Ajouter Projet</button>
         </div>
         <div class="col-sm-1">
-            <button type="button" runat="server" style="margin-top: 32px; width: 100%; color: #000000;"
+            <button type="button" runat="server" style="margin-top: 32px; width: 100%; color: white;"
                 class="btn btn-success" onserverclick="btn_men_Click">
                 Générer PDF</button>
 

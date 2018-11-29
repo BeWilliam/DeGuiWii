@@ -13,16 +13,16 @@
             <div class="container">
                 <div class="row justify-content-md-center" style="margin-top: 5px;">
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_addEmp" runat="server" OnClick="btn_addEmp_Click" Style="margin-top: 10px; width: 100%; color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_addEmp" runat="server" OnClick="btn_addEmp_Click" Style="margin-top: 10px; width: 100%; color:white;"></asp:Button>
                     </div>
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_modifier" runat="server" OnClick="btn_modEmp_Click" Style="margin-top: 10px; width: 100%; color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_modifier" runat="server" OnClick="btn_modEmp_Click" Style="margin-top: 10px; width: 100%; color:white;"></asp:Button>
                     </div>
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_appliquer" runat="server" OnClick="btn_applyMod_Click" Style="margin-top: 10px; width: 100%; color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_appliquer" runat="server" OnClick="btn_applyMod_Click" Style="margin-top: 10px; width: 100%; color:white;"></asp:Button>
                     </div>
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-danger" ID="btn_retour" runat="server" OnClick="btn_retour_Click" Style="margin-top: 10px; width: 100%; color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-danger" ID="btn_retour" runat="server" OnClick="btn_retour_Click" Style="margin-top: 10px; width: 100%; color:white;"></asp:Button>
                     </div>
                 </div>
             </div>

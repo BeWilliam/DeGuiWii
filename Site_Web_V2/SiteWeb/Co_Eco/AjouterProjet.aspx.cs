@@ -283,6 +283,7 @@ public partial class AjouterProjet : System.Web.UI.Page
         btn_ajouterCategorie.Enabled = true;
         tbx_cat.Enabled = true;
         btn_modifier.Enabled = false;
+        loadCat();
     }
 
     private void afficherEmpLst()
@@ -395,11 +396,16 @@ public partial class AjouterProjet : System.Web.UI.Page
         {
             TableRow tr = new TableRow();
             TableCell tc1 = new TableCell();
+            TableCell tc2 = new TableCell();
+            //pas terminer
+            HyperLink hl = new HyperLink();
+            hl.NavigateUrl = "AjouterProjet.aspx?id=";
 
+            tc2.CssClass = "fas fa-trash - alt";
+            tc2.Controls.Add(hl);
             tc1.Text = categoriePro.descript;
-
             tr.Cells.Add(tc1);
-
+            tr.Cells.Add(tc2);
             tableau_categorie.Rows.Add(tr);
         }
     }
@@ -451,12 +457,16 @@ public partial class AjouterProjet : System.Web.UI.Page
     {
         TableRow tr = new TableRow();
         TableCell tc1 = new TableCell();
+        TableCell tc2 = new TableCell();
+        tc2.CssClass = "fas fa-trash";
 
         tc1.Text = tbx_cat.Text;
 
         tr.Cells.Add(tc1);
+        tr.Cells.Add(tc2);
         tableau_categorie.Rows.Add(tr);
         CreateCat();
+        loadCat();
     }
 
     private void CreateCat()

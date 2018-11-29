@@ -13,18 +13,18 @@
                 <div class="row justify-content-md-center" style="margin-top: 5px;">
 
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_addProject" runat="server" Text="Ajouter" OnClick="btn_addProject_Click" Style="color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_addProject" runat="server" Text="Ajouter" OnClick="btn_addProject_Click" Style="color:white;"></asp:Button>
                     </div>
 
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_modifier" runat="server" Text="Modifier" OnClick="btn_modifier_Click" Style="color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_modifier" runat="server" Text="Modifier" OnClick="btn_modifier_Click" Style="color:white;"></asp:Button>
                     </div>
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_apply" runat="server" Text="Appliquer" OnClick="btn_apply_Click" Style="color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_apply" runat="server" Text="Appliquer" OnClick="btn_apply_Click" Style="color:white;"></asp:Button>
                     </div>
 
                     <div class="col-lg-2">
-                        <asp:Button type="button" formnovalidate CssClass="btn btn-danger" ID="btn_retour" runat="server" Text="Retour" OnClick="btn_retour_Click" Style="color: #000000;"></asp:Button>
+                        <asp:Button type="button" formnovalidate CssClass="btn btn-danger" ID="btn_retour" runat="server" Text="Retour" OnClick="btn_retour_Click" Style="color:white;"></asp:Button>
                     </div>
                 </div>
             </div>
