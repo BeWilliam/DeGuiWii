@@ -149,4 +149,36 @@ public class Utilitaires
         return rtnList;
     }
 
+    public static string GetNoteByDay(int id, int fdt)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+
+        string note = "";
+        switch (id)
+        {
+            case 0:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireDimanche;
+                break;
+            case 1:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireLundi;
+                break;
+            case 2:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireMardi;
+                break;
+            case 3:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireMercredi;
+                break;
+            case 4:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireJeudi;
+                break;
+            case 5:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireVendredi;
+                break;
+            case 6:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireSamedi;
+                break;
+        }
+        bd.Dispose();
+        return note;
+    }
 }

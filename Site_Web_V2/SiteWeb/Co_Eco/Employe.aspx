@@ -6,6 +6,12 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
 
+    <div class="col-md-6 offset-md-3">
+        <div class="col-md-auto" style="text-align: center;">
+            <h2>Employés</h2>
+        </div>
+    </div>
+
     <div class="form-row" style="margin-bottom: 24px;">
         <div class="col-sm-2">
             <label for="validationTooltip01" style="text-align: center">Prénom</label>
@@ -38,21 +44,21 @@
 
         <div class="col-sm-1">
 
-            <button id="btn_recherche" runat="server" class="btn btn-primary" style="margin-top: 32px; width: 100%; color: #000000;" onserverclick="btn_rech_ServerClick">Rechercher</button>
+            <button id="btn_recherche" runat="server" class="btn btn-primary" style="margin-top: 32px; width: 100%; color: white;" onserverclick="btn_rech_ServerClick">Rechercher</button>
 
         </div>
 
         <div class="col-sm-1">
-            <button id="btn_remFiltre" runat="server" class="btn btn-danger" style="margin-top: 32px; width: 100%; color: #000000;" onserverclick="btn_cancel_ServerClick">Retirer filtre</button>
+            <button id="btn_remFiltre" runat="server" class="btn btn-danger" style="margin-top: 32px; width: 100%; color: white;" onserverclick="btn_cancel_ServerClick">Retirer filtre</button>
         </div>
 
         <div class="col-sm-1">
-            <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: #000000; margin-top: 32px;"
+            <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: white; margin-top: 32px;"
                 class="btn btn-success" onserverclick="bt_AjouterEmploye_Click">
                 Ajouter Employé</button>
         </div>
         <div class="col-sm-1">
-            <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: #000000; margin-top: 32px;"
+            <button type="button" runat="server" style="margin-top: 10px; width: 100%; color: white; margin-top: 32px;"
                 class="btn btn-success" onserverclick=" btn_GenPDF_ServerClick">
                 Générer PDF</button>
 

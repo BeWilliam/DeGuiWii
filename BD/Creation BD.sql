@@ -169,6 +169,7 @@ CREATE TABLE T_Kilometrage(
 	nbKilo FLOAT(3) NOT NULL,
 	commentaire VARCHAR(100),
 	ddate DATE DEFAULT GETDATE(),
+	approbation BIT,
 	/*FOREIGN KEY*/
 	idTaux INT NOT NULL,
 	idEmp INT NOT NULL,

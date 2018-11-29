@@ -41,10 +41,16 @@
     <div class="form-row">
         <div class="col-md-4">
             <label for="validationTooltip01">Type de dépense</label>
-            <asp:DropDownList runat="server" ID="ddl_typeDepense" CssClass="form-control" />
+            <asp:DropDownList runat="server" ID="ddl_typeDepense" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddl_typeDepense_SelectedIndexChanged"/>
             <div class="valid-tooltip">
             </div>
         </div>
+    </div>
+    <div class="form-row" id="div_KM" runat="server" visible="false">
+        <div class="col-md-4">
+            <label for="validationTooltip01">Type de véhicule</label>
+            <asp:DropDownList runat="server" ID="ddl_typeVehicule" CssClass="form-control" />
+            </div>
     </div>
     <div class="form-row">
         <div class="col-md-4">
@@ -57,7 +63,7 @@
 
     <div class="form-row">
         <div class="col-md-4">
-            <label for="validationTooltip01">Montant</label>
+            <label for="validationTooltip01" runat="server" id="lbl_MontantOuKm">Montant</label>
             <asp:TextBox ID="tbx_montant" runat="server" CssClass="form-control"></asp:TextBox>
             <div class="valid-tooltip">
             </div>

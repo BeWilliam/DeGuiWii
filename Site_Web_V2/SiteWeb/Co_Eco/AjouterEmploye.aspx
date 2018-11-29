@@ -13,16 +13,16 @@
             <div class="container">
                 <div class="row justify-content-md-center" style="margin-top: 5px;">
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_addEmp" runat="server" OnClick="btn_addEmp_Click" Style="margin-top: 10px; width: 100%; color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_addEmp" runat="server" OnClick="btn_addEmp_Click" Style="margin-top: 10px; width: 100%; color:white;"></asp:Button>
                     </div>
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_modifier" runat="server" OnClick="btn_modEmp_Click" Style="margin-top: 10px; width: 100%; color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_modifier" runat="server" OnClick="btn_modEmp_Click" Style="margin-top: 10px; width: 100%; color:white;"></asp:Button>
                     </div>
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_appliquer" runat="server" OnClick="btn_applyMod_Click" Style="margin-top: 10px; width: 100%; color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-success" ID="btn_appliquer" runat="server" OnClick="btn_applyMod_Click" Style="margin-top: 10px; width: 100%; color:white;"></asp:Button>
                     </div>
                     <div class="col-lg-2">
-                        <asp:Button type="button" CssClass="btn btn-danger" ID="btn_retour" runat="server" OnClick="btn_retour_Click" Style="margin-top: 10px; width: 100%; color: #000000;"></asp:Button>
+                        <asp:Button type="button" CssClass="btn btn-danger" ID="btn_retour" runat="server" OnClick="btn_retour_Click" Style="margin-top: 10px; width: 100%; color:white;"></asp:Button>
                     </div>
                 </div>
             </div>
@@ -78,75 +78,7 @@
                     </div>
                 </div>
             </div>
-
-            <section id="sec_statut" runat="server">
-                <div class="col-md-auto" style="text-align: center; float: left;">
-                    <label for="validationTooltip01">Statut</label>
-                    <asp:DropDownList runat="server" CssClass="form-control" ID="DropDownList1" />
-                </div>
-            </section>
-
         </div>
     </div>
-
-    <%--    <div class="form-row">
-        <div class="col-md-3">
-            <label for="validationTooltip01">Prénom*</label>
-            <asp:TextBox ID="tbx_prenom" runat="server" CssClass="form-control"></asp:TextBox>
-            <div class="valid-tooltip">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <label for="validationTooltip01">Nom*</label>
-            <asp:TextBox ID="tbx_nom" runat="server" CssClass="form-control"></asp:TextBox>
-            <div class="valid-tooltip">
-            </div>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="col-md-3">
-            <label for="validationTooltip01">Mot de passe</label>
-            <asp:TextBox ID="tbx_mdp" runat="server" CssClass="form-control"></asp:TextBox>
-            <div class="valid-tooltip">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <label for="validationTooltip01">Nom de connexion</label>
-            <asp:TextBox ID="tbx_pseudo" runat="server" CssClass="form-control"></asp:TextBox>
-            <div class="valid-tooltip">
-            </div>
-        </div>
-    </div>
-
-
-    <div class="form-row">
-        <div class="col-md-3">
-            <label for="validationTooltip01">Courriel</label>
-            <asp:TextBox ID="tbx_courriel" runat="server" CssClass="form-control"></asp:TextBox>
-            <div class="valid-tooltip">
-            </div>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="col-md-3">
-            <label for="validationTooltip01">Fonction*</label>
-            <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_fonction" />
-            <div class="valid-tooltip">
-            </div>
-        </div>
-    </div>
-
-    <section id="sec_statut" runat="server">
-        <div class="form-row">
-            <div class="col-md-3">
-                <label for="validationTooltip01">Statut</label>
-                <asp:DropDownList runat="server" CssClass="form-control" ID="ddl_statut" />
-                <div class="valid-tooltip">
-                </div>
-            </div>
-        </div>
-    </section>--%>
 </asp:Content>
 

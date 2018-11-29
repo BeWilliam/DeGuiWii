@@ -42,7 +42,7 @@
                     <li class="nav-item">
                         <div runat="server" id="div_FeuilleDeTempsADM">
                             <a class="nav-link" id="text_nav8" href="FeuilleDeTempsADM.aspx"><i class="fas fa-clipboard-list"></i> Feuilles de temps</a>
-                        </div> 
+                        </div>
                     </li>
                     <li class="nav-item">
                         <div runat="server" id="div_projet">
@@ -52,11 +52,6 @@
                     <li class="nav-item">
                         <div runat="server" id="div_Employe">
                             <a class="nav-link" id="text_nav2" href="Employe.aspx"><i class="fas fa-user"></i> Employés</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div runat="server" id="div_categorie">
-                            <a class="nav-link" id="text_nav3" href="Categorie.aspx"><i class="fas fa-cubes"></i> Catégories</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -87,13 +82,15 @@
         </nav>
     </header>
     <form runat="server">
-
+        <div class="container-fluid">
         <div class="row">
             <div>
                 <asp:ContentPlaceHolder ID="cph_left" runat="server"></asp:ContentPlaceHolder>
             </div>
-            <div class="col-sm-12">
-                <asp:ContentPlaceHolder ID="cph_contenu" runat="server"></asp:ContentPlaceHolder>
+            
+                <div class="col-md-12" style="padding:0;">
+                    <asp:ContentPlaceHolder ID="cph_contenu" runat="server"></asp:ContentPlaceHolder>
+                </div>
             </div>
         </div>
     </form>

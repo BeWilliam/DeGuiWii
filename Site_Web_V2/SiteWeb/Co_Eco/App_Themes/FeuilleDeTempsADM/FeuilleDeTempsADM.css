@@ -1,3 +1,33 @@
 ﻿.fdt_ADM{
     zoom:1.5;
 }
+
+h3{
+    background-color: #008000;
+    height: 50px;
+    color:white;
+    text-align:center;
+    vertical-align: middle;
+    line-height:50px;
+}
+
+h5 {
+    background-color: lightgray;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+#cph_contenu_thr_ID {
+    background-color: #008000;
+    color: white;
+}
+
+tr{
+    text-align:center;
+}
+
+td{
+    text-align:center;
+}
