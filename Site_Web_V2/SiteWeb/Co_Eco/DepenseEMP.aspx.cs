@@ -17,13 +17,6 @@ public partial class DepenseEMP : System.Web.UI.Page
 
         }
         LoadTousProjets();
-
-        ////Session["idEmp"].ToString()
-
-        //if (!IsPostBack)
-        //{
-        //    loadDepenseEmp();
-        //}
     }
 
     protected void btn_ajouter_Click(object sender, EventArgs e)
@@ -49,15 +42,19 @@ public partial class DepenseEMP : System.Web.UI.Page
             tbTitre.CssClass = "table";
             TableHeaderRow thr = new TableHeaderRow();
             TableHeaderCell thc_nom = new TableHeaderCell();
-            thc_nom.Text = "Nom";
-            thc_nom.Width = new Unit("33%");
+            thc_nom.Text = "Date";
+            thc_nom.Width = new Unit("25%");
             thr.Cells.Add(thc_nom);
+            TableHeaderCell thc_note = new TableHeaderCell();
+            thc_note.Text = "Note";
+            thc_note.Width = new Unit("25%");
+            thr.Cells.Add(thc_note);
             TableHeaderCell thc_Montant = new TableHeaderCell();
-            thc_Montant.Width = new Unit("33%");
+            thc_Montant.Width = new Unit("25%");
             thc_Montant.Text = "Montant";
             thr.Cells.Add(thc_Montant);
             TableHeaderCell thc_Appr = new TableHeaderCell();
-            thc_Appr.Width = new Unit("33%");
+            thc_Appr.Width = new Unit("25%");
             thc_Appr.Text = "Approuvé";
             thr.Cells.Add(thc_Appr);
             tbTitre.Rows.Add(thr);
@@ -67,7 +64,7 @@ public partial class DepenseEMP : System.Web.UI.Page
             List<T_Depense> lstDep = BD_CoEco.GetListeDepense();
             foreach (T_Depense dep in lstDep)
             {
-                if(dep.idProjet == projet.idProjet)
+                if(dep.idProjet == projet.idProjet && dep.idEmp == int.Parse(Session["idEmp"].ToString()))
                 {
                     Panel pnl_depenses = new Panel();
                     pnl_Projet.Controls.Add(pnl_depenses);
@@ -76,22 +73,34 @@ public partial class DepenseEMP : System.Web.UI.Page
                     Table tb = new Table();
                     tb.CssClass = "table";
                     TableRow tr = new TableRow();
-                    TableCell tc_nom = new TableCell();
-                    tc_nom.Width = new Unit("33%");
+                    TableCell tc_date = new TableCell();
+                    tc_date.Width = new Unit("25%");
                     HyperLink hl = new HyperLink();
-                    hl.Text = emp.prenom + " " + emp.nom;
+                    if (dep.ddate == null)
+                        hl.Text = " - ";
+                    else
+                        hl.Text = string.Format("{0:d}", dep.ddate);
                     hl.NavigateUrl = "AjouterDepenses.aspx?id=" + dep.idDepense.ToString() + "&Type=1";
-                    tc_nom.Controls.Add(hl);
-                    tr.Cells.Add(tc_nom);
+                    tc_date.Controls.Add(hl);
+                    tr.Cells.Add(tc_date);
+
+                    TableCell tc_commentaire = new TableCell();
+                    tc_commentaire.Width = new Unit("25%");
+                    if (dep.descript == null || dep.descript == "")
+                        tc_commentaire.Text = " - ";
+                    else
+                        tc_commentaire.Text = dep.descript;
+                    tr.Cells.Add(tc_commentaire);
+
                     TableCell tc_total = new TableCell();
-                    tc_total.Width = new Unit("33%");
+                    tc_total.Width = new Unit("25%");
                     float tot = (float)dep.montant;
                     tot *= 100; tot = (float)Math.Round(tot); tot /= 100;
                     tc_total.Text = string.Format("{0:c}", tot);
                     tr.Cells.Add(tc_total);
 
                     TableCell tc_App = new TableCell();
-                    tc_App.Width = new Unit("33%");
+                    tc_App.Width = new Unit("25%");
                     Panel pnl_App = new Panel();
                     if (dep.aprobation == true)
                         pnl_App.CssClass = "fas fa-check";
@@ -114,29 +123,40 @@ public partial class DepenseEMP : System.Web.UI.Page
                 Panel pnl_Kilo = new Panel();
                 pnl_Projet.Controls.Add(pnl_Kilo);
 
-                if (km.idPro == projet.idProjet)
+                if (km.idPro == projet.idProjet && km.idEmp == int.Parse(Session["idEmp"].ToString()))
                 {
                     T_Employe emp = BD_CoEco.GetEmpByID(km.idEmp);
                     Table tb = new Table();
                     tb.CssClass = "table";
                     TableRow tr = new TableRow();
-                    TableCell tc_nom = new TableCell();
-                    tc_nom.Width = new Unit("33%");
+                    TableCell tc_date = new TableCell();
+                    tc_date.Width = new Unit("25%");
                     HyperLink hl = new HyperLink();
-                    hl.Text = emp.prenom + " " + emp.nom;
+                    if (km.ddate == null)
+                        hl.Text = "-";
+                    else
+                        hl.Text = string.Format("{0:d}", km.ddate);
                     hl.NavigateUrl = "AjouterDepenses.aspx?id=" + km.idKilo.ToString() + "&Type=2";
-                    tc_nom.Controls.Add(hl);
-                    tr.Cells.Add(tc_nom);
+                    tc_date.Controls.Add(hl);
+                    tr.Cells.Add(tc_date);
+
+                    TableCell tc_commentaire = new TableCell();
+                    tc_commentaire.Width = new Unit("25%");
+                    if (km.commentaire == null || km.commentaire == "")
+                        tc_commentaire.Text = "-";
+                    else
+                        tc_commentaire.Text = km.commentaire;
+                    tr.Cells.Add(tc_commentaire);
 
                     TableCell tc_montant = new TableCell();
-                    tc_montant.Width = new Unit("33%");
+                    tc_montant.Width = new Unit("25%");
                     float total = km.nbKilo * BD_CoEco.GetTauxKiloById(km.idTaux).taux;
                     total *= 100; total = (float)Math.Round(total); total /= 100;
                     tc_montant.Text = string.Format("{0:c}", total);
                     tr.Cells.Add(tc_montant);
 
                     TableCell tc_appr = new TableCell();
-                    tc_appr.Width = new Unit("33%");
+                    tc_appr.Width = new Unit("25%");
                     Panel pnl_App = new Panel();
                     if (km.approbation == true)
                         pnl_App.CssClass = "fas fa-check";
@@ -150,6 +170,11 @@ public partial class DepenseEMP : System.Web.UI.Page
                     tb.Rows.Add(tr);
                     pnl_Kilo.Controls.Add(tb);
                 }
+            }
+
+            if(pnl_Projet.Controls.Count == 6)
+            {
+                pnl_Main.Controls.Remove(pnl_Projet);
             }
         }
     }

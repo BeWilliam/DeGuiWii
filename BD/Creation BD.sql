@@ -122,16 +122,16 @@ CREATE TABLE T_Depense(
 	montant SMALLMONEY,
 	descript VARCHAR(50),
 	aprobation BIT,
-	ddate DATE,
+	ddate DATE DEFAULT GETDATE(),
 	/*FOREIGN KEY*/
 	idType INT NOT NULL,
 	idProjet INT NOT NULL,
-	idCategorie INT,
+	--idCategorie INT,
 	idEmp INT NOT NULL,
 	CONSTRAINT fkIdDepense PRIMARY KEY(idDepense),
 	CONSTRAINT fkIdTypeDep FOREIGN KEY(idType) REFERENCES T_TypeDepense(idDepense),
 	CONSTRAINT fkIdProjetDep FOREIGN KEY(idProjet) REFERENCES T_Projet(idProjet),
-	CONSTRAINT fkIdCategorieDep FOREIGN KEY(idCategorie) REFERENCES T_CategoriePro(idCategorie),
+	--CONSTRAINT fkIdCategorieDep FOREIGN KEY(idCategorie) REFERENCES T_CategoriePro(idCategorie),
 	CONSTRAINT fkIdEmpDep FOREIGN KEY(idEmp) REFERENCES T_Employe(idEmploye)
 
 )
@@ -174,12 +174,12 @@ CREATE TABLE T_Kilometrage(
 	idTaux INT NOT NULL,
 	idEmp INT NOT NULL,
 	idPro INT NOT NULL,
-	idCat INT NOT NULL,
+	--idCat INT NOT NULL,
 	CONSTRAINT pkIdKilo PRIMARY KEY(idKilo),
 	CONSTRAINT fkIdTauxKilo FOREIGN KEY(idTaux) REFERENCES T_TauxKilo(idTaux),
 	CONSTRAINT fkIdEmpKilo FOREIGN KEY(idEmp) REFERENCES T_Employe(idEmploye),
 	CONSTRAINT fkIdPro FOREIGN KEY (idPro) REFERENCES T_Projet(idProjet),
-	CONSTRAINT FkIdCat FOREIGN KEY(idCat) REFERENCES T_CategoriePro(idCategorie)
+	--CONSTRAINT FkIdCat FOREIGN KEY(idCat) REFERENCES T_CategoriePro(idCategorie)
 )
 
 CREATE TABLE T_EmployeProjet(

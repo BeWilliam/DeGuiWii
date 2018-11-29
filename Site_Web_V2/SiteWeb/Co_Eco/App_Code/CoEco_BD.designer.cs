@@ -306,11 +306,7 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 	
 	private int _idStatusCat;
 	
-	private EntitySet<T_Depense> _T_Depense;
-	
 	private EntitySet<T_FeuilleDeTemps> _T_FeuilleDeTemps;
-	
-	private EntitySet<T_Kilometrage> _T_Kilometrage;
 	
 	private EntityRef<T_Projet> _T_Projet;
 	
@@ -332,9 +328,7 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 	
 	public T_CategoriePro()
 	{
-		this._T_Depense = new EntitySet<T_Depense>(new Action<T_Depense>(this.attach_T_Depense), new Action<T_Depense>(this.detach_T_Depense));
 		this._T_FeuilleDeTemps = new EntitySet<T_FeuilleDeTemps>(new Action<T_FeuilleDeTemps>(this.attach_T_FeuilleDeTemps), new Action<T_FeuilleDeTemps>(this.detach_T_FeuilleDeTemps));
-		this._T_Kilometrage = new EntitySet<T_Kilometrage>(new Action<T_Kilometrage>(this.attach_T_Kilometrage), new Action<T_Kilometrage>(this.detach_T_Kilometrage));
 		this._T_Projet = default(EntityRef<T_Projet>);
 		this._T_StatusCategorie = default(EntityRef<T_StatusCategorie>);
 		OnCreated();
@@ -428,19 +422,6 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Depense", Storage="_T_Depense", ThisKey="idCategorie", OtherKey="idCategorie")]
-	public EntitySet<T_Depense> T_Depense
-	{
-		get
-		{
-			return this._T_Depense;
-		}
-		set
-		{
-			this._T_Depense.Assign(value);
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_FeuilleDeTemps", Storage="_T_FeuilleDeTemps", ThisKey="idCategorie", OtherKey="idCategorie")]
 	public EntitySet<T_FeuilleDeTemps> T_FeuilleDeTemps
 	{
@@ -451,19 +432,6 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 		set
 		{
 			this._T_FeuilleDeTemps.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Kilometrage", Storage="_T_Kilometrage", ThisKey="idCategorie", OtherKey="idCat")]
-	public EntitySet<T_Kilometrage> T_Kilometrage
-	{
-		get
-		{
-			return this._T_Kilometrage;
-		}
-		set
-		{
-			this._T_Kilometrage.Assign(value);
 		}
 	}
 	
@@ -555,18 +523,6 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 		}
 	}
 	
-	private void attach_T_Depense(T_Depense entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = this;
-	}
-	
-	private void detach_T_Depense(T_Depense entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = null;
-	}
-	
 	private void attach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
 	{
 		this.SendPropertyChanging();
@@ -574,18 +530,6 @@ public partial class T_CategoriePro : INotifyPropertyChanging, INotifyPropertyCh
 	}
 	
 	private void detach_T_FeuilleDeTemps(T_FeuilleDeTemps entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = null;
-	}
-	
-	private void attach_T_Kilometrage(T_Kilometrage entity)
-	{
-		this.SendPropertyChanging();
-		entity.T_CategoriePro = this;
-	}
-	
-	private void detach_T_Kilometrage(T_Kilometrage entity)
 	{
 		this.SendPropertyChanging();
 		entity.T_CategoriePro = null;
@@ -726,11 +670,7 @@ public partial class T_Depense : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _idProjet;
 	
-	private System.Nullable<int> _idCategorie;
-	
 	private int _idEmp;
-	
-	private EntityRef<T_CategoriePro> _T_CategoriePro;
 	
 	private EntityRef<T_TypeDepense> _T_TypeDepense;
 	
@@ -756,15 +696,12 @@ public partial class T_Depense : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnidTypeChanged();
     partial void OnidProjetChanging(int value);
     partial void OnidProjetChanged();
-    partial void OnidCategorieChanging(System.Nullable<int> value);
-    partial void OnidCategorieChanged();
     partial void OnidEmpChanging(int value);
     partial void OnidEmpChanged();
     #endregion
 	
 	public T_Depense()
 	{
-		this._T_CategoriePro = default(EntityRef<T_CategoriePro>);
 		this._T_TypeDepense = default(EntityRef<T_TypeDepense>);
 		this._T_Employe = default(EntityRef<T_Employe>);
 		this._T_Projet = default(EntityRef<T_Projet>);
@@ -919,30 +856,6 @@ public partial class T_Depense : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCategorie", DbType="Int")]
-	public System.Nullable<int> idCategorie
-	{
-		get
-		{
-			return this._idCategorie;
-		}
-		set
-		{
-			if ((this._idCategorie != value))
-			{
-				if (this._T_CategoriePro.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidCategorieChanging(value);
-				this.SendPropertyChanging();
-				this._idCategorie = value;
-				this.SendPropertyChanged("idCategorie");
-				this.OnidCategorieChanged();
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEmp", DbType="Int NOT NULL")]
 	public int idEmp
 	{
@@ -963,40 +876,6 @@ public partial class T_Depense : INotifyPropertyChanging, INotifyPropertyChanged
 				this._idEmp = value;
 				this.SendPropertyChanged("idEmp");
 				this.OnidEmpChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Depense", Storage="_T_CategoriePro", ThisKey="idCategorie", OtherKey="idCategorie", IsForeignKey=true)]
-	public T_CategoriePro T_CategoriePro
-	{
-		get
-		{
-			return this._T_CategoriePro.Entity;
-		}
-		set
-		{
-			T_CategoriePro previousValue = this._T_CategoriePro.Entity;
-			if (((previousValue != value) 
-						|| (this._T_CategoriePro.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_CategoriePro.Entity = null;
-					previousValue.T_Depense.Remove(this);
-				}
-				this._T_CategoriePro.Entity = value;
-				if ((value != null))
-				{
-					value.T_Depense.Add(this);
-					this._idCategorie = value.idCategorie;
-				}
-				else
-				{
-					this._idCategorie = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("T_CategoriePro");
 			}
 		}
 	}
@@ -1142,6 +1021,16 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _mdp;
 	
+	private System.Nullable<float> _congesMaladie;
+	
+	private System.Nullable<float> _congesFeries;
+	
+	private System.Nullable<float> _vacances;
+	
+	private System.Nullable<float> _heuresAccumuleesOuSansSolde;
+	
+	private System.Nullable<float> _congesPersonnels;
+	
 	private int _idStatus;
 	
 	private int _idFonction;
@@ -1174,6 +1063,16 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnloginNameChanged();
     partial void OnmdpChanging(string value);
     partial void OnmdpChanged();
+    partial void OncongesMaladieChanging(System.Nullable<float> value);
+    partial void OncongesMaladieChanged();
+    partial void OncongesFeriesChanging(System.Nullable<float> value);
+    partial void OncongesFeriesChanged();
+    partial void OnvacancesChanging(System.Nullable<float> value);
+    partial void OnvacancesChanged();
+    partial void OnheuresAccumuleesOuSansSoldeChanging(System.Nullable<float> value);
+    partial void OnheuresAccumuleesOuSansSoldeChanged();
+    partial void OncongesPersonnelsChanging(System.Nullable<float> value);
+    partial void OncongesPersonnelsChanged();
     partial void OnidStatusChanging(int value);
     partial void OnidStatusChanged();
     partial void OnidFonctionChanging(int value);
@@ -1307,6 +1206,106 @@ public partial class T_Employe : INotifyPropertyChanging, INotifyPropertyChanged
 				this._mdp = value;
 				this.SendPropertyChanged("mdp");
 				this.OnmdpChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_congesMaladie", DbType="Real")]
+	public System.Nullable<float> congesMaladie
+	{
+		get
+		{
+			return this._congesMaladie;
+		}
+		set
+		{
+			if ((this._congesMaladie != value))
+			{
+				this.OncongesMaladieChanging(value);
+				this.SendPropertyChanging();
+				this._congesMaladie = value;
+				this.SendPropertyChanged("congesMaladie");
+				this.OncongesMaladieChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_congesFeries", DbType="Real")]
+	public System.Nullable<float> congesFeries
+	{
+		get
+		{
+			return this._congesFeries;
+		}
+		set
+		{
+			if ((this._congesFeries != value))
+			{
+				this.OncongesFeriesChanging(value);
+				this.SendPropertyChanging();
+				this._congesFeries = value;
+				this.SendPropertyChanged("congesFeries");
+				this.OncongesFeriesChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vacances", DbType="Real")]
+	public System.Nullable<float> vacances
+	{
+		get
+		{
+			return this._vacances;
+		}
+		set
+		{
+			if ((this._vacances != value))
+			{
+				this.OnvacancesChanging(value);
+				this.SendPropertyChanging();
+				this._vacances = value;
+				this.SendPropertyChanged("vacances");
+				this.OnvacancesChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_heuresAccumuleesOuSansSolde", DbType="Real")]
+	public System.Nullable<float> heuresAccumuleesOuSansSolde
+	{
+		get
+		{
+			return this._heuresAccumuleesOuSansSolde;
+		}
+		set
+		{
+			if ((this._heuresAccumuleesOuSansSolde != value))
+			{
+				this.OnheuresAccumuleesOuSansSoldeChanging(value);
+				this.SendPropertyChanging();
+				this._heuresAccumuleesOuSansSolde = value;
+				this.SendPropertyChanged("heuresAccumuleesOuSansSolde");
+				this.OnheuresAccumuleesOuSansSoldeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_congesPersonnels", DbType="Real")]
+	public System.Nullable<float> congesPersonnels
+	{
+		get
+		{
+			return this._congesPersonnels;
+		}
+		set
+		{
+			if ((this._congesPersonnels != value))
+			{
+				this.OncongesPersonnelsChanging(value);
+				this.SendPropertyChanging();
+				this._congesPersonnels = value;
+				this.SendPropertyChanged("congesPersonnels");
+				this.OncongesPersonnelsChanged();
 			}
 		}
 	}
@@ -2452,10 +2451,6 @@ public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyCha
 	
 	private int _idPro;
 	
-	private int _idCat;
-	
-	private EntityRef<T_CategoriePro> _T_CategoriePro;
-	
 	private EntityRef<T_Employe> _T_Employe;
 	
 	private EntityRef<T_Projet> _T_Projet;
@@ -2482,13 +2477,10 @@ public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyCha
     partial void OnidEmpChanged();
     partial void OnidProChanging(int value);
     partial void OnidProChanged();
-    partial void OnidCatChanging(int value);
-    partial void OnidCatChanged();
     #endregion
 	
 	public T_Kilometrage()
 	{
-		this._T_CategoriePro = default(EntityRef<T_CategoriePro>);
 		this._T_Employe = default(EntityRef<T_Employe>);
 		this._T_Projet = default(EntityRef<T_Projet>);
 		this._T_TauxKilo = default(EntityRef<T_TauxKilo>);
@@ -2663,64 +2655,6 @@ public partial class T_Kilometrage : INotifyPropertyChanging, INotifyPropertyCha
 				this._idPro = value;
 				this.SendPropertyChanged("idPro");
 				this.OnidProChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCat", DbType="Int NOT NULL")]
-	public int idCat
-	{
-		get
-		{
-			return this._idCat;
-		}
-		set
-		{
-			if ((this._idCat != value))
-			{
-				if (this._T_CategoriePro.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnidCatChanging(value);
-				this.SendPropertyChanging();
-				this._idCat = value;
-				this.SendPropertyChanged("idCat");
-				this.OnidCatChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="T_CategoriePro_T_Kilometrage", Storage="_T_CategoriePro", ThisKey="idCat", OtherKey="idCategorie", IsForeignKey=true)]
-	public T_CategoriePro T_CategoriePro
-	{
-		get
-		{
-			return this._T_CategoriePro.Entity;
-		}
-		set
-		{
-			T_CategoriePro previousValue = this._T_CategoriePro.Entity;
-			if (((previousValue != value) 
-						|| (this._T_CategoriePro.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._T_CategoriePro.Entity = null;
-					previousValue.T_Kilometrage.Remove(this);
-				}
-				this._T_CategoriePro.Entity = value;
-				if ((value != null))
-				{
-					value.T_Kilometrage.Add(this);
-					this._idCat = value.idCategorie;
-				}
-				else
-				{
-					this._idCat = default(int);
-				}
-				this.SendPropertyChanged("T_CategoriePro");
 			}
 		}
 	}

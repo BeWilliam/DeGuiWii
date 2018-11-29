@@ -23,7 +23,7 @@ public partial class Depenses : System.Web.UI.Page
         if(!IsPostBack)
         {
             //First Load
-            loadDdlCat();
+            //loadDdlCat();
             loadTypeDepense();
             loadEmploye();
             loadTypeAuto();
@@ -39,8 +39,9 @@ public partial class Depenses : System.Web.UI.Page
             }
 
             string id = Request.QueryString["id"];
+            string type = Request.QueryString["Type"];
 
-            if (id != null && Session["fonction"].ToString() == "3")
+            if (id != null && type != null && Session["fonction"].ToString() == "3")
             {
                 afficherDepense();
 
@@ -48,7 +49,7 @@ public partial class Depenses : System.Web.UI.Page
                 btn_ok.Visible = false;
                 ddl_employe.Enabled = true; 
             }
-            else if (id != null)
+            else if (id != null && type != null)
             {
                 afficherDepense();
                 btn_cancel.Visible = false;
@@ -109,7 +110,7 @@ public partial class Depenses : System.Web.UI.Page
     private void afficherDepense()
     {
         ddl_projet.Enabled = false;
-        ddL_categorie.Enabled = false;
+        //ddL_categorie.Enabled = false;
         ddl_typeDepense.Enabled = false;
         tbx_description.Enabled = false;
         tbx_description.Enabled = false;
@@ -118,19 +119,38 @@ public partial class Depenses : System.Web.UI.Page
         ddl_employe.Enabled = false;
 
         string id = Request.QueryString["id"];
+        string type = Request.QueryString["Type"];
 
-        T_Depense depense = BD_CoEco.GetDepenseById(int.Parse(id));
+        if(type == "1")
+        {
+            T_Depense depense = BD_CoEco.GetDepenseById(int.Parse(id));
+            ddl_projet.SelectedValue = depense.idProjet.ToString();
 
-        ddl_projet.SelectedValue = depense.idProjet.ToString();
+            //loadDdlCat();
+            // ddL_categorie.SelectedValue = BD_CoEco.GetCatByID((int)depense.idCategorie).idCategorie.ToString();
+            //ddL_categorie.SelectedValue = depense.idCategorie.ToString();
+            ddl_typeDepense.SelectedValue = depense.idType.ToString();
+            tbx_description.Text = depense.descript;
+            tbx_montant.Text = depense.montant.ToString();
+            Ddate.Text = string.Format("{0:yyyy-MM-dd}", depense.ddate);
+            ddl_employe.SelectedValue = depense.idEmp.ToString();
+        }
+        else
+        {
+            T_Kilometrage kilo = BD_CoEco.GetKiloById(int.Parse(id));
+            ddl_projet.SelectedValue = kilo.idPro.ToString();
+            //loadDdlCat();
+            ddl_typeDepense.SelectedValue = "-1";
+            tbx_description.Text = kilo.commentaire;
+            tbx_montant.Text = kilo.nbKilo.ToString();
+            ddl_typeVehicule.SelectedValue = BD_CoEco.GetTauxKiloById(kilo.idTaux).idTypeAuto.ToString();
+            div_KM.Visible = true;
+            ddl_typeVehicule.Enabled = false;
+            lbl_MontantOuKm.InnerText = "Total km";
 
-        loadDdlCat();
-        // ddL_categorie.SelectedValue = BD_CoEco.GetCatByID((int)depense.idCategorie).idCategorie.ToString();
-        ddL_categorie.SelectedValue = depense.idCategorie.ToString();
-        ddl_typeDepense.SelectedValue = depense.idType.ToString();    
-        tbx_description.Text = depense.descript;     
-        tbx_montant.Text = depense.montant.ToString();      
-        Ddate.Text = string.Format("{0:yyyy-MM-dd}", depense.ddate);        
-        ddl_employe.SelectedValue = depense.idEmp.ToString();
+            Ddate.Text = string.Format("{0:yyyy-MM-dd}", kilo.ddate);
+            ddl_employe.SelectedValue = kilo.idEmp.ToString();
+        }
     }
     
     private void loadDllProjet()
@@ -144,20 +164,20 @@ public partial class Depenses : System.Web.UI.Page
             ddl_projet.Items.Add(new ListItem(projet.nom, projet.idProjet.ToString()));
         }
     }
-    private void loadDdlCat()
-    {
-        ddL_categorie.Items.Clear();
-        if(ddl_projet.SelectedValue != null && ddl_projet.SelectedIndex != -1)
-        {
-            List<T_CategoriePro> listeCategorie = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(ddl_projet.SelectedValue)));
-            listeCategorie = listeCategorie.OrderBy(o => o.descript).ToList();
-            foreach (T_CategoriePro categoriePro in listeCategorie)
-            {
-                ddL_categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
-            }
-        }
+    //private void loadDdlCat()
+    //{
+    //    ddL_categorie.Items.Clear();
+    //    if(ddl_projet.SelectedValue != null && ddl_projet.SelectedIndex != -1)
+    //    {
+    //        List<T_CategoriePro> listeCategorie = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(ddl_projet.SelectedValue)));
+    //        listeCategorie = listeCategorie.OrderBy(o => o.descript).ToList();
+    //        foreach (T_CategoriePro categoriePro in listeCategorie)
+    //        {
+    //            ddL_categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
+    //        }
+    //    }
         
-    }
+    //}
 
     private void loadTypeDepense()
     {
@@ -187,7 +207,7 @@ public partial class Depenses : System.Web.UI.Page
 
     protected void ddl_projet_SelectedIndexChanged(object sender, EventArgs e)
     {
-        loadDdlCat();
+        //loadDdlCat();
         btn_apply.Visible = false;
     }
 
@@ -210,7 +230,7 @@ public partial class Depenses : System.Web.UI.Page
                     newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
 
                     //plante ici
-                    newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
+                    //newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
 
                     newDep.idEmp = int.Parse(Session["idEmp"].ToString());
                     newDep.aprobation = null;
@@ -227,7 +247,7 @@ public partial class Depenses : System.Web.UI.Page
                     newKilo.idEmp = int.Parse(Session["idEmp"].ToString());
                     //Cette partie à retirer / modifier
                     newKilo.idPro = int.Parse(ddl_projet.SelectedValue);
-                    newKilo.idCat = int.Parse(ddL_categorie.SelectedValue);
+                    //newKilo.idCat = int.Parse(ddL_categorie.SelectedValue);
                     newKilo.idTaux = BD_CoEco.GetIdTauxKilo(int.Parse(ddl_typeVehicule.SelectedValue));
                     BD_CoEco.AjouterDepKilometrage(newKilo);
                 }
@@ -248,7 +268,7 @@ public partial class Depenses : System.Web.UI.Page
             newDep.ddate = DateTime.Parse(Ddate.Text);
             newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
             newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
-            newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
+            //newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
             newDep.idEmp = int.Parse(ddl_employe.SelectedValue);
             newDep.aprobation = null;
             BD_CoEco.AddDepense(newDep);
@@ -282,7 +302,7 @@ public partial class Depenses : System.Web.UI.Page
     protected void btn_modifier_Click(object sender, EventArgs e)
     {
         ddl_projet.Enabled = true;
-        ddL_categorie.Enabled = true;
+        //ddL_categorie.Enabled = true;
         ddl_typeDepense.Enabled = true;
         tbx_description.Enabled = true;
         tbx_montant.Enabled = true;
@@ -290,26 +310,48 @@ public partial class Depenses : System.Web.UI.Page
         ddl_employe.Enabled = true;
         btn_modifier.Visible = false;
         btn_apply.Visible = true;
-        
+        if(Request.QueryString["Type"].ToString() == "2")
+        {
+            ddl_typeVehicule.Enabled = true;
+            ddl_typeDepense.Enabled = false;
+        }
 
     }
 
     //appliquer la modification d'une dépense
     protected void btn_apply_Click(object sender, EventArgs e)
     {
-        T_Depense newDep = new T_Depense();
+        if(Request.QueryString["Type"].ToString() == "1")
+        {
+            T_Depense newDep = new T_Depense();
 
-        newDep.idDepense = int.Parse(Request.QueryString["id"]);
-        newDep.montant = decimal.Parse(tbx_montant.Text);
-        newDep.descript = tbx_description.Text;
-        newDep.ddate = DateTime.Parse(Ddate.Text);
-        newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
-        newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
-        newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
-        newDep.idEmp = int.Parse(Session["idEmp"].ToString());
-        newDep.aprobation = null;
+            newDep.idDepense = int.Parse(Request.QueryString["id"]);
+            newDep.montant = decimal.Parse(tbx_montant.Text);
+            newDep.descript = tbx_description.Text;
+            newDep.ddate = DateTime.Parse(Ddate.Text);
+            newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
+            newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
+            //newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
+            newDep.idEmp = int.Parse(ddl_employe.SelectedValue);
+            newDep.aprobation = null;
 
-        BD_CoEco.UpdateDepense(newDep);
+            BD_CoEco.UpdateDepense(newDep);
+        }
+        else
+        {
+            T_Kilometrage kilo = new T_Kilometrage();
+            kilo.idKilo = int.Parse(Request.QueryString["id"].ToString());
+            kilo.approbation = null;
+            kilo.idEmp = int.Parse(ddl_employe.SelectedValue);
+            kilo.idPro = int.Parse(ddl_projet.SelectedValue);
+            kilo.ddate = DateTime.Parse(Ddate.Text);
+            kilo.commentaire = tbx_description.Text;
+            kilo.nbKilo = float.Parse(tbx_montant.Text);
+            kilo.idTaux = int.Parse(ddl_typeVehicule.SelectedValue);
+
+            BD_CoEco.UpdateKilometrage(kilo);
+        }
+        
 
         if (Session["fonction"].ToString() != "3")
         {

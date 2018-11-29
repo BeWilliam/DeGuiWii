@@ -749,4 +749,30 @@ public class BD_CoEco
         return tauxKilo;
     }
 
+    public static T_Kilometrage GetKiloById(int id)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Kilometrage kilo = bd.T_Kilometrage.Single(o => o.idKilo == id);
+        bd.Dispose();
+        return kilo;
+    }
+
+    public static void UpdateKilometrage(T_Kilometrage newkilo)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Kilometrage oldkilo = bd.T_Kilometrage.Single(o => o.idKilo == newkilo.idKilo);
+
+        //oldkilo.idKilo = newkilo.idTaux;
+        oldkilo.nbKilo = newkilo.nbKilo;
+        oldkilo.commentaire = newkilo.commentaire;
+        oldkilo.ddate = newkilo.ddate;
+        oldkilo.approbation = newkilo.approbation;
+        oldkilo.idTaux = newkilo.idTaux;
+        oldkilo.idEmp = newkilo.idEmp;
+        oldkilo.idPro = newkilo.idPro;
+
+
+        bd.SubmitChanges();
+        bd.Dispose();
+    }
 }
