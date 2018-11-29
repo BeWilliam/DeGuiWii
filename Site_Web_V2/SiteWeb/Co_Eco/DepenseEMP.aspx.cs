@@ -138,11 +138,11 @@ public partial class DepenseEMP : System.Web.UI.Page
                     TableCell tc_appr = new TableCell();
                     tc_appr.Width = new Unit("33%");
                     Panel pnl_App = new Panel();
-                    if (km.approbation == true)
-                        pnl_App.CssClass = "fas fa-check";
-                    else if (km.approbation == false)
-                        pnl_App.CssClass = "fas fa-times";
-                    else
+                    //if (km.approbation == true)
+                   //     pnl_App.CssClass = "fas fa-check";
+                   // else if (km.approbation == false)
+                   //     pnl_App.CssClass = "fas fa-times";
+                  //  else
                         pnl_App.CssClass = "fas fa-question";
                     tc_appr.Controls.Add(pnl_App);
                     tr.Cells.Add(tc_appr);
