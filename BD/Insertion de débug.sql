@@ -21,9 +21,9 @@ INSERT INTO T_Depense(idType, idProjet, idEmp, montant, aprobation) VALUES (1,1,
 INSERT INTO T_Depense(idType, idProjet, idEmp, montant) VALUES (1,1,2,30)
 INSERT INTO T_Depense(idType, idProjet, idEmp, montant, aprobation) VALUES (2,2,3,10, 0)
 
-INSERT INTO T_Kilometrage(idEmp, idPro, idCat, idTaux, nbKilo, commentaire) VALUES (1,1,1,1,133,'Commentaire')
-INSERT INTO T_Kilometrage(idEmp, idPro, idCat, idTaux, nbKilo, commentaire) VALUES (2,1,1,1,100,'LPO - RDL')
-INSERT INTO T_Kilometrage(idEmp, idPro, idCat, idTaux, nbKilo, commentaire) VALUES (3,1,1,2,50,'SMB-QC')
+INSERT INTO T_Kilometrage(idEmp, idPro, idTaux, nbKilo, commentaire) VALUES (1,1,1,133,'Commentaire')
+INSERT INTO T_Kilometrage(idEmp, idPro, idTaux, nbKilo, commentaire) VALUES (2,1,1,100,'LPO - RDL')
+INSERT INTO T_Kilometrage(idEmp, idPro, idTaux, nbKilo, commentaire) VALUES (3,1,2,50,'SMB-QC')
 
 INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, commentaireDimanche, semaine) VALUES (1,1,2.5,2.5,2.5,2.5,2.5,2.5,2.5, 'Débugage', GETDATE())
 INSERT INTO T_FeuilleDeTemps(idCategorie, idEmp, dimanche, lundi, mardi, mercredi, jeudi, vendredi,samedi, commentaireDimanche, semaine) VALUES (1,2,5,5,5,5,5,5,5, 'Débugage', GETDATE())
