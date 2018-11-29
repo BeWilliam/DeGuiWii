@@ -55,11 +55,6 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <div runat="server" id="div_categorie">
-                            <a class="nav-link" id="text_nav3" href="Categorie.aspx"><i class="fas fa-cubes"></i> Catégories</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
                         <div id="div_depense" runat="server">
                             <a class="nav-link" id="text_nav4" href="DepenseEMP.aspx"><i class="fas fa-money-check-alt"></i> Dépenses</a>
                         </div>

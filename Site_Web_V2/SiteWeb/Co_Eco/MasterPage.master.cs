@@ -20,7 +20,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_FeuilleDeTempsADM.Visible = false;
             div_projet.Visible = true;
             div_Employe.Visible = false;
-            div_categorie.Visible = false;
             div_depense.Visible = true;
             div_DepenseADM.Visible = false;
             div_Rapports.Visible = false;
@@ -33,7 +32,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_FeuilleDeTempsADM.Visible = false;
             div_projet.Visible = false;
             div_Employe.Visible = false;
-            div_categorie.Visible = false;
             div_depense.Visible = true;
             div_DepenseADM.Visible = false;
             div_Rapports.Visible = false;
@@ -46,7 +44,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_FeuilleDeTempsADM.Visible = true;
             div_projet.Visible = true;
             div_Employe.Visible = true;
-            div_categorie.Visible = true;
             div_depense.Visible = false;
             div_DepenseADM.Visible = true;
             div_Rapports.Visible = true;

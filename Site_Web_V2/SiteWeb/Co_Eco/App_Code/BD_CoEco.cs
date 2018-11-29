@@ -716,4 +716,37 @@ public class BD_CoEco
         bd.Dispose();
     }
 
+    public static List<T_TypeAuto> GetListTypesVehicules()
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        List<T_TypeAuto> rtnList = bd.T_TypeAuto.ToList();
+        bd.Dispose();
+        return rtnList;
+    }
+
+
+    public static int GetIdTauxKilo(int type)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        List<T_TauxKilo> listeTauxKilo = bd.T_TauxKilo.Where(o => o.idTypeAuto == type).OrderBy(o => o.idTaux).ToList();
+        bd.Dispose();
+        return listeTauxKilo[listeTauxKilo.Count - 1].idTaux;
+    }
+
+    public static void AjouterDepKilometrage(T_Kilometrage km)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        bd.T_Kilometrage.InsertOnSubmit(km);
+        bd.SubmitChanges();
+        bd.Dispose();
+    }
+
+    public static T_TauxKilo GetTauxKiloById(int id)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_TauxKilo tauxKilo = bd.T_TauxKilo.Single(o => o.idTaux == id);
+        bd.Dispose();
+        return tauxKilo;
+    }
+
 }
