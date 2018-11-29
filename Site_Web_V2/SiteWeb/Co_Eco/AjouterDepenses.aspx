@@ -23,20 +23,20 @@
     <div class="form-row">
         <div class="col-md-4">
             <label for="validationTooltip01">Projet</label>
-            <asp:DropDownList runat="server" ID="ddl_projet" OnSelectedIndexChanged="ddl_projet_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" />
+            <asp:DropDownList runat="server" ID="ddl_projet" CssClass="form-control" />
             <div class="valid-tooltip">
             </div>
         </div>
     </div>
 
-    <div class="form-row">
+    <%--<div class="form-row">
         <div class="col-md-4">
             <label for="validationTooltip01">Catégorie*</label>
             <asp:DropDownList runat="server" ID="ddL_categorie" CssClass="form-control" />
             <div class="valid-tooltip">
             </div>
         </div>
-    </div>
+    </div>--%>
 
     <div class="form-row">
         <div class="col-md-4">
