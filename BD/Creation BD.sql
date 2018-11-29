@@ -74,6 +74,11 @@ CREATE TABLE T_Employe(
 	courriel VARCHAR(50),
 	loginName VARCHAR(30),
 	mdp VARCHAR(30),
+	congesMaladie FLOAT(5),
+	congesFeries FLOAT(5),
+	vacances FLOAT(5),
+	heuresAccumuleesOuSansSolde FLOAT(5),
+	congesPersonnels FLOAT(5),
 	/*Foreign key*/
 	idStatus INT DEFAULT 1 NOT NULL,
 	idFonction INT NOT NULL,

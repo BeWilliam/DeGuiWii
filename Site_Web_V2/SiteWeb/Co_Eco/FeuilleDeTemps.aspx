@@ -6,9 +6,9 @@
     <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="width: 100%; margin-left: 5px; margin-top: 5px; text-decoration: none;"></asp:Calendar>
         <div class="div_bouton">
         <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" Visible="false" OnClick="btn_ajouter_Click" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />
-        <asp:Button ID="btn_confirmer" runat="server" Text="Confirmer" OnClick="btn_confirmer_Click" Visible="False" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />
+        <%--<asp:Button ID="btn_confirmer" runat="server" Text="Confirmer" OnClick="btn_confirmer_Click" Visible="False" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />--%>
         <%--<asp:Button ID="btn_annuler" runat="server" Text="Annuler"  Visible="False" OnClick="btn_annuler_Click" CssClass="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />--%>
-        <asp:Button ID="btn_confirmerModif" runat="server" Text="Confirmer la modification" OnClick="btn_confirmerModif_Click" Visible="false" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;"/>
+        <%--<asp:Button ID="btn_confirmerModif" runat="server" Text="Confirmer la modification" OnClick="btn_confirmerModif_Click" Visible="false" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;"/>--%>
                 <asp:Label ID="lb_erreur" runat="server" Text="" ForeColor="Red"></asp:Label>
     </div>
 
@@ -28,7 +28,6 @@
         <asp:TableHeaderCell ID="Jeudi">Jeudi</asp:TableHeaderCell>
         <asp:TableHeaderCell ID="Vendredi">Vendredi</asp:TableHeaderCell>
         <asp:TableHeaderCell ID="Samedi" BackColor="LightGray">Samedi</asp:TableHeaderCell>
-        <asp:TableHeaderCell >Commentaires</asp:TableHeaderCell>
       </asp:TableRow>
 <%--      <asp:TableRow ID="tr_ajout"  Visible = "false">
           <asp:TableCell>--%>
