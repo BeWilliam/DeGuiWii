@@ -65,18 +65,13 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <div runat="server" id="div_Rapports">
-                            <a class="nav-link" id="text_nav5" href="Rapports.aspx"><i class="fas fa-database"></i> Rapports</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
                         <div runat="server" id="div_BanqueHeuresAdmin">
-                            <a class="nav-link" id="text_nav6" href="BanqueHeureAdmin.aspx"><i class="fas fa-database"></i> Banque d'heures</a>
+                            <a class="nav-link" id="text_nav6" href="BanqueHeureAdmin.aspx"><i class="fas fa-business-time"></i> Banque d'heures</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div runat="server" id="div_BanqueHeuresEmp">
-                            <a class="nav-link" id="text_nav0" href="BanqueHeureEmp.aspx"><i class="fas fa-database"></i> Banque d'heures</a>
+                            <a class="nav-link" id="text_nav0" href="BanqueHeureEmp.aspx"><i class="fas fa-business-time"></i> Banque d'heures</a>
                         </div>
                     </li>
                     <li class="nav-item">
