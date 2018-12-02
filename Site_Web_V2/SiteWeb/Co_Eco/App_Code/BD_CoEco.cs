@@ -781,4 +781,22 @@ public class BD_CoEco
         bd.SubmitChanges();
         bd.Dispose();
     }
+
+    public static void ApprouverDepenseByID(int id, bool etat)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Depense dep = bd.T_Depense.Single(f => f.idDepense == id);
+        dep.aprobation = etat;
+        bd.SubmitChanges();
+        bd.Dispose();
+    }
+
+    public static void ApprouverKilometrageById(int id, bool etat)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Kilometrage kilo = bd.T_Kilometrage.Single(f => f.idKilo == id);
+        kilo.approbation = etat;
+        bd.SubmitChanges();
+        bd.Dispose();
+    }
 }
