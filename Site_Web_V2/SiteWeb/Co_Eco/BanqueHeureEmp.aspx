@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BanqueHeureEmp.aspx.cs" Inherits="BanqueHeureEmp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" runat="Server">
+    Banque d"heures
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" runat="Server">
 </asp:Content>

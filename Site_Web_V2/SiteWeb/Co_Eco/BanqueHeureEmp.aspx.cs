@@ -103,18 +103,18 @@ public partial class BanqueHeureEmp : System.Web.UI.Page
         TableRow tr = new TableRow();
         TableCell tc_nomConge = new TableCell();
 
-        tc_nomConge.Text = "Total";
+        tc_nomConge.Text = "<strong>Total</strong>";
 
         TableCell tc_HrsPrises = new TableCell();
-        tc_HrsPrises.Text = nbHeures.ToString();
+        tc_HrsPrises.Text = "<strong>" + nbHeures.ToString() + "</strong>";
 
 
         TableCell tc_HrsTotal = new TableCell();
         float HrsAuTotal = (maladie + feries + vacances + hrsAcc + personnel);
-        tc_HrsTotal.Text = HrsAuTotal.ToString();
+        tc_HrsTotal.Text = "<strong>" + HrsAuTotal.ToString() + "</strong>";
 
         TableCell tc_HrsRestantes = new TableCell();
-        tc_HrsRestantes.Text = (HrsAuTotal - nbHeures).ToString();
+        tc_HrsRestantes.Text = "<strong>" + (HrsAuTotal - nbHeures).ToString() + "</strong>";
 
         tr.Cells.Add(tc_nomConge);
         tr.Cells.Add(tc_HrsPrises);

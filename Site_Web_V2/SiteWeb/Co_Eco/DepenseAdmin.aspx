@@ -1,9 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DepenseAdmin.aspx.cs" Inherits="DepenseAdmin" Theme="DepensesADM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" runat="Server">
+<<<<<<< HEAD
+    Dépenses
+</asp:Content>
+
+=======
 </asp:Content> 
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" runat="Server">
 </asp:Content>
+>>>>>>> 71306856157ad8977c9bd1b3230a408d8aacca6d
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
 
     <div class="col-md-6 offset-md-3">

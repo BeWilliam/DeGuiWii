@@ -11,6 +11,7 @@ public partial class Connexion : System.Web.UI.Page
     {
         Session["username"] = tbx_username.Text;
         Session["password"] = tbx_mdp.Text;
+        message_erreur.Visible = false;
     }
 
     protected void Connexion_click(object sender, EventArgs e)
@@ -53,17 +54,20 @@ public partial class Connexion : System.Web.UI.Page
                         //Alors on co
                         Connect(BD_CoEco.GetEmpByID(listeEmp[i].idEmploye));
                     }
-                    else
+                    else 
                     {
                         tbx_mdp.Text = "";
                         tbx_username.Text = "";
+                        
+
                     }
                 }
             }
-            else
+            else //si l'usager n'est pas trouvé
             {
                 tbx_mdp.Text = "";
                 tbx_username.Text = "";
+                message_erreur.Visible = true;
             }
         }
     }

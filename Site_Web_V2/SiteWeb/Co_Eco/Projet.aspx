@@ -1,5 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Projet.aspx.cs" Inherits="Projet" Theme="Projet" %>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="cph_title" runat="Server">
+    Projets
+</asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
 
     <div class="col-md-6 offset-md-3">

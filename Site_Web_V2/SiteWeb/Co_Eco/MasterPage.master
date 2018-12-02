@@ -38,47 +38,47 @@
                     <ul class="navbar-nav mr-auto" runat="server" id="ul_menu">
                         <li class="nav-item">
                             <div runat="server" id="div_FeuilleDeTemps">
-                                <a class="nav-link" id="text_nav" href="FeuilleDeTemps.aspx"><i class="fas fa-clipboard-list"></i> Feuilles de temps</a>
+                                <a class="nav-link" id="text_nav" href="FeuilleDeTemps.aspx"><i class="fas fa-clipboard-list"></i>Feuilles de temps</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <div runat="server" id="div_FeuilleDeTempsADM">
-                                <a class="nav-link" id="text_nav8" href="FeuilleDeTempsADM.aspx"><i class="fas fa-clipboard-list"></i> Feuilles de temps</a>
+                                <a class="nav-link" id="text_nav8" href="FeuilleDeTempsADM.aspx"><i class="fas fa-clipboard-list"></i>Feuilles de temps</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <div runat="server" id="div_projet">
-                                <a class="nav-link" id="text_nav1" href="Projet.aspx"><i class="fas fa-cube"></i> Projets</a>
+                                <a class="nav-link" id="text_nav1" href="Projet.aspx"><i class="fas fa-cube"></i>Projets</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <div runat="server" id="div_Employe">
-                                <a class="nav-link" id="text_nav2" href="Employe.aspx"><i class="fas fa-user"></i> Employés</a>
+                                <a class="nav-link" id="text_nav2" href="Employe.aspx"><i class="fas fa-user"></i>Employés</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <div id="div_depense" runat="server">
-                                <a class="nav-link" id="text_nav4" href="DepenseEMP.aspx"><i class="fas fa-money-check-alt"></i> Dépenses</a>
+                                <a class="nav-link" id="text_nav4" href="DepenseEMP.aspx"><i class="fas fa-money-check-alt"></i>Dépenses</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <div id="div_DepenseADM" runat="server">
-                                <a class="nav-link" id="text_nav7" href="DepenseAdmin.aspx"><i class="fas fa-money-check-alt"></i> Dépenses</a>
+                                <a class="nav-link" id="text_nav7" href="DepenseAdmin.aspx"><i class="fas fa-money-check-alt"></i>Dépenses</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <div runat="server" id="div_BanqueHeuresAdmin">
-                                <a class="nav-link" id="text_nav6" href="BanqueHeureAdmin.aspx"><i class="fas fa-business-time"></i> Banque d'heures</a>
+                                <a class="nav-link" id="text_nav6" href="BanqueHeureAdmin.aspx"><i class="fas fa-business-time"></i>Banque d'heures</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <div runat="server" id="div_BanqueHeuresEmp">
-                                <a class="nav-link" id="text_nav0" href="BanqueHeureEmp.aspx"><i class="fas fa-business-time"></i> Banque d'heures</a>
+                                <a class="nav-link" id="text_nav10" href="BanqueHeureEmp.aspx"><i class="fas fa-business-time"></i>Banque d'heures</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <div runat="server" id="div_Options">
-                                <a class="nav-link" id="text_nav9" href="Options.aspx"><i class="fas fa-cog"></i> Options</a>
+                                <a class="nav-link" id="text_nav9" href="Options.aspx"><i class="fas fa-cog"></i>Options</a>
                             </div>
                         </li>
                     </ul>
@@ -95,7 +95,6 @@
                 <div>
                     <asp:ContentPlaceHolder ID="cph_left" runat="server"></asp:ContentPlaceHolder>
                 </div>
-
                 <div class="col-md-12" style="padding: 0;">
                     <asp:ContentPlaceHolder ID="cph_contenu" runat="server"></asp:ContentPlaceHolder>
                 </div>

@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BanqueHeureAdmin.aspx.cs" Inherits="BanqueHeureAdmin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BanqueHeureAdmin.aspx.cs" Inherits="BanqueHeureAdmin" Theme="BanqueHeureADM"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" Runat="Server">
+    Banque d'heures
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
-</asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
         <div class="col-md-6 offset-md-3">
