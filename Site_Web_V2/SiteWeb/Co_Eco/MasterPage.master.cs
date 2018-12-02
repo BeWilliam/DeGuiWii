@@ -22,7 +22,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_Employe.Visible = false;
             div_depense.Visible = true;
             div_DepenseADM.Visible = false;
-            div_Rapports.Visible = false;
             div_Options.Visible = false;
         }
         if (Session["fonction"].ToString() == "2")
@@ -34,7 +33,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_Employe.Visible = false;
             div_depense.Visible = true;
             div_DepenseADM.Visible = false;
-            div_Rapports.Visible = false;
             div_Options.Visible = false;
         }
         if (Session["fonction"].ToString() == "3")
@@ -46,7 +44,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_Employe.Visible = true;
             div_depense.Visible = false;
             div_DepenseADM.Visible = true;
-            div_Rapports.Visible = true;
             div_Options.Visible = true;
         }
     }

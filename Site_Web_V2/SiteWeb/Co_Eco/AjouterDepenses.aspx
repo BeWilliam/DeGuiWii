@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AjouterDepenses.aspx.cs" Inherits="Depenses" Theme="DepensesADM" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AjouterDepenses.aspx.cs" Inherits="Depenses" Theme="AjouterDepense" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" runat="Server">
 </asp:Content>
@@ -19,8 +19,8 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
 
-
-    <div class="form-row">
+    <section>
+        <div class="form-row">
         <div class="col-md-4">
             <label for="validationTooltip01">Projet</label>
             <asp:DropDownList runat="server" ID="ddl_projet" CssClass="form-control" />
@@ -89,5 +89,8 @@
     <asp:Button ID="btn_approuver" runat="server" OnClick="btn_approuver_Click" Visible="false" Text="Approuver" CssClass="btn btn-success"/>
     <asp:Button ID="btn_desapprouver" runat="server" OnClick="btn_desapprouver_Click" Visible="false" Text="Désapprouver" CssClass="btn btn-danger"/>
 
+    </section>
+
+    
 </asp:Content>
 

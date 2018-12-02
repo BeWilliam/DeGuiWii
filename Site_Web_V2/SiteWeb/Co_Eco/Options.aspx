@@ -18,7 +18,7 @@
         </div>
 
         <div id="div_TauxCamion">
-            <asp:Label ID="lbl_TauxCamion" runat="server" Text="Taux kilomtrag en camion" />
+            <asp:Label ID="lbl_TauxCamion" runat="server" Text="Taux kilométrage en camion" />
             <asp:TextBox ID="tbx_TauxCamion" runat="server" />
             <asp:Button ID="btn_ModTauxCamion" runat="server" Text="Modifier" CssClass="btn btn-success" OnClick="btn_ModTauxCamion_Click" style="margin-bottom:5px;" />
         </div>
