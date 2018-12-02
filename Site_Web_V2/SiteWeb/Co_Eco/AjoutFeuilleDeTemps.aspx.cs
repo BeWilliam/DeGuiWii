@@ -14,6 +14,7 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
     List<T_CategoriePro> ListeCategorie;
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         //idEmp = int.Parse(Session["idEmp"].ToString());
 
         //ddl_Projet.Items.Clear();
@@ -27,15 +28,24 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         //ListeCategorie = GetListeCateByProjet(projetsDeLemploye);
         loadDllProjet();
 
+        string tempProj = Request.Form["ctl00$cph_contenu$ddl_Projet"];
+        if (tempProj == null || tempProj == "-1")
+        {
+            btn_ajouter.Enabled = false;
+        }
+        else
+        {
+            btn_ajouter.Enabled = true;
+        }
 
         //urlParamId = Request.QueryString["id"];
         idFdt = int.Parse(Request.QueryString["idFdt"]);
         if (!IsPostBack)
         {
-            
+
+
 
             
-
             if (idFdt != -1)
             {
                 modifFdt(idFdt);
@@ -319,13 +329,21 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         /*-- Partie pour les Catégories --*/
         ddl_Categorie.Items.Clear();
         string proj = Request.Form["ctl00$cph_contenu$ddl_Projet"];
-        List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(proj)));
-        listCat = listCat.OrderBy(o => o.descript).ToList();
-        foreach (T_CategoriePro categoriePro in listCat)
+        if (proj != null && proj != "-1")
         {
-            ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
+            List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(proj)));
+            listCat = listCat.OrderBy(o => o.descript).ToList();
+            foreach (T_CategoriePro categoriePro in listCat)
+            {
+                ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
+            }
+            ddl_Projet.SelectedValue = listCat[0].idProjet.ToString();
         }
-        ddl_Projet.SelectedValue = listCat[0].idProjet.ToString();
+        else
+        {
+            btn_ajouter.Enabled = false;
+        }
+
     }
     private void loadDllProjet()
     {
