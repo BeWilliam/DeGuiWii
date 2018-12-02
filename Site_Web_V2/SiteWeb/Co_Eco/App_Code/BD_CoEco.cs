@@ -394,6 +394,12 @@ public class BD_CoEco
         newEmp.idStatus = p_employe.idStatus;
         newEmp.loginName = p_employe.loginName;
 
+        newEmp.congesFeries = p_employe.congesFeries;
+        newEmp.congesMaladie = p_employe.congesMaladie;
+        newEmp.congesPersonnels = p_employe.congesPersonnels;
+        newEmp.heuresAccumuleesOuSansSolde = p_employe.heuresAccumuleesOuSansSolde;
+        newEmp.vacances = p_employe.vacances;
+
         BD.SubmitChanges();
         BD.Dispose();
     }

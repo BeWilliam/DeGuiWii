@@ -49,7 +49,7 @@ public partial class BanqueHeureAdmin : System.Web.UI.Page
         thr.Cells.Add(heuresDepensee);
         thr.Cells.Add(BanqueHeure);
         thr.ID = "thr_ID";
-        Tableau_Employes.Rows.Add(thr);
+        Tableau_BanqueHeure.Rows.Add(thr);
     }
 
     private void ShowEmp(T_Employe employe)
@@ -68,7 +68,7 @@ public partial class BanqueHeureAdmin : System.Web.UI.Page
         tr.Cells.Add(tc_Nom);
         tr.Cells.Add(tc_heuresDepensee);
         tr.Cells.Add(tc_banqueHeure);
-        Tableau_Employes.Rows.Add(tr);
+        Tableau_BanqueHeure.Rows.Add(tr);
 
     }
     
@@ -88,4 +88,5 @@ public partial class BanqueHeureAdmin : System.Web.UI.Page
         }
         return nbHeure;
     }
+    
 }

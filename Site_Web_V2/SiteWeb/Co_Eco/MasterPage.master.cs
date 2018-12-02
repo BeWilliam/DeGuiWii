@@ -23,6 +23,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_depense.Visible = true;
             div_DepenseADM.Visible = false;
             div_Options.Visible = false;
+            div_BanqueHeuresEmp.Visible = true;
+            div_BanqueHeuresAdmin.Visible = false;
         }
         if (Session["fonction"].ToString() == "2")
         {
@@ -34,6 +36,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_depense.Visible = true;
             div_DepenseADM.Visible = false;
             div_Options.Visible = false;
+            div_BanqueHeuresEmp.Visible = false;
+            div_BanqueHeuresAdmin.Visible = false;
         }
         if (Session["fonction"].ToString() == "3")
         {
@@ -45,6 +49,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_depense.Visible = false;
             div_DepenseADM.Visible = true;
             div_Options.Visible = true;
+            div_BanqueHeuresEmp.Visible = false;
+            div_BanqueHeuresAdmin.Visible = true;
         }
     }
 

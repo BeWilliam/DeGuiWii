@@ -38,13 +38,35 @@ public class Utilitaires
     {
         T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(idFDT);
         float somme = 0;
-        somme += (float)fdt.dimanche;
-        somme += (float)fdt.lundi;
-        somme += (float)fdt.mardi;
-        somme += (float)fdt.mercredi;
-        somme += (float)fdt.jeudi;
-        somme += (float)fdt.vendredi;
-        somme += (float)fdt.samedi;
+        if (fdt.dimanche != null)
+        {
+            somme += (float)fdt.dimanche;
+        }
+        if (fdt.lundi != null)
+        {
+            somme += (float)fdt.lundi;
+        }
+        if (fdt.mardi != null)
+        {
+            somme += (float)fdt.mardi;
+        }
+        if (fdt.mercredi !=null)
+        {
+            somme += (float)fdt.mercredi;
+        }
+        if (fdt.jeudi != null)
+        {
+            somme += (float)fdt.jeudi;
+        }
+        if (fdt.vendredi != null)
+        {
+            somme += (float)fdt.vendredi;
+        }
+        if (fdt.samedi != null)
+        {
+            somme += (float)fdt.samedi;
+        }
+        
         return somme;
     }
 
