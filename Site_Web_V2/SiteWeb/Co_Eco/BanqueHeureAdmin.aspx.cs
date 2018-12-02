@@ -18,12 +18,12 @@ public partial class BanqueHeureAdmin : System.Web.UI.Page
 
         List<T_Employe> rawListeEmp = BD_CoEco.GetListeEmploye();
         //trié la liste avant insertion
-        rawListeEmp = rawListeEmp.OrderBy(o => o.idStatus).ThenBy(o => o.prenom).ThenBy(o => o.nom).ToList();
+        rawListeEmp = rawListeEmp.OrderBy(o => o.prenom).ThenBy(o => o.nom).ToList();
         List<T_Employe> listEmpBureau = new List<T_Employe>();
 
         foreach (T_Employe emp in rawListeEmp)
         {
-            if (emp.idFonction == 1)
+            if (emp.idFonction == 1 && emp.idStatus == 1)
             {
                 listEmpBureau.Add(emp);
                 ShowEmp(emp);
