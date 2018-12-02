@@ -799,4 +799,27 @@ public class BD_CoEco
         bd.SubmitChanges();
         bd.Dispose();
     }
+
+    public static List<T_FeuilleDeTemps> GetFDTByProject(int idPro)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Projet projet = bd.T_Projet.Single(f => f.idProjet == idPro);
+        List<T_CategoriePro> lstCategories = GetListeCategorie(projet);
+        List<T_FeuilleDeTemps> lstFDT = GetListeFeuilleDeTemps();
+
+        List<T_FeuilleDeTemps> rtnList = new List<T_FeuilleDeTemps>();
+
+        foreach (T_CategoriePro cat in lstCategories)
+        {
+            foreach (T_FeuilleDeTemps fdt in lstFDT)
+            {
+                if (fdt.idCategorie == cat.idCategorie)
+                {
+                    rtnList.Add(fdt);
+                }
+            }
+        }
+
+        return rtnList;
+    }
 }
