@@ -9,11 +9,6 @@ public partial class DepenseAdmin : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
-        {
-            //Au premier chargement
-            //loadDepense();
-        }
         load();
     }
 
@@ -55,6 +50,8 @@ public partial class DepenseAdmin : System.Web.UI.Page
             thr.Cells.Add(thc_app);
             tbHeader.Rows.Add(thr);
             pnl_projet.Controls.Add(tbHeader);
+
+            float total = 0;
 
             foreach (T_Depense depense in lstDep)
             {
@@ -98,6 +95,8 @@ public partial class DepenseAdmin : System.Web.UI.Page
                     tr.Cells.Add(tc_app);
                     tbRow.Rows.Add(tr);
                     pnl_dep.Controls.Add(tbRow);
+
+                    total += (float)depense.montant;
                 }
             }
 
@@ -143,6 +142,8 @@ public partial class DepenseAdmin : System.Web.UI.Page
                     tr.Cells.Add(tc_app);
                     tbHeader.Rows.Add(tr);
                     pnl_kilo.Controls.Add(tbrow);
+
+                    total += kilometrage.nbKilo * BD_CoEco.GetTauxKiloById(kilometrage.idTaux).taux;
                 }
 
                 if(pnl_projet.Controls.Count == 2)
@@ -150,6 +151,22 @@ public partial class DepenseAdmin : System.Web.UI.Page
                     pnl_master.Controls.Remove(pnl_projet);
                 }
             }
+
+            Table tb = new Table();
+            tb.CssClass = "table";
+            TableRow tr_F = new TableRow();
+            TableCell tc_emptyCell = new TableCell();
+            tc_emptyCell.Width = new Unit("25%");
+            tc_emptyCell.Text = "<strong>Total</strong>";
+            tc_emptyCell.ColumnSpan = 2;
+            tr_F.Cells.Add(tc_emptyCell);
+            TableCell tc_total = new TableCell();
+            tc_total.Width = new Unit("75%");
+            tc_total.ColumnSpan = 2;
+            tc_total.Text = string.Format("{0:c}", total);
+            tr_F.Cells.Add(tc_total);
+            tb.Rows.Add(tr_F);
+            pnl_projet.Controls.Add(tb);
 
         }
 
