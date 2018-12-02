@@ -50,7 +50,7 @@
         </div>
 
         <div class="col-sm-1">
-            <button type="button" runat="server" style="margin-top: 32px; width: 100%; color: white;"
+            <button id="btn_AddProject" type="button" runat="server" style="margin-top: 32px; width: 100%; color: white;"
                 class="btn btn-success" onserverclick="btn_ajouter_Click">
                 Ajouter Projet</button>
         </div>

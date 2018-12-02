@@ -24,38 +24,44 @@ public partial class Projet : System.Web.UI.Page
         {
             int idEmp = int.Parse(Session["idEmp"].ToString());
         
-                loadResponsable();
-                loadStatut();
+            loadResponsable();
+            loadStatut();
 
-                string nom = Request.QueryString["nom"];
-                string idRep = Request.QueryString["idRep"];
-                string idStat = Request.QueryString["idStat"];
-                string descript = Request.QueryString["descript"];
+            string nom = Request.QueryString["nom"];
+            string idRep = Request.QueryString["idRep"];
+            string idStat = Request.QueryString["idStat"];
+            string descript = Request.QueryString["descript"];
 
-                if (nom != null)
-                {
-                    tbx_nom.Text = nom;
-                }
-                if (idRep != null)
-                {
-                    DDL_Responsable.SelectedValue = idRep;
-                }
-                if (idStat != null)
-                {
-                    DDL_Status.SelectedValue = idStat;
-                }
-                if (descript != null)
-                {
-                    tbx_descript.Text = descript;
-                }
-                if (idEmp == 1 || idEmp == 3) //si c'est l'admin qui est connecté ou sophie
-                {
-                    rech();
-                }
-                else
-                {
-                     loadAllProjetRes();
-                }
+            if (nom != null)
+            {
+                tbx_nom.Text = nom;
+            }
+            if (idRep != null)
+            {
+                DDL_Responsable.SelectedValue = idRep;
+            }
+            if (idStat != null)
+            {
+                DDL_Status.SelectedValue = idStat;
+            }
+            if (descript != null)
+            {
+                tbx_descript.Text = descript;
+            }
+            if (idEmp == 1 || idEmp == 3) //si c'est l'admin qui est connecté ou sophie
+            {
+                rech();
+            }
+            else
+            {
+                    loadAllProjetRes();
+            }
+
+            //Empêcher l'ajout de projet en tant qu'employé
+            if(Session["fonction"].ToString() != "3")
+            {
+                btn_AddProject.Disabled = true;
+            }
         }
 
     }
