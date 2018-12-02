@@ -20,8 +20,7 @@ h5 {
 }
 
 #cph_contenu_thr_ID {
-    background-color: #008000;
-    color: white;
+    color: #000;
 }
 
 tr{
@@ -30,4 +29,8 @@ tr{
 
 td{
     text-align:center;
+}
+
+.table{
+    margin-bottom:0px;
 }

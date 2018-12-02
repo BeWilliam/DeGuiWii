@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="FeuilleDeTemps.aspx.cs" Inherits="FeuilleDeTemps"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" Runat="Server">
+    Feuille de temps
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
     <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="width: 100%; margin-left: 5px; margin-top: 5px; text-decoration: none;"></asp:Calendar>
