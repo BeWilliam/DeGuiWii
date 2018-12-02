@@ -42,7 +42,8 @@ public partial class AjoutBanqueHeure : System.Web.UI.Page
     {
         if (tb_congesFeries.Text != "")
         {
-            emp.congesFeries = float.Parse(tb_congesFeries.Text);
+            
+            emp.congesFeries = float.Parse(Request.Form["ctl00$cph_contenu$tb_congesFeries"]);
         }
         else
         {
@@ -50,7 +51,7 @@ public partial class AjoutBanqueHeure : System.Web.UI.Page
         }
         if (tb_congesMaladie.Text != "")
         {
-            emp.congesMaladie = float.Parse(tb_congesMaladie.Text);
+            emp.congesMaladie = float.Parse(Request.Form["ctl00$cph_contenu$tb_congesMaladie"]);
         }
         else
         {
@@ -58,7 +59,7 @@ public partial class AjoutBanqueHeure : System.Web.UI.Page
         }
         if (tb_congesPersonnels.Text != "")
         {
-            emp.congesPersonnels = float.Parse(tb_congesPersonnels.Text);
+            emp.congesPersonnels = float.Parse(Request.Form["ctl00$cph_contenu$tb_congesPersonnels"]);
         }
         else
         {
@@ -66,7 +67,7 @@ public partial class AjoutBanqueHeure : System.Web.UI.Page
         }
         if (tb_heuresAccumuleesOuSansSolde.Text != "")
         {
-            emp.heuresAccumuleesOuSansSolde = float.Parse(tb_heuresAccumuleesOuSansSolde.Text);
+            emp.heuresAccumuleesOuSansSolde = float.Parse(Request.Form["ctl00$cph_contenu$tb_heuresAccumuleesOuSansSolde"]);
         }
         else
         {
@@ -74,7 +75,7 @@ public partial class AjoutBanqueHeure : System.Web.UI.Page
         }
         if (tb_vacances.Text != "")
         {
-            emp.vacances = float.Parse(tb_vacances.Text);
+            emp.vacances = float.Parse(Request.Form["ctl00$cph_contenu$tb_vacances"]);
         }
         else
         {
