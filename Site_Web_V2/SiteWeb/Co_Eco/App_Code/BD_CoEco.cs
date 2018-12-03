@@ -338,6 +338,10 @@ public class BD_CoEco
         int? maxID = 0;
         BD.PS_GetMaxIdProjet(ref maxID);
         maxID++;
+        if(maxID == null)
+        {
+            maxID = 1;
+        }
         p_projet.idProjet = (int)maxID;
 
         BD.T_Projet.InsertOnSubmit(p_projet);
