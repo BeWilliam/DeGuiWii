@@ -19,6 +19,8 @@ public partial class AjouterProjet : System.Web.UI.Page
         btn_modifier.Enabled = true;
         btn_apply.Enabled = false;
 
+        loadCat();
+
         if (!IsPostBack)
         {
             loadResponsable();
@@ -387,24 +389,37 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     private void loadCat()
     {
+        tableau_categorie.Rows.Clear();
         List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(Request.QueryString["id"])));
         listCat = listCat.OrderBy(o => o.descript).ToList();
         foreach (T_CategoriePro categoriePro in listCat)
         {
-            TableRow tr = new TableRow();
-            TableCell tc1 = new TableCell();
-            TableCell tc2 = new TableCell();
-            //pas terminer
-            HyperLink hl = new HyperLink();
-            hl.NavigateUrl = "AjouterProjet.aspx?id=";
+            if(categoriePro.idStatusCat == 1)
+            {
+                TableRow tr = new TableRow();
+                TableCell tc1 = new TableCell();
+                TableCell tc2 = new TableCell();
+                //pas terminer
+                LinkButton btn = new LinkButton();
+                btn.ID = "btn_Cat-" + categoriePro.idCategorie;
+                btn.CssClass = "fas fa-trash - alt";
+                btn.Click += RemCat;
 
-            tc2.CssClass = "fas fa-trash - alt";
-            tc2.Controls.Add(hl);
-            tc1.Text = categoriePro.descript;
-            tr.Cells.Add(tc1);
-            tr.Cells.Add(tc2);
-            tableau_categorie.Rows.Add(tr);
+                tc2.Controls.Add(btn);
+                tc1.Text = categoriePro.descript;
+                tr.Cells.Add(tc1);
+                tr.Cells.Add(tc2);
+                tableau_categorie.Rows.Add(tr);
+            }
         }
+    }
+
+    private void RemCat(object sender, EventArgs e)
+    {
+        LinkButton btn = (LinkButton)sender;
+        int idCat = int.Parse(btn.ID.Split('-')[1]);
+        BD_CoEco.ChangeStatusCategorie(idCat, 2);
+        loadCat();
     }
 
 
@@ -487,8 +502,4 @@ public partial class AjouterProjet : System.Web.UI.Page
         newCat.idProjet = int.Parse(Request.QueryString["id"]);
         BD_CoEco.CreateNewCategorie(newCat);
     }
-
-
-
-
 }

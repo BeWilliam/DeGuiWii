@@ -822,4 +822,15 @@ public class BD_CoEco
 
         return rtnList;
     }
+
+    public static void ChangeStatusCategorie(int id, int etat)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_CategoriePro cat = bd.T_CategoriePro.Single(f => f.idCategorie == id);
+
+        cat.idStatusCat = etat;
+        bd.SubmitChanges();
+        bd.Dispose();
+
+    }
 }
