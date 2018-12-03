@@ -194,6 +194,8 @@ public partial class AjouterEmploye : System.Web.UI.Page
 
     protected void btn_retour_Click(object sender, EventArgs e)
     {
+        tbx_prenom.Text = " chargement ";
+        tbx_nom.Text = " chargement ";
         Response.Redirect("Employe.aspx");
     }
 
