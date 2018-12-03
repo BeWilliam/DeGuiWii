@@ -329,12 +329,17 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         {
             List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(proj)));
             listCat = listCat.OrderBy(o => o.descript).ToList();
+
             foreach (T_CategoriePro categoriePro in listCat)
             {
                 ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
             }
-            ddl_Projet.SelectedValue = listCat[0].idProjet.ToString();
-            btn_ajouter.Enabled = true;
+
+            {
+                ddl_Projet.SelectedValue = listCat[0].idProjet.ToString();
+                btn_ajouter.Enabled = true;
+
+            }
         }
         else
         {
