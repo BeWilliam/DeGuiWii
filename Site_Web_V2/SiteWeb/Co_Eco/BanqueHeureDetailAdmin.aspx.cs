@@ -35,24 +35,24 @@ public partial class BanqueHeureDetailAdmin : System.Web.UI.Page
         {
             if (fdt.idEmp == idEmp)
             {
-                if (fdt.idCategorie == 4)
+                if (fdt.idCategorie == 6)
                 {
                     maladie += Utilitaires.GetHeureFDT(fdt.idFeuilleDeTemps);
                 }
-                else if (fdt.idCategorie == 3)
+                else if (fdt.idCategorie == 5)
                 {
                     feries += Utilitaires.GetHeureFDT(fdt.idFeuilleDeTemps);
                 }
-                else if (fdt.idCategorie == 8)
+                else if (fdt.idCategorie == 9)
                 {
                     vacances += Utilitaires.GetHeureFDT(fdt.idFeuilleDeTemps);
 
                 }
-                else if (fdt.idCategorie == 7)
+                else if (fdt.idCategorie == 8)
                 {
                     hrsAcc += Utilitaires.GetHeureFDT(fdt.idFeuilleDeTemps);
                 }
-                else if (fdt.idCategorie == 5)
+                else if (fdt.idCategorie == 7)
                 {
                     personnel += Utilitaires.GetHeureFDT(fdt.idFeuilleDeTemps);
                 }
