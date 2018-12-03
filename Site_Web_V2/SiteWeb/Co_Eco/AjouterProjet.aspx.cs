@@ -210,10 +210,14 @@ public partial class AjouterProjet : System.Web.UI.Page
         {
             for (int e = 0; e < list.Count; e++)
             {
-                if (listEmp[i].idEmploye == list[e].idEmploye)
+                if(i != listEmp.Count)
                 {
-                    listEmp.RemoveAt(i);
+                    if (listEmp[i].idEmploye == list[e].idEmploye)
+                    {
+                        listEmp.RemoveAt(i);
+                    }
                 }
+                
             }
         }
 
@@ -461,19 +465,19 @@ public partial class AjouterProjet : System.Web.UI.Page
         }
             for (int i = 0; i < lst_employeAjouter2.Items.Count; i++)
             {
-            if (listId.Count > i)
-            {
-                if (listId[i] != int.Parse(lst_employeAjouter2.Items[i].Value))
+                if (listId.Count > i)
+                {
+                    if (listId[i] != int.Parse(lst_employeAjouter2.Items[i].Value))
+                    {
+                        T_Employe emp = BD_CoEco.GetEmpByID(int.Parse(lst_employeAjouter2.Items[i].Value));
+                        listeEmpAuProjet.Add(emp);
+                    }
+                }
+                else
                 {
                     T_Employe emp = BD_CoEco.GetEmpByID(int.Parse(lst_employeAjouter2.Items[i].Value));
                     listeEmpAuProjet.Add(emp);
                 }
-            }
-            else
-            {
-                T_Employe emp = BD_CoEco.GetEmpByID(int.Parse(lst_employeAjouter2.Items[i].Value));
-                listeEmpAuProjet.Add(emp);
-            }
                 
             }
 
