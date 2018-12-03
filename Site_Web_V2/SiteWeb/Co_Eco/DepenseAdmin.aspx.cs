@@ -78,7 +78,10 @@ public partial class DepenseAdmin : System.Web.UI.Page
                     tc_nom.Controls.Add(hl);
                     tr.Cells.Add(tc_nom);
                     TableCell tc_date = new TableCell();
-                    tc_date.Text = String.Format("{0:d}", ((DateTime)depense.ddate));
+                    if (((DateTime)depense.ddate) != null)
+                        tc_date.Text = String.Format("{0:d}", ((DateTime)depense.ddate));
+                    else
+                        tc_date.Text = "";
                     tc_date.Width = new Unit("25%");
                     tr.Cells.Add(tc_date);
                     TableCell tc_montant = new TableCell();
