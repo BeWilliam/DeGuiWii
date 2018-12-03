@@ -265,7 +265,8 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
             tb_samediCommentaire.Text = fdt.commentaireSamedi.ToString();
         }
 
-        ddl_Projet.SelectedValue = BD_CoEco.GetCatByID(fdt.idCategorie).idProjet.ToString();
+        T_CategoriePro cat = BD_CoEco.GetCatByID(fdt.idCategorie);
+        ddl_Projet.SelectedValue = cat.idProjet.ToString();
         List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(ddl_Projet.SelectedValue)));
         listCat = listCat.OrderBy(o => o.descript).ToList();
         foreach (T_CategoriePro categoriePro in listCat)

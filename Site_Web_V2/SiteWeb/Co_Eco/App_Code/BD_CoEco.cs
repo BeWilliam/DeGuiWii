@@ -273,26 +273,10 @@ public class BD_CoEco
     /// <returns></returns>
     public static T_CategoriePro GetCatByID(int id)
     {
-        List<T_CategoriePro> listeCat = GetListeCategorie();
-
-        bool trouve = false;
-        int i = -1;
-        while (i < listeCat.Count - 1 && !trouve)
-        {
-            i++;
-            if (listeCat[i].idCategorie == id)
-            {
-                trouve = true;
-            }
-        }
-        if (trouve)
-        {
-            return listeCat[i];
-        }
-        else
-        {
-            throw new Exception("Id correspondant à aucune catégorie existante");
-        }
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_CategoriePro cat = bd.T_CategoriePro.Single(f => f.idCategorie == id);
+        bd.Dispose();
+        return cat;
 
     }
 
