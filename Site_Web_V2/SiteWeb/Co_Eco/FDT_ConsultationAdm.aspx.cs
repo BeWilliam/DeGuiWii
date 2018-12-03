@@ -292,7 +292,7 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
             {
                 ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
             }
-            if (listCat != null || listCat.Count == 0)
+            if (listCat != null && listCat.Count != 0)
             {
                 ddl_Projet.SelectedValue = listCat[0].idProjet.ToString();
                 btn_approuver.Enabled = true;
