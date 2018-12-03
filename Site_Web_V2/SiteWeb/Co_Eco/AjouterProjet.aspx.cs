@@ -319,7 +319,7 @@ public partial class AjouterProjet : System.Web.UI.Page
 
         foreach (T_Employe employe in listeEmp)
         {
-            if (employe.idFonction == 1 && employe.idEmploye == idRetirer) //Employé de bureau
+            if (employe.idFonction != 3 && employe.idEmploye == idRetirer) //Employé de bureau
             {
                 listeEmploye.Add(employe);
 
