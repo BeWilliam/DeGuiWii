@@ -288,9 +288,12 @@ public partial class Depenses : System.Web.UI.Page
         else //ajouter une dépense en tant qu'admin
         {
             T_Depense newDep = new T_Depense();
-            newDep.montant = decimal.Parse(tbx_montant.Text);
-            newDep.descript = tbx_description.Text;
-            newDep.ddate = DateTime.Parse(Ddate.Text);
+            if(tbx_montant.Text != "")
+                newDep.montant = decimal.Parse(tbx_montant.Text);
+            if(tbx_description.Text != "")
+                newDep.descript = tbx_description.Text;
+            if(Ddate.Text != "")
+                newDep.ddate = DateTime.Parse(Ddate.Text);
             newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
             newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
             //newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
