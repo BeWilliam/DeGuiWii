@@ -396,7 +396,7 @@ public class BD_CoEco
         p_emp.idEmpPro = (int)maxID;
 
         BD.T_EmployeProjet.InsertOnSubmit(p_emp);
-        BD.SubmitChanges();
+        BD.SubmitChanges(); //Si ce bug survient, c'est qu'il n'y a pas pas de projet #3... a changer dans AjouterEmp.aspx.cs
         BD.Dispose();
     }
 

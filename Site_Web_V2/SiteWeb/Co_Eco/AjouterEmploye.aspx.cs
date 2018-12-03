@@ -110,6 +110,12 @@ public partial class AjouterEmploye : System.Web.UI.Page
 
         BD_CoEco.CreateNewEmploye(newEmp);
 
+        T_EmployeProjet newlien = new T_EmployeProjet();
+        newlien.idEmp = newEmp.idEmploye;
+        newlien.idPro = 3;
+        BD_CoEco.CreateNewEmpAtProject(newlien);
+
+
         //faire une gestion d'erreur ici
 
         Response.Redirect("Employe.aspx");
@@ -188,8 +194,9 @@ public partial class AjouterEmploye : System.Web.UI.Page
         newEmp.idStatus = int.Parse(ddl_statut.SelectedValue);
         newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
         newEmp.loginName = tbx_pseudo.Text;
-
         BD_CoEco.UpdateEmploye(newEmp);
+
+        
 
         Response.Redirect("Employe.aspx");
 
