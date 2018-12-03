@@ -21,7 +21,7 @@
                     <h2>Feuilles de temps</h2>
 
                     <label for="validationTooltip01">Choisir la semaine</label>
-                    <asp:TextBox TextMode="Date" CssClass="form-control" runat="server" ID="tbx_Semaine" OnTextChanged="Calendar1_SelectionChanged" AutoPostBack="true" style="text-align:center; margin-bottom:10px;"/>
+                    <asp:TextBox TextMode="Date" CssClass="form-control" runat="server" ID="tbx_Semaine" OnTextChanged="Calendar1_SelectionChanged" AutoPostBack="true" style="text-align:center; margin-bottom:10px;" />
                         
                 </div>
          <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" Visible="false" OnClick="btn_ajouter_Click" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />
