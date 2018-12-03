@@ -318,7 +318,15 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         string proj = Request.Form["ctl00$cph_contenu$ddl_Projet"];
         if (proj != null && proj != "-1")
         {
-            List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(proj)));
+            List<T_CategoriePro> listCatTemp = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(proj)));
+            List<T_CategoriePro> listCat = new List<T_CategoriePro>();
+            foreach (T_CategoriePro cat in listCatTemp)
+            {
+                if (cat.idStatusCat == 1)
+                {
+                    listCat.Add(cat);
+                }
+            }
             listCat = listCat.OrderBy(o => o.descript).ToList();
 
             foreach (T_CategoriePro categoriePro in listCat)
@@ -341,7 +349,15 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
     private void loadDllProjet()
     {
         ddl_Projet.Items.Clear();
-        List<T_Projet> listeProjet = BD_CoEco.GetProjectByEmp(BD_CoEco.GetEmpByID(int.Parse(Session["idEmp"].ToString())));
+        List<T_Projet> listeProjetTemp = BD_CoEco.GetProjectByEmp(BD_CoEco.GetEmpByID(int.Parse(Session["idEmp"].ToString())));
+        List<T_Projet> listeProjet = new List<T_Projet>();
+        foreach (T_Projet proj in listeProjetTemp)
+        {
+            if (proj.idStatus == 1)
+            {
+                listeProjet.Add(proj);
+            }
+        }
         listeProjet = listeProjet.OrderBy(o => o.nom).ToList();
         ddl_Projet.Items.Add(new ListItem("Choisir un projet", "-1"));
         foreach (T_Projet projet in listeProjet)
