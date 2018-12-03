@@ -49,7 +49,7 @@ public partial class AjouterProjet : System.Web.UI.Page
         if (urlParam != null)
         {
             btn_apply.Visible = true;
-            btn_apply.Enabled = true;
+            btn_apply.Enabled = false;
             lst_employe.Visible = false;
             btn_retirer.Visible = false;
             btn_ajouter.Visible = false;
@@ -424,6 +424,7 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     private void RemCat(object sender, EventArgs e)
     {
+        btn_modifier.Enabled = true;
         LinkButton btn = (LinkButton)sender;
         int idCat = int.Parse(btn.ID.Split('-')[1]);
         BD_CoEco.ChangeStatusCategorie(idCat, 2);
@@ -434,6 +435,7 @@ public partial class AjouterProjet : System.Web.UI.Page
     protected void btn_lieEmp_Click(object sender, EventArgs e)
     {
         btn_lieEmp.Enabled = true;
+        btn_apply.Enabled = true;
         int empId = int.Parse(ddl_employe.SelectedValue);
         int indexEmp = ddl_employe.SelectedIndex;
 
@@ -486,6 +488,7 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     protected void btn_ajouterCategorie_Click(object sender, EventArgs e)
     {
+        btn_apply.Enabled = true;
         TableRow tr = new TableRow();
         TableCell tc1 = new TableCell();
         TableCell tc2 = new TableCell();
