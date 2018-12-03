@@ -253,10 +253,6 @@ public partial class Depenses : System.Web.UI.Page
                     newDep.ddate = DateTime.Parse(Ddate.Text);
                     newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
                     newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
-
-                    //plante ici
-                    //newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
-
                     newDep.idEmp = int.Parse(Session["idEmp"].ToString());
                     newDep.aprobation = null;
 
@@ -270,9 +266,7 @@ public partial class Depenses : System.Web.UI.Page
                     newKilo.commentaire = tbx_description.Text;
                     newKilo.ddate = DateTime.Parse(Ddate.Text);
                     newKilo.idEmp = int.Parse(Session["idEmp"].ToString());
-                    //Cette partie à retirer / modifier
                     newKilo.idPro = int.Parse(ddl_projet.SelectedValue);
-                    //newKilo.idCat = int.Parse(ddL_categorie.SelectedValue);
                     newKilo.idTaux = BD_CoEco.GetIdTauxKilo(int.Parse(ddl_typeVehicule.SelectedValue));
                     BD_CoEco.AjouterDepKilometrage(newKilo);
                 }
@@ -287,20 +281,37 @@ public partial class Depenses : System.Web.UI.Page
         }
         else //ajouter une dépense en tant qu'admin
         {
-            T_Depense newDep = new T_Depense();
-            if(tbx_montant.Text != "")
-                newDep.montant = decimal.Parse(tbx_montant.Text);
-            if(tbx_description.Text != "")
-                newDep.descript = tbx_description.Text;
-            if(Ddate.Text != "")
-                newDep.ddate = DateTime.Parse(Ddate.Text);
-            newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
-            newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
-            //newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
-            newDep.idEmp = int.Parse(ddl_employe.SelectedValue);
-            newDep.aprobation = null;
-            BD_CoEco.AddDepense(newDep);
-            Response.Redirect("DepenseAdmin.aspx");
+            if (ddl_typeDepense.SelectedValue != "-1")
+            {
+                T_Depense newDep = new T_Depense();
+                if (tbx_montant.Text != "")
+                    newDep.montant = decimal.Parse(tbx_montant.Text);
+                if (tbx_description.Text != "")
+                    newDep.descript = tbx_description.Text;
+                if (Ddate.Text != "")
+                    newDep.ddate = DateTime.Parse(Ddate.Text);
+                newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
+                newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
+                //newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
+                newDep.idEmp = int.Parse(ddl_employe.SelectedValue);
+                newDep.aprobation = null;
+                BD_CoEco.AddDepense(newDep);
+                Response.Redirect("DepenseAdmin.aspx");
+            }
+            else
+            {
+                //Kilométrage
+                T_Kilometrage newKilo = new T_Kilometrage();
+                newKilo.nbKilo = float.Parse(tbx_montant.Text);
+                newKilo.commentaire = tbx_description.Text;
+                newKilo.ddate = DateTime.Parse(Ddate.Text);
+                newKilo.idEmp = int.Parse(ddl_employe.SelectedValue);
+                //Cette partie à retirer / modifier
+                newKilo.idPro = int.Parse(ddl_projet.SelectedValue);
+                //newKilo.idCat = int.Parse(ddL_categorie.SelectedValue);
+                newKilo.idTaux = BD_CoEco.GetIdTauxKilo(int.Parse(ddl_typeVehicule.SelectedValue));
+                BD_CoEco.AjouterDepKilometrage(newKilo);
+            }
         }
     }
 
