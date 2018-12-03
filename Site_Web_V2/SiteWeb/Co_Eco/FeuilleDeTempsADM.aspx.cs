@@ -29,115 +29,132 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
     private void load()
     {
         panel_Contenu.Controls.Clear();
-        List<T_Projet> lst_Pro = BD_CoEco.GetListeProjet();
-        lst_Pro = lst_Pro.OrderBy(o => o.nom).ToList();
 
-        foreach (T_Projet pro in lst_Pro)
+        List<T_Projet> lstPro = BD_CoEco.GetListeProjet();
+        foreach (T_Projet projet in lstPro)
         {
-            Panel pnlPro = new Panel();
-            panel_Contenu.Controls.Add(pnlPro);
-            //Pour chaque projet
-            Label lbl_Pro = new Label();
-            lbl_Pro.Text = "<h3>" + pro.nom + "</h3>";
-
-            pnlPro.Controls.Add(lbl_Pro); //Ajout du nom du projet
-
-            List<T_CategoriePro> lst_CatPro = BD_CoEco.GetListeCategorie(pro);
-
-            foreach (T_CategoriePro catpro in lst_CatPro)
+            int nbCatCount = 0;
+            if (BD_CoEco.GetFDTByProject(projet.idProjet).Count != 0)
             {
-                Panel pnl_Cat = new Panel();
-                pnlPro.Controls.Add(pnl_Cat);
+                Panel pnl_projet = new Panel();
+                panel_Contenu.Controls.Add(pnl_projet);
 
-                //Pour chaque catégorie
-                Label lbl_cat = new Label();
-                lbl_cat.Text = "<h5>" + catpro.descript + "</h5>";
-                pnl_Cat.Controls.Add(lbl_cat);
+                Label lbl_projet = new Label();
+                lbl_projet.Text = "<h3>" + projet.nom + "</h3>";
+                pnl_projet.Controls.Add(lbl_projet);
 
-                Table tb = new Table();
-                tb.CssClass = "table";
-                tb.ID = "id_table";
-                TableHeaderRow thr = new TableHeaderRow();
-                thr.ID = "thr_ID";
-                TableHeaderCell thc_nom = new TableHeaderCell();
-                thc_nom.Text = "Employé";
-                thc_nom.Width = new Unit("33%");
-
-                TableHeaderCell thc_heures = new TableHeaderCell();
-                thc_heures.Text = "Heures";
-                thc_heures.Width = new Unit("33%");
-                TableHeaderCell thc_app = new TableHeaderCell();
-                thc_app.Text = " Approuver";
-                thc_app.Width = new Unit("33%");
-                thr.Cells.Add(thc_nom);
-                thr.Cells.Add(thc_heures);
-                thr.Cells.Add(thc_app);
-                tb.Rows.Add(thr);
-                pnl_Cat.Controls.Add(tb);
-
-
-                foreach (T_FeuilleDeTemps fdt in BD_CoEco.GetListeFeuilleDeTemps())
+                List<T_CategoriePro> lstCat = BD_CoEco.GetListeCategorie(projet);
+                foreach (T_CategoriePro categorie in lstCat)
                 {
-                    //Pour chaque feuille de temps
-                    if(catpro.idCategorie == pro.idProjet && fdt.idCategorie == catpro.idCategorie)
+                    Panel pnl_categorie = new Panel();
+                    pnl_projet.Controls.Add(pnl_categorie);
+
+                    Label lbl_categorie = new Label();
+                    lbl_categorie.Text = "<h5>" + categorie.descript + "</h5>";
+                    pnl_categorie.Controls.Add(lbl_categorie);
+
+                    Table tb = new Table();
+                    tb.CssClass = "table";
+                    TableHeaderRow thr = new TableHeaderRow();
+                    TableHeaderCell thc_emp = new TableHeaderCell();
+                    thc_emp.Text = "Employé";
+                    thr.Cells.Add(thc_emp);
+                    TableHeaderCell thc_heures = new TableHeaderCell();
+                    thc_heures.Text = "Heures";
+                    thr.Cells.Add(thc_heures);
+                    TableHeaderCell thc_app = new TableHeaderCell();
+                    thc_app.Text = "Approuver";
+                    thr.Cells.Add(thc_app);
+                    tb.Rows.Add(thr);
+                    pnl_categorie.Controls.Add(tb);
+
+                    List<T_FeuilleDeTemps> lstFdt = BD_CoEco.GetFDTByProject(projet.idProjet);
+
+                    int fdtCount = 0;
+                    float heuresTot = 0;
+                    foreach (T_FeuilleDeTemps feuilleDeTemps in lstFdt)
                     {
-                        try
+                        int annee = int.Parse(tbx_Semaine.Text.Split('-')[0]);
+                        int semaine = int.Parse(tbx_Semaine.Text.Split('-')[1].Remove(0, 1));
+                        if (feuilleDeTemps.idCategorie == categorie.idCategorie && semaine == Utilitaires.GetWeek((DateTime)feuilleDeTemps.semaine) && annee == feuilleDeTemps.semaine.Value.Year)
                         {
-                            int annee = int.Parse(tbx_Semaine.Text.Split('-')[0]);
-                            int semaine = int.Parse(tbx_Semaine.Text.Split('-')[1].Remove(0, 1));
-                            if (semaine == Utilitaires.GetWeek((DateTime)fdt.semaine) && annee == fdt.semaine.Value.Year) //Si c'est la bonne semaine
-                            {
-                                Panel panel_fdt = new Panel();
-                                pnl_Cat.Controls.Add(panel_fdt);
+                            fdtCount++;
+                            nbCatCount++;
+                            Panel panel_fdt = new Panel();
+                            pnl_categorie.Controls.Add(panel_fdt);
 
-                                T_Employe emp = BD_CoEco.GetEmpByID(fdt.idEmp);
+                            T_Employe emp = BD_CoEco.GetEmpByID(feuilleDeTemps.idEmp);
 
-                                Table tab = new Table();
-                                tab.CssClass = "table";
-                                TableRow tr = new TableRow();
+                            Table tab = new Table();
+                            tab.CssClass = "table";
+                            TableRow tr = new TableRow();
 
-                                //Partie pour les noms
-                                TableCell tc_nom = new TableCell();
-                                tc_nom.Width = new Unit("33%");
-                                HyperLink hl = new HyperLink();
-                                hl.Text = emp.prenom + " " + emp.nom;
-                                hl.NavigateUrl = "FDT_ConsultationAdm.aspx?idFDT=" + fdt.idFeuilleDeTemps.ToString();
-                                tc_nom.Controls.Add(hl);
-                                tr.Cells.Add(tc_nom);
+                            //Partie pour les noms
+                            TableCell tc_nom = new TableCell();
+                            tc_nom.Width = new Unit("33%");
+                            HyperLink hl = new HyperLink();
+                            hl.Text = emp.prenom + " " + emp.nom;
+                            hl.NavigateUrl = "FDT_ConsultationAdm.aspx?idFDT=" + feuilleDeTemps.idFeuilleDeTemps.ToString();
+                            tc_nom.Controls.Add(hl);
+                            tr.Cells.Add(tc_nom);
 
 
 
-                                TableCell tc_FDT = new TableCell();
-                                tc_FDT.Width = new Unit("33%");
-                                tc_FDT.Text = Utilitaires.GetHeureFDT(fdt.idFeuilleDeTemps).ToString();
-                                tr.Cells.Add(tc_FDT);
-                                TableCell tc_app = new TableCell();
-                                tc_app.Width = new Unit("33%");
-                                CheckBox cbx_app = new CheckBox();
-                                cbx_app.AutoPostBack = true;
-                                cbx_app.ID = "cbx_App-" + fdt.idFeuilleDeTemps;
-                                cbx_app.Checked = (bool)fdt.approbation;
-                                cbx_app.CheckedChanged += cbx_pressed;
-                                tc_app.Controls.Add(cbx_app);
-                                tr.Cells.Add(tc_app);
+                            TableCell tc_FDT = new TableCell();
+                            tc_FDT.Width = new Unit("33%");
+                            tc_FDT.Text = Utilitaires.GetHeureFDT(feuilleDeTemps.idFeuilleDeTemps).ToString();
+                            tr.Cells.Add(tc_FDT);
+
+                            heuresTot += Utilitaires.GetHeureFDT(feuilleDeTemps.idFeuilleDeTemps);
+
+                            TableCell tc_app = new TableCell();
+                            tc_app.Width = new Unit("33%");
+                            CheckBox cbx_app = new CheckBox();
+                            cbx_app.AutoPostBack = true;
+                            cbx_app.ID = "cbx_App-" + feuilleDeTemps.idFeuilleDeTemps;
+                            cbx_app.Checked = (bool)feuilleDeTemps.approbation;
+                            cbx_app.CheckedChanged += cbx_pressed;
+                            tc_app.Controls.Add(cbx_app);
+                            tr.Cells.Add(tc_app);
 
 
-                                tab.Rows.Add(tr);
-                                panel_fdt.Controls.Add(tab);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-
+                            tab.Rows.Add(tr);
+                            panel_fdt.Controls.Add(tab);
                         }
                     }
-                    
+
+                    if(fdtCount == 0)
+                    {
+                        pnl_projet.Controls.Remove(pnl_categorie);
+                    }
+                    else
+                    {
+                        //Ajouter total
+                        Table tb_footer = new Table();
+                        tb_footer.CssClass = "table";
+                        TableFooterRow tfr = new TableFooterRow();
+                        TableCell tc_titre = new TableCell();
+                        tc_titre.Width = new Unit("33%");
+                        tc_titre.Text = "<strong>Total</strong>";
+                        tfr.Cells.Add(tc_titre);
+                        TableCell tc_total = new TableCell();
+                        tc_total.Width = new Unit("33%");
+                        tc_total.ColumnSpan = 2;
+                        tc_total.Text = "<strong>" + heuresTot.ToString() + "</strong>";
+                        tfr.Cells.Add(tc_total);
+                        TableCell tc_vide = new TableCell();
+                        tc_vide.Width = new Unit("33%");
+                        tc_vide.Text = "";
+                        tfr.Cells.Add(tc_vide);
+                        tb_footer.Rows.Add(tfr);
+                        pnl_categorie.Controls.Add(tb_footer);
+                    }
                 }
-
+                if (nbCatCount == 0)
+                {
+                    panel_Contenu.Controls.Remove(pnl_projet);
+                }
             }
-
-            remEmptyPro(pnlPro);
-
         }
     }
 

@@ -17,6 +17,10 @@
 
         <img src="App_Themes/Connexion/Image/logo_v2.png" width="300" height="180" />
         <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+        <div class="alert alert-info" id="message_erreur" runat="server">
+            <strong>Info!</strong> Nom d'utilisateur ou mot de passe incorrect.
+        </div>
+        
         <asp:Label ID="username" runat="server" Text="Nom d'utilisateur"></asp:Label>
         <asp:TextBox ID="tbx_username" runat="server" CssClass="form-control"></asp:TextBox>
 

@@ -10,26 +10,28 @@ public partial class Depenses : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        btn_retour.Visible = false;
-        btn_modifier.Visible = false;
-        btn_apply.Visible = false;
+        btn_modifier.Enabled = false;
+        btn_apply.Enabled = false;
 
         if(Session["fonction"].ToString() == "3")
         {
-            btn_approuver.Visible = true;
-            btn_desapprouver.Visible = true;
+            
         }
 
         if(!IsPostBack)
         {
             //First Load
             //loadDdlCat();
+            btn_approuver.Enabled = false;
+            btn_desapprouver.Enabled = false;
             loadTypeDepense();
             loadEmploye();
             loadTypeAuto();
 
             if (Session["fonction"].ToString() == "3")
             {
+                btn_approuver.Visible = true;
+                btn_desapprouver.Visible = true;
                 loadProjetAdm();
                 ddl_employe.Enabled = true;
             }
@@ -44,18 +46,19 @@ public partial class Depenses : System.Web.UI.Page
             if (id != null && type != null && Session["fonction"].ToString() == "3")
             {
                 afficherDepense();
-
+                btn_approuver.Enabled = true;
+                btn_desapprouver.Enabled = true;
                 btn_modifier.Visible = true;
-                btn_ok.Visible = false;
+                btn_ok.Enabled = false;
                 ddl_employe.Enabled = true; 
+
             }
             else if (id != null && type != null)
             {
                 afficherDepense();
                 btn_cancel.Visible = false;
-                btn_retour.Visible = true;
                 btn_modifier.Visible = true;
-                btn_ok.Visible = false;
+                btn_ok.Enabled = false;
 
                 if(type == "1")
                 {
@@ -227,7 +230,7 @@ public partial class Depenses : System.Web.UI.Page
     protected void ddl_projet_SelectedIndexChanged(object sender, EventArgs e)
     {
         //loadDdlCat();
-        btn_apply.Visible = false;
+        btn_apply.Enabled = false;
     }
 
 
@@ -299,7 +302,7 @@ public partial class Depenses : System.Web.UI.Page
     protected void btn_cancel_ServerClick(object sender, EventArgs e)
     {
         string id = Request.QueryString["id"];
-        if (id != null)
+        if (id != null || Session["fonction"].ToString() == "3")
         {
             //On est donc en admin
             Response.Redirect("DepenseAdmin.aspx");
@@ -309,12 +312,6 @@ public partial class Depenses : System.Web.UI.Page
             //Usager régulier
             Response.Redirect("DepenseEMP.aspx");
         }
-    }
-
-    //bouton retour
-    protected void btn_retour_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("DepenseEMP.aspx");
     }
 
     //rendre enable les champs pour modifier la dépense
@@ -327,8 +324,8 @@ public partial class Depenses : System.Web.UI.Page
         tbx_montant.Enabled = true;
         Ddate.Enabled = true;
         ddl_employe.Enabled = true;
-        btn_modifier.Visible = false;
-        btn_apply.Visible = true;
+        btn_modifier.Enabled = false;
+        btn_apply.Enabled = true;
         if(Request.QueryString["Type"].ToString() == "2")
         {
             ddl_typeVehicule.Enabled = true;
