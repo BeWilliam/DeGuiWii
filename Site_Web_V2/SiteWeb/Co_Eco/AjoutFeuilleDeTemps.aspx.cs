@@ -28,15 +28,7 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         //ListeCategorie = GetListeCateByProjet(projetsDeLemploye);
         loadDllProjet();
 
-        string tempProj = Request.Form["ctl00$cph_contenu$ddl_Projet"];
-        if (tempProj == null || tempProj == "-1")
-        {
-            btn_ajouter.Enabled = false;
-        }
-        else
-        {
-            btn_ajouter.Enabled = true;
-        }
+
 
         //urlParamId = Request.QueryString["id"];
         idFdt = int.Parse(Request.QueryString["idFdt"]);
@@ -45,9 +37,10 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
 
 
 
-            
+            btn_ajouter.Enabled = false;
             if (idFdt != -1)
             {
+                btn_ajouter.Enabled = true;
                 modifFdt(idFdt);
             }
         }
@@ -338,6 +331,7 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
                 ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
             }
             ddl_Projet.SelectedValue = listCat[0].idProjet.ToString();
+            btn_ajouter.Enabled = true;
         }
         else
         {

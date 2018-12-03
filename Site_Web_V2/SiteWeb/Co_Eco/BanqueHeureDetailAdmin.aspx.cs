@@ -5,13 +5,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class BanqueHeureEmp : System.Web.UI.Page
+public partial class BanqueHeureDetailAdmin : System.Web.UI.Page
 {
     int idEmp;
     protected void Page_Load(object sender, EventArgs e)
     {
         HeaderTableau();
-        idEmp = int.Parse(Session["idEmp"].ToString());
+        if (!IsPostBack)
+        {
+            
+        }
+        idEmp = int.Parse(Request.QueryString["id"]);
         T_Employe emp = BD_CoEco.GetEmpByID(idEmp);
         float nbHeures = 0;
 
@@ -52,7 +56,7 @@ public partial class BanqueHeureEmp : System.Web.UI.Page
 
         if (emp.congesFeries != null)
         {
-            ShowEmp(feries,(float)emp.congesFeries,"Heures congées fériés");
+            ShowEmp(feries, (float)emp.congesFeries, "Heures congées fériés");
             nbHeures += (float)emp.congesFeries;
         }
         else
@@ -107,7 +111,7 @@ public partial class BanqueHeureEmp : System.Web.UI.Page
 
 
         TableCell tc_HrsTotal = new TableCell();
-        
+
         tc_HrsTotal.Text = "<strong>" + nbHeures.ToString() + "</strong>";
 
         TableCell tc_HrsRestantes = new TableCell();
@@ -150,7 +154,7 @@ public partial class BanqueHeureEmp : System.Web.UI.Page
         TableCell tc_nomConge = new TableCell();
 
         tc_nomConge.Text = congeRectifie;
-        
+
         TableCell tc_HrsPrises = new TableCell();
         tc_HrsPrises.Text = p_congesPris.ToString();
 
@@ -170,4 +174,13 @@ public partial class BanqueHeureEmp : System.Web.UI.Page
 
     }
 
+    protected void btn_annuler_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("BanqueHeureAdmin.aspx");
+    }
+
+    protected void btn_ajouter_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AjoutBanqueHeure.aspx?id=" + idEmp.ToString());
+    }
 }

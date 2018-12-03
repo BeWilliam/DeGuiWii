@@ -39,14 +39,14 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         listeFeuilleDeTemps = BD_CoEco.GetListeFeuilleDeTemps();
         
         BD.Dispose();
-
+        idEmp = int.Parse(Session["idEmp"].ToString());
         if (!IsPostBack)
         {
-
+            //tbx_Semaine.Text = DateTime.Today.Year + "-W" + Utilitaires.GetWeek(DateTime.Today);
         }
         else
         {
-            idEmp = int.Parse(Session["idEmp"].ToString());
+            
 
         }
     }
@@ -54,9 +54,9 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
-
-            date = getFirstDayOfWeek(Calendar1.SelectedDate);
-            Dimanche.Text = "Dimanche " + (date.Day);
+        date = DateTime.ParseExact(tbx_Semaine.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        date = getFirstDayOfWeek(date);
+        Dimanche.Text = "Dimanche " + (date.Day);
             Lundi.Text = "Lundi " + (date.AddDays(1).Day);
             Mardi.Text = "Mardi " + (date.AddDays(2).Day);
             Mercredi.Text = "Mercredi " + (date.AddDays(3).Day);
@@ -117,8 +117,10 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         TableRow tr = new TableRow();
         TableCell tc1 = new TableCell();
 
-        TextBox tbProjet = new TextBox();
-        TextBox tbCategorie = new TextBox();
+        //TextBox tbProjet = new TextBox();
+        //TextBox tbCategorie = new TextBox();
+
+        
         foreach (T_CategoriePro categorie in ListeCatGlobal)
         {
             if (categorie.idCategorie == p_fdt.idCategorie)
@@ -128,111 +130,130 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
                 {
                     if (projet.idProjet == categorie.idProjet)
                     {
-                        tbProjet.Text = projet.nom;
+                        //tbProjet.Text = projet.nom;
+                        tc1.Text += projet.nom;
                     }
                 }
-                tbCategorie.Text = categorie.descript;
+                tc1.Text += " <br/> ";
+                tc1.Text += categorie.descript;
+                //tbCategorie.Text = categorie.descript;
                 break;
             }
         }
         
-        tbProjet.CssClass = "col-sm-7";
-        tbProjet.CssClass = "col-sm-7";
+        //tbProjet.CssClass = "col-sm-7";
+        //tbProjet.CssClass = "col-sm-7";
 
-        tbProjet.ReadOnly = true;
-        tbCategorie.ReadOnly = true;
+        //tbProjet.ReadOnly = true;
+        //tbCategorie.ReadOnly = true;
 
-        tc1.Controls.Add(tbProjet);
-        tc1.Controls.Add(tbCategorie);
+        //tc1.Controls.Add(tbProjet);
+        //tc1.Controls.Add(tbCategorie);
 
         TableCell tc2 = new TableCell();
         tc2.BackColor = System.Drawing.Color.LightGray;
-        TextBox tbDim = new TextBox();
+        //TextBox tbDim = new TextBox();
         //tbDim.ID = "tbDim";
         if (p_fdt.dimanche != null)
         {
-            tbDim.Text = p_fdt.dimanche.ToString();
+            //tbDim.Text = p_fdt.dimanche.ToString();
             totDim += (float)p_fdt.dimanche;
+            tc2.Text= p_fdt.dimanche.ToString();
+            tc2.Text += " H <br/> ";
         }
-        tbDim.CssClass = "col-sm-5";
-        tbDim.ReadOnly = true;
-        tc2.Controls.Add(tbDim);
-        tc2.Controls.Add(ajoutLabel());
+        //tbDim.CssClass = "col-sm-5";
+        //tbDim.ReadOnly = true;
+        //tc2.Controls.Add(tbDim);
+        
+        //tc2.Controls.Add(ajoutLabel());
 
 
         TableCell tc3 = new TableCell();
-        TextBox tbLun = new TextBox();
+        //TextBox tbLun = new TextBox();
         if (p_fdt.lundi != null)
         {
-            tbLun.Text = p_fdt.lundi.ToString();
+            //tbLun.Text = p_fdt.lundi.ToString();
+            tc3.Text = p_fdt.lundi.ToString();
             totLun += (float)p_fdt.lundi;
+            tc3.Text += " H <br/> ";
         }
         //tbLun.ID = "tbLun";
-        tbLun.CssClass = "col-sm-5";
-        tbLun.ReadOnly = true;
-        tc3.Controls.Add(tbLun);
-        tc3.Controls.Add(ajoutLabel());
+        //tbLun.CssClass = "col-sm-5";
+        //tbLun.ReadOnly = true;
+        //tc3.Controls.Add(tbLun);
+        //tc3.Controls.Add(ajoutLabel());
+        
         TableCell tc4 = new TableCell();
-        TextBox tbMar = new TextBox();
+        //TextBox tbMar = new TextBox();
         if (p_fdt.mardi != null)
         {
-            tbMar.Text = p_fdt.mardi.ToString();
+            //tbMar.Text = p_fdt.mardi.ToString();
+            tc4.Text= p_fdt.mardi.ToString();
             totMar += (float)p_fdt.mardi;
+            tc4.Text += " H <br/> ";
         }
         //tbMar.ID = "tbMar";
-        tbMar.CssClass = "col-sm-5";
-        tbMar.ReadOnly = true;
-        tc4.Controls.Add(tbMar);
-        tc4.Controls.Add(ajoutLabel());
+        //tbMar.CssClass = "col-sm-5";
+        //tbMar.ReadOnly = true;
+        //tc4.Controls.Add(tbMar);
+        //tc4.Controls.Add(ajoutLabel());
         TableCell tc5 = new TableCell();
-        TextBox tbMer = new TextBox();
+        //TextBox tbMer = new TextBox();
         if (p_fdt.mercredi != null)
         {
-            tbMer.Text = p_fdt.mercredi.ToString();
+            //tbMer.Text = p_fdt.mercredi.ToString();
+            tc5.Text= p_fdt.mercredi.ToString();
             totMer += (float)p_fdt.mercredi;
+            tc5.Text += " H <br/> ";
         }
         //tbMer.ID = "tbMer";
-        tbMer.CssClass = "col-sm-5";
-        tbMer.ReadOnly = true;
-        tc5.Controls.Add(tbMer);
-        tc5.Controls.Add(ajoutLabel());
+        //tbMer.CssClass = "col-sm-5";
+        //tbMer.ReadOnly = true;
+        //tc5.Controls.Add(tbMer);
+        //tc5.Controls.Add(ajoutLabel());
         TableCell tc6 = new TableCell();
-        TextBox tbJeu = new TextBox();
+        //TextBox tbJeu = new TextBox();
         if (p_fdt.jeudi != null)
         {
-            tbJeu.Text = p_fdt.jeudi.ToString();
+            //tbJeu.Text = p_fdt.jeudi.ToString();
+            tc6.Text= p_fdt.jeudi.ToString();
             totJeu += (float)p_fdt.jeudi;
+            tc6.Text += " H <br/> ";
         }
         //tbJeu.ID = "tbJeu";
-        tbJeu.CssClass = "col-sm-5";
-        tbJeu.ReadOnly = true;
-        tc6.Controls.Add(tbJeu);
-        tc6.Controls.Add(ajoutLabel());
+        //tbJeu.CssClass = "col-sm-5";
+        //tbJeu.ReadOnly = true;
+        //tc6.Controls.Add(tbJeu);
+        //tc6.Controls.Add(ajoutLabel());
         TableCell tc7 = new TableCell();
-        TextBox tbVen = new TextBox();
+        //TextBox tbVen = new TextBox();
         if (p_fdt.vendredi != null)
         {
-            tbVen.Text = p_fdt.vendredi.ToString();
+            //tbVen.Text = p_fdt.vendredi.ToString();
+            tc7.Text = p_fdt.vendredi.ToString();
             totVen += (float)p_fdt.vendredi;
+            tc7.Text += " H <br/> ";
         }
         //tbVen.ID = "tbVen";
-        tbVen.CssClass = "col-sm-5";
-        tbVen.ReadOnly = true;
-        tc7.Controls.Add(tbVen);
-        tc7.Controls.Add(ajoutLabel());
+        //tbVen.CssClass = "col-sm-5";
+        //tbVen.ReadOnly = true;
+        //tc7.Controls.Add(tbVen);
+        //tc7.Controls.Add(ajoutLabel());
         TableCell tc8 = new TableCell();
         tc8.BackColor = System.Drawing.Color.LightGray;
-        TextBox tbSam = new TextBox();
+        //TextBox tbSam = new TextBox();
         if (p_fdt.samedi != null)
         {
-            tbSam.Text = p_fdt.samedi.ToString();
+            //tbSam.Text = p_fdt.samedi.ToString();
+            tc8.Text = p_fdt.samedi.ToString();
             totSam += (float)p_fdt.samedi;
+            tc8.Text += " H <br/> ";
         }
         //tbSam.ID = "tbSam";
-        tbSam.CssClass = "col-sm-5";
-        tbSam.ReadOnly = true;
-        tc8.Controls.Add(tbSam);
-        tc8.Controls.Add(ajoutLabel());
+        //tbSam.CssClass = "col-sm-5";
+        //tbSam.ReadOnly = true;
+        //tc8.Controls.Add(tbSam);
+        //tc8.Controls.Add(ajoutLabel());
         //TableCell tc9 = new TableCell();
         //TextBox tbCommmentaire = new TextBox();
 
@@ -242,69 +263,69 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         //tc9.Controls.Add(tbCommmentaire);
 
         //--Com
-        TextBox tbDimCom = new TextBox();
+        //TextBox tbDimCom = new TextBox();
         if (p_fdt.commentaireDimanche != null)
         {
-            tbDimCom.Text = p_fdt.commentaireDimanche.ToString();
+            tc2.Text += p_fdt.commentaireDimanche.ToString();
         }
-        tbDimCom.CssClass = "col-sm";
-        tbDimCom.ReadOnly = true;
-        tc2.Controls.Add(tbDimCom);
+        //tbDimCom.CssClass = "col-sm";
+        //tbDimCom.ReadOnly = true;
+        //tc2.Controls.Add(tbDimCom);
 
         //--Com
-        TextBox tbLunCom = new TextBox();
+        //TextBox tbLunCom = new TextBox();
         if (p_fdt.commentaireLundi != null)
         {
-            tbLunCom.Text = p_fdt.commentaireLundi.ToString();
+            tc3.Text += p_fdt.commentaireLundi.ToString();
         }
-        tbLunCom.CssClass = "col-sm";
-        tbLunCom.ReadOnly = true;
-        tc3.Controls.Add(tbLunCom);
+        //tbLunCom.CssClass = "col-sm";
+        //tbLunCom.ReadOnly = true;
+        //tc3.Controls.Add(tbLunCom);
         //--Com
-        TextBox tbMarCom = new TextBox();
+        //TextBox tbMarCom = new TextBox();
         if (p_fdt.commentaireMardi != null)
         {
-            tbMarCom.Text = p_fdt.commentaireMardi.ToString();
+            tc4.Text += p_fdt.commentaireMardi.ToString();
         }
-        tbMarCom.CssClass = "col-sm";
-        tbMarCom.ReadOnly = true;
-        tc4.Controls.Add(tbMarCom);
+        //tbMarCom.CssClass = "col-sm";
+        //tbMarCom.ReadOnly = true;
+        //tc4.Controls.Add(tbMarCom);
         //--Com
-        TextBox tbMerCom = new TextBox();
+        //TextBox tbMerCom = new TextBox();
         if (p_fdt.commentaireMercredi != null)
         {
-            tbMerCom.Text = p_fdt.commentaireMercredi.ToString();
+            tc5.Text += p_fdt.commentaireMercredi.ToString();
         }
-        tbMerCom.CssClass = "col-sm";
-        tbMerCom.ReadOnly = true;
-        tc5.Controls.Add(tbMerCom);
+        //tbMerCom.CssClass = "col-sm";
+        //tbMerCom.ReadOnly = true;
+        //tc5.Controls.Add(tbMerCom);
         //--Com
-        TextBox tbJeuCom = new TextBox();
+        //TextBox tbJeuCom = new TextBox();
         if (p_fdt.commentaireJeudi != null)
         {
-            tbJeuCom.Text = p_fdt.commentaireJeudi.ToString();
+            tc6.Text += p_fdt.commentaireJeudi.ToString();
         }
-        tbJeuCom.CssClass = "col-sm";
-        tbJeuCom.ReadOnly = true;
-        tc6.Controls.Add(tbJeuCom);
+        //tbJeuCom.CssClass = "col-sm";
+        //tbJeuCom.ReadOnly = true;
+        //tc6.Controls.Add(tbJeuCom);
         //--Com
-        TextBox tbVenCom = new TextBox();
+        //TextBox tbVenCom = new TextBox();
         if (p_fdt.commentaireVendredi != null)
         {
-            tbVenCom.Text = p_fdt.commentaireVendredi.ToString();
+            tc7.Text += p_fdt.commentaireVendredi.ToString();
         }
-        tbVenCom.CssClass = "col-sm";
-        tbVenCom.ReadOnly = true;
-        tc7.Controls.Add(tbVenCom);
+        //tbVenCom.CssClass = "col-sm";
+        //tbVenCom.ReadOnly = true;
+        //tc7.Controls.Add(tbVenCom);
         //--Com
-        TextBox tbSamCom = new TextBox();
+        //TextBox tbSamCom = new TextBox();
         if (p_fdt.commentaireSamedi != null)
         {
-            tbSamCom.Text = p_fdt.commentaireSamedi.ToString();
+            tc8.Text += p_fdt.commentaireSamedi.ToString();
         }
-        tbSamCom.CssClass = "col-sm";
-        tbSamCom.ReadOnly = true;
-        tc8.Controls.Add(tbSamCom);
+        //tbSamCom.CssClass = "col-sm";
+        //tbSamCom.ReadOnly = true;
+        //tc8.Controls.Add(tbSamCom);
 
         tr.Cells.Add(tc1);
         tr.Cells.Add(tc2);
@@ -321,8 +342,9 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             TableCell tc10 = new TableCell();
             Button bt_modif = new Button();
             bt_modif.Text = "Modifier";
-            bt_modif.PostBackUrl = "~/AjoutFeuilleDeTemps.aspx?date=" + Calendar1.SelectedDate + "&idFdt=" + p_fdt.idFeuilleDeTemps.ToString();
-
+            bt_modif.PostBackUrl = "~/AjoutFeuilleDeTemps.aspx?date=" + DateTime.ParseExact(tbx_Semaine.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) + "&idFdt=" + p_fdt.idFeuilleDeTemps.ToString();
+           
+            
             bt_modif.Click += new EventHandler(this.bt_modifier_Click1);
             //?id = " + employe.idEmploye.ToString();
             tc10.Controls.Add(bt_modif);
@@ -331,23 +353,25 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
         t_feuilleTemps.Rows.Add(tr);
     }
-    Label ajoutLabel()
-    {
-        Label lh = new Label();
-        lh.Text = "H";
-        return lh;
-    }
+    //Label ajoutLabel()
+    //{
+    //    Label lh = new Label();
+    //    lh.Text = "H";
+    //    return lh;
+    //}
 
     protected void btn_ajouter_Click(object sender, EventArgs e)
     {
 
-        if (Calendar1.SelectedDate!= null)
+        if (DateTime.ParseExact(tbx_Semaine.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) != null)
         {
-            Response.Redirect("AjoutFeuilleDeTemps.aspx?date=" + Calendar1.SelectedDate + "&idFdt=" + (-1));
+            Response.Redirect("AjoutFeuilleDeTemps.aspx?date=" + DateTime.ParseExact(tbx_Semaine.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) + "&idFdt=" + (-1));
+           
+
         }
         else
         {
-            lb_erreur.Text = "Veuillez choisir une date!";
+            //lb_erreur.Text = "Veuillez choisir une date!";
         }
     }
 
@@ -372,74 +396,74 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         TableRow tr = new TableRow();
         TableCell tc1 = new TableCell();
 
-        Label lb_Total = new Label();
-        lb_Total.Text = "Total";
+        //Label lb_Total = new Label();
+        tc1.Text = "Total";
 
-        tc1.Controls.Add(lb_Total);
+        //tc1.Controls.Add(lb_Total);
 
         TableCell tc2 = new TableCell();
-        TextBox tb_dimTot = new TextBox();
+        //TextBox tb_dimTot = new TextBox();
 
-        tb_dimTot.Text = totDim.ToString();
-        tb_dimTot.Enabled = false;
+        tc2.Text = totDim.ToString() + " H";
+        //tb_dimTot.Enabled = false;
 
-        tb_dimTot.CssClass = "col-sm-5";
-        tc2.Controls.Add(tb_dimTot);
-        tc2.Controls.Add(ajoutLabel());
+        //tb_dimTot.CssClass = "col-sm-5";
+        //tc2.Controls.Add(tb_dimTot);
+        //tc2.Controls.Add(ajoutLabel());
         TableCell tc3 = new TableCell();
-        TextBox tb_lunTot = new TextBox();
+        //TextBox tb_lunTot = new TextBox();
 
-        tb_lunTot.Text = totLun.ToString();
-        tb_lunTot.Enabled = false;
+        tc3.Text = totLun.ToString() + " H";
+        //tb_lunTot.Enabled = false;
 
-        tb_lunTot.CssClass = "col-sm-5"; ;
-        tc3.Controls.Add(tb_lunTot);
-        tc3.Controls.Add(ajoutLabel());
+        //tb_lunTot.CssClass = "col-sm-5"; ;
+        //tc3.Controls.Add(tb_lunTot);
+        //tc3.Controls.Add(ajoutLabel());
         TableCell tc4 = new TableCell();
-        TextBox tb_marTot = new TextBox();
+        //TextBox tb_marTot = new TextBox();
 
-        tb_marTot.Text = totMar.ToString();
-        tb_marTot.Enabled = false;
+        tc4.Text = totMar.ToString() + " H";
+        //tb_marTot.Enabled = false;
 
-        tb_marTot.CssClass = "col-sm-5"; ;
-        tc4.Controls.Add(tb_marTot);
-        tc4.Controls.Add(ajoutLabel());
+        //tb_marTot.CssClass = "col-sm-5"; ;
+        //tc4.Controls.Add(tb_marTot);
+        //tc4.Controls.Add(ajoutLabel());
         TableCell tc5 = new TableCell();
-        TextBox tb_merTot = new TextBox();
+        //TextBox tb_merTot = new TextBox();
 
-        tb_merTot.Text = totMer.ToString();
-        tb_merTot.Enabled = false;
+        tc5.Text = totMer.ToString() + " H";
+        //tb_merTot.Enabled = false;
 
-        tb_merTot.CssClass = "col-sm-5"; ;
-        tc5.Controls.Add(tb_merTot);
-        tc5.Controls.Add(ajoutLabel());
+        //tb_merTot.CssClass = "col-sm-5"; ;
+        //tc5.Controls.Add(tb_merTot);
+        //tc5.Controls.Add(ajoutLabel());
         TableCell tc6 = new TableCell();
-        TextBox tb_jeuTot = new TextBox();
+        //TextBox tb_jeuTot = new TextBox();
 
-        tb_jeuTot.Text = totJeu.ToString();
-        tb_jeuTot.Enabled = false;
+        tc6.Text = totJeu.ToString() + " H";
+        //tb_jeuTot.Enabled = false;
 
-        tb_jeuTot.CssClass = "col-sm-5"; ;
-        tc6.Controls.Add(tb_jeuTot);
-        tc6.Controls.Add(ajoutLabel());
+        //tb_jeuTot.CssClass = "col-sm-5"; ;
+        //tc6.Controls.Add(tb_jeuTot);
+        //tc6.Controls.Add(ajoutLabel());
         TableCell tc7 = new TableCell();
-        TextBox tb_venTot = new TextBox();
+        //TextBox tb_venTot = new TextBox();
 
-        tb_venTot.Text = totVen.ToString();
-        tb_venTot.Enabled = false;
+        tc7.Text = totVen.ToString() + " H";
+        //tb_venTot.Enabled = false;
 
-        tb_venTot.CssClass = "col-sm-5"; ;
-        tc7.Controls.Add(tb_venTot);
-        tc7.Controls.Add(ajoutLabel());
+        //tb_venTot.CssClass = "col-sm-5"; ;
+        //tc7.Controls.Add(tb_venTot);
+        //tc7.Controls.Add(ajoutLabel());
         TableCell tc8 = new TableCell();
-        TextBox tb_samTot = new TextBox();
+        //TextBox tb_samTot = new TextBox();
 
-        tb_samTot.Text = totSam.ToString();
-        tb_samTot.Enabled = false;
+        tc8.Text = totSam.ToString() + " H";
+        //tb_samTot.Enabled = false;
 
-        tb_samTot.CssClass = "col-sm-5";
-        tc8.Controls.Add(tb_samTot);
-        tc8.Controls.Add(ajoutLabel());
+        //tb_samTot.CssClass = "col-sm-5";
+        //tc8.Controls.Add(tb_samTot);
+        //tc8.Controls.Add(ajoutLabel());
 
         tr.Cells.Add(tc1);
         tr.Cells.Add(tc2);
@@ -470,5 +494,10 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
         T_CategoriePro t = bd.T_CategoriePro.Single(f => f.descript == name);
         bd.Dispose();
         return t;
+    }
+
+    protected void btn_AllApp_Click(object sender, EventArgs e)
+    {
+
     }
 }
