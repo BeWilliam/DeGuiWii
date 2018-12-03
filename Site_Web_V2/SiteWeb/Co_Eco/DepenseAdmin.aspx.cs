@@ -85,7 +85,11 @@ public partial class DepenseAdmin : System.Web.UI.Page
                     tc_date.Width = new Unit("25%");
                     tr.Cells.Add(tc_date);
                     TableCell tc_montant = new TableCell();
-                    float tot = (float)depense.montant * 100; tot = (float)Math.Round(tot); tot /= 100;
+                    float tot = 0;
+                    if (depense.montant != null)
+                    {
+                       tot = (float)depense.montant * 100; tot = (float)Math.Round(tot); tot /= 100;
+                    }
                     tc_montant.Text = string.Format("{0:c}", tot);
                     tc_montant.Width = new Unit("25%");
                     tr.Cells.Add(tc_montant);
@@ -103,8 +107,8 @@ public partial class DepenseAdmin : System.Web.UI.Page
                     tr.Cells.Add(tc_app);
                     tbRow.Rows.Add(tr);
                     pnl_dep.Controls.Add(tbRow);
-
-                    total += (float)depense.montant;
+                    if(depense.montant != null)
+                        total += (float)depense.montant;
                 }
             }
 
