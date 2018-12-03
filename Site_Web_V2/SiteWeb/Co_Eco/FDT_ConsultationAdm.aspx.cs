@@ -55,7 +55,7 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
 
     protected void btn_ajouter_Click(object sender, EventArgs e)
     {
-        T_FeuilleDeTemps fdt = new T_FeuilleDeTemps();
+        T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(idFdt);
 
 
         fdt.idCategorie = int.Parse(ddl_Categorie.SelectedValue);
@@ -194,13 +194,13 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
             BD_CoEco.UpdateFeuilleDeTemps(fdt);
 
 
-        Response.Redirect("ApprouverFDT.aspx");
+        Response.Redirect("ApprouveFDT.aspx");
     }
 
     void modifFdt(int p_id)
     {
         T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(p_id);
-
+        fdt.idEmp = BD_CoEco.GetFeuilleDeTempsById(p_id).idEmp;
         if (fdt.dimanche != null)
         {
             tb_dimanche.Text = fdt.dimanche.ToString();
