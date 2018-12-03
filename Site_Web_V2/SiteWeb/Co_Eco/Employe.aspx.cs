@@ -16,7 +16,10 @@ public partial class Employe : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
         List<T_Employe> rawListeEmp = BD_CoEco.GetListeEmploye();
         //trié la liste avant insertion
         List<T_Employe> listeEmp = rawListeEmp.OrderBy(o => o.idStatus).ThenBy(o => o.prenom).ThenBy(o => o.nom).ToList();

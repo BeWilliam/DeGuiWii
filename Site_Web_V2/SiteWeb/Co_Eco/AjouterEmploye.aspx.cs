@@ -13,6 +13,12 @@ public partial class AjouterEmploye : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //rendre non visible le statut, car par défaut lorsqu'on ajoute le statut est nécessairement actif
+
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
         btn_appliquer.Enabled = false;
         btn_modifier.Enabled = false;
         ddl_statut.Enabled = false;

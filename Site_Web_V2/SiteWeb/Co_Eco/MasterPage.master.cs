@@ -13,7 +13,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             Response.Redirect("index.aspx");
         }
-        if(Session["fonction"].ToString() == "1")
+        if(Session["fonction"] != null && Session["fonction"].ToString() == "1")
         {
             //Bureau
             div_FeuilleDeTemps.Visible = true;
@@ -26,7 +26,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_BanqueHeuresEmp.Visible = true;
             div_BanqueHeuresAdmin.Visible = false;
         }
-        if (Session["fonction"].ToString() == "2")
+        if (Session["fonction"] != null && Session["fonction"].ToString() == "2")
         {
             //Terrain
             div_FeuilleDeTemps.Visible = true;
@@ -39,7 +39,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             div_BanqueHeuresEmp.Visible = false;
             div_BanqueHeuresAdmin.Visible = false;
         }
-        if (Session["fonction"].ToString() == "3")
+        if (Session["fonction"] != null && Session["fonction"].ToString() == "3")
         {
             //Admin
             div_FeuilleDeTemps.Visible = false;

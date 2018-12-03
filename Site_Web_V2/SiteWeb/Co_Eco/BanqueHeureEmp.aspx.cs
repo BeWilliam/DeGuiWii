@@ -10,6 +10,11 @@ public partial class BanqueHeureEmp : System.Web.UI.Page
     int idEmp;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
         HeaderTableau();
         idEmp = int.Parse(Session["idEmp"].ToString());
         T_Employe emp = BD_CoEco.GetEmpByID(idEmp);

@@ -12,6 +12,11 @@ public partial class Connexion : System.Web.UI.Page
         Session["username"] = tbx_username.Text;
         Session["password"] = tbx_mdp.Text;
         message_erreur.Visible = false;
+
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
     }
 
     protected void Connexion_click(object sender, EventArgs e)

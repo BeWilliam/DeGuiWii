@@ -9,6 +9,11 @@ public partial class ApprouveFDT : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
         //Si un usager normal rentre dans l'URL cette page, on le "kick"
         if (Session["fonction"].ToString() != "3")
         {

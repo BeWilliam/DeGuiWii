@@ -10,6 +10,11 @@ public partial class BanqueHeureDetailAdmin : System.Web.UI.Page
     int idEmp;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
         HeaderTableau();
         if (!IsPostBack)
         {

@@ -14,6 +14,11 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
         urlParam = Request.QueryString["id"];
 
         btn_modifier.Enabled = true;

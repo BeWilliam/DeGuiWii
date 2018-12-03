@@ -15,6 +15,10 @@ public partial class Projet : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
 
         List<T_StatusProjet> listeStatProjet = BD_CoEco.GetListeStatusProjet();
         List<T_Projet> rawListeProjet = BD_CoEco.GetListeProjet();

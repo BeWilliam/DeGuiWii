@@ -14,6 +14,11 @@ public partial class BanqueHeureAdmin : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
         header();
 
         List<T_Employe> rawListeEmp = BD_CoEco.GetListeEmploye();

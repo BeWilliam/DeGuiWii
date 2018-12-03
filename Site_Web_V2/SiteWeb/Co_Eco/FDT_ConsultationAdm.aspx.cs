@@ -9,7 +9,11 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
 
         if (Session["fonction"].ToString() != "3")
         {

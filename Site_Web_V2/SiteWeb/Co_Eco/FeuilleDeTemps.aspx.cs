@@ -32,6 +32,11 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
         CoEco_BDDataContext BD = new CoEco_BDDataContext();
 
         ListeCatGlobal = BD_CoEco.GetListeCategorie();

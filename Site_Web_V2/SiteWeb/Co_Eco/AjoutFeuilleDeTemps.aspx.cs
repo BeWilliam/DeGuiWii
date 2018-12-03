@@ -14,7 +14,10 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
     List<T_CategoriePro> ListeCategorie;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
         //idEmp = int.Parse(Session["idEmp"].ToString());
 
         //ddl_Projet.Items.Clear();

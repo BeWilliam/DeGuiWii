@@ -13,11 +13,6 @@ public partial class Depenses : System.Web.UI.Page
         btn_modifier.Enabled = false;
         btn_apply.Enabled = false;
 
-        if(Session["fonction"].ToString() == "3")
-        {
-            
-        }
-
         if(!IsPostBack)
         {
             //First Load
@@ -27,6 +22,14 @@ public partial class Depenses : System.Web.UI.Page
             loadTypeDepense();
             loadEmploye();
             loadTypeAuto();
+
+            if(Session["fonction"] == null)
+            {
+                Response.Redirect("index.aspx");
+            }
+                
+
+
 
             if (Session["fonction"].ToString() == "3")
             {

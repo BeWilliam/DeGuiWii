@@ -11,6 +11,10 @@ public partial class AjoutBanqueHeure : System.Web.UI.Page
     T_Employe emp;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
 
         idEmp = Request.QueryString["id"];
         emp = BD_CoEco.GetEmpByID(int.Parse(idEmp));
