@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class FDT_ConsultationAdm : System.Web.UI.Page
 {
-    int idEmp;
+
     int idFdt;
     List<T_Projet> projetsDeLemploye;
     List<T_CategoriePro> ListeCategorie;
@@ -62,7 +62,7 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
 
 
 
-        fdt.idEmp = int.Parse(Session["idEmp"].ToString());
+        
 
         if (tb_dimanche.Text != "")
         {
@@ -194,7 +194,7 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
             BD_CoEco.UpdateFeuilleDeTemps(fdt);
 
 
-        Response.Redirect("FeuilleDeTemps.aspx");
+        Response.Redirect("ApprouverFDT.aspx");
     }
 
     void modifFdt(int p_id)
