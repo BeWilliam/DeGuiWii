@@ -463,6 +463,10 @@ public class BD_CoEco
         BD.PS_GetMaxIdCategorie(ref maxID);
         maxID++;
         p_categorie.idCategorie = (int)maxID;
+        if(maxID == null)
+        {
+            maxID = 1;
+        }
 
         BD.T_CategoriePro.InsertOnSubmit(p_categorie);
         BD.SubmitChanges();
