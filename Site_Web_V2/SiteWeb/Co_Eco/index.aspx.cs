@@ -16,7 +16,7 @@ public partial class Connexion : System.Web.UI.Page
 
     protected void Connexion_click(object sender, EventArgs e)
     {
-        List<T_Employe> listeEmp = BD_CoEco.GetListeEmploye();
+        List<T_Employe> listeEmp = BD_CoEco.GetListeEmploye(true);
 
         if(tbx_username.Text != null && tbx_username.Text != "")
         {
