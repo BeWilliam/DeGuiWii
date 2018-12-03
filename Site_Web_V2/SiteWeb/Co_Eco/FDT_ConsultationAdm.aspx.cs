@@ -264,16 +264,20 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
         {
             tb_samediCommentaire.Text = fdt.commentaireSamedi.ToString();
         }
-
+        loadDllProjet();
         T_CategoriePro cat = BD_CoEco.GetCatByID(fdt.idCategorie);
         ddl_Projet.SelectedValue = cat.idProjet.ToString();
-        List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(ddl_Projet.SelectedValue)));
-        listCat = listCat.OrderBy(o => o.descript).ToList();
-        foreach (T_CategoriePro categoriePro in listCat)
+        if(ddl_Projet.SelectedValue != null)
         {
-            ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
+            List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(ddl_Projet.SelectedValue)));
+            listCat = listCat.OrderBy(o => o.descript).ToList();
+            foreach (T_CategoriePro categoriePro in listCat)
+            {
+                ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
+            }
+            ddl_Categorie.SelectedValue = fdt.idCategorie.ToString();
         }
-        ddl_Categorie.SelectedValue = fdt.idCategorie.ToString();
+        
     }
 
     protected void btn_annuler_Click(object sender, EventArgs e)
