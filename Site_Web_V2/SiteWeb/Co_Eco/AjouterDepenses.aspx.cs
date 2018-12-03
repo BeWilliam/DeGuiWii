@@ -26,10 +26,7 @@ public partial class Depenses : System.Web.UI.Page
             if(Session["fonction"] == null)
             {
                 Response.Redirect("index.aspx");
-            }
-                
-
-
+            }   
 
             if (Session["fonction"].ToString() == "3")
             {
@@ -53,7 +50,8 @@ public partial class Depenses : System.Web.UI.Page
                 btn_desapprouver.Enabled = true;
                 btn_modifier.Visible = true;
                 btn_ok.Enabled = false;
-                ddl_employe.Enabled = true; 
+                ddl_employe.Enabled = true;
+                btn_modifier.Enabled = true;
 
             }
             else if (id != null && type != null)
@@ -364,7 +362,10 @@ public partial class Depenses : System.Web.UI.Page
             newDep.idDepense = int.Parse(Request.QueryString["id"]);
             newDep.montant = decimal.Parse(tbx_montant.Text);
             newDep.descript = tbx_description.Text;
-            newDep.ddate = DateTime.Parse(Ddate.Text);
+            if (Ddate != null)
+            {
+                newDep.ddate = DateTime.Parse(Ddate.Text);
+            }
             newDep.idType = int.Parse(ddl_typeDepense.SelectedValue);
             newDep.idProjet = int.Parse(ddl_projet.SelectedValue);
             //newDep.idCategorie = int.Parse(ddL_categorie.SelectedValue);
