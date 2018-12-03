@@ -39,11 +39,11 @@
                 <div class="row justify-content-md-center">
                     <div class="col-lg-6">
                         <label for="validationTooltip01">Prénom*</label>
-                        <asp:TextBox ID="tbx_prenom" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="tbx_prenom" runat="server" CssClass="form-control" required="true"></asp:TextBox>
                     </div>
                     <div class="col-lg-6">
                         <label for="validationTooltip01">Nom*</label>
-                        <asp:TextBox ID="tbx_nom" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="tbx_nom" runat="server" CssClass="form-control" required="true"></asp:TextBox>
                     </div>
                 </div>
             </div>

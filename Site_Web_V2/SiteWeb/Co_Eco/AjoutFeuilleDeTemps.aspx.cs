@@ -18,17 +18,7 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         {
             Response.Redirect("index.aspx");
         }
-        //idEmp = int.Parse(Session["idEmp"].ToString());
 
-        //ddl_Projet.Items.Clear();
-        //ddl_Categorie.Items.Clear();
-        //projetsDeLemploye = BD_CoEco.GetProjectByEmp(BD_CoEco.GetEmpByID(idEmp));
-
-        //foreach (T_Projet proj in projetsDeLemploye)
-        //{
-        //    ddl_Projet.Items.Add(proj.nom);
-        //}
-        //ListeCategorie = GetListeCateByProjet(projetsDeLemploye);
         loadDllProjet();
 
 
@@ -56,7 +46,8 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
 
     protected void ddl_projet_SelectedIndexChanged(object sender, EventArgs e)
     {
-        loadDdlCat();
+            loadDdlCat();
+        
     }
 
     List<T_CategoriePro> GetListeCateByProjet(List<T_Projet> p_projet)
@@ -329,12 +320,17 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         {
             List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(proj)));
             listCat = listCat.OrderBy(o => o.descript).ToList();
+
             foreach (T_CategoriePro categoriePro in listCat)
             {
                 ddl_Categorie.Items.Add(new ListItem(categoriePro.descript, categoriePro.idCategorie.ToString()));
             }
-            ddl_Projet.SelectedValue = listCat[0].idProjet.ToString();
-            btn_ajouter.Enabled = true;
+            if(listCat != null && listCat.Count != 0)
+            {
+                ddl_Projet.SelectedValue = listCat[0].idProjet.ToString();
+                btn_ajouter.Enabled = true;
+
+            }
         }
         else
         {

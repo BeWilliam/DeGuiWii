@@ -100,7 +100,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
                 {
                     if (feuilleDeTemps.idEmp == idEmp)
                     {
-                        if (getFirstDayOfWeek((DateTime)feuilleDeTemps.semaine) == p_dt)
+                        if (getFirstDayOfWeek((DateTime)feuilleDeTemps.semaine) == getFirstDayOfWeek(p_dt))
                         {
                             ajouterRows(feuilleDeTemps);
                         }
