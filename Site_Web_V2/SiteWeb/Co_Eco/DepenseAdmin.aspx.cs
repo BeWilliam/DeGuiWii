@@ -78,7 +78,10 @@ public partial class DepenseAdmin : System.Web.UI.Page
                     tc_nom.Controls.Add(hl);
                     tr.Cells.Add(tc_nom);
                     TableCell tc_date = new TableCell();
-                    tc_date.Text = String.Format("{0:d}", ((DateTime)depense.ddate));
+                    if (depense.ddate != null)
+                        tc_date.Text = String.Format("{0:d}", ((DateTime)depense.ddate));
+                    else
+                        tc_date.Text = "";
                     tc_date.Width = new Unit("25%");
                     tr.Cells.Add(tc_date);
                     TableCell tc_montant = new TableCell();
@@ -168,10 +171,16 @@ public partial class DepenseAdmin : System.Web.UI.Page
             TableCell tc_total = new TableCell();
             tc_total.Width = new Unit("75%");
             tc_total.ColumnSpan = 2;
+
             tc_total.Text = string.Format("{0:c}", total);
             tr_F.Cells.Add(tc_total);
             tb.Rows.Add(tr_F);
             pnl_projet.Controls.Add(tb);
+
+            if(total == 0)
+            {
+                pnl_master.Controls.Remove(pnl_projet);
+            }
 
         }
 
