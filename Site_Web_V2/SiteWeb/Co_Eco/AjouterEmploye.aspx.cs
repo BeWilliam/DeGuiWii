@@ -99,20 +99,26 @@ public partial class AjouterEmploye : System.Web.UI.Page
 
         //ajouter un employé
 
-        T_Employe newEmp = new T_Employe();
-        newEmp.prenom = tbx_prenom.Text;
-        newEmp.nom = tbx_nom.Text;
-        newEmp.courriel = tbx_courriel.Text;
-        newEmp.mdp = tbx_mdp.Text;
-        newEmp.idStatus = 1;
-        newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
-        newEmp.loginName = tbx_pseudo.Text;
+        if (tbx_prenom.Text != "" && tbx_nom.Text != "")
+        {
+            T_Employe newEmp = new T_Employe();
+            newEmp.prenom = tbx_prenom.Text;
+            newEmp.nom = tbx_nom.Text;
+            newEmp.courriel = tbx_courriel.Text;
+            newEmp.mdp = tbx_mdp.Text;
+            newEmp.idStatus = 1;
+            newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
+            newEmp.loginName = tbx_pseudo.Text;
 
-        BD_CoEco.CreateNewEmploye(newEmp);
+            BD_CoEco.CreateNewEmploye(newEmp);
+            Response.Redirect("Employe.aspx");
+        }
+        else
+        {
+            message_erreur.Visible = true;
+        }
 
-        //faire une gestion d'erreur ici
-
-        Response.Redirect("Employe.aspx");
+        
     }
 
     protected void AfficherEmp()
@@ -197,8 +203,8 @@ public partial class AjouterEmploye : System.Web.UI.Page
 
     protected void btn_retour_Click(object sender, EventArgs e)
     {
-        tbx_prenom.Text = " chargement ";
-        tbx_nom.Text = " chargement ";
+        Controls.Remove(tbx_prenom);
+        tbx_nom.Enabled = false;
         Response.Redirect("Employe.aspx");
     }
 

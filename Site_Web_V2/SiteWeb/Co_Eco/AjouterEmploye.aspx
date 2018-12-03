@@ -33,17 +33,20 @@
         <div class="col-md-6 offset-md-3">
             <div class="col-xs-1 text-center">
                 <h2>Employé</h2>
+                        <div class="alert alert-info" id="message_erreur" runat="server" visible="false">
+            <strong>Info!</strong> Le prénom et le nom sont obligatoires.
+        </div>
             </div>
 
             <div class="container">
                 <div class="row justify-content-md-center">
                     <div class="col-lg-6">
                         <label for="validationTooltip01">Prénom*</label>
-                        <asp:TextBox ID="tbx_prenom" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+                        <asp:TextBox ID="tbx_prenom" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="col-lg-6">
                         <label for="validationTooltip01">Nom*</label>
-                        <asp:TextBox ID="tbx_nom" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+                        <asp:TextBox ID="tbx_nom" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
             </div>
