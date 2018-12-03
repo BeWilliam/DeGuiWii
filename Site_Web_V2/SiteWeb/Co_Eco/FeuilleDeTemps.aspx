@@ -3,31 +3,41 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
-    <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="width: 100%; margin-left: 5px; margin-top: 5px; text-decoration: none;"></asp:Calendar>
-        <div class="div_bouton">
-        <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" Visible="false" OnClick="btn_ajouter_Click" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />
+<%--    <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="width: 100%; margin-left: 5px; margin-top: 5px; text-decoration: none;"></asp:Calendar>
+        <div class="div_bouton">--%>
+       <%-- <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" Visible="false" OnClick="btn_ajouter_Click" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />--%>
         <%--<asp:Button ID="btn_confirmer" runat="server" Text="Confirmer" OnClick="btn_confirmer_Click" Visible="False" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />--%>
         <%--<asp:Button ID="btn_annuler" runat="server" Text="Annuler"  Visible="False" OnClick="btn_annuler_Click" CssClass="btn btn-danger" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />--%>
         <%--<asp:Button ID="btn_confirmerModif" runat="server" Text="Confirmer la modification" OnClick="btn_confirmerModif_Click" Visible="false" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;"/>--%>
-                <asp:Label ID="lb_erreur" runat="server" Text="" ForeColor="Red"></asp:Label>
-    </div>
+<%--                <asp:Label ID="lb_erreur" runat="server" Text="" ForeColor="Red"></asp:Label>
+    </div>--%>
 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server" ClientIDMode="Inherit">
+<asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
 
-    
+    <div class="col-md-6 offset-md-3">
+                <div class="col-md-auto" style="text-align: center;">
+                    <h2>Feuilles de temps</h2>
 
-    <asp:table ID="t_feuilleTemps" runat="server" CssClass="table table-striped table-hover">
+                    <label for="validationTooltip01">Choisir la semaine</label>
+                    <asp:TextBox TextMode="Date" CssClass="form-control" runat="server" ID="tbx_Semaine" OnTextChanged="Calendar1_SelectionChanged" AutoPostBack="true" style="text-align:center; margin-bottom:10px;"/>
+                        
+                </div>
+         <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" Visible="false" OnClick="btn_ajouter_Click" CssClass="btn btn-success" style="margin-top: 10px; width: 100%; color: #000000; margin-left: 5px;" />
+            </div>
+
+    <asp:table ID="t_feuilleTemps" runat="server" CssClass="table">
       <asp:TableRow>
-        <asp:TableHeaderCell ID="thc_Projet">Projet</asp:TableHeaderCell>
-        <asp:TableHeaderCell ID="Dimanche" BackColor="LightGray">Dimanche</asp:TableHeaderCell>
-        <asp:TableHeaderCell ID="Lundi">Lundi</asp:TableHeaderCell>
-        <asp:TableHeaderCell ID="Mardi">Mardi</asp:TableHeaderCell>
-        <asp:TableHeaderCell ID="Mercredi">Mercredi</asp:TableHeaderCell>
-        <asp:TableHeaderCell ID="Jeudi">Jeudi</asp:TableHeaderCell>
-        <asp:TableHeaderCell ID="Vendredi">Vendredi</asp:TableHeaderCell>
-        <asp:TableHeaderCell ID="Samedi" BackColor="LightGray">Samedi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="thc_Projet" Width="15%">Projet</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Dimanche" Width="10%" BackColor="LightGray">Dimanche</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Lundi" Width="10%">Lundi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Mardi" Width="10%">Mardi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Mercredi" Width="10%">Mercredi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Jeudi" Width="10%">Jeudi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Vendredi" Width="10%">Vendredi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Samedi" Width="10%" BackColor="LightGray">Samedi</asp:TableHeaderCell>
+        <asp:TableHeaderCell ID="Modif" Width="5%"></asp:TableHeaderCell>
       </asp:TableRow>
 <%--      <asp:TableRow ID="tr_ajout"  Visible = "false">
           <asp:TableCell>--%>
