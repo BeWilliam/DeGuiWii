@@ -46,10 +46,7 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
 
     protected void ddl_projet_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddl_Projet.SelectedValue != "-1")
-        {
             loadDdlCat();
-        }
         
     }
 
