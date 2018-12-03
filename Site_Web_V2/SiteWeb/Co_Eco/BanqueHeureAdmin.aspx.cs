@@ -85,7 +85,7 @@ public partial class BanqueHeureAdmin : System.Web.UI.Page
         {
             if (fdt.idEmp == p_idEmp)
             {
-                if (fdt.idCategorie == 191 || fdt.idCategorie == 192 || fdt.idCategorie == 193 || fdt.idCategorie == 194 || fdt.idCategorie == 255)
+                if (fdt.idCategorie == 3 || fdt.idCategorie == 4 || fdt.idCategorie == 5 || fdt.idCategorie == 8 || fdt.idCategorie == 7)
                 {
                     nbHeure += (int)Utilitaires.GetHeureFDT(fdt.idFeuilleDeTemps);
                 }

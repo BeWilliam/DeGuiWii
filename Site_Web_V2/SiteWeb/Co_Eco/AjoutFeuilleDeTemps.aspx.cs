@@ -18,17 +18,7 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
         {
             Response.Redirect("index.aspx");
         }
-        //idEmp = int.Parse(Session["idEmp"].ToString());
 
-        //ddl_Projet.Items.Clear();
-        //ddl_Categorie.Items.Clear();
-        //projetsDeLemploye = BD_CoEco.GetProjectByEmp(BD_CoEco.GetEmpByID(idEmp));
-
-        //foreach (T_Projet proj in projetsDeLemploye)
-        //{
-        //    ddl_Projet.Items.Add(proj.nom);
-        //}
-        //ListeCategorie = GetListeCateByProjet(projetsDeLemploye);
         loadDllProjet();
 
 
@@ -56,7 +46,11 @@ public partial class AjoutFeuilleDeTemps : System.Web.UI.Page
 
     protected void ddl_projet_SelectedIndexChanged(object sender, EventArgs e)
     {
-        loadDdlCat();
+        if (ddl_Projet.SelectedValue != "-1")
+        {
+            loadDdlCat();
+        }
+        
     }
 
     List<T_CategoriePro> GetListeCateByProjet(List<T_Projet> p_projet)
