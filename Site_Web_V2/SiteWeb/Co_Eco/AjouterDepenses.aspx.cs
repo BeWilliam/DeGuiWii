@@ -296,15 +296,17 @@ public partial class Depenses : System.Web.UI.Page
                 newDep.idEmp = int.Parse(ddl_employe.SelectedValue);
                 newDep.aprobation = null;
                 BD_CoEco.AddDepense(newDep);
-                Response.Redirect("DepenseAdmin.aspx");
             }
             else
             {
                 //Kilométrage
                 T_Kilometrage newKilo = new T_Kilometrage();
-                newKilo.nbKilo = float.Parse(tbx_montant.Text);
-                newKilo.commentaire = tbx_description.Text;
-                newKilo.ddate = DateTime.Parse(Ddate.Text);
+                if (tbx_montant.Text != "")
+                    newKilo.nbKilo = float.Parse(tbx_montant.Text);
+                if (tbx_description.Text != "")
+                    newKilo.commentaire = tbx_description.Text;
+                if (Ddate.Text != "")
+                    newKilo.ddate = DateTime.Parse(Ddate.Text);
                 newKilo.idEmp = int.Parse(ddl_employe.SelectedValue);
                 //Cette partie à retirer / modifier
                 newKilo.idPro = int.Parse(ddl_projet.SelectedValue);
@@ -312,6 +314,7 @@ public partial class Depenses : System.Web.UI.Page
                 newKilo.idTaux = BD_CoEco.GetIdTauxKilo(int.Parse(ddl_typeVehicule.SelectedValue));
                 BD_CoEco.AjouterDepKilometrage(newKilo);
             }
+            Response.Redirect("DepenseAdmin.aspx");
         }
     }
 
