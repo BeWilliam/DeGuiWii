@@ -58,7 +58,7 @@ public partial class BanqueHeureAdmin : System.Web.UI.Page
         TableCell tc_Nom = new TableCell();
         HyperLink hl = new HyperLink();
         hl.Text = employe.prenom + " " + employe.nom;
-        hl.NavigateUrl = "AjoutBanqueHeure.aspx?id=" + employe.idEmploye.ToString();
+        hl.NavigateUrl = "BanqueHeureDetailAdmin.aspx?id=" + employe.idEmploye.ToString();
         tc_Nom.Controls.Add(hl);
         //tc_Prenom.Text = employe.prenom;
         TableCell tc_heuresDepensee = new TableCell();

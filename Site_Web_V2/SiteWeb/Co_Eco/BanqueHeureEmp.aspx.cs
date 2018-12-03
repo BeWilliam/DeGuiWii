@@ -11,11 +11,7 @@ public partial class BanqueHeureEmp : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         HeaderTableau();
-        if (!IsPostBack)
-        {
-            idEmp = int.Parse(Session["idEmp"].ToString());
-        }
-
+        idEmp = int.Parse(Session["idEmp"].ToString());
         T_Employe emp = BD_CoEco.GetEmpByID(idEmp);
         float nbHeures = 0;
 
@@ -132,7 +128,7 @@ public partial class BanqueHeureEmp : System.Web.UI.Page
         thc_Conges.Text = "Congés";
         thc_Conges.Width = new Unit("25%");
         TableHeaderCell thc_HrsPrises = new TableHeaderCell();
-        thc_HrsPrises.Text = "Heures Prises";
+        thc_HrsPrises.Text = "Heures utilisées";
         thc_HrsPrises.Width = new Unit("25%");
         TableHeaderCell thc_HrsTotal = new TableHeaderCell();
         thc_HrsTotal.Text = "Heures au total";
