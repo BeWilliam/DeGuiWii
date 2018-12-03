@@ -370,7 +370,7 @@ public partial class AjouterProjet : System.Web.UI.Page
         lst_employe.Items.RemoveAt(indexEmp);
 
         ajouterEmp(empId);
-
+        btn_modifier.Enabled = false;
     }
 
     private void ajouterEmpMod()
@@ -389,7 +389,7 @@ public partial class AjouterProjet : System.Web.UI.Page
         T_Employe empP = BD_CoEco.GetEmpByID(empId);
 
         retirerEmp(empId);
- 
+        btn_modifier.Enabled = false;
     }
 
     private void loadCat()

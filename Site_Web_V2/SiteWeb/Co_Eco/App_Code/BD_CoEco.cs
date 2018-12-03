@@ -387,12 +387,13 @@ public class BD_CoEco
         int? maxID = 0;
         BD.PS_GetMaxIdEmpPro(ref maxID);
         maxID++;
-        p_emp.idEmpPro = (int)maxID;
-
+   
         if(maxID == null)
         {
             maxID = 1;
         }
+
+        p_emp.idEmpPro = (int)maxID;
 
         BD.T_EmployeProjet.InsertOnSubmit(p_emp);
         BD.SubmitChanges();
