@@ -34,16 +34,12 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
         T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(id);
         T_Employe emp = BD_CoEco.GetEmpByID(fdt.idEmp);
 
-
         TableHeaderRow thr = new TableHeaderRow();
         TableHeaderCell thc_nom = new TableHeaderCell();
         thc_nom.Width = new Unit("20%");
         thc_nom.Text = "Nom";
         thr.Cells.Add(thc_nom);
         
-
-
-
         TableRow tr = new TableRow();
         TableCell tc_nom = new TableCell();
         tc_nom.Text = emp.prenom + " " + emp.nom;
@@ -57,9 +53,12 @@ public partial class FDT_ConsultationAdm : System.Web.UI.Page
 
             TableCell tc = new TableCell();
             TextBox tbx_heures = new TextBox();
+            tbx_heures.CssClass = "form-control";
+            tbx_heures.ID = "tbx_heures";
             tbx_heures.Text = Utilitaires.GetHeuresByDay(i,fdt.idFeuilleDeTemps).ToString();
 
             TextBox tbx_note = new TextBox();
+            tbx_note.CssClass = "form-control";
             tbx_note.TextMode = TextBoxMode.MultiLine;
             tbx_note.Height = new Unit("100px");
             tbx_note.Text = Utilitaires.GetNoteByDay(i, fdt.idFeuilleDeTemps);

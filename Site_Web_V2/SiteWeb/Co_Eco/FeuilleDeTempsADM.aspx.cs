@@ -57,14 +57,17 @@ public partial class FeuilleDeTempsADM : System.Web.UI.Page
                     tb.CssClass = "table";
                     TableHeaderRow thr = new TableHeaderRow();
                     TableHeaderCell thc_emp = new TableHeaderCell();
+                    thc_emp.Width = new Unit("33%");
                     thc_emp.Text = "Employé";
                     thr.Cells.Add(thc_emp);
                     TableHeaderCell thc_heures = new TableHeaderCell();
                     thc_heures.Text = "Heures";
+                    thc_heures.Width = new Unit("33%");
                     thr.Cells.Add(thc_heures);
                     TableHeaderCell thc_app = new TableHeaderCell();
                     thc_app.Text = "Approuver";
                     thr.Cells.Add(thc_app);
+                    thc_app.Width = new Unit("33%");
                     tb.Rows.Add(thr);
                     pnl_categorie.Controls.Add(tb);
 
