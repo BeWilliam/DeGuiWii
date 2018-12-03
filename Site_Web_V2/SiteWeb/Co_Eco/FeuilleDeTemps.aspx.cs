@@ -343,7 +343,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             Button bt_modif = new Button();
             bt_modif.Text = "Modifier";
             bt_modif.PostBackUrl = "~/AjoutFeuilleDeTemps.aspx?date=" + DateTime.ParseExact(tbx_Semaine.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) + "&idFdt=" + p_fdt.idFeuilleDeTemps.ToString();
-           
+            bt_modif.CssClass = "btn btn-success";
             
             bt_modif.Click += new EventHandler(this.bt_modifier_Click1);
             //?id = " + employe.idEmploye.ToString();
