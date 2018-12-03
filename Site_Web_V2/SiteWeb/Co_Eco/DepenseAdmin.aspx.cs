@@ -78,7 +78,7 @@ public partial class DepenseAdmin : System.Web.UI.Page
                     tc_nom.Controls.Add(hl);
                     tr.Cells.Add(tc_nom);
                     TableCell tc_date = new TableCell();
-                    if (((DateTime)depense.ddate) != null)
+                    if (depense.ddate != null)
                         tc_date.Text = String.Format("{0:d}", ((DateTime)depense.ddate));
                     else
                         tc_date.Text = "";
