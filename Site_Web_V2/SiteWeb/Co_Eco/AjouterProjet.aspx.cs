@@ -394,27 +394,30 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     private void loadCat()
     {
-        tableau_categorie.Rows.Clear();
-        List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(Request.QueryString["id"])));
-        listCat = listCat.OrderBy(o => o.descript).ToList();
-        foreach (T_CategoriePro categoriePro in listCat)
+        if (urlParam != null)
         {
-            if(categoriePro.idStatusCat == 1)
+            tableau_categorie.Rows.Clear();
+            List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(Request.QueryString["id"])));
+            listCat = listCat.OrderBy(o => o.descript).ToList();
+            foreach (T_CategoriePro categoriePro in listCat)
             {
-                TableRow tr = new TableRow();
-                TableCell tc1 = new TableCell();
-                TableCell tc2 = new TableCell();
-                //pas terminer
-                LinkButton btn = new LinkButton();
-                btn.ID = "btn_Cat-" + categoriePro.idCategorie;
-                btn.CssClass = "fas fa-trash - alt";
-                btn.Click += RemCat;
+                if (categoriePro.idStatusCat == 1)
+                {
+                    TableRow tr = new TableRow();
+                    TableCell tc1 = new TableCell();
+                    TableCell tc2 = new TableCell();
+                    //pas terminer
+                    LinkButton btn = new LinkButton();
+                    btn.ID = "btn_Cat-" + categoriePro.idCategorie;
+                    btn.CssClass = "fas fa-trash - alt";
+                    btn.Click += RemCat;
 
-                tc2.Controls.Add(btn);
-                tc1.Text = categoriePro.descript;
-                tr.Cells.Add(tc1);
-                tr.Cells.Add(tc2);
-                tableau_categorie.Rows.Add(tr);
+                    tc2.Controls.Add(btn);
+                    tc1.Text = categoriePro.descript;
+                    tr.Cells.Add(tc1);
+                    tr.Cells.Add(tc2);
+                    tableau_categorie.Rows.Add(tr);
+                }
             }
         }
     }
