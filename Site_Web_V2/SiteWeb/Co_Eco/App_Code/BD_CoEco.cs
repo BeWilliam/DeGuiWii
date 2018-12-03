@@ -355,6 +355,11 @@ public class BD_CoEco
         int? maxID = 0;
         BD.PS_GetMaxIdProjet(ref maxID);
         maxID++;
+        if (maxID == null)
+        {
+            maxID = 1;
+        }
+
         return maxID;
     }
 
@@ -364,6 +369,11 @@ public class BD_CoEco
         int? maxID = 0;
         BD.PS_GetMaxIdEmpolye(ref maxID);
         maxID++;
+        if (maxID == null)
+        {
+            maxID = 1;
+        }
+
         p_employe.idEmploye = (int)maxID;
 
         BD.T_Employe.InsertOnSubmit(p_employe);
@@ -378,6 +388,11 @@ public class BD_CoEco
         BD.PS_GetMaxIdEmpPro(ref maxID);
         maxID++;
         p_emp.idEmpPro = (int)maxID;
+
+        if(maxID == null)
+        {
+            maxID = 1;
+        }
 
         BD.T_EmployeProjet.InsertOnSubmit(p_emp);
         BD.SubmitChanges();
@@ -511,6 +526,12 @@ public class BD_CoEco
         int? maxID = 0;
         BD.PS_GetMaxIdFeuilleTemps(ref maxID);
         maxID++;
+
+        if(maxID == null)
+        {
+            maxID = 1;
+        }
+
         p_feuilleDeTemps.idFeuilleDeTemps = (int)maxID;
 
         BD.T_FeuilleDeTemps.InsertOnSubmit(p_feuilleDeTemps);
