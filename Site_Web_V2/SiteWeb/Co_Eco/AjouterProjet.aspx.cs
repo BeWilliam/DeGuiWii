@@ -182,7 +182,7 @@ public partial class AjouterProjet : System.Web.UI.Page
         List<T_Employe> listeResponsable = new List<T_Employe>();
         foreach (T_Employe employe in listeEmp)
         {
-            if (employe.idFonction == 1 || employe.idStatus == 1) //Employé de bureau
+            if (employe.idFonction == 1 && employe.idStatus == 1) //Employé de bureau
             {
                 listeResponsable.Add(employe);
             }
