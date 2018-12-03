@@ -71,4 +71,11 @@ public partial class Options : System.Web.UI.Page
             BD_CoEco.AddTauxKilo(float.Parse(text), 2);
         }
     }
+
+    protected void btn_download_Click(object sender, EventArgs e)
+    {
+        Response.AppendHeader("Content-Disposition", "attachment; filename=Guide d'utilisation.pdf");
+        Response.TransmitFile(@"~\Downloadss\Guide d'utilisation.pdf");
+        Response.End();
+    }
 }
