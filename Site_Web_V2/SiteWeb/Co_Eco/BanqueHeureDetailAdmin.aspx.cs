@@ -92,12 +92,12 @@ public partial class BanqueHeureDetailAdmin : System.Web.UI.Page
         }
         if (emp.vacances != null)
         {
-            ShowEmp(hrsAcc, (float)emp.vacances, "Heures vacances");
+            ShowEmp(vacances, (float)emp.vacances, "Heures vacances");
             nbHeures += (float)emp.vacances;
         }
         else
         {
-            ShowEmp(hrsAcc, 0, "Heures vacances");
+            ShowEmp(vacances, 0, "Heures vacances");
         }
 
         TableRow tr = new TableRow();
