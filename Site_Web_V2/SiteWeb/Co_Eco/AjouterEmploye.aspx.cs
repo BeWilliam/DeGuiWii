@@ -28,7 +28,10 @@ public partial class AjouterEmploye : System.Web.UI.Page
         if (!IsPostBack)
         {
             loadFonction();
-            loadStatut();
+            if (urlParam == null)
+            {
+                loadStatut();
+            }
         }
 
         btn_addEmp.Text = "Ajouter";
