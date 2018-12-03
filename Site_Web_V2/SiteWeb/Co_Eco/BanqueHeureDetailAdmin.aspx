@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BanqueHeureDetailAdmin.aspx.cs" Inherits="BanqueHeureDetailAdmin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BanqueHeureDetailAdmin.aspx.cs" Inherits="BanqueHeureDetailAdmin" Theme="FeuilleDeTempsADM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_title" Runat="Server">
 </asp:Content>
@@ -14,7 +14,7 @@
         <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="container">
-                <div class="row justify-content-md-center" style="margin-top: 5px;">
+                <div class="row justify-content-md-center" style="margin-top: 5px; margin-bottom:10px;">
                     <div class="col-lg-2">
                         <asp:Button ID="btn_ajouter" runat="server" Text="Ajouter" Visible="true" OnClick="btn_ajouter_Click" CssClass="btn btn-success" Style="margin-top: 10px; width: 100%; color: white;" />
                     </div>
