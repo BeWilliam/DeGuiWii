@@ -55,7 +55,7 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
         date = DateTime.ParseExact(tbx_Semaine.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-
+        date = getFirstDayOfWeek(date);
         Dimanche.Text = "Dimanche " + (date.Day);
             Lundi.Text = "Lundi " + (date.AddDays(1).Day);
             Mardi.Text = "Mardi " + (date.AddDays(2).Day);
@@ -343,7 +343,8 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
             Button bt_modif = new Button();
             bt_modif.Text = "Modifier";
             bt_modif.PostBackUrl = "~/AjoutFeuilleDeTemps.aspx?date=" + DateTime.ParseExact(tbx_Semaine.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) + "&idFdt=" + p_fdt.idFeuilleDeTemps.ToString();
-
+           
+            
             bt_modif.Click += new EventHandler(this.bt_modifier_Click1);
             //?id = " + employe.idEmploye.ToString();
             tc10.Controls.Add(bt_modif);
@@ -352,19 +353,21 @@ public partial class FeuilleDeTemps : System.Web.UI.Page
 
         t_feuilleTemps.Rows.Add(tr);
     }
-    Label ajoutLabel()
-    {
-        Label lh = new Label();
-        lh.Text = "H";
-        return lh;
-    }
+    //Label ajoutLabel()
+    //{
+    //    Label lh = new Label();
+    //    lh.Text = "H";
+    //    return lh;
+    //}
 
     protected void btn_ajouter_Click(object sender, EventArgs e)
     {
 
         if (DateTime.ParseExact(tbx_Semaine.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) != null)
         {
-            Response.Redirect("AjoutFeuilleDeTemps.aspx?date=" +DateTime.ParseExact(tbx_Semaine.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) + "&idFdt=" + (-1));
+            Response.Redirect("AjoutFeuilleDeTemps.aspx?date=" + DateTime.ParseExact(tbx_Semaine.Text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) + "&idFdt=" + (-1));
+           
+
         }
         else
         {
