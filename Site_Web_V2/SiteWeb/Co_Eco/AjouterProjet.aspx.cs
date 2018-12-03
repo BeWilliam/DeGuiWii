@@ -49,7 +49,7 @@ public partial class AjouterProjet : System.Web.UI.Page
         if (urlParam != null)
         {
             btn_apply.Visible = true;
-            btn_apply.Enabled = true;
+            btn_apply.Enabled = false;
             lst_employe.Visible = false;
             btn_retirer.Visible = false;
             btn_ajouter.Visible = false;
@@ -297,7 +297,7 @@ public partial class AjouterProjet : System.Web.UI.Page
 
         foreach (T_Employe employe in listeEmp)
         {
-            if (employe.idFonction == 1) //Employé de bureau
+            if (employe.idFonction != 3) //Employé de bureau
             {
                 listeEmploye.Add(employe);
 
@@ -319,7 +319,7 @@ public partial class AjouterProjet : System.Web.UI.Page
 
         foreach (T_Employe employe in listeEmp)
         {
-            if (employe.idFonction == 1 && employe.idEmploye == idRetirer) //Employé de bureau
+            if (employe.idFonction != 3 && employe.idEmploye == idRetirer) //Employé de bureau
             {
                 listeEmploye.Add(employe);
 
@@ -370,7 +370,7 @@ public partial class AjouterProjet : System.Web.UI.Page
         lst_employe.Items.RemoveAt(indexEmp);
 
         ajouterEmp(empId);
-
+        btn_modifier.Enabled = false;
     }
 
     private void ajouterEmpMod()
@@ -389,38 +389,42 @@ public partial class AjouterProjet : System.Web.UI.Page
         T_Employe empP = BD_CoEco.GetEmpByID(empId);
 
         retirerEmp(empId);
- 
+        btn_modifier.Enabled = false;
     }
 
     private void loadCat()
     {
-        tableau_categorie.Rows.Clear();
-        List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(Request.QueryString["id"])));
-        listCat = listCat.OrderBy(o => o.descript).ToList();
-        foreach (T_CategoriePro categoriePro in listCat)
+        if (urlParam != null)
         {
-            if(categoriePro.idStatusCat == 1)
+            tableau_categorie.Rows.Clear();
+            List<T_CategoriePro> listCat = BD_CoEco.GetListeCategorie(BD_CoEco.GetProByID(int.Parse(Request.QueryString["id"])));
+            listCat = listCat.OrderBy(o => o.descript).ToList();
+            foreach (T_CategoriePro categoriePro in listCat)
             {
-                TableRow tr = new TableRow();
-                TableCell tc1 = new TableCell();
-                TableCell tc2 = new TableCell();
-                //pas terminer
-                LinkButton btn = new LinkButton();
-                btn.ID = "btn_Cat-" + categoriePro.idCategorie;
-                btn.CssClass = "fas fa-trash - alt";
-                btn.Click += RemCat;
+                if (categoriePro.idStatusCat == 1)
+                {
+                    TableRow tr = new TableRow();
+                    TableCell tc1 = new TableCell();
+                    TableCell tc2 = new TableCell();
+                    //pas terminer
+                    LinkButton btn = new LinkButton();
+                    btn.ID = "btn_Cat-" + categoriePro.idCategorie;
+                    btn.CssClass = "fas fa-trash - alt";
+                    btn.Click += RemCat;
 
-                tc2.Controls.Add(btn);
-                tc1.Text = categoriePro.descript;
-                tr.Cells.Add(tc1);
-                tr.Cells.Add(tc2);
-                tableau_categorie.Rows.Add(tr);
+                    tc2.Controls.Add(btn);
+                    tc1.Text = categoriePro.descript;
+                    tr.Cells.Add(tc1);
+                    tr.Cells.Add(tc2);
+                    tableau_categorie.Rows.Add(tr);
+                }
             }
         }
     }
 
     private void RemCat(object sender, EventArgs e)
     {
+        btn_modifier.Enabled = true;
         LinkButton btn = (LinkButton)sender;
         int idCat = int.Parse(btn.ID.Split('-')[1]);
         BD_CoEco.ChangeStatusCategorie(idCat, 2);
@@ -431,6 +435,7 @@ public partial class AjouterProjet : System.Web.UI.Page
     protected void btn_lieEmp_Click(object sender, EventArgs e)
     {
         btn_lieEmp.Enabled = true;
+        btn_apply.Enabled = true;
         int empId = int.Parse(ddl_employe.SelectedValue);
         int indexEmp = ddl_employe.SelectedIndex;
 
@@ -483,6 +488,7 @@ public partial class AjouterProjet : System.Web.UI.Page
 
     protected void btn_ajouterCategorie_Click(object sender, EventArgs e)
     {
+        btn_apply.Enabled = true;
         TableRow tr = new TableRow();
         TableCell tc1 = new TableCell();
         TableCell tc2 = new TableCell();
