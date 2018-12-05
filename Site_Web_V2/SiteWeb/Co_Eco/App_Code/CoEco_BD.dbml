@@ -6,9 +6,7 @@
       <Column Name="descript" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="idProjet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idStatusCat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="T_CategoriePro_T_Depense" Member="T_Depense" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_Depense" />
       <Association Name="T_CategoriePro_T_FeuilleDeTemps" Member="T_FeuilleDeTemps" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_FeuilleDeTemps" />
-      <Association Name="T_CategoriePro_T_Kilometrage" Member="T_Kilometrage" ThisKey="idCategorie" OtherKey="idCat" Type="T_Kilometrage" />
       <Association Name="T_Projet_T_CategoriePro" Member="T_Projet" ThisKey="idProjet" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
       <Association Name="T_StatusCategorie_T_CategoriePro" Member="T_StatusCategorie" ThisKey="idStatusCat" OtherKey="idStatusCat" Type="T_StatusCategorie" IsForeignKey="true" />
     </Type>
@@ -29,9 +27,7 @@
       <Column Name="ddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="idType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idProjet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idCategorie" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="T_CategoriePro_T_Depense" Member="T_CategoriePro" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_CategoriePro" IsForeignKey="true" />
       <Association Name="T_TypeDepense_T_Depense" Member="T_TypeDepense" ThisKey="idType" OtherKey="idDepense" Type="T_TypeDepense" IsForeignKey="true" />
       <Association Name="T_Employe_T_Depense" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
       <Association Name="T_Projet_T_Depense" Member="T_Projet" ThisKey="idProjet" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
@@ -45,6 +41,11 @@
       <Column Name="courriel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="loginName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="mdp" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="congesMaladie" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="congesFeries" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="vacances" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="heuresAccumuleesOuSansSolde" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="congesPersonnels" Type="System.Single" DbType="Real" CanBeNull="true" />
       <Column Name="idStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idFonction" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="T_Employe_T_Depense" Member="T_Depense" ThisKey="idEmploye" OtherKey="idEmp" Type="T_Depense" />
@@ -75,7 +76,13 @@
       <Column Name="jeudi" Type="System.Single" DbType="Real" CanBeNull="true" />
       <Column Name="vendredi" Type="System.Single" DbType="Real" CanBeNull="true" />
       <Column Name="samedi" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="note" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireDimanche" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireLundi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireMardi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireMercredi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireJeudi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireVendredi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireSamedi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="approbation" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idCategorie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -96,11 +103,10 @@
       <Column Name="nbKilo" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="commentaire" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="ddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="approbation" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="idTaux" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idPro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idCat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="T_CategoriePro_T_Kilometrage" Member="T_CategoriePro" ThisKey="idCat" OtherKey="idCategorie" Type="T_CategoriePro" IsForeignKey="true" />
       <Association Name="T_Employe_T_Kilometrage" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
       <Association Name="T_Projet_T_Kilometrage" Member="T_Projet" ThisKey="idPro" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
       <Association Name="T_TauxKilo_T_Kilometrage" Member="T_TauxKilo" ThisKey="idTaux" OtherKey="idTaux" Type="T_TauxKilo" IsForeignKey="true" />

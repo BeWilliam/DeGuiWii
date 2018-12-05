@@ -44,6 +44,8 @@ public class BD_CoEco
         return rtnList;
     }
 
+
+
     /// <summary>
     /// Méthode permettant obtenir la liste des projets. Retourne tous les projets par défaut
     /// </summary>
@@ -64,6 +66,30 @@ public class BD_CoEco
                 {
                     rtnList.Add(pro);
                 }
+            }
+        }
+        BD.Dispose();
+        return rtnList;
+    }
+
+    /// <summary>
+    /// Méthode permettant obtenir la liste des employés au projet. Retourne tous les emp au projet par défaut
+    /// </summary>
+    /// <param name="p_Inactif">Si ce flag est mit à True, retourne seulement les employé au projet actifs</param>
+    /// <returns></returns>
+    public static List<T_EmployeProjet> GetListeEmpPro(bool p_Actifs = false)
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        Table<T_EmployeProjet> tableEmpPro = BD.T_EmployeProjet;
+        List<T_EmployeProjet> listeEmpPro = tableEmpPro.ToList();
+        List<T_EmployeProjet> rtnList = listeEmpPro;
+
+        if (p_Actifs == true)
+        {
+            rtnList = new List<T_EmployeProjet>();
+            foreach (T_EmployeProjet emppro in listeEmpPro)
+            {
+                    rtnList.Add(emppro);
             }
         }
         BD.Dispose();
@@ -247,26 +273,10 @@ public class BD_CoEco
     /// <returns></returns>
     public static T_CategoriePro GetCatByID(int id)
     {
-        List<T_CategoriePro> listeCat = GetListeCategorie();
-
-        bool trouve = false;
-        int i = -1;
-        while (i < listeCat.Count - 1 && !trouve)
-        {
-            i++;
-            if (listeCat[i].idCategorie == id)
-            {
-                trouve = true;
-            }
-        }
-        if (trouve)
-        {
-            return listeCat[i];
-        }
-        else
-        {
-            throw new Exception("Id correspondant à aucune catégorie existante");
-        }
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_CategoriePro cat = bd.T_CategoriePro.Single(f => f.idCategorie == id);
+        bd.Dispose();
+        return cat;
 
     }
 
@@ -281,7 +291,7 @@ public class BD_CoEco
 
         bool trouve = false;
         int i = -1;
-        while (i < listeProjet.Count && !trouve)
+        while (i + 1 < listeProjet.Count && !trouve)
         {
             i++;
             if (listeProjet[i].idProjet == id)
@@ -293,10 +303,7 @@ public class BD_CoEco
         {
             return listeProjet[i];
         }
-        else
-        {
-            throw new Exception("Id correspondant à aucun projet existant");
-        }
+        return null;
     }
 
     public static List<T_TypeDepense> GetListeTypeDepense()
@@ -315,11 +322,29 @@ public class BD_CoEco
         int? maxID = 0;
         BD.PS_GetMaxIdProjet(ref maxID);
         maxID++;
+        if(maxID == null)
+        {
+            maxID = 1;
+        }
         p_projet.idProjet = (int)maxID;
 
         BD.T_Projet.InsertOnSubmit(p_projet);
         BD.SubmitChanges();
         BD.Dispose();
+    }
+
+    public static int? getNewIdProject()
+    {
+        CoEco_BDDataContext BD = new CoEco_BDDataContext();
+        int? maxID = 0;
+        BD.PS_GetMaxIdProjet(ref maxID);
+        maxID++;
+        if (maxID == null)
+        {
+            maxID = 1;
+        }
+
+        return maxID;
     }
 
     public static void CreateNewEmploye(T_Employe p_employe)
@@ -328,6 +353,11 @@ public class BD_CoEco
         int? maxID = 0;
         BD.PS_GetMaxIdEmpolye(ref maxID);
         maxID++;
+        if (maxID == null)
+        {
+            maxID = 1;
+        }
+
         p_employe.idEmploye = (int)maxID;
 
         BD.T_Employe.InsertOnSubmit(p_employe);
@@ -341,10 +371,16 @@ public class BD_CoEco
         int? maxID = 0;
         BD.PS_GetMaxIdEmpPro(ref maxID);
         maxID++;
+   
+        if(maxID == null)
+        {
+            maxID = 1;
+        }
+
         p_emp.idEmpPro = (int)maxID;
 
         BD.T_EmployeProjet.InsertOnSubmit(p_emp);
-        BD.SubmitChanges();
+        BD.SubmitChanges(); //Si ce bug survient, c'est qu'il n'y a pas pas de projet #3... a changer dans AjouterEmp.aspx.cs
         BD.Dispose();
     }
 
@@ -361,6 +397,12 @@ public class BD_CoEco
         newEmp.idFonction = p_employe.idFonction;
         newEmp.idStatus = p_employe.idStatus;
         newEmp.loginName = p_employe.loginName;
+
+        newEmp.congesFeries = p_employe.congesFeries;
+        newEmp.congesMaladie = p_employe.congesMaladie;
+        newEmp.congesPersonnels = p_employe.congesPersonnels;
+        newEmp.heuresAccumuleesOuSansSolde = p_employe.heuresAccumuleesOuSansSolde;
+        newEmp.vacances = p_employe.vacances;
 
         BD.SubmitChanges();
         BD.Dispose();
@@ -400,7 +442,13 @@ public class BD_CoEco
         newFdt.jeudi = p_fdt.jeudi;
         newFdt.vendredi = p_fdt.vendredi;
         newFdt.samedi = p_fdt.samedi;
-        newFdt.note = p_fdt.note;
+        newFdt.commentaireDimanche = p_fdt.commentaireDimanche;
+        newFdt.commentaireLundi = p_fdt.commentaireLundi;
+        newFdt.commentaireMardi = p_fdt.commentaireMardi;
+        newFdt.commentaireMercredi = p_fdt.commentaireMercredi;
+        newFdt.commentaireJeudi = p_fdt.commentaireJeudi;
+        newFdt.commentaireVendredi = p_fdt.commentaireVendredi;
+        newFdt.commentaireSamedi = p_fdt.commentaireSamedi;
         newFdt.approbation = p_fdt.approbation;
 
         BD.SubmitChanges();
@@ -414,6 +462,12 @@ public class BD_CoEco
         int? maxID = 0;
         BD.PS_GetMaxIdCategorie(ref maxID);
         maxID++;
+        
+        if(maxID == null)
+        {
+            maxID = 1;
+        }
+
         p_categorie.idCategorie = (int)maxID;
 
         BD.T_CategoriePro.InsertOnSubmit(p_categorie);
@@ -459,6 +513,12 @@ public class BD_CoEco
         int? maxID = 0;
         BD.PS_GetMaxIdFeuilleTemps(ref maxID);
         maxID++;
+
+        if(maxID == null)
+        {
+            maxID = 1;
+        }
+
         p_feuilleDeTemps.idFeuilleDeTemps = (int)maxID;
 
         BD.T_FeuilleDeTemps.InsertOnSubmit(p_feuilleDeTemps);
@@ -545,7 +605,7 @@ public class BD_CoEco
         T_Depense depenseToMod = bd.T_Depense.Single(p => p.idDepense == depense.idDepense);
 
         depenseToMod.idProjet = depense.idProjet;
-        depenseToMod.idCategorie = depense.idCategorie;
+        //depenseToMod.idCategorie = depense.idCategorie;
         depenseToMod.idType = depense.idType;
         depenseToMod.descript = depense.descript;
         depenseToMod.montant = depense.montant;
@@ -564,26 +624,6 @@ public class BD_CoEco
         bd.Dispose();
         return fdt;
     }
-
-    /*public static void UpdateFeuilleDeTemps(T_FeuilleDeTemps newFdt)
-    {
-        CoEco_BDDataContext bd = new CoEco_BDDataContext();
-        T_FeuilleDeTemps fdt = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == newFdt.idFeuilleDeTemps);
-        fdt.dimanche = newFdt.dimanche;
-        fdt.lundi = newFdt.lundi;
-        fdt.mardi = newFdt.mardi;
-        fdt.mercredi = newFdt.mercredi;
-        fdt.jeudi = newFdt.jeudi;
-        fdt.vendredi = newFdt.vendredi;
-        fdt.samedi = newFdt.samedi;
-        fdt.approbation = newFdt.approbation;
-        fdt.idCategorie = newFdt.idCategorie;
-        fdt.idEmp = newFdt.idEmp;
-        fdt.note = newFdt.note;
-
-        bd.SubmitChanges();
-        bd.Dispose();
-    }*/
 
     public static T_StatusProjet GetStatusProjetById(int id)
     {
@@ -676,4 +716,115 @@ public class BD_CoEco
         bd.Dispose();
     }
 
+    public static List<T_TypeAuto> GetListTypesVehicules()
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        List<T_TypeAuto> rtnList = bd.T_TypeAuto.ToList();
+        bd.Dispose();
+        return rtnList;
+    }
+
+
+    public static int GetIdTauxKilo(int type)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        List<T_TauxKilo> listeTauxKilo = bd.T_TauxKilo.Where(o => o.idTypeAuto == type).OrderBy(o => o.idTaux).ToList();
+        bd.Dispose();
+        return listeTauxKilo[listeTauxKilo.Count - 1].idTaux;
+    }
+
+    public static void AjouterDepKilometrage(T_Kilometrage km)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        bd.T_Kilometrage.InsertOnSubmit(km);
+        bd.SubmitChanges();
+        bd.Dispose();
+    }
+
+    public static T_TauxKilo GetTauxKiloById(int id)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_TauxKilo tauxKilo = bd.T_TauxKilo.Single(o => o.idTaux == id);
+        bd.Dispose();
+        return tauxKilo;
+    }
+
+    public static T_Kilometrage GetKiloById(int id)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Kilometrage kilo = bd.T_Kilometrage.Single(o => o.idKilo == id);
+        bd.Dispose();
+        return kilo;
+    }
+
+    public static void UpdateKilometrage(T_Kilometrage newkilo)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Kilometrage oldkilo = bd.T_Kilometrage.Single(o => o.idKilo == newkilo.idKilo);
+
+        //oldkilo.idKilo = newkilo.idTaux;
+        oldkilo.nbKilo = newkilo.nbKilo;
+        oldkilo.commentaire = newkilo.commentaire;
+        oldkilo.ddate = newkilo.ddate;
+        oldkilo.approbation = newkilo.approbation;
+        oldkilo.idTaux = newkilo.idTaux;
+        oldkilo.idEmp = newkilo.idEmp;
+        oldkilo.idPro = newkilo.idPro;
+
+
+        bd.SubmitChanges();
+        bd.Dispose();
+    }
+
+    public static void ApprouverDepenseByID(int id, bool etat)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Depense dep = bd.T_Depense.Single(f => f.idDepense == id);
+        dep.aprobation = etat;
+        bd.SubmitChanges();
+        bd.Dispose();
+    }
+
+    public static void ApprouverKilometrageById(int id, bool etat)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Kilometrage kilo = bd.T_Kilometrage.Single(f => f.idKilo == id);
+        kilo.approbation = etat;
+        bd.SubmitChanges();
+        bd.Dispose();
+    }
+
+    public static List<T_FeuilleDeTemps> GetFDTByProject(int idPro)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_Projet projet = bd.T_Projet.Single(f => f.idProjet == idPro);
+        List<T_CategoriePro> lstCategories = GetListeCategorie(projet);
+        List<T_FeuilleDeTemps> lstFDT = GetListeFeuilleDeTemps();
+
+        List<T_FeuilleDeTemps> rtnList = new List<T_FeuilleDeTemps>();
+
+        foreach (T_CategoriePro cat in lstCategories)
+        {
+            foreach (T_FeuilleDeTemps fdt in lstFDT)
+            {
+                if (fdt.idCategorie == cat.idCategorie)
+                {
+                    rtnList.Add(fdt);
+                }
+            }
+        }
+
+        return rtnList;
+    }
+
+    public static void ChangeStatusCategorie(int id, int etat)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+        T_CategoriePro cat = bd.T_CategoriePro.Single(f => f.idCategorie == id);
+
+        cat.idStatusCat = etat;
+        bd.SubmitChanges();
+        bd.Dispose();
+
+    }
 }

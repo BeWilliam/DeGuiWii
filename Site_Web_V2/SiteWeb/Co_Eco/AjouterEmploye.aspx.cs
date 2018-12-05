@@ -13,16 +13,25 @@ public partial class AjouterEmploye : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //rendre non visible le statut, car par défaut lorsqu'on ajoute le statut est nécessairement actif
-        sec_statut.Visible = false;
 
-        btn_appliquer.Visible = false;
-        btn_modifier.Visible = false;
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
+        btn_appliquer.Enabled = false;
+        btn_modifier.Enabled = false;
+        ddl_statut.Enabled = false;
 
         urlParam = Request.QueryString["id"];
 
         if (!IsPostBack)
         {
             loadFonction();
+            if (urlParam == null)
+            {
+                loadStatut();
+            }
         }
 
         btn_addEmp.Text = "Ajouter";
@@ -42,12 +51,11 @@ public partial class AjouterEmploye : System.Web.UI.Page
                 tbx_pseudo.Enabled = false;
                 ddl_fonction.Enabled = false;
                 ddl_statut.Enabled = false;
-                btn_addEmp.Visible = false;
-                sec_statut.Visible = true;
+                btn_addEmp.Enabled = false;
 
-                btn_appliquer.Visible = true;
+                btn_appliquer.Enabled = true;
                 btn_appliquer.Enabled = false;
-                btn_modifier.Visible = true;
+                btn_modifier.Enabled = true;
 
                 //caller la méthode qui affiche l'employés cliqué
                 AfficherEmp();
@@ -87,24 +95,35 @@ public partial class AjouterEmploye : System.Web.UI.Page
 
     protected void btn_addEmp_Click(object sender, EventArgs e)
     {
-        btn_modifier.Visible = false;
+        btn_modifier.Enabled = false;
 
         //ajouter un employé
-
-        T_Employe newEmp = new T_Employe();
-        newEmp.prenom = tbx_prenom.Text;
-        newEmp.nom = tbx_nom.Text;
-        newEmp.courriel = tbx_courriel.Text;
-        newEmp.mdp = tbx_mdp.Text;
-        newEmp.idStatus = 1;
-        newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
-        newEmp.loginName = tbx_pseudo.Text;
-
-        BD_CoEco.CreateNewEmploye(newEmp);
-
         //faire une gestion d'erreur ici
+        if (tbx_prenom.Text != "" && tbx_nom.Text != "")
+        {
+            T_Employe newEmp = new T_Employe();
+            newEmp.prenom = tbx_prenom.Text;
+            newEmp.nom = tbx_nom.Text;
+            newEmp.courriel = tbx_courriel.Text;
+            newEmp.mdp = tbx_mdp.Text;
+            newEmp.idStatus = 1;
+            newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
+            newEmp.loginName = tbx_pseudo.Text;
+            BD_CoEco.CreateNewEmploye(newEmp);
 
-        Response.Redirect("Employe.aspx");
+            T_EmployeProjet newlien = new T_EmployeProjet();
+            newlien.idEmp = newEmp.idEmploye;
+            newlien.idPro = 3;
+            BD_CoEco.CreateNewEmpAtProject(newlien);
+
+            Response.Redirect("Employe.aspx");
+        }
+        else
+        {
+            message_erreur.Visible = true;
+        }
+
+        
     }
 
     protected void AfficherEmp()
@@ -162,8 +181,7 @@ public partial class AjouterEmploye : System.Web.UI.Page
         ddl_statut.Enabled = true;
         btn_modifier.Enabled = false;
 
-        btn_appliquer.Visible = true;
-        sec_statut.Visible = true;
+        btn_appliquer.Enabled = true;
         btn_appliquer.Enabled = true;
     }
 
@@ -181,10 +199,9 @@ public partial class AjouterEmploye : System.Web.UI.Page
         newEmp.idStatus = int.Parse(ddl_statut.SelectedValue);
         newEmp.idFonction = int.Parse(ddl_fonction.SelectedValue);
         newEmp.loginName = tbx_pseudo.Text;
-
         BD_CoEco.UpdateEmploye(newEmp);
 
-        sec_statut.Visible = true;
+        
 
         Response.Redirect("Employe.aspx");
 
@@ -192,6 +209,8 @@ public partial class AjouterEmploye : System.Web.UI.Page
 
     protected void btn_retour_Click(object sender, EventArgs e)
     {
+        Controls.Remove(tbx_prenom);
+        tbx_nom.Enabled = false;
         Response.Redirect("Employe.aspx");
     }
 

@@ -74,6 +74,11 @@ CREATE TABLE T_Employe(
 	courriel VARCHAR(50),
 	loginName VARCHAR(30),
 	mdp VARCHAR(30),
+	congesMaladie FLOAT(5),
+	congesFeries FLOAT(5),
+	vacances FLOAT(5),
+	heuresAccumuleesOuSansSolde FLOAT(5),
+	congesPersonnels FLOAT(5),
 	/*Foreign key*/
 	idStatus INT DEFAULT 1 NOT NULL,
 	idFonction INT NOT NULL,
@@ -117,16 +122,16 @@ CREATE TABLE T_Depense(
 	montant SMALLMONEY,
 	descript VARCHAR(50),
 	aprobation BIT,
-	ddate DATE,
+	ddate DATE DEFAULT GETDATE(),
 	/*FOREIGN KEY*/
 	idType INT NOT NULL,
 	idProjet INT NOT NULL,
-	idCategorie INT,
+	--idCategorie INT,
 	idEmp INT NOT NULL,
 	CONSTRAINT fkIdDepense PRIMARY KEY(idDepense),
 	CONSTRAINT fkIdTypeDep FOREIGN KEY(idType) REFERENCES T_TypeDepense(idDepense),
 	CONSTRAINT fkIdProjetDep FOREIGN KEY(idProjet) REFERENCES T_Projet(idProjet),
-	CONSTRAINT fkIdCategorieDep FOREIGN KEY(idCategorie) REFERENCES T_CategoriePro(idCategorie),
+	--CONSTRAINT fkIdCategorieDep FOREIGN KEY(idCategorie) REFERENCES T_CategoriePro(idCategorie),
 	CONSTRAINT fkIdEmpDep FOREIGN KEY(idEmp) REFERENCES T_Employe(idEmploye)
 
 )
@@ -142,7 +147,13 @@ CREATE TABLE T_FeuilleDeTemps(
 	jeudi FLOAT(3),
 	vendredi FLOAT(3),
 	samedi FLOAT(3), /*À tester*/
-	note VARCHAR(100),
+	commentaireDimanche VARCHAR(100),
+	commentaireLundi VARCHAR(100),
+	commentaireMardi VARCHAR(100),
+	commentaireMercredi VARCHAR(100),
+	commentaireJeudi VARCHAR(100),
+	commentaireVendredi VARCHAR(100),
+	commentaireSamedi VARCHAR(100),
 	approbation BIT DEFAULT 0,
 	/*FOREIGN KEY*/
 	idEmp INT NOT NULL,
@@ -158,16 +169,17 @@ CREATE TABLE T_Kilometrage(
 	nbKilo FLOAT(3) NOT NULL,
 	commentaire VARCHAR(100),
 	ddate DATE DEFAULT GETDATE(),
+	approbation BIT,
 	/*FOREIGN KEY*/
 	idTaux INT NOT NULL,
 	idEmp INT NOT NULL,
 	idPro INT NOT NULL,
-	idCat INT NOT NULL,
+	--idCat INT NOT NULL,
 	CONSTRAINT pkIdKilo PRIMARY KEY(idKilo),
 	CONSTRAINT fkIdTauxKilo FOREIGN KEY(idTaux) REFERENCES T_TauxKilo(idTaux),
 	CONSTRAINT fkIdEmpKilo FOREIGN KEY(idEmp) REFERENCES T_Employe(idEmploye),
 	CONSTRAINT fkIdPro FOREIGN KEY (idPro) REFERENCES T_Projet(idProjet),
-	CONSTRAINT FkIdCat FOREIGN KEY(idCat) REFERENCES T_CategoriePro(idCategorie)
+	--CONSTRAINT FkIdCat FOREIGN KEY(idCat) REFERENCES T_CategoriePro(idCategorie)
 )
 
 CREATE TABLE T_EmployeProjet(
@@ -180,8 +192,6 @@ CREATE TABLE T_EmployeProjet(
 	CONSTRAINT fkIdProEmpPro FOREIGN KEY (idPro) REFERENCES T_Projet(idProjet)
 )
 
-
-INSERT INTO T_EmployeProjet(idEmp, idPro) VALUES(7, 28)
 
 /*Insertion des informations de base pour le bon fonctionnement de la DB*/
 

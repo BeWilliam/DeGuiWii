@@ -9,12 +9,17 @@ public partial class Options : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(Session["fonction"].ToString() == "3")
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
+        if (Session["fonction"].ToString() == "3")
         {
             if (!IsPostBack)
             {
-                tbx_TauxAuto.Text = BD_CoEco.GetTauxKiloAuto().ToString();
-                tbx_TauxCamion.Text = BD_CoEco.GetTauxKiloCamion().ToString();
+                tbx_TauxAuto.Text = string.Format("{0:c}", BD_CoEco.GetTauxKiloAuto());
+                tbx_TauxCamion.Text = string.Format("{0:c}", BD_CoEco.GetTauxKiloCamion());
                 tbx_TauxAuto.Enabled = false;
                 tbx_TauxCamion.Enabled = false;
             }
@@ -40,7 +45,10 @@ public partial class Options : System.Web.UI.Page
             tbx_TauxAuto.Enabled = false;
             btn_ModTauxAuto.Text = "Modifier";
             //Enregistrer le tout
-            BD_CoEco.AddTauxKilo(float.Parse(tbx_TauxAuto.Text), 1);
+            string text = tbx_TauxAuto.Text;
+            text = text.Trim(' ', '$');
+
+            BD_CoEco.AddTauxKilo(float.Parse(text), 1);
         }
     }
 
@@ -57,7 +65,17 @@ public partial class Options : System.Web.UI.Page
             tbx_TauxCamion.Enabled = false;
             btn_ModTauxCamion.Text = "Modifier";
             //Enregistrer le tout
-            BD_CoEco.AddTauxKilo(float.Parse(tbx_TauxAuto.Text), 2);
+            string text = tbx_TauxCamion.Text;
+            text = text.Trim(' ', '$');
+
+            BD_CoEco.AddTauxKilo(float.Parse(text), 2);
         }
+    }
+
+    protected void btn_download_Click(object sender, EventArgs e)
+    {
+        Response.AppendHeader("Content-Disposition", "attachment; filename=Guide d'utilisation.pdf");
+        Response.TransmitFile(@"~\Downloadss\Guide d'utilisation.pdf");
+        Response.End();
     }
 }

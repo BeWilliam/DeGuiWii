@@ -38,14 +38,68 @@ public class Utilitaires
     {
         T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(idFDT);
         float somme = 0;
-        somme += (float)fdt.dimanche;
-        somme += (float)fdt.lundi;
-        somme += (float)fdt.mardi;
-        somme += (float)fdt.mercredi;
-        somme += (float)fdt.jeudi;
-        somme += (float)fdt.vendredi;
-        somme += (float)fdt.samedi;
+        if (fdt.dimanche != null)
+        {
+            somme += (float)fdt.dimanche;
+        }
+        if (fdt.lundi != null)
+        {
+            somme += (float)fdt.lundi;
+        }
+        if (fdt.mardi != null)
+        {
+            somme += (float)fdt.mardi;
+        }
+        if (fdt.mercredi !=null)
+        {
+            somme += (float)fdt.mercredi;
+        }
+        if (fdt.jeudi != null)
+        {
+            somme += (float)fdt.jeudi;
+        }
+        if (fdt.vendredi != null)
+        {
+            somme += (float)fdt.vendredi;
+        }
+        if (fdt.samedi != null)
+        {
+            somme += (float)fdt.samedi;
+        }
+        
         return somme;
+    }
+
+    public static float GetHeuresByDay(int idDay, int idFDT)
+    {
+        T_FeuilleDeTemps fdt = BD_CoEco.GetFeuilleDeTempsById(idFDT);
+        float? rtnValue = 0;
+        switch (idDay)
+        {
+            case 0:
+                rtnValue = fdt.dimanche;
+                break;
+            case 1:
+                rtnValue = fdt.lundi;
+                break;
+            case 2:
+                rtnValue = fdt.mardi;
+                break;
+            case 3:
+                rtnValue = fdt.mercredi;
+                break;
+            case 4:
+                rtnValue = fdt.jeudi;
+                break;
+            case 5:
+                rtnValue = fdt.vendredi;
+                break;
+            case 6:
+                rtnValue = fdt.samedi;
+                break;
+        }
+
+        return (float)rtnValue;
     }
 
     public static List<T_Projet> GetListeProjetsTri(string p_nom, string p_idRep, string p_id_Stat, string p_descript)
@@ -117,4 +171,36 @@ public class Utilitaires
         return rtnList;
     }
 
+    public static string GetNoteByDay(int id, int fdt)
+    {
+        CoEco_BDDataContext bd = new CoEco_BDDataContext();
+
+        string note = "";
+        switch (id)
+        {
+            case 0:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireDimanche;
+                break;
+            case 1:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireLundi;
+                break;
+            case 2:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireMardi;
+                break;
+            case 3:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireMercredi;
+                break;
+            case 4:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireJeudi;
+                break;
+            case 5:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireVendredi;
+                break;
+            case 6:
+                note = bd.T_FeuilleDeTemps.Single(f => f.idFeuilleDeTemps == fdt).commentaireSamedi;
+                break;
+        }
+        bd.Dispose();
+        return note;
+    }
 }

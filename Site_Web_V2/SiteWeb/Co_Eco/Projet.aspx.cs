@@ -15,38 +15,200 @@ public partial class Projet : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
 
         List<T_StatusProjet> listeStatProjet = BD_CoEco.GetListeStatusProjet();
         List<T_Projet> rawListeProjet = BD_CoEco.GetListeProjet();
         List<T_Projet> listeProjet = rawListeProjet.OrderBy(o => o.idStatus).ThenBy(o => o.nom).ToList();
 
-        if(!IsPostBack)
+        if (!IsPostBack)
         {
+            int idEmp = int.Parse(Session["idEmp"].ToString());
+        
             loadResponsable();
             loadStatut();
-        
-        string nom = Request.QueryString["nom"];
-        string idRep = Request.QueryString["idRep"];
-        string idStat = Request.QueryString["idStat"];
-        string descript = Request.QueryString["descript"];
 
-        if (nom != null)
-        {
-            tbx_nom.Text = nom;
+            string nom = Request.QueryString["nom"];
+            string idRep = Request.QueryString["idRep"];
+            string idStat = Request.QueryString["idStat"];
+            string descript = Request.QueryString["descript"];
+
+            if (nom != null)
+            {
+                tbx_nom.Text = nom;
+            }
+            if (idRep != null)
+            {
+                DDL_Responsable.SelectedValue = idRep;
+            }
+            if (idStat != null)
+            {
+                DDL_Status.SelectedValue = idStat;
+            }
+            if (descript != null)
+            {
+                tbx_descript.Text = descript;
+            }
+            if (idEmp == 1 || idEmp == 3) //si c'est l'admin qui est connecté ou sophie
+            {
+                rech();
+            }
+            else
+            {
+                    loadAllProjetRes();
+            }
+
+            //Empêcher l'ajout de projet en tant qu'employé
+            if(Session["fonction"].ToString() != "3")
+            {
+                btn_AddProject.Disabled = true;
+            }
         }
-        if (idRep != null)
+
+    }
+
+    private void loadAllProjetRes()
+    {
+        List<T_Projet> listProjet = BD_CoEco.GetListeProjet();
+
+        List<int> rechercheA = new List<int>();
+        List<int> rechercheB = new List<int>();
+        List<int> rechercheC = new List<int>();
+        List<int> rechercheD = new List<int>();
+
+        //Recherche sur le nom
+
+        if (tbx_nom.Text != null && tbx_nom.Text != "")
         {
-            DDL_Responsable.SelectedValue = idRep;
+            for (int i = 0; i < listProjet.Count; i++)
+            {
+                if (listProjet[i].nom.ToLower().Contains(tbx_nom.Text.ToLower()))
+                {
+                    rechercheA.Add(i);
+                }
+            }
         }
-        if (idStat != null)
+        else
         {
-            DDL_Status.SelectedValue = idStat;
+            for (int i = 0; i < listProjet.Count; i++)
+            {
+                rechercheA.Add(i);
+            }
         }
-        if (descript != null)
+
+        //Recherche responsable
+
+        if (DDL_Responsable.SelectedValue != "-1") //Se serait toutes les catégories
         {
-            tbx_descript.Text = descript;
+            for (int i = 0; i < listProjet.Count; i++)
+            {
+                if (listProjet[i].responsable == int.Parse(DDL_Responsable.SelectedValue))
+                {
+                    rechercheB.Add(i);
+                }
+            }
         }
-        rech();
+        else
+        {
+            for (int i = 0; i < listProjet.Count; i++)
+            {
+                rechercheB.Add(i);
+            }
+        }
+
+        //Recherche Statuts
+
+        if (DDL_Status.SelectedValue != "-1") //Se serait toutes les catégories
+        {
+            for (int i = 0; i < listProjet.Count; i++)
+            {
+                if (listProjet[i].idStatus == int.Parse(DDL_Status.SelectedValue))
+                {
+                    rechercheC.Add(i);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < listProjet.Count; i++)
+            {
+                rechercheC.Add(i);
+            }
+        }
+
+
+        //Recherche description
+
+        if (tbx_descript.Text != null && tbx_descript.Text != "")
+        {
+            for (int i = 0; i < listProjet.Count; i++)
+            {
+                if (listProjet[i].descript != null)
+                {
+                    if (listProjet[i].descript.ToLower().Contains(tbx_descript.Text.ToLower()))
+                    {
+                        rechercheD.Add(i);
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < listProjet.Count; i++)
+            {
+                rechercheD.Add(i);
+            }
+        }
+
+        Tableau_Projets.Rows.Clear();
+
+        TableHeaderRow thr = new TableHeaderRow();
+        TableHeaderCell thc_Projet = new TableHeaderCell();
+        thc_Projet.Text = "Nom du projet";
+        thc_Projet.Width = new Unit("25%");
+        TableHeaderCell thc_responsable = new TableHeaderCell();
+        thc_responsable.Text = "Chef de projet";
+        thc_responsable.Width = new Unit("25%");
+        TableHeaderCell thc_statut = new TableHeaderCell();
+        thc_statut.Text = "Statut";
+        thc_statut.Width = new Unit("25%");
+        thr.Cells.Add(thc_Projet);
+        thr.Cells.Add(thc_responsable);
+        thr.Cells.Add(thc_statut);
+        thr.ID = "thr_ID";
+        Tableau_Projets.Rows.Add(thr);
+
+        List<T_Projet> listProjetRes = new List<T_Projet>();
+
+        for (int i = 0; i < listProjetRes.Count; i++)
+        {
+            //Tous les projets seront à charger
+            bool a = rechercheA.Contains(i);
+            bool b = rechercheB.Contains(i);
+            bool c = rechercheC.Contains(i);
+            bool d = rechercheD.Contains(i);
+            if (a && b && c && d)
+            {
+                listProjetRes.Add(listProjetRes[i]); //On affiche les éléments présent dans les 4 listes
+            }
+        }
+
+        foreach (T_Projet pro in listProjet)
+        {
+            if (pro.responsable == int.Parse(Session["idEmp"].ToString()))
+            {
+                listProjetRes.Add(pro);
+            }
+        }
+
+        listProjetRes = listProjetRes.OrderBy(o => o.nom).ToList();
+
+        foreach (T_Projet pro in listProjetRes)
+        {
+            showResult(pro.idProjet);
         }
     }
 
@@ -176,7 +338,7 @@ public partial class Projet : System.Web.UI.Page
         }
         idrep = "idRep=" + DDL_Responsable.SelectedValue;
         idStat = "idStat=" + DDL_Status.SelectedValue;
-        if (tbx_nom.Text != "")
+        if (tbx_descript.Text != "")
         {
             descript = "descript=" + tbx_descript.Text;
         }
@@ -291,6 +453,7 @@ public partial class Projet : System.Web.UI.Page
         thr.Cells.Add(thc_Projet);
         thr.Cells.Add(thc_responsable);
         thr.Cells.Add(thc_statut);
+        thr.ID = "thr_ID";
         Tableau_Projets.Rows.Add(thr);
 
         List<T_Projet> projectToShow = new List<T_Projet>();
@@ -331,6 +494,7 @@ public partial class Projet : System.Web.UI.Page
         cNom.Controls.Add(hl);
 
         TableCell cChef = new TableCell();
+
         if(projet.responsable == null || projet.responsable == 0)
         {
             cChef.Text = " - ";

@@ -9,6 +9,11 @@ public partial class ApprouveFDT : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["fonction"] == null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
         //Si un usager normal rentre dans l'URL cette page, on le "kick"
         if (Session["fonction"].ToString() != "3")
         {
@@ -110,7 +115,7 @@ public partial class ApprouveFDT : System.Web.UI.Page
         newFDT.vendredi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[5].Controls[0]).Text);
         newFDT.samedi = float.Parse(((TextBox)tab_FDT.Rows[1].Cells[6].Controls[0]).Text);
 
-        newFDT.note = oldFDT.note;
+        //newFDT.note = oldFDT.note;
         newFDT.semaine = oldFDT.semaine;
         newFDT.approbation = true; //à changer
         newFDT.idCategorie = oldFDT.idCategorie;

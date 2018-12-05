@@ -1,20 +1,29 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="FeuilleDeTempsADM.aspx.cs" Inherits="FeuilleDeTempsADM" Theme="FeuilleDeTempsADM"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="FeuilleDeTempsADM.aspx.cs" Inherits="FeuilleDeTempsADM" Theme="FeuilleDeTempsADM" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="cph_title" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="cph_title" runat="Server">
     Feuille de temps
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cph_left" Runat="Server">
-    <asp:TextBox TextMode="Week" CssClass="form-control" runat="server" ID="tbx_Semaine" OnTextChanged="tbx_Semaine_TextChanged" AutoPostBack="true" Style="width:100%;margin-left:5px; margin-top:5px;"/>
-    <input id="btn_allCheck" type="button" class="btn btn-success" value="Tout sélectionner"Style="width:100%;margin-left:5px; margin-top:5px;" />
-    
+
+<asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" runat="Server">
+
+
+            <div class="col-md-6 offset-md-3">
+                <div class="col-md-auto" style="text-align: center;">
+                    <h2>Feuilles de temps</h2>
+
+                    <label for="validationTooltip01">Choisir la semaine</label>
+                    <asp:TextBox TextMode="Week" CssClass="form-control" runat="server" ID="tbx_Semaine" OnTextChanged="tbx_Semaine_TextChanged" AutoPostBack="true" style="text-align:center; margin-bottom:10px;"/>
+                            <asp:Button runat="server" ID="btn_AllApp" Text="Tout approuver" CssClass="btn btn-success" OnClick="btn_AllApp_Click" style="margin-bottom:10px;" />
+                </div>
+
+            </div>
+
+
+            <asp:Panel runat="server" ID="panel_Contenu">
+        </asp:Panel>
+
+
+
+
+
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="cph_contenu" Runat="Server">
-
-    <asp:Table runat="server" ID="tab_emp" CssClass="table"/>
-    <input id="btn_App_Click" type="button" class="btn btn-success" value="Appliquer" onclick="enr()"/>
-
-    
-
-
-</asp:Content>
-

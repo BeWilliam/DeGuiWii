@@ -13,49 +13,53 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             Response.Redirect("index.aspx");
         }
-        if(Session["fonction"].ToString() == "1")
+        if(Session["fonction"] != null && Session["fonction"].ToString() == "1")
         {
             //Bureau
             div_FeuilleDeTemps.Visible = true;
             div_FeuilleDeTempsADM.Visible = false;
             div_projet.Visible = true;
             div_Employe.Visible = false;
-            div_categorie.Visible = false;
             div_depense.Visible = true;
             div_DepenseADM.Visible = false;
-            div_Rapports.Visible = false;
             div_Options.Visible = false;
+            div_BanqueHeuresEmp.Visible = true;
+            div_BanqueHeuresAdmin.Visible = false;
         }
-        if (Session["fonction"].ToString() == "2")
+        if (Session["fonction"] != null && Session["fonction"].ToString() == "2")
         {
             //Terrain
             div_FeuilleDeTemps.Visible = true;
             div_FeuilleDeTempsADM.Visible = false;
             div_projet.Visible = false;
             div_Employe.Visible = false;
-            div_categorie.Visible = false;
             div_depense.Visible = true;
             div_DepenseADM.Visible = false;
-            div_Rapports.Visible = false;
             div_Options.Visible = false;
+            div_BanqueHeuresEmp.Visible = false;
+            div_BanqueHeuresAdmin.Visible = false;
         }
-        if (Session["fonction"].ToString() == "3")
+        if (Session["fonction"] != null && Session["fonction"].ToString() == "3")
         {
             //Admin
             div_FeuilleDeTemps.Visible = false;
             div_FeuilleDeTempsADM.Visible = true;
             div_projet.Visible = true;
             div_Employe.Visible = true;
-            div_categorie.Visible = true;
             div_depense.Visible = false;
             div_DepenseADM.Visible = true;
-            div_Rapports.Visible = true;
             div_Options.Visible = true;
+            div_BanqueHeuresEmp.Visible = false;
+            div_BanqueHeuresAdmin.Visible = true;
         }
     }
 
     protected void btn_Deco_ServerClick(object sender, EventArgs e)
     {
+        Session["username"] = null;
+        Session["password"] = null;
+        Session["fonction"] = null;
+        Session["idEmp"] = null;
         Response.Redirect("index.aspx");
     }
 }

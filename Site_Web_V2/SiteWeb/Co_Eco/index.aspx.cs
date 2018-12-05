@@ -11,11 +11,23 @@ public partial class Connexion : System.Web.UI.Page
     {
         Session["username"] = tbx_username.Text;
         Session["password"] = tbx_mdp.Text;
+        message_erreur.Visible = false;
     }
 
     protected void Connexion_click(object sender, EventArgs e)
     {
-        List<T_Employe> listeEmp = BD_CoEco.GetListeEmploye();
+        List<T_Employe> listeEmp = BD_CoEco.GetListeEmploye(true);
+
+        List<T_Employe> admList = BD_CoEco.GetListeEmploye();
+        T_Employe lstAdm = new T_Employe();
+        foreach (T_Employe emp in admList)
+        {
+            if(emp.idFonction == 3)
+                lstAdm = emp;
+        }
+        listeEmp.Add(lstAdm);
+
+
 
         if(tbx_username.Text != null && tbx_username.Text != "")
         {
@@ -53,17 +65,20 @@ public partial class Connexion : System.Web.UI.Page
                         //Alors on co
                         Connect(BD_CoEco.GetEmpByID(listeEmp[i].idEmploye));
                     }
-                    else
+                    else 
                     {
                         tbx_mdp.Text = "";
                         tbx_username.Text = "";
+                        
+
                     }
                 }
             }
-            else
+            else //si l'usager n'est pas trouvé
             {
                 tbx_mdp.Text = "";
                 tbx_username.Text = "";
+                message_erreur.Visible = true;
             }
         }
     }
