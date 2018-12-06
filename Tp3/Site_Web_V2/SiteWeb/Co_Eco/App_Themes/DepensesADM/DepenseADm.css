@@ -1,0 +1,27 @@
+﻿.fa-check{
+    color: #00ff00;
+}
+.fa-times{
+    color: #ff0000;
+}
+
+tr{
+    text-align: center;
+}
+
+td{
+    text-align:center;
+}
+
+h3 {
+    background-color: #505050;
+    height: 50px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+.table{
+    margin-bottom:0px;
+}
