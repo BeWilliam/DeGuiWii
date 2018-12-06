@@ -1,0 +1,40 @@
+﻿.fdt_ADM{
+    zoom:1.5;
+}
+
+h3 {
+    background-color: #505050;
+    height: 50px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+h5 {
+    background-color: lightgray;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+#cph_contenu_thr_ID {
+    color: #000;
+}
+
+tr{
+    text-align:center;
+}
+
+td{
+    text-align:center;
+}
+
+.table{
+    margin-bottom:0px;
+}
+
+#cph_contenu_tbx_heures{
+    margin-bottom:5px;
+}

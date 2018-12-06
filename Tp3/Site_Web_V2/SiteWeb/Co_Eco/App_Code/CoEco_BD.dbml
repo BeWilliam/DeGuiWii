@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CoEco_BD" Class="CoEco_BDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=CoEco_BD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CoEco_BDConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.T_CategoriePro" Member="T_CategoriePro">
+    <Type Name="T_CategoriePro">
+      <Column Name="idCategorie" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descript" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="idProjet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idStatusCat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="T_CategoriePro_T_FeuilleDeTemps" Member="T_FeuilleDeTemps" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_FeuilleDeTemps" />
+      <Association Name="T_Projet_T_CategoriePro" Member="T_Projet" ThisKey="idProjet" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
+      <Association Name="T_StatusCategorie_T_CategoriePro" Member="T_StatusCategorie" ThisKey="idStatusCat" OtherKey="idStatusCat" Type="T_StatusCategorie" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_TypeDepense" Member="T_TypeDepense">
+    <Type Name="T_TypeDepense">
+      <Column Name="idDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descript" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Association Name="T_TypeDepense_T_Depense" Member="T_Depense" ThisKey="idDepense" OtherKey="idType" Type="T_Depense" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_Depense" Member="T_Depense">
+    <Type Name="T_Depense">
+      <Column Name="idDepense" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="montant" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
+      <Column Name="descript" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="aprobation" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="idType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idProjet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="T_TypeDepense_T_Depense" Member="T_TypeDepense" ThisKey="idType" OtherKey="idDepense" Type="T_TypeDepense" IsForeignKey="true" />
+      <Association Name="T_Employe_T_Depense" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
+      <Association Name="T_Projet_T_Depense" Member="T_Projet" ThisKey="idProjet" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_Employe" Member="T_Employe">
+    <Type Name="T_Employe">
+      <Column Name="idEmploye" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nom" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="prenom" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="courriel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="loginName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="mdp" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="congesMaladie" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="congesFeries" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="vacances" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="heuresAccumuleesOuSansSolde" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="congesPersonnels" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="idStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idFonction" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="T_Employe_T_Depense" Member="T_Depense" ThisKey="idEmploye" OtherKey="idEmp" Type="T_Depense" />
+      <Association Name="T_Employe_T_EmployeProjet" Member="T_EmployeProjet" ThisKey="idEmploye" OtherKey="idEmp" Type="T_EmployeProjet" />
+      <Association Name="T_Employe_T_FeuilleDeTemps" Member="T_FeuilleDeTemps" ThisKey="idEmploye" OtherKey="idEmp" Type="T_FeuilleDeTemps" />
+      <Association Name="T_Employe_T_Kilometrage" Member="T_Kilometrage" ThisKey="idEmploye" OtherKey="idEmp" Type="T_Kilometrage" />
+      <Association Name="T_FonctionEmploye_T_Employe" Member="T_FonctionEmploye" ThisKey="idFonction" OtherKey="idFonctionEmp" Type="T_FonctionEmploye" IsForeignKey="true" />
+      <Association Name="T_StatusEmploye_T_Employe" Member="T_StatusEmploye" ThisKey="idStatus" OtherKey="idStatusEmp" Type="T_StatusEmploye" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_EmployeProjet" Member="T_EmployeProjet">
+    <Type Name="T_EmployeProjet">
+      <Column Name="idEmpPro" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idPro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="T_Employe_T_EmployeProjet" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
+      <Association Name="T_Projet_T_EmployeProjet" Member="T_Projet" ThisKey="idPro" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_FeuilleDeTemps" Member="T_FeuilleDeTemps">
+    <Type Name="T_FeuilleDeTemps">
+      <Column Name="idFeuilleDeTemps" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="semaine" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="dimanche" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="lundi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="mardi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="mercredi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="jeudi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="vendredi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="samedi" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="commentaireDimanche" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireLundi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireMardi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireMercredi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireJeudi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireVendredi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="commentaireSamedi" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="approbation" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idCategorie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="T_CategoriePro_T_FeuilleDeTemps" Member="T_CategoriePro" ThisKey="idCategorie" OtherKey="idCategorie" Type="T_CategoriePro" IsForeignKey="true" />
+      <Association Name="T_Employe_T_FeuilleDeTemps" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_FonctionEmploye" Member="T_FonctionEmploye">
+    <Type Name="T_FonctionEmploye">
+      <Column Name="idFonctionEmp" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descript" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="T_FonctionEmploye_T_Employe" Member="T_Employe" ThisKey="idFonctionEmp" OtherKey="idFonction" Type="T_Employe" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_Kilometrage" Member="T_Kilometrage">
+    <Type Name="T_Kilometrage">
+      <Column Name="idKilo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nbKilo" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="commentaire" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="approbation" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idTaux" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idEmp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idPro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="T_Employe_T_Kilometrage" Member="T_Employe" ThisKey="idEmp" OtherKey="idEmploye" Type="T_Employe" IsForeignKey="true" />
+      <Association Name="T_Projet_T_Kilometrage" Member="T_Projet" ThisKey="idPro" OtherKey="idProjet" Type="T_Projet" IsForeignKey="true" />
+      <Association Name="T_TauxKilo_T_Kilometrage" Member="T_TauxKilo" ThisKey="idTaux" OtherKey="idTaux" Type="T_TauxKilo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_Projet" Member="T_Projet">
+    <Type Name="T_Projet">
+      <Column Name="idProjet" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nom" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="descript" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="responsable" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dateDebut" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="dateFin" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="heureAlloue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="idStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="T_Projet_T_CategoriePro" Member="T_CategoriePro" ThisKey="idProjet" OtherKey="idProjet" Type="T_CategoriePro" />
+      <Association Name="T_Projet_T_Depense" Member="T_Depense" ThisKey="idProjet" OtherKey="idProjet" Type="T_Depense" />
+      <Association Name="T_Projet_T_EmployeProjet" Member="T_EmployeProjet" ThisKey="idProjet" OtherKey="idPro" Type="T_EmployeProjet" />
+      <Association Name="T_Projet_T_Kilometrage" Member="T_Kilometrage" ThisKey="idProjet" OtherKey="idPro" Type="T_Kilometrage" />
+      <Association Name="T_StatusProjet_T_Projet" Member="T_StatusProjet" ThisKey="idStatus" OtherKey="noStatusPro" Type="T_StatusProjet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_StatusCategorie" Member="T_StatusCategorie">
+    <Type Name="T_StatusCategorie">
+      <Column Name="idStatusCat" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descript" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="T_StatusCategorie_T_CategoriePro" Member="T_CategoriePro" ThisKey="idStatusCat" OtherKey="idStatusCat" Type="T_CategoriePro" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_StatusEmploye" Member="T_StatusEmploye">
+    <Type Name="T_StatusEmploye">
+      <Column Name="idStatusEmp" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descript" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="T_StatusEmploye_T_Employe" Member="T_Employe" ThisKey="idStatusEmp" OtherKey="idStatus" Type="T_Employe" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_StatusProjet" Member="T_StatusProjet">
+    <Type Name="T_StatusProjet">
+      <Column Name="noStatusPro" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descript" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="T_StatusProjet_T_Projet" Member="T_Projet" ThisKey="noStatusPro" OtherKey="idStatus" Type="T_Projet" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_TauxKilo" Member="T_TauxKilo">
+    <Type Name="T_TauxKilo">
+      <Column Name="idTaux" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="taux" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="ddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="idTypeAuto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="T_TauxKilo_T_Kilometrage" Member="T_Kilometrage" ThisKey="idTaux" OtherKey="idTaux" Type="T_Kilometrage" />
+      <Association Name="T_TypeAuto_T_TauxKilo" Member="T_TypeAuto" ThisKey="idTypeAuto" OtherKey="idType" Type="T_TypeAuto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.T_TypeAuto" Member="T_TypeAuto">
+    <Type Name="T_TypeAuto">
+      <Column Name="idType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descript" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="T_TypeAuto_T_TauxKilo" Member="T_TauxKilo" ThisKey="idType" OtherKey="idTypeAuto" Type="T_TauxKilo" />
+    </Type>
+  </Table>
+  <Function Name="dbo.PS_ChangerDateFinProjet" Method="PS_ChangerDateFinProjet">
+    <Parameter Name="idProjet" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ddateFin" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PS_GetMaxIdProjet" Method="PS_GetMaxIdProjet">
+    <Parameter Name="idProjet" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PS_ChangerEtatCategorie" Method="PS_ChangerEtatCategorie">
+    <Parameter Name="idCategorie" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idStatusCat" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PS_ChangerEtatProjet" Method="PS_ChangerEtatProjet">
+    <Parameter Name="idProjet" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idStatus" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PS_ChangerStatusEmp" Method="PS_ChangerStatusEmp">
+    <Parameter Name="idEmploye" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idStatus" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PS_DepenseProjet" Method="PS_DepenseProjet">
+    <Parameter Name="idProjet" Type="System.Int32" DbType="Int" />
+    <Parameter Name="total" Type="System.Decimal" DbType="SmallMoney" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PS_GetMaxIdCategorie" Method="PS_GetMaxIdCategorie">
+    <Parameter Name="idCat" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PS_GetMaxIdEmpolye" Method="PS_GetMaxIdEmpolye">
+    <Parameter Name="idProjet" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PS_GetMaxIdEmpPro" Method="PS_GetMaxIdEmpPro">
+    <Parameter Name="idEmpPro" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PS_GetMaxIdFeuilleTemps" Method="PS_GetMaxIdFeuilleTemps">
+    <Parameter Name="idFeuilleTemps" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
