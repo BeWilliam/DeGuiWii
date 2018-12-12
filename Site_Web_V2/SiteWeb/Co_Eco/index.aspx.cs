@@ -33,7 +33,7 @@ public partial class Connexion : System.Web.UI.Page
         {
             int i = 0;
             bool trouve = false;
-            while (!trouve && i < listeEmp.Count) //Peut planter si 0 employé
+            while (!trouve && i < listeEmp.Count)
             {
                 if (listeEmp[i].loginName == tbx_username.Text)
                 {
